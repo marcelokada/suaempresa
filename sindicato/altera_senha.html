@@ -1,0 +1,127 @@
+<script>
+  function verificaSenha1() {
+
+    var senha1 = $('#senha1').val();
+
+    var se1 = senha1.length;
+
+    if (se1 <= 7) {
+      $('#alerta6').html('<p align="justify"><font color="red">Caracteres insuficientes - mínimos 8 (oito)!</font></p>');
+      $('#verifica_senha1').val('1');
+      document.getElementById('senha1').focus();
+    } else {
+      $('#alerta6').html('');
+    }
+
+  }
+
+  function verificaSenha2() {
+
+    var senha2 = $('#senha2').val();
+    var se2 = senha2.length;
+
+    if (se2 <= 7) {
+      $('#alerta7').html('<p align="justify"><font color="red">Caracteres insuficientes - mínimos 8 (oito)!</font></p>');
+      document.getElementById('senha2').focus();
+    } else {
+      $('#alerta7').html('');
+    }
+  }
+
+  function compararSenhas() {
+
+    var senha1 = $('#senha1').val();
+    var senha2 = $('#senha2').val();
+
+    if (senha1 != senha2) {
+      $('#alerta8').html('<p align="justify"><font color="red">As senhas estão diferentes.</font></p>');
+      document.getElementById("alterar").disabled = true;
+    } else {
+      $('#alerta8').html('');
+      document.getElementById("alterar").disabled = false;
+    }
+  }
+
+</script>
+
+<input type="hidden" name="idsessao" id="idsessao" value="{ID_SESSAO}">
+<input type="hidden" name="idrede" value="{ID_REDE}">
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Alteração de senha</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">Alteração de senha</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /.container-fluid -->
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="card">
+          <!-- /.card-header -->
+          <form class="forms-sample" method="post" enctype="multipart/form-data">
+            <div class="row mb-2">
+
+                <div class="card">
+                  <div class="card-body">
+
+
+                    <!-- BEGIN ERRO -->
+                    <div class="alert alert-danger" role="alert">
+                      <p align="justify">{MSG}</p>
+                    </div>
+                    <!-- END ERRO -->
+
+                    <!-- BEGIN SUCESSO -->
+                    <div class="alert alert-success" role="alert">
+                      <p align="justify">{MSG}</p>
+                    </div>
+                    <!-- END SUCESSO -->
+
+                    <div id="alerta8"></div>
+
+                    <div class="row">
+                      <div class="form-group">
+                        <label>Senha Nova: (min. de 8 caracteres)</label>
+                        <input type="password" class="form-control p-input" id="senha1" name="senha1" onkeyup="verificaSenha1();"
+                               onblur="verificaSenha1();" required
+                        />
+                        <div id="alerta6"></div>
+                      </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Confirmação da senha: (min. de 8 caracteres)</label>
+                        <input type="password" class="form-control p-input" id="senha2" name="senha2" onkeyup="verificaSenha2(),compararSenhas();" onblur="verificaSenha2(),compararSenhas();" required/>
+                        <div id="alerta7"></div>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Senha Atual:</label>
+                        <input type="password" class="form-control p-input" id="senhaatual" name="senhaatual" required/>
+                      </div>
+
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-primary" id="alterar" name="alterar" value="Alterar">
+                    </div>
+
+                  </div>
+                  </div>
+                </div>
+           </form>
+      </div>
+    </div>
+</section>

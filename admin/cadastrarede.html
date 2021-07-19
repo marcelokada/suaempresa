@@ -1,0 +1,350 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+<script type="text/javascript">
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('rua').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
+    document.getElementById('ibge').value = ("");
+  }
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('rua').value = (conteudo.logradouro);
+      document.getElementById('bairro').value = (conteudo.bairro);
+      document.getElementById('cidade').value = (conteudo.localidade);
+      document.getElementById('uf').value = (conteudo.uf);
+      document.getElementById('ibge').value = (conteudo.ibge);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('rua').value = (conteudo.logradouro);
+    document.getElementById('bairro').value = (conteudo.bairro);
+    document.getElementById('cidade').value = (conteudo.localidade);
+    document.getElementById('uf').value = (conteudo.uf);
+    document.getElementById('ibge').value = (conteudo.ibge);
+
+  }
+
+  jQuery(function ($) {
+    $("#cep").mask("99999-999");
+    $("#cnpj").mask("99.999.999/9999-99");
+    $("#cel").mask("(99) 99999-9999");
+    $("#tel1").mask("(99) 9999-9999");
+    $("#uf").mask("aa");
+  });
+
+
+  $(document).ready(function () {
+
+    $("#cnpj").bind('paste', function (e) {
+      e.preventDefault();
+    });
+
+  });
+
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+  $().ready(function () {
+    $("#categoria").change(function () {
+      var id = $('#categoria').val();
+      $.post('listasubcategoria.php', {id: id}, function (data) {
+        $("#subcategoria").html(data);
+        //console.log(data);
+      });
+    });
+  });
+</script>
+
+<style>
+  .estrelas input[type=radio] {
+    display: none;
+
+  }
+
+  .estrelas label i.fa:before {
+    content: '\f005';
+    color: #FC0;
+  }
+
+  .estrelas input[type=radio]:checked ~ label i.fa:before {
+    color: #CCC;
+  }
+</style>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Cadastro da Rede Credenciada</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Cadastro da Rede Credenciada</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Informações das rede</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+              <!-- BEGIN ERRO -->
+              <div class="alert alert-danger" role="alert">
+                <p align="justify">{MSG}</p>
+              </div>
+              <!-- END ERRO -->
+
+              <!-- BEGIN SUCESSO -->
+              <div class="alert alert-success" role="alert">
+                <p align="justify">{MSG}</p>
+              </div>
+              <!-- END SUCESSO -->
+
+              <form method="post" enctype="multipart/form-data">
+
+                <div class="col-5 mb-3">
+                  <label>Nome:</label>
+                  <input type="text" class="form-control" form-control-plaintext id="nome" name="nome" value="{NOME}" required >
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>CNPJ</label>
+                  <input type="text" class="form-control " id="cnpj" name="cnpj" value="{CNPJ}" required >
+                </div>
+
+                <!-- BEGIN CAD_PROFISSAO -->
+                <div class="col-5 mb-3">
+                  <label>Profissão</label>
+                  <select class="form-control" name="profissao" id="profissao" required>
+                    <option value="">Selecione uma profissão...</option>
+                    <!-- BEGIN PROFISSAO1 -->
+                    <option value="{NNUMEPROF}">{CNOMEPROF}</option>
+                    <!-- END PROFISSAO1 -->
+                  </select>
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>Nº do Conselho:</label>
+                  <input type="text" class="form-control " id="ncon" name="ncon" value="{NCON}" required >
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>Estado do Conselho:</label>
+                  <input type="text" class="form-control " id="est_con" name="est_con" value="{CNPJ}" required >
+                </div>
+                <!-- END CAD_PROFISSAO -->
+
+                <div class="col-5 mb-3">
+                  <label>CEP</label>
+                  <input type="text" class="form-control " id="cep" name="cep" value="" maxlength="9" onblur="verificaCep();" value="{CEP}" required >
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>ENDEREÇO</label>
+                  <input type="text" class="form-control " name="rua" id="rua" value="{RUA}" required >
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>NÚMERO</label>
+                  <input type="text" class="form-control " name="numero" id="numero" value="{NUMERO}" required >
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>COMPLEMENTO</label>
+                  <input type="text" size="3px" class="form-control " name="comple" id="comple" value="{COMPLE}" required >
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>BAIRRO</label>
+                  <input type="text" class="form-control " name="bairro" id="bairro" value="{BAIRRO}" required >
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>CIDADE</label>
+                  <input type="text" class="form-control " id="cidade" name="cidade" value="{CIDA}" required >
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>ESTADO</label>
+                  <input type="text" class="form-control " id="uf" name="uf" value="{UF}"/>
+                  <input type="hidden" class="form-control " id="ibge" name="ibge" value="{IBGE}"/>
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>TELEFONE</label>
+                  <input type="text" class="form-control " id="tel1" name="tel1" value="{TEL1}" required/>
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>CELULAR</label>
+                  <input type="text" class="form-control " id="cel" name="cel" value="{CEL}" required/>
+                </div>
+
+
+
+                <!--                            <div class="form-group">-->
+                <!--                                <label>CÓDIGO DO CUPOM</label>-->
+                <!--                                <input type="text" class="form-control " id="cupom" name="cupom" value="{CUPOM}" required/>-->
+                <!--                            </div>-->
+
+                <!--                            <div class="form-group">
+                                                <label>LINK {CAT_NUM1}</label>
+                                                <input type="text" class="form-control " id="links" name="links" value="{LINKS}" required/>
+                                            </div>-->
+                <div class="col-5 mb-3">
+                  <label>EMAIL</label>
+                  <input type="text" class="form-control " id="email" name="email" value="{EMAIL_CAD}" required >
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>SENHA</label>
+                  <input type="text" class="form-control " id="senha" name="senha" required/>
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>CATEGORIA</label>
+                  <select class="form-control" name="categoria" id="categoria" required>
+                    <option value="">Selecione uma categoria...</option>
+                    <!-- BEGIN CATE -->
+                    <option value="{CAT_NUM}">{CAT_NOME}</option>
+                    <!-- END CATE -->
+                  </select>
+                </div>
+
+                <div class="col-5 mb-3">
+                  <label>SUBCATEGORIA</label>
+                  <select class="form-control" name="subcategoria" id="subcategoria" required>
+                  </select>
+                </div>
+
+                <!-- BEGIN CLASS_REDE -->
+                <div class="col-5 mb-3">
+                  <label>CLASSIFICAÇÃO</label>
+                  <div class="estrelas form-control">
+                    <input type="radio" id="cm_star-empty" name="fb" value="" checked/>
+                    <label for="cm_star-1"><i class="fa"></i></label>
+                    <input type="radio" id="cm_star-1" name="fb" value="1"/>
+                    <label for="cm_star-2"><i class="fa"></i></label>
+                    <input type="radio" id="cm_star-2" name="fb" value="2"/>
+                    <label for="cm_star-3"><i class="fa"></i></label>
+                    <input type="radio" id="cm_star-3" name="fb" value="3"/>
+                    <label for="cm_star-4"><i class="fa"></i></label>
+                    <input type="radio" id="cm_star-4" name="fb" value="4"/>
+                    <label for="cm_star-5"><i class="fa"></i></label>
+                    <input type="radio" id="cm_star-5" name="fb" value="5"/>
+                  </div>
+                </div>
+
+                <!-- END CLASS_REDE -->
+
+                <!-- BEGIN CLASS_PONTUACAO -->
+                <div class="col-5 mb-3">
+                  <label>PONTUAÇÃO</label>
+                  <input type="text" class="form-control " id="pontuacao" name="pontuacao" onKeyPress="return(moeda(this,'.',',',event))" required/>
+                </div>
+                <!-- END CLASS_PONTUACAO -->
+
+                <div class="col-5 mb-3">
+                  <div class="bg-secondary">
+                    <label>Inserir Imagem</label>
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                      <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                        <img src="comum/img/Sem-imagem.jpg" alt=""/>
+                      </div>
+                      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                      <div>
+                      <span class="btn btn-default btn-file">
+                        <span class="fileupload-new alert alert-warning" role="alert"><i class="fa fa-folder-o"></i>Selecionar Imagem</span>
+                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Mudar</span>
+                        <input type="file" name="imagem" class="default" required/>
+                      </span>
+                        <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <input type="submit" class="btn btn-primary" name="salvar" value="Salvar"/>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

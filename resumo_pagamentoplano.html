@@ -1,0 +1,231 @@
+<style>
+  .contain {
+    object-fit: contain;
+    max-width: 100%;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+  }
+
+  .inputsemnada:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+
+
+
+</style>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  document.querySelector("#qtde").addEventListener("input", el => {
+
+    /* Verifica se o valor alterado é maior que o valor do atributo max */
+    if (el.target.value > parseInt(el.target.getAttribute("max"))) {
+
+      /* Caso seja, define o valor do atributo max */
+      el.target.value = el.target.getAttribute("max");
+    }
+
+    /* Verifica se o valor alterado é menor que 0 */
+    if (el.target.value <= parseInt(el.target.getAttribute("min"))) {
+
+      /* Caso seja, define o valor 0 */
+      el.target.value = 1;
+    }
+  });
+
+  function termos(id) {
+    const https = location.protocol;
+    var DIRPAGE = https + "//" + document.location.hostname;
+
+    window.open(DIRPAGE + '/drultraconvenio.com.br/comprovantes.php?idpag='+id);
+    //window.open(DIRPAGE + '/MultiSYS_Club_DoutorUltra/comprovantes.php?idpag='+id);
+  }
+
+  function apagar_comp(id) {
+
+    $.post('apagacomprovante.php', {id: id}, function () {
+      alert('Apagado com Sucesso.');
+      window.location.href = window.location.href;
+    });
+  }
+</script>
+<form method="post">
+  <div class="colors-switcher">
+    <a id="show-panel" class="hide-panel"><i class="fa fa-money fa-blink" aria-hidden="true"></i><font color="red"> {QTDECAR}</font></i>
+    </a>
+    <div class="form-group">
+      <!-- BEGIN MEUPLANO -->
+      <p class="text-center"><h4>{MEUPLANO}</h4></p><br>
+      <!-- END MEUPLANO -->
+      <hr>
+      <button onclick="copiarTexto()" class="btn btn-primary">LINK DE INDICAÇÃO</button>
+      <hr>
+      <p class="text-center">
+      <h4><i>Meu Cashback: <font color="green">R$ {MEUCASH}</font></i></h4>
+      <h4><i>Meu Voucher: <font color="green">R$ {MEUVOUCHER}</font></i></h4>
+      <hr>
+      <h4><i>Meu Bônus Unilevel: <font color="green">R$ {MEUBONUS}</font></i></h4>
+      </p>
+    </div>
+  </div>
+</form>
+
+<!-- Start Home Page Slider -->
+<section class="pricing-section">
+</section>
+<!-- End Home Page Slider -->
+
+
+<form method="post" action="" enctype="multipart/form-data" name="form2" id="form2">
+  <input type="hidden" id="idsessao" name="idsessao" value="{ID_SESSAO}"/>
+  <input type="hidden" id="idcart" name="idcart" value="{IDCART}"/>
+  <input type="hidden" id="idloja" name="idloja" value="{ID_CRED}">
+  <input type="hidden" id="idusua" name="idusua" value="{IDUSUA}"/>
+  <input type="hidden" id="valortotalcompra" name="valortotalcompra" value="{VALOR_TOTAL}"/>
+  <input type="hidden" id="idcred{ID}" name="id" value="{ID}">
+  <input type="hidden" id="idloja" name="idloja" value="{ID_CRED}">
+</form>
+
+<form method="post" action="" enctype="multipart/form-data">
+
+  <!-- Start About Us Section -->
+  <section class="about-us-section-rede">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="section-title text-center">
+            <h3>{TIPOTRANS} - {NOMEPLANO}</h3>
+            <p>RESUMO DA COMPRA <font color="green">{PAGAMENTO}</font></p>
+
+
+            <div class="row">
+              <div class="col-md-12">
+                <!-- BEGIN CERTO -->
+
+                <div class="row">
+                  <div class="pricing">
+                    <div class="col-md-12">
+                      <div class="pricing-table">
+                        <div class="plan-name">
+                          <h3>Dados para Transferência Bancária</h3>
+                        </div>
+                        <div class="plan-price">
+                          <div class="price-value">TED ou DOC<span></span></div>
+                        </div>
+                        <div class="plan-list">
+                          <ul>
+                            <li><b>Banco:</b> {BANCO}</li>
+                            <li><b>Agencia:</b> {AGENCIA}</li>
+                            <li><b>Conta:</b> {CONTA}</li>
+                            <li><b>Cpf/Cnpj:</b> {CPFCNPJ}</li>
+                            <li><b>Nome do Favorecido:</b> {NOMEFAVO}</li>
+                            <li><h4><font color="red"><b>Valor:</b> {VALOR}</font></h4></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+
+                <h2><font color="purple">ID PEDIDO - #{IDPAGPLAN}</font></h2>
+                <table class="table">
+                  <tbody>
+                  <thead>
+                  <tr>
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Valor R$</td>
+                    <td>Tipo Pagmto.</td>
+                    <td>Validade</td>
+                    <td>Tempo Plano</td>
+                    <td>Status do Pagamento</td>
+                    <!--  BEGIN SEGBOL -->
+                    <td>2ª via boleto</td>
+                    <!--  END SEGBOL -->
+
+                    <!--  BEGIN DADOSTRANSF1 -->
+                    <td>Anexar Comprovante</td>
+                    <!--  END DADOSTRANSF1 -->
+
+                    <!--  BEGIN DADOSTRANSF1CC -->
+                    <td>Visualizar Comprovante</td>
+                    <!--  END DADOSTRANSF1CC -->
+                  </tr>
+                  <!--  BEGIN PLANOS -->
+                  <tr bgcolor="{COR}">
+                    <td style="vertical-align:middle;">{ID}</td>
+                    <td style="vertical-align:middle;">{NOMEPLANO}</td>
+                    <td style="vertical-align:middle;">{DESC}</td>
+                    <td style="vertical-align:middle;">{VALOR}</td>
+                    <td style="vertical-align:middle;">{TIPOP}</td>
+                    <td style="vertical-align:middle;">{VALIDADE}</td>
+                    <td style="vertical-align:middle;">{TEMPO} (dias)</td>
+                    <td style="vertical-align:middle;">{SITUA}</td>
+                    <!--  BEGIN SEGBOL1 -->
+                    <td>
+                      <a href="{LINKBOLETO}" target="_blank">2º Via do Boleto</a>
+                    </td>
+                    <!--  END SEGBOL1 -->
+
+                    <td style="vertical-align:middle;">
+                     <!--  BEGIN DADOSTRANSFCC -->
+
+                      <a href="javascript:void(0);" onclick="termos('{IDPAGA}');" title="VISULIZAR COMPROVANTE">Vizualizar</a> <br>
+                      <a href="javascript:void(0);" onclick="apagar_comp('{IDPAGA}');" title="APAGAR COMPROVANTE"><i class="fa fa-trash-o"></i></a>
+
+                    <!--  END DADOSTRANSFCC -->
+
+                    <!--  BEGIN DADOSTRANSF -->
+                    <input type="hidden" name="idpagplano" value="{IDPAGA}">
+                    <input type="hidden" name="enviou" value="1">
+                    <input type="file" class="btn btn-primary" name="arquivo"><br>
+                    <input type="submit" class="btn btn-success" value="Anexar">
+                    <!--  END DADOSTRANSF -->
+
+                    </td>
+                  </tr>
+                  <!--  END PLANOS -->
+                  </thead>
+                  </tbody>
+                </table>
+                <!-- END CERTO -->
+                <!-- BEGIN ERRADO -->
+                <h1>Algo deu errado! Não existe nenhum pedido.</h1>
+                <!-- END ERRADO -->
+              </div>
+            </div><!-- /.row -->
+                  <!-- BEGIN CERTO1 -->
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+
+                <a href="redescredenciadas.php?idSessao={ID_SESSAO}&cat=0" class="btn btn-warning"> FAZER MAIS COMPRAS</a>
+
+                <a href="meuspedidos.php?idSessao={ID_SESSAO}">
+                  <div class="btn btn-primary text-center">RESUMO DA COMPRAS
+                  </div>
+                </a>
+
+                <a href="javascript:void(0);">
+                  <div class="btn btn-success text-center"> AVALIAR COMPRA
+                  </div>
+                </a>
+                <!-- END CERTO1 -->
+
+              </div>
+            </div>
+
+          </div><!-- div anes dos conteudos-->
+        </div><!-- col-md-12 col-sm-12-->
+      </div><!-- class="row" -->
+    </div><!-- /.container -->
+  </section>
+</form>
+

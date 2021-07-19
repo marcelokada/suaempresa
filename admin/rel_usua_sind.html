@@ -1,0 +1,105 @@
+<input type="hidden" name="idrede" value="{ID_REDE}">
+<div class="content-wrapper">
+  <!-- BEGIN ERRO -->
+  <div class="alert alert-danger" role="alert">
+    <p align="justify">{MSG}</p>
+  </div>
+  <!-- END ERRO -->
+
+  <!-- BEGIN SUCESSO -->
+  <div class="alert alert-success" role="alert">
+    <p align="justify">{MSG}</p>
+    <script>
+      setTimeout(function() {
+
+      }, 4000);
+    </script>
+  </div>
+  <!-- END SUCESSO -->
+  <h3 class="page-heading mb-4">Listagem de Usuários</h3>
+  <div id="export-buttons"></div>
+  <br>
+  <div class="row mb-2">
+
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <input type="hidden" id="idsind" name="idsind" value="{ID_SIND}">
+         <table id="datatable-dependentes" class="table">
+            <thead>
+            <tr bgcolor="#e6e6fa">
+              <th>ID</th>
+              <th>Nome dos Usuários</th>
+              <th>Cidade</th>
+              <th>Email</th>
+              <th>Data Inclusão</th>
+              <th>Plano</th>
+              <th>Valor</th>
+              <th>Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <!-- BEGIN USUARIOS -->
+            <tr bgcolor="#f7f7f7">
+              <td>{ID}</td>
+              <td>{NOMEUSUA}</td>
+              <td>{CIDADE}</td>
+              <td>{EMAIL}</td>
+              <td>{DATAINC}</td>
+              <td>{PLANO}</td>
+              <td>{VALOR}</td>
+              <td>{STATUS}</td>
+            </tr>
+            <!-- END USUARIOS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  $(function () {
+    let table = $('#datatable-dependentes').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": false,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+    document.getElementById('export-buttons').appendChild(table.buttons().container()[0]);
+  });
+
+
+
+  function aplicar(id){
+
+    var idsind = $('#idsind').val();
+    var idusua = id;
+
+    $.post('addusuario.php', {
+      idsind: idsind,
+      idusua: idusua
+    }, function (data) {
+      alert('Solicitação Enviada com Sucecsso!');
+      window.location.href = window.location.href
+    });
+  }
+
+</script>

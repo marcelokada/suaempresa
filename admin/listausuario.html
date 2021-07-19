@@ -1,0 +1,155 @@
+<script text="javascript">
+
+  function editmodal1(id) {
+    var id = $('#subcat1').val();
+    $.post('viewusuario.php', {id: id}, function (data) {
+      $('#id').val(data.id);
+      $('#divnome').html('<input type="text" class="form-control p-input" id="nome" name="nome" value=' + data.nome + ' >');
+      $('#divemail').html('<input type="text" class="form-control p-input" id="email" name="email" value=' + data.email + ' >');
+
+      var cnivel = data.nivel;
+
+      if (cnivel == '1') {
+        var nomenivel = 'Apenas Consultar';
+      } else if (cnivel == '2') {
+        var nomenivel = 'Consultar e BackOffice (Usuário)';
+      } else if (cnivel == '3') {
+        var nomenivel = 'Consultar, Cadastrar, Alterações (configurações) e BackOffice (Usuário)';
+      } else if (cnivel == '4') {
+        var nomenivel = 'Consultar, Cadastrar,Alterações (configurações), BackOffice (Usuário) e Autorizar (Pagamentos)';
+      }
+
+      $('#divnivel').html('<select class="form-control p-input" id="nivel" name="nivel">' +
+        '<option value=' + data.nivel + '>' + nomenivel + '</option>' +
+        '<option disabled>--------</option>' +
+        '<option value="1">Apenas Consultar</option>' +
+        '<option value="2">Consultar e BackOffice (Usuário)</option>' +
+        '<option value="3">Consultar, Cadastrar, Alterações (configurações) e BackOffice (Usuário)</option>' +
+        '<option value="4">Consultar, Cadastrar,Alterações (configurações), BackOffice (Usuário) e Autorizar (Pagamentos)</option>' +
+        '</select>');
+
+      var Situ = data.situ;
+      if (Situ == 'a') {
+        var resn = "Ativo";
+      } else {
+        var resn = "Inativo";
+      }
+
+      $('#divsitu').html('<select class="form-control p-input" id="situ" name="situ">' +
+        '<option value=' + data.situ + '>' + resn + '</option>' +
+        '<option disabled>--------</option>' +
+        '<option value="a">Ativo</option>' +
+        '<option value="i">Inativo</option>' +
+        '</select>');
+
+      $("#editarusua").modal();
+    }, 'json');
+
+  }
+</script>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Lista de Usuários Administradores</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Lista de Usuários Administradores</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Admins</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <input type="hidden" id="cate1" name="cate1" value="{CATE1}">
+              <table class="table table-hover table-responsive-md">
+                <thead>
+                <tr class="">
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Nível</th>
+                  <th>Editar</th>
+                  <th>Remover</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- BEGIN SUB1 -->
+                <tr>
+                  <input type="hidden" id="subcat1" name="subcat1" value="{ID}"/>
+                  <td>{NOME}</td>
+                  <td>{EMAIL}</td>
+                  <td>{STATUS1}</td>
+                  <td>{NIVEL}</td>
+                  <td><a href="#" onclick="editmodal1('{ID}');"><i class="ion ion-edit" aria-hidden="true"></i></a></td>
+                  <td><a href="#" onclick="remover1('{ID}');"><i class="ion ion-trash-a" aria-hidden="true"></i></a></td>
+                </tr>
+                <!-- END SUB1 -->
+                </tbody>
+
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editarusua" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form method="post">
+        <div class="modal-header">
+          <h4 class="modal-title" id="Modal-label-2">
+            {TITULO1}
+          </h4>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" class="form-control p-input" id="id" name="id" value="">
+
+          <label>Nome</label>
+          <div id="divnome"></div>
+
+          <br>
+          <label>Email</label>
+          <div id="divemail"></div>
+          <br>
+
+          <label>Nivel:</label>
+          <div id="divnivel"></div>
+          <br>
+
+          <label>Situação:</label>
+          <div id="divsitu"></div>
+          <br>
+
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-outline-success mr-2" name="alterar" value="Alterar">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

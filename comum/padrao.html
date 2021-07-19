@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title></title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="comum/assets/img/favicon.png" rel="icon">
+  <link href="comum/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Captcha -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <link href='comum/assets/fullcallendar/main.css' rel='stylesheet' />
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="comum/assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <link href="comum/assets/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="comum/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="comum/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="comum/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="comum/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="comum/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="comum/assets/css/style.css" rel="stylesheet">
+  <link href="comum/assets/metronic/style.css" rel="stylesheet">
+  <link href="comum/assets/metronic/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="comum/assets/metronic/font-awesome.min.css">
+  <script src="https://use.fontawesome.com/6828b52c24.js"></script>
+
+  <!--file upload-->
+  <link rel="stylesheet" type="text/css" href="comum/assets/css/bootstrap-fileupload.min.css"/>
+  <link rel="stylesheet" type="text/css" href="comum/assets/css/bootstrap-toggle.min.css"/>
+
+  <script type="application/javascript">
+    let copiarTexto = () => {
+      //O texto que será copiado
+      var id = $('#link').val();
+      alert('O link foi copiado em seu teclado.');
+      const texto = id;
+      //Cria um elemento input (pode ser um textarea)
+      let inputTest = document.createElement("input");
+      inputTest.value = texto;
+      //Anexa o elemento ao body
+      document.body.appendChild(inputTest);
+      //seleciona todo o texto do elemento
+      inputTest.select();
+      //executa o comando copy
+      //aqui é feito o ato de copiar para a area de trabalho com base na seleção
+      document.execCommand('copy');
+      //remove o elemento
+      document.body.removeChild(inputTest);
+    };
+  </script>
+</head>
+
+<body>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex align-items-center">
+    <!-- BEGIN INDEX_MENU_ON -->
+    <h1 class="logo me-auto"><a href="index.php?idSessao={ID_SESSAO}">{NOME_EMPRESA}<span>.</span></a></h1>
+    <!-- END INDEX_MENU_ON -->
+
+    <!-- BEGIN INDEX_MENU_OFF -->
+    <h1 class="logo me-auto"><a href="index.php">{NOME_EMPRESA}<span>.</span></a></h1>
+    <!-- END INDEX_MENU_OFF -->
+
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!--<a href="index.html" class="logo me-auto"><img src="comum/assets/img/logo.png" alt=""></a>-->
+
+    {MENU_NAV}
+
+    <a href="#menu" class="navbar"> <i class="fa fau-ser"></i></a>
+    <!--<a href="#about" class="get-started-btn scrollto">Get Started</a>-->
+  </div>
+</header><!-- End Header -->
+
+<main id="main">
+  <input type="hidden" id="link" readonly name="link" value="{LINKINDI}">
+  {CONTEUDO}
+
+  <!-- BEGIN MENU_LAT -->
+  <nav id="menu">
+    <h2>Menu</h2>
+    <h3>Olá, {NOME}.</h3>
+
+    <!-- BEGIN MENU_LAT_PLANO -->
+    <i>{MEUPLANO}</i><br><br>
+    <!-- END MENU_LAT_PLANO -->
+
+    <i>Meu Cashback: <b>R$ {MEUCASH}</b></i><br>
+    <!-- BEGIN MENU_LAT_VOUCHER -->
+    <i>Meu Voucher: <b>R$ {MEUVOUCHER}</b></i><br>
+    <!-- END MENU_LAT_VOUCHER -->
+    <i>Meu Bônus Unilevel: <b>R$ {MEUBONUS}</b></i>
+    <hr>
+    <button onclick="copiarTexto()" class="btn btn-primary">LINK DE INDICAÇÃO</button>
+  </nav>
+
+  <a href="#menu" title="Ver Bônus">
+    <div class="color-panel">
+      <div class="color-mode-icons icon-color"></div>
+    </div>
+  </a>
+  <!-- END MENU_LAT -->
+
+</main><!-- End #main -->
+
+
+
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3>{NOME_EMPRESA}<span>.</span></h3>
+          <p>
+            {RUA} <br>
+            {COMPLE} <br>
+            {CEP}<br>
+            {BAIRRO}<br>
+            {CIDADE} <br><br>
+            <strong>Celular:</strong> {CEL}<br>
+            <strong>Email:</strong> {EMAIL}<br>
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Link Uteis</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Início</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Novos</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Destaques</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Planos</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Nossos Serviços</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">{CAT1}</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">{CAT2}</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">{CAT3}</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">{CAT4}</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">{CAT5}</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-newsletter">
+          <h4>Redes Sociais</h4>
+          <p>Nos procure em nossa redes sociais, e fique por dentro das noticias.</p>
+          <div class="social-links text-center text-md-end pt-3 pt-md-0">
+            <a href="{TWITER}" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="{FACE}" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="{INSTA}" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="{SKYPE}" class="google-plus"><i class="bx bxl-skype"></i></a>
+            <a href="{LINKE}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container d-md-flex py-4">
+
+    <div class="me-md-auto text-center text-md-start">
+      <div class="copyright">
+        &copy; {ANO} <strong><span>MultiSistemas</span></strong>. Todos Direitos Reservados
+      </div>
+    </div>
+
+  </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="comum/assets/vendor/aos/aos.js"></script>
+<script src="comum/assets/js/bootstrap.bundle.min.js"></script>
+<script src="comum/assets/js/bootstrap.min.js"></script>
+
+<script src="comum/assets/js/jquery-3.5.1.min.js"></script>
+<script src="comum/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="comum/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="comum/assets/vendor/php-email-form/validate.js"></script>
+<script src="comum/assets/vendor/purecounter/purecounter.js"></script>
+<script src="comum/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="comum/assets/js/main.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+<script src="comum/assets/metronic/jquery-3.1.0.min.js"></script>
+<script src="comum/assets/metronic/script.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+<!--file upload-->
+<script type="text/javascript" src="comum/assets/js/bootstrap-fileupload.min.js"></script>
+
+<script src="comum/assets/fullcallendar/main.js"></script>
+
+</body>
+
+</html>

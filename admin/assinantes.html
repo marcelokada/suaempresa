@@ -1,0 +1,197 @@
+<script type="text/javascript">
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('rua').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
+    document.getElementById('ibge').value = ("");
+  }
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('rua').value = (conteudo.logradouro);
+      document.getElementById('bairro').value = (conteudo.bairro);
+      document.getElementById('cidade').value = (conteudo.localidade);
+      document.getElementById('uf').value = (conteudo.uf);
+      document.getElementById('ibge').value = (conteudo.ibge);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('rua').value = (conteudo.logradouro);
+    document.getElementById('bairro').value = (conteudo.bairro);
+    document.getElementById('cidade').value = (conteudo.localidade);
+    document.getElementById('uf').value = (conteudo.uf);
+    document.getElementById('ibge').value = (conteudo.ibge);
+
+  }
+
+  jQuery(function ($) {
+    $("#cep").mask("99999-999");
+    $("#cnpj").mask("99.999.999/9999-99");
+    $("#cel").mask("(99) 99999-9999");
+    $("#tel1").mask("(99) 9999-9999");
+    $("#uf").mask("aa");
+
+  });
+
+
+  $().ready(function () {
+    $("#categoria").change(function () {
+      var id = $('#categoria').val();
+      $.post('listasubcategoria.php', {id: id}, function (data) {
+        $("#subcategoria").html(data);
+      });
+    });
+  });
+
+
+  $(document).ready(function () {
+
+    $("#cnpj").bind('paste', function (e) {
+      e.preventDefault();
+    });
+
+  });
+
+
+  function ativar(id) {
+
+    var id = $('#ativo' + id).val();
+
+    $.post('altstacre.php?status=a', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+
+  }
+
+  function desativar(id) {
+
+    var id = $('#ativo' + id).val();
+
+    $.post('altstacre.php?status=c', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  $(function () {
+    let table = $('#exemple1').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+    document.getElementById('export-buttons1').appendChild(table.buttons().container()[0]);
+  });
+
+</script>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Assinantes</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Assinantes</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Informações dos assinantes</h3>
+            </div>
+
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="export-buttons1"></div>
+              <!-- BEGIN ERRO -->
+              <div class="alert alert-danger" role="alert">
+                <p align="justify">{MSG}</p>
+              </div>
+              <!-- END ERRO -->
+
+              <!-- BEGIN SUCESSO -->
+              <div class="alert alert-success" role="alert">
+                <p align="justify">{MSG}</p>
+              </div>
+              <!-- END SUCESSO -->
+
+
+              <table id="exemple1" class="table table-hover">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nome</th>
+                  <th>Situa. Pagmto.</th>
+                  <th>Tempo do plano</th>
+                  <th>Data Início</th>
+                  <th>Data Final</th>
+                </tr>
+                </thead>
+                <!-- BEGIN PLANO -->
+                <tr>
+                  <td>{ID}</td>
+                  <td>{NOME}</td>
+                  <td>{PAGMTO}</td>
+                  <td>{TEMPO} Meses</td>
+                  <td>{DATAINI}</td>
+                  <td>{DATAFIM}</td>
+                </tr>
+                <!-- END PLANO -->
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

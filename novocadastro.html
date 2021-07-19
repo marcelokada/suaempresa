@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+</head>
+
+<script type="text/javascript">
+  jQuery(function ($) {
+    //$("#dtnasc").mask("99/99/9999");
+    $("#cpf").mask("999.999.999-99");
+    $("#celular").mask("(99) 99999-9999");
+    $("#cel").mask("(99) 99999-9999");
+    $("#cep_usua").mask("99999-999");
+  });
+
+  $("#dtnasc").mask("99/99/9999");
+
+  function verificaCPF() {
+    var cpf = $('#cpf').val();
+
+    var cpf1 = cpf.replace(/[^0-9]/g, '');
+
+    var idl1 = cpf1.length;
+
+    if (idl1 <= 10) {
+      document.getElementById('cpf').focus();
+      $('#alerta').html('<p align="justify"><font color="red">Preencha o C.P.F!!</font></p>');
+      $('#verifica').val('cpfmenos');
+    } else {
+
+      $.post('verificaCPF.php', {cpf: cpf1}, function (data) {
+
+        if (data.id == '0') {
+          $('#alerta').html('<p align="justify"><font color="green">C.P.F liberado para cadastro!!!</font></p>');
+        } else {
+          document.getElementById('cpf').focus();
+          $('#alerta').html('<p align="justify"><font color="red">C.P.F já cadastrado!!!</font></p>');
+          $('#verifica').val('cpf');
+        }
+      }, "json");
+    }
+  }
+
+  function verificaLogin() {
+
+    var login = $('#login').val();
+    if (login == '') {
+      document.getElementById('login').focus();
+      $('#alerta2').html('<p align="justify"><font color="red">Por Favor preencher o Login.</font></p>');
+      $('#verifica_login').val('1');
+    } else if (login != null) {
+      console.log(login);
+      $.post('verificaLogin.php', {login: login}, function (data) {
+        console.log(data);
+        if (data.log == '0') {
+          $('#alerta2').html('<p align="justify"><font color="green">Login liberado para utilização.</font></p>');
+          $('#verifica_login').val('0');
+        } else {
+          document.getElementById('login').focus();
+          $('#alerta2').html('<p align="justify"><font color="red">Login já utlizado.</font></p>');
+          $('#verifica_login').val('1');
+        }
+
+      }, "json");
+    }
+  }
+
+  function verificaEmail() {
+    var email = $('#email').val();
+
+    if (email == '') {
+      document.getElementById('email').focus();
+      $('#alerta9').html('<p align="justify"><font color="red">Por Favor preencher o Email.</font></p>');
+      $('#verifica_email').val('1');
+    } else {
+
+      $.post('verificaEmail.php', {email: email}, function (data) {
+
+        if (data.log == '0') {
+          $('#alerta9').html('<p align="justify"><font color="green">Email liberado para utilização.</font></p>');
+          $('#verifica_email').val('0');
+        } else {
+          document.getElementById('email').focus();
+          $('#alerta9').html('<p align="justify"><font color="red">Email já utlizado.</font></p>');
+          $('#verifica_email').val('1');
+        }
+      }, "json");
+    }
+  }
+
+
+  function validacaoCalcularIdade(dtnasc) {
+    var dtnasc = $('#dtnasc').val();
+    var dataAtual = new Date();
+    var anoAtual = dataAtual.getFullYear();
+    var anoNascParts = dtnasc.split('/');
+    var diaNasc = anoNascParts[0];
+    var mesNasc = anoNascParts[1];
+    var anoNasc = anoNascParts[2];
+    var idade = anoAtual - anoNasc;
+    var mesAtual = dataAtual.getMonth() + 1;
+
+    if (mesAtual < mesNasc) {
+      idade--;
+    } else {
+
+      if (mesAtual == mesNasc) {
+        if (dataAtual.getDate() < diaNasc) {
+          idade--;
+        }
+      }
+    }
+
+    var nasc = dtnasc.replace(/[^0-9]/g, '');
+    var dt = nasc.length;
+
+    if (dt <= 7) {
+      document.getElementById('dtnasc').focus();
+      $('#alerta3').html('<p align="justify"><font color="red">Data inválida!</font></p>');
+    } else {
+
+      if (idade <= '17') {
+        $('#verifica').val('menos17');
+        document.getElementById('dtnasc').focus();
+        $('#alerta3').html('<p align="justify"><font color="red">Você nao tem idade suficiente.</font></p>');
+        $('#verifica_idade').val('1');
+
+      } else {
+        $('#alerta3').html('<p align="justify"><font color="green">Idade confirmada</font></p>');
+        $('#verifica_idade').val('0');
+      }
+    }
+  }
+
+
+  function verificaIndicador() {
+    var indicador = $('#indicador').val();
+
+    if (indicador == '') {
+      $('#alerta4').html('<p align="justify"> </font></p>');
+      //$('#indi').val('admin');
+
+    } else {
+
+      $.post('verificaIndicador.php', {indicador: indicador}, function (data) {
+
+        if (data.ind == '0') {
+          $('#alerta4').html('<p align="justify"><font color="red">Não existe esse indicador. Pro favor Preencher com um patrocinador válido</font></p>');
+          $('#indi').val('0');
+          //$('#log_ind').val('admin');
+        } else {
+          $('#alerta4').html('<p align="justify"><font color="green">Indicador válido.</font></p>');
+          $('#indi').val(data.ind);
+          $('#log_ind').val(data.log_ind);
+        }
+      }, "json");
+    }
+  }
+
+
+  function sem_acento(e, args) {
+    if (document.all) {
+      var evt = event.keyCode;
+    } // caso seja IE
+    else {
+      var evt = e.charCode;
+    }	// do contrário deve ser Mozilla
+
+    var valid_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_' + args;	// criando a lista de teclas permitidas
+    var chr = String.fromCharCode(evt);	// pegando a tecla digitada
+
+    if (valid_chars.indexOf(chr) > -1) {
+      return true;
+    }
+    return false;	// do contrário nega
+  }
+
+  $(document).ready(function () {
+
+    $("#login").bind('paste', function (e) {
+      e.preventDefault();
+    });
+    $("#indicado").bind('paste', function (e) {
+      e.preventDefault();
+    });
+  });
+
+  function verificaSenha1() {
+
+    var senha1 = $('#senha1').val();
+
+    var se1 = senha1.length;
+
+    if (se1 <= 7) {
+      $('#alerta6').html('<p align="justify"><font color="red">Caracteres insuficientes - mínimos 8 (oito)!</font></p>');
+      $('#verifica_senha1').val('1');
+      document.getElementById('senha1').focus();
+    } else {
+      $('#alerta6').html('');
+    }
+
+  }
+
+  function verificaSenha2() {
+
+    var senha2 = $('#senha2').val();
+    var se2 = senha2.length;
+
+    if (se2 <= 7) {
+      $('#alerta7').html('<p align="justify"><font color="red">Caracteres insuficientes - mínimos 8 (oito)!</font></p>');
+      document.getElementById('senha2').focus();
+    } else {
+      $('#alerta7').html('');
+    }
+  }
+
+  function compararSenhas() {
+
+    var senha1 = $('#senha1').val();
+    var senha2 = $('#senha2').val();
+
+    if (senha1 != senha2) {
+      $('#alerta8').html('<p align="justify"><font color="red">As senhas estão diferentes.</font></p>');
+      $('#verifica_senha3').val('1');
+    } else {
+      $('#alerta8').html('');
+      $('#verifica_senha3').val('0');
+    }
+  }
+
+  $(window).load(function () {
+    verificaIndicador();
+  });
+
+
+  function termos() {
+    const https = location.protocol;
+    var DIRPAGE = https + "//" + document.location.hostname;
+
+    window.open(DIRPAGE + '/suaempresa.com.br/termos.php');
+  }
+
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('rua').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
+    document.getElementById('ibge').value = ("");
+  }
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('rua').value = (conteudo.logradouro);
+      document.getElementById('bairro').value = (conteudo.bairro);
+      document.getElementById('cidade').value = (conteudo.localidade);
+      document.getElementById('uf').value = (conteudo.uf);
+      document.getElementById('ibge').value = (conteudo.ibge);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('rua').value = (conteudo.logradouro);
+    document.getElementById('bairro').value = (conteudo.bairro);
+    document.getElementById('cidade').value = (conteudo.localidade);
+    document.getElementById('uf').value = (conteudo.uf);
+    document.getElementById('ibge').value = (conteudo.ibge);
+
+  }
+
+
+  function meu_callback1(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('rua_usua').value = (conteudo.logradouro);
+      document.getElementById('bairro_usua').value = (conteudo.bairro);
+      document.getElementById('cida_usua').value = (conteudo.localidade);
+      document.getElementById('esta_usua').value = (conteudo.uf);
+      document.getElementById('ibge_usua').value = (conteudo.ibge);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep1() {
+    var cep = $('#cep_usua').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback1';
+
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('rua_usua').value = (conteudo.logradouro);
+    document.getElementById('bairro_usua').value = (conteudo.bairro);
+    document.getElementById('cida_usua').value = (conteudo.localidade);
+    document.getElementById('esta_usua').value = (conteudo.uf);
+    document.getElementById('ibge_usua').value = (conteudo.ibge);
+
+  }
+
+  jQuery(function ($) {
+    $("#cep").mask("99999-999");
+    //$("#cnpj").mask("99.999.999/9999-99");
+    $("#cel").mask("(99) 99999-9999");
+    $("#tel1").mask("(99) 9999-9999");
+    $("#uf").mask("aa");
+  });
+
+
+  var options = {
+    onKeyPress: function (cpf, ev, el, op) {
+      var masks = ['000.000.000-000', '00.000.000/0000-00'];
+      $('.cpfOuCnpj').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+    }
+  }
+
+  $('.cpfOuCnpj').length > 11 ? $('.cpfOuCnpj').mask('00.000.000/0000-00', options) : $('.cpfOuCnpj').mask('000.000.000-00#', options);
+
+  $().ready(function () {
+    $("#categoria").change(function () {
+      var id = $('#categoria').val();
+      $.post('listasubcategoria.php', {id: id}, function (data) {
+        $("#subcategoria").html(data);
+        //console.log(data);
+      });
+    });
+  });
+
+  $(document).ready(function () {
+
+    $("#cnpj").bind('paste', function (e) {
+      e.preventDefault();
+    });
+
+  });
+
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+
+  function login() {
+    $("#login_novo").modal('show');
+  }
+</script>
+
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col-4">
+        <ol>
+          <li><a href="index.php">Home</a></li>
+          <li>Cadastro</li>
+        </ol>
+        <h2>Cadastro</h2>
+      </div>
+    </div>
+  </div>
+</section><!-- End Breadcrumbs -->
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+  <div class="container" data-aos="fade-up">
+    <center class="mb-3">
+      <img src="comum/img/sualogo1.jpeg" width="250px">
+    </center>
+
+    <div class="container">
+      <!-- BEGIN SUCESSO -->
+      <p class="alert-success" align="justify">{MSG}</p>
+      <!-- END SUCESSO -->
+
+      <!-- BEGIN ERRO -->
+      <p class="alert-danger" align="justify">{MSG}</p>
+      <!-- END ERRO -->
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+              Cadastro Usuário
+            </button>
+          </li>
+
+          <!-- BEGIN CAD_REDE -->
+          <li class="nav-item" role="presentation">
+            <button class="nav-link " id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+              Cadastro {REDE_CRED}
+            </button>
+          </li>
+          <!-- END CAD_REDE -->
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <br>
+        <div class="section-title">
+          <h2>Cadastro Usuario</h2>
+          <p>Caso há duvidas, entre em contato conosco.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+          <form class="row g-3" method="post">
+            <input type="hidden" name="verifica_login" id="verifica_login" value="">
+            <input type="hidden" name="verifica_email" id="verifica_email" value="">
+            <input type="hidden" name="verifica_idade" id="verifica_idade" value="">
+            <input type="hidden" name="verifica_senha1" id="verifica_senha1" value="">
+            <input type="hidden" name="verifica_senha2" id="verifica_senha2" value="">
+            <input type="hidden" name="verifica_senha3" id="verifica_senha3" value="">
+
+            <div class="col-lg-6 col-sm-12">
+              <label for="login">Login: </label>
+              <input class="form-control mb-3" type="text" name="login" id="login" required="require"
+                     onkeypress="return sem_acento(event);" onkeyup="verificaLogin();"
+                     onblur="verificaLogin();" autocomplete="off" value="{LOGIN}"
+                     placeholder="Nome de um login (somente números e letras)" title="Seu login"
+              >
+              <small id="alerta2"></small>
+
+
+              <label>Nome Completo: </label>
+              <input class="form-control mb-3" type="text" name="nome" id="nome" value="{NOME}" required="require"
+                     placeholder="Nome completo" data-validate="Campo obrigatório" title="Seu Nome"
+              >
+              <span class="focus-form-control"></span>
+
+              <label>Email: </label>
+              <input class="form-control mb-3" type="email" name="email" id="email" value="{EMAIL}" required="require"
+                     onkeyup="verificaEmail();" placeholder="Coloque seu Email"
+                     data-validate="Campo obrigatório" title="Coloque seu Email"
+              >
+              <input type="hidden" name="verificae" id="verificae" value="">
+              <small id="alerta9"></small>
+
+              <label>Data de Nascimento (+18):</label>
+              <input class="form-control mb-3" type="text" maxlength="10" name="dtnasc" id="dtnasc" value="{DNASC}"
+                     onblur="validacaoCalcularIdade();" onkeyup="validacaoCalcularIdade();"
+                     placeholder="Data de Nascimento" data-validate="Campo obrigatório" title="Data de Nascimento"
+              >
+              <small id="alerta3"></small>
+
+              <label>Celular: </label>
+              <input class="form-control mb-3" type="text" name="celular" id="celular" value="{CELU}"
+                     placeholder="Celular" data-validate="Campo obrigatório" title="Data de Nascimento"
+              >
+
+              <label>Dia do Vencimento do Boleto: <span class="small">(opção em branco pegará o dia padrão do sistema - dia 10).</span></label>
+              <select class="form-control mb-3" type="text" name="venc" id="venc">
+                <option value=""></option>
+                <option value="5">DIA 05</option>
+                <option value="10">DIA 10</option>
+                <option value="15">DIA 15</option>
+              </select>
+
+              <label>Login do seu patrocinador (Obrigatório): Somente Numeros e Letras (Qualquer caracteres especial ex: @*. não serão aceitos). </label>
+              <input type="hidden" name="indi" id="indi" value="">
+              <input type="hidden" name="log_ind" id="log_ind" value="">
+              <input class="form-control mb-3" type="text" name="indicador" id="indicador"
+                     onkeypress="return sem_acento(event);" onkeyup="verificaIndicador();"
+                     onblur="verificaIndicador();" value="{INDI}"
+                     placeholder="É permitido somente letras e números." title="Login do seu patrocinador"
+              >
+              <small id="alerta4"></small>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+
+              <label>CEP</label>
+              <input type="text" class="form-control col-md-3 col-sm-12  mb-3" id="cep_usua" name="cep_usua" value="" maxlength="9" onblur="verificaCep1();" value="{CEP}" required/>
+
+
+              <div class="row">
+                <div class="col-md-10">
+                  <label>Rua:</label>
+                  <input type="text" class="form-control mb-3" name="rua_usua" id="rua_usua" value="{RUA_USUA}" required>
+                </div>
+
+                <div class="col-md-2">
+                  <label>Nº:</label>
+                  <input type="text" class="form-control mb-3" name="num_usua" id="num_usua" value="{NUM_USUA}">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Bairro:</label>
+                  <input type="text" class="form-control mb-3" name="bairro_usua" id="bairro_usua" value="{BAIRRO_USUA}" required>
+                </div>
+
+                <div class="col-md-6">
+                  <label>Complemento:</label>
+                  <input type="text" class="form-control mb-3" name="comple_usua" id="comple_usua" value="{COM_USUA}">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Cidade:</label>
+                  <input type="text" class="form-control mb-3" name="cida_usua" id="cida_usua" value="{CIDA_USUA}" required>
+                  <input type="hidden" name="ibge_usua" id="ibge_usua" value="{IBGE_USUA}">
+                </div>
+
+                <div class="col-md-6">
+                  <label>Estado:</label>
+                  <input type="text" class="form-control mb-3" name="esta_usua" id="esta_usua" value="{EST_USUA}" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Senha (mínimo de 8 caracteres):</label>
+                  <input class="form-control mb-3" type="password" required="required" onkeyup="verificaSenha1();"
+                         onblur="verificaSenha1();" name="senha1" id="senha1" placeholder="Senha"
+                         title="Mínimo de 8 caracteres"
+                  >
+                  <small id="alerta6"></small>
+                </div>
+
+                <div class="col-md-6">
+                  <label>Confirma a senha:</label>
+                  <input class="form-control" type="password" name="senha2" required="required" id="senha2" placeholder="Confirme sua Senha"
+                         title="Igual a senha acima e no mínimo de 8 caracteres"
+                  >
+                  <small id="alerta7"></small>
+                </div>
+              </div>
+
+              <div class="container">
+                <div id="alerta8"></div>
+              </div>
+
+            </div>
+
+            <div class="text-center mb-3">
+              <input type="checkbox" name="concordo" id="concordo">
+              Eu li e concordo com Contrato/Termo - <a href="javascript:void(0);" onclick="termos();">Contrato/Termo</a>
+            </div>
+
+            <input type="submit" class="btn btn-primary" name="cadastrar" value="Cadastrar">
+
+          </form>
+        </div>
+
+      </div>
+
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <br>
+        <div class="section-title">
+          <h2>Cadastro {REDE_CRED}</h2>
+          <p>Caso há duvidas, entre em contato conosco.</p>
+        </div>
+
+        <form method="post" enctype="multipart/form-data">
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="col-lg-6">
+
+              <label>Nome:</label>
+              <input type="text" class="form-control mb-3" form-control-plaintext id="nome_rede" name="nome_rede" value="{NOME}" required/>
+
+              <label>CPF/CNPJ</label>
+              <input type="text" class="form-control mb-3 cpfOuCnpj" id="cpfcnpj" name="cpfcnpj" value="{CNPJ}" required/>
+
+              <label>EMAIL</label>
+              <input type="text" class="form-control  mb-3" id="email_rede" name="email_rede" value="{EMAIL_CAD}" required/>
+
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <label>TELEFONE</label>
+                  <input type="text" class="form-control  mb-3" id="tel1" name="tel1" value="{TEL1}" required/>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <label>CELULAR</label>
+                  <input type="text" class="form-control  mb-3" id="cel" name="cel" value="{CEL_CAD}" required/>
+                </div>
+              </div>
+
+              <!-- BEGIN CAD_PROFISSAO -->
+
+              <label>Profissão </label>
+              <select class="form-control  mb-3" name="profissao" id="profissao" required>
+                <option value="">Selecione uma profissão...</option>
+                <!-- BEGIN PROFISSAO -->
+                <option value="{NNUMEPROF}">{CNOMEPROF}</option>
+                <!-- END PROFISSAO -->
+              </select>
+
+              <div class="row">
+
+                <div class="col-md-6 col-sm-12">
+
+                  <label>Nº do Conselho:</label>
+                  <input type="text" class="form-control  mb-3" id="ncon" name="ncon" value="{NCON}" required/>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <label>UF do Conselho:</label>
+                  <input type="text" class="form-control  mb-3" id="estacon" name="estacon" value="{CNPJ}" required/>
+
+                </div>
+              </div>
+              <!-- END CAD_PROFISSAO -->
+
+
+              <label>CEP</label>
+              <input type="text" class="form-control col-md-3 col-sm-12  mb-3" id="cep" name="cep" value="" maxlength="9" onblur="verificaCep();" value="{CEP}" required/>
+
+              <div class="row">
+                <div class="col-md-10 col-sm-12">
+                  <label>ENDEREÇO</label>
+                  <input type="text" class="form-control  mb-3" name="rua" id="rua" value="{RUA_CAD}" required/>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                  <label>NÚMERO</label>
+                  <input type="text" class="form-control  mb-3" name="numero" id="numero" value="{NUMERO_CAD}" required/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <label>COMPLEMENTO</label>
+                  <input type="text" size="3px" class="form-control  mb-3" name="comple" id="comple" value="{COMPLE_CAD}">
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <label>BAIRRO</label>
+                  <input type="text" class="form-control  mb-3" name="bairro" id="bairro" value="{BAIRRO_CAD}" required/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-10 col-sm-12">
+                  <label>CIDADE</label>
+                  <input type="text" class="form-control  mb-3" id="cidade" name="cidade" value="{CIDA_CAD}" required/>
+                </div>
+                <div class="col-md-2 col-sm-12">
+
+                  <label>ESTADO</label>
+                  <input type="text" class="form-control  mb-3" id="uf" name="uf" value="{UF_CAD}"/>
+                  <input type="hidden" class="form-control mb-3 " id="ibge" name="ibge" value="{IBGE_CAD}"/>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <label>SENHA</label>
+                  <input type="password" class="form-control mb-3" minlength="8" id="senha_cred" name="senha_cred" required/>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <label>CONFIRMAÇÃO</label>
+                  <input type="password" class="form-control mb-3" minlength="8" id="senha2_cred" name="senha2_cred" required/>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+
+
+              <label>CATEGORIA</label>
+              <select class="form-control mb-3" name="categoria" id="categoria" required>
+                <option value="">Selecione uma categoria...</option>
+                <!-- BEGIN CATE -->
+                <option value="{CAT_NUM}">{CAT_NOME}</option>
+                <!-- END CATE -->
+              </select>
+
+              <label>SUBCATEGORIA</label>
+              <select class="form-control mb-3" name="subcategoria" id="subcategoria">
+              </select>
+
+              <!-- BEGIN CLASS_REDE -->
+
+              <label>CLASSIFICAÇÃO</label>
+              <h1 class="estrelas mb-3">
+                <input type="radio" id="cm_star-empty" name="fb" value="" checked/>
+                <label for="cm_star-1"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-1" name="fb" value="1"/>
+                <label for="cm_star-2"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-2" name="fb" value="2"/>
+                <label for="cm_star-3"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-3" name="fb" value="3"/>
+                <label for="cm_star-4"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-4" name="fb" value="4"/>
+                <label for="cm_star-5"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-5" name="fb" value="5"/>
+              </h1>
+              <!-- END CLASS_REDE -->
+
+              <!-- BEGIN CLASS_PONTUCAO -->
+              <label>PONTUAÇÃO</label>
+              <input type="text" class="form-control mb-3" id="pontuacao" name="pontuacao" onKeyPress="return(moeda(this,'.',',',event))" required/>
+
+              <!-- END CLASS_PONTUCAO -->
+
+              <label>TIPO DE SERVIÇO</label>
+              <select class="form-control mb-3" name="tipo_serv" id="tipo_serv" required>
+                <option value="">Selecione...</option>
+                <option value="1">Serviços</option>
+                <option value="2">Produtos</option>
+                <option value="3">Todos</option>
+              </select>
+
+              <div class="bg-beige  mb-3">
+                <label>Inserir Imagem</label>
+                <div class="fileupload fileupload-new" data-provides="fileupload">
+                  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                    <img src="comum/img/Sem-imagem.jpg" alt=""/>
+                  </div>
+                  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                  <div>
+                                    <span class="btn btn-default btn-file">
+                                      <span class="fileupload-new alert alert-warning" role="alert"><i class="fa fa-folder-o"></i>Selecionar Imagem</span>
+                                      <span class="fileupload-exists"><i class="fa fa-undo"></i> Mudar</span>
+                                      <input type="file" name="imagem" class="default" required/>
+                                    </span>
+                    <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BEGIN DOCS_MIMO -->
+
+              <label>Documentos em formato(.pdf, .jpeg, .jpg, .png) | Tamanho Maximo de 5mb.</label>
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile01" name="docs[]">
+                <label class="input-group-text" for="inputGroupFile01">Adicionar Documento 1</label>
+              </div>
+
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02" name="docs[]">
+                <label class="input-group-text" for="inputGroupFile02">Adicionar Documento 2</label>
+              </div>
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile03" name="docs[]">
+                <label class="input-group-text" for="inputGroupFile03">Adicionar Documento 3</label>
+              </div>
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile04" name="docs[]">
+                <label class="input-group-text" for="inputGroupFile04">Adicionar Documento 4</label>
+              </div>
+              <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile05" name="docs[]">
+                <label class="input-group-text" for="inputGroupFile05">Adicionar Documento 5</label>
+              </div>
+
+              <!-- END DOCS_MIMO -->
+
+            </div>
+          </div>
+          <input type="submit" class="btn btn-primary" name="cad_rede" value="Cadastrar">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section><!-- End Contact Section -->
+
+
+<form method="post">
+  <div class="modal fade" id="login_novo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Acesso</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- BEGIN SUAEMPRESA -->
+        <div class="modal-body">
+          <p><b>Login Admin:</b> admin@suaempresa.com.br</p>
+          <p><b>Login Usuário:</b> usua@suaempresa.com.br</p>
+          <p><b>Login Rede:</b> cred1@teste.com.br</p>
+          <p><b>Senha(p/ todos):</b> mudarsenha123</p>
+        </div>
+
+        <!-- END SUAEMPRESA -->
+
+        <div class="modal-body">
+          <!-- BEGIN ERRO_LOGIN -->
+          <div class="" role="alert">
+            <p align="justify">{MSG} </p>
+            {MSG1}
+          </div>
+          <!-- END ERRO_LOGIN -->
+
+          <!-- BEGIN SUCESSO_LOGIN -->
+          <div role="alert">
+            <p class="alert alert-danger" align="center">{MSG}</p>
+            {MSG1}
+          </div>
+          <!-- END SUCESSO_LOGIN -->
+
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" id="resultado" name="login" value="{LOGIN}" placeholder="name@exemplo.com">
+            <label for="floatingInput">Email (Login)</label>
+          </div>
+          <div class="form-floating mb-4">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="senha" placeholder="Senha" alt="SENHA" autocomplete="off">
+            <label for="floatingPassword">Senha (min. 8 caracteres)</label>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <a href="#" class="text-left">Esqueci a Senha</a>
+            </div>
+          </div>
+        </div>
+
+        <!--<div class="modal-body text-left">
+          <div class="row">
+          <div class="col-6">
+            <a href="novocadastro.php" class="">Esqueci a senha</a>
+          </div>
+          <div class="col-6 text-right">
+            <a href="javascript:void(0);">Novo Cadastro</a>
+          </div>
+          </div>
+        </div>-->
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary" name="acessar">Acessar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

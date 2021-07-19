@@ -1,0 +1,122 @@
+<script type="text/javascript" >
+
+</script>
+<style>
+.infocart:hover{
+cursor: pointer;
+color: red;
+background-color: #CEF6E3;
+}
+
+.subcompra{
+width: 100%;
+}
+
+
+</style>
+<input type="hidden" name="idcred" value="{ID_CRED}">
+<input type="hidden" id="idrede" name="idrede" value="{ID_REDE}">
+<div class="content-wrapper">
+    <h3 class="page-heading mb-4">Informaçoes das Vendas</h3>
+    <div class="row mb-2">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+					<h5 class="card-title mb-4">Informações dos carrinhos de compra</h5>
+									
+					<!-- BEGIN ERRO -->   
+						<div class="alert alert-danger" role="alert">
+							<p align="justify">{MSG}</p> 
+						</div>
+					<!-- END ERRO -->
+					
+					<!-- BEGIN SUCESSO -->   
+						<div class="alert alert-success" role="alert">
+							<p align="justify">{MSG}</p> 
+						</div>
+					<!-- END SUCESSO -->
+				  
+					<div class="form-row">
+					
+					<!-- BEGIN COMPRAS -->
+					<table class="table">
+						
+						<tr bgcolor="#F6CECE" class="titutable">
+							<th>Carrinho de nº 		</th>
+							<th>Nome do Usuário		</th>
+							<th>Valor do carrinho	</th>
+							<th>Data da Compra		</th>
+							<th>Status da compra	</th>
+						</tr>
+	
+						<tr  class="infocart" data-toggle="collapse" data-target="#collapse{ID},#collapse1{ID},#collapse2{ID}" aria-expanded="true" aria-controls="collapse{ID}">
+							<input type="hidden" name="idcart" id="idcart" value="{ID}">
+							<td>{ID}			</td>
+							<td>{NOMEUSUA}</td>
+							<td>{VALOR_TOTAL}	</td>
+							<td>{DATACART}		</td>
+							<td>{SITUA}		</td>
+						</tr>
+						
+						<tr id="collapse{ID}" bgcolor="#D8D8D8" class="collapse subcompra" data-parent="#accordionExample">	<input type="hidden" name="idcart" id="idcart" value="{ID}">
+							<th>Status do carrinho</th>
+							<th>Tipo da transação</th>
+							<th>Referência</th>
+							<th>Data da transação</th>
+							<th>Modo do Pagamento</th>
+						</tr>
+						<tr id="collapse{ID}" bgcolor="{COR}" class="collapse subcompra" data-parent="#accordionExample">	<input type="hidden" name="idcart" id="idcart" value="{ID}">
+							<td>{STATUSCAR}	</td>
+							<td>{TIPOPAG}	</td>
+							<td>{REF}		</td>
+							<td>{DATATRANS}	</td>
+							<td>{TIPAGCASH}	</td>
+						</tr>
+						
+					</table>
+					
+					<table class="table">
+						
+						<tr id="collapse{ID}" bgcolor="#D8D8D8" class="collapse subcompra" data-parent="#accordionExample">
+							<th>Nome do produto	</th>
+							<th>Valor Unit.		</th>
+							<th>Quantidade		</th>
+							<th>Valor Total		</th>
+							<th>% do Cashback	</th>
+							<th>CashBack Gerado	</th>
+						</tr>
+						<!-- BEGIN PRODUTOS -->
+						<tr id="collapse1{ID}" bgcolor="{COR}" class="collapse" data-parent="#accordionExample">
+							<td>{NOMEPROD}</td>
+							<td>{VALUNITA}</td>
+							<td>{QUANTIDA}</td>
+							<td>{VALTPROD}</td>
+							<td>{CASHPORC}</td>
+							<td>{CASHBACK}</td>
+							
+						</tr>
+						
+						<!-- END PRODUTOS -->
+						<tr bgcolor="#D8D8D8" 	id="collapse2{ID}"class="collapse">
+							<td></td>
+							<td></td>
+							<td><b>TOTAL</b></td>
+							<td><b>{VALOR_TOTAL}</b></td>
+							<td><b></b></div>
+							<td><b>{TOTALCASH}</b></td>
+						</tr>
+					</table>
+					<hr>
+					<!-- END COMPRAS -->
+					<br>	
+					<br>	
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+		
+
+	
+	

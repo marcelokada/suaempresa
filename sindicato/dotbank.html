@@ -1,0 +1,49 @@
+
+
+<form method="post">
+  <input type="hidden" name="idrede" value="{ID_REDE}">
+  <div class="content-wrapper">
+    <h3 class="page-heading mb-4">Configurações do DotBank</h3>
+    <div class="row mb-2">
+      <div class="col-lg-12 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Configurar o token do dotbank</h5>
+
+            <table class="table table-hover">
+              <thead>
+              <tr class="">
+                <th>Token</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td><input type="text" class="form-control col-md-3" name="token" value="{TOKEN}"></td>
+              </tr>
+              </tbody>
+            </table>
+            <input type="submit" class="btn btn-outline-success mr-2" name="alterar_cnpj" value="Alterar">
+            <hr>
+            <h5 class="card-title mb-4">Configurar Cnpj e Senha que estão configurada no DOTBANK</h5>
+            <table class="table table-hover">
+              <thead>
+              <tr class="">
+                <th>CNPJ</th>
+                <th>Senha</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td><input type="text" class="form-control col-md-3" name="cnpj" value="{CNPJ}"></td>
+                <td><input type="text" class="form-control col-md-3" name="senha" value="{SENHA}"></td>
+              </tr>
+              </tbody>
+            </table>
+            <input type="submit" class="btn btn-outline-success mr-2" name="alterar_cnpj" value="Alterar">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,917 @@
+<script type="text/javascript">
+
+
+  function addSub1(id) {
+    var id = $('#idcred' + id).val();
+    $("#addmodal1").modal('show');
+  }
+
+
+  function addSub2(id) {
+    var id = $('#idcred' + id).val();
+    $("#addmodal2").modal('show');
+  }
+
+  function addSub3(id) {
+    var id = $('#idcred' + id).val();
+    $("#addmodal3").modal('show');
+  }
+
+  function addSub4(id) {
+    var id = $('#idcred' + id).val();
+    $("#addmodal4").modal('show');
+  }
+
+  function addSub5(id) {
+    var id = $('#idcred' + id).val();
+    $("#addmodal5").modal('show');
+  }
+
+  function adicionar1(id) {
+    //var id = $('#cate1').val();
+    var id = 1;
+    var nome = $('#nome1').val();
+
+    $.post('addsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function adicionar2(id) {
+    //var id = $('#cate2').val();
+    var id = 2;
+    var nome = $('#nome2').val();
+
+    $.post('addsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function adicionar3(id) {
+    //var id = $('#cate3').val();
+    var id = 3;
+    var nome = $('#nome3').val();
+
+    $.post('addsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function adicionar4(id) {
+    //var id = $('#cate4').val();
+    var id = 4;
+    var nome = $('#nome4').val();
+
+    $.post('addsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function adicionar5(id) {
+    //var id = $('#cate5').val();
+    var id = 5;
+    var nome = $('#nome5').val();
+
+    $.post('addsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  /************************************************/
+  /************************************************/
+  /************************************************/
+  /************************************************/
+
+  function remover1(id) {
+    var id = $('#subcat1' + id).val();
+
+    $.post('delsubcat.php', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function remover2(id) {
+    var id = $('#subcat2' + id).val();
+
+    $.post('delsubcat.php', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function remover3(id) {
+    var id = $('#subcat3' + id).val();
+
+    $.post('delsubcat.php', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function remover4(id) {
+    var id = $('#subcat4' + id).val();
+
+    $.post('delsubcat.php', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function remover5(id) {
+    var id = $('#subcat5' + id).val();
+
+    $.post('delsubcat.php', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  /***********************************************/
+  /***********************************************/
+  /***********************************************/
+  /***********************************************/
+
+
+  function editmodal1(id) {
+    var id = $('#subcat1' + id).val();
+
+    $.post('viewsubcat.php', {id: id}, function (data) {
+      $('#nome_e1').val(data.nome);
+      $('#cat1').val(data.id);
+      $("#editmodal1").modal('show');
+    }, 'json');
+
+  }
+
+  function editmodal2(id) {
+    var id = $('#subcat2' + id).val();
+
+    $.post('viewsubcat.php', {id: id}, function (data) {
+      $('#nome_e2').val(data.nome);
+      $('#cat2').val(data.id);
+      $("#editmodal2").modal('show');
+    }, 'json');
+
+  }
+
+  function editmodal3(id) {
+    var id = $('#subcat3' + id).val();
+
+    $.post('viewsubcat.php', {id: id}, function (data) {
+      $('#nome_e3').val(data.nome);
+      $('#cat3').val(data.id);
+      $("#editmodal3").modal('show');
+    }, 'json');
+
+  }
+
+  function editmodal4(id) {
+    var id = $('#subcat4' + id).val();
+
+    $.post('viewsubcat.php', {id: id}, function (data) {
+      $('#nome_e4').val(data.nome);
+      $('#cat4').val(data.id);
+      $("#editmodal4").modal('show');
+    }, 'json');
+
+  }
+
+  function editmodal5(id) {
+    var id = $('#subcat5' + id).val();
+
+    $.post('viewsubcat.php', {id: id}, function (data) {
+      $('#nome_e5').val(data.nome);
+      $('#cat5').val(data.id);
+      $("#editmodal5").modal('show');
+    }, 'json');
+
+  }
+
+  /********************************************/
+  /********************************************/
+  /********************************************/
+  /********************************************/
+
+  function altemodal1(id) {
+
+    var id = $('#cat1').val();
+    var nome = $('#nome_e1').val();
+
+    $.post('altsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function altemodal2(id) {
+
+    var id = $('#cat2').val();
+    var nome = $('#nome_e2').val();
+
+    $.post('altsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function altemodal3(id) {
+
+    var id = $('#cat3').val();
+    var nome = $('#nome_e3').val();
+
+    $.post('altsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function altemodal4(id) {
+
+    var id = $('#cat4').val();
+    var nome = $('#nome_e4').val();
+
+    $.post('altsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  function altemodal5(id) {
+
+    var id = $('#cat5').val();
+    var nome = $('#nome_e5').val();
+
+    $.post('altsubcat.php', {id: id, nome: nome}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+  $(function () {
+    let table = $('#exemple1').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table2 = $('#exemple2').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table3 = $('#exemple3').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table4 = $('#exemple4').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table5 = $('#exemple5').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    document.getElementById('export-buttons1').appendChild(table.buttons().container()[0]);
+    document.getElementById('export-buttons2').appendChild(table2.buttons().container()[0]);
+    document.getElementById('export-buttons3').appendChild(table3.buttons().container()[0]);
+    document.getElementById('export-buttons4').appendChild(table4.buttons().container()[0]);
+    document.getElementById('export-buttons5').appendChild(table5.buttons().container()[0]);
+  });
+
+</script>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Configurações Básicas</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Configurações Básicas</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{CAT1}</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="exemple1" class="table table-hover mb-4">
+                <thead>
+                <tr class="">
+                  <th>Nome Subcategoria</th>
+                  <th>Status</th>
+                  <th {DISABLE}></th>
+                  <th {DISABLE}></th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- BEGIN SUB1 -->
+                <input type="hidden" id="subcat1{ID1}" name="subcat1" value="{ID1}"/>
+                <tr>
+                  <td>{NOME1}</td>
+                  <td>{STATUS1}</td>
+
+                  <td {DISABLE}><a {DISABLE} href="javascript:void(0);" onclick="editmodal1('{ID1}');">
+                    <buttom class="btn btn-sm btn-info">Editar</buttom>
+                  </a></td>
+                  <td {DISABLE}><a {DISABLE} href="javascript:void(0);" onclick="remover1('{ID1}');">
+                    <buttom class="btn btn-sm btn-danger">Remover</buttom>
+                  </a></td>
+                </tr>
+                <!-- END SUB1 -->
+                </tbody>
+
+              </table>
+
+              <!-- BEGIN NIVEL4_SUBCAT_BT1 -->
+              <div class="btn-group">
+                <button class="btn btn-primary" onclick="addSub1('{CATE1}');">
+                  Adicionar <i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- END NIVEL4_SUBCAT_BT1 -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{CAT2}</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="exemple2" class="table table-hover mb-4">
+                <thead>
+                <tr class="">
+                  <th>Nome Subcategoria</th>
+                  <th>Status</th>
+                  <th {DISABLE}></th>
+                  <th {DISABLE}></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!-- BEGIN SUB2 -->
+                <input type="hidden" id="subcat2{ID2}" name="subcat2" value="{ID2}"/>
+                <tr>
+                  <td>{NOME2}</td>
+                  <td>{STATUS2}</td>
+                  <td {DISABLE}><a {DISABLE} href="javascript:void(0);" onclick="editmodal2('{ID2}');">
+                    <buttom class="btn btn-sm btn-info">Editar</buttom>
+                  </a>
+                  </td>
+                  <td {DISABLE}><a {DISABLE} href="javascript:void(0);" onclick="remover2('{ID2}');">
+                    <buttom class="btn btn-sm btn-danger">Remover</buttom>
+                  </a>
+                  </td>
+                </tr>
+                <!-- END SUB2 -->
+
+                </tbody>
+              </table>
+
+              <!-- BEGIN NIVEL4_SUBCAT_BT2 -->
+              <div class="btn-group">
+                <button class="btn btn-primary" onclick="addSub2('{CATE2}');">
+                  Adicionar <i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- END NIVEL4_SUBCAT_BT2 -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{CAT3}</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="exemple3" class="table table-hover mb-4">
+                <thead>
+                <tr>
+                  <th>Nome Subcategoria</th>
+                  <th>Status</th>
+                  <th {DISABLE}></th>
+                  <th {DISABLE}></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!-- BEGIN SUB3 -->
+                <tr>
+                  <input type="hidden" id="subcat3{ID3}" name="subcat3" value="{ID3}"/>
+                  <td>{NOME3}</td>
+                  <td>{STATUS3}</td>
+                  <td {DISABLE}>
+                    <a {DISABLE} href="javascript:void(0);" onclick="editmodal3('{ID3}');">
+                      <buttom class="btn btn-sm btn-info">Editar</buttom>
+                    </a>
+                  </td>
+                  <td {DISABLE}><a {DISABLE} href="javascript:void(0);" onclick="remover3('{ID3}');">
+                    <buttom class="btn btn-sm btn-danger">Remover</buttom>
+                  </a>
+                  </td>
+                </tr>
+                <!-- END SUB3 -->
+
+                </tbody>
+              </table>
+
+              <!-- BEGIN NIVEL4_SUBCAT_BT3 -->
+              <div class="btn-group">
+                <button class="btn btn-primary" onclick="addSub3('{CATE3}');">
+                  Adicionar <i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- END NIVEL4_SUBCAT_BT3 -->
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">{CAT4}</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="exemple4" class="table table-hover mb-4">
+                <thead>
+                <tr class="">
+                  <th>Nome Subcategoria</th>
+                  <th>Status</th>
+                  <th {DISABLE}></th>
+                  <th {DISABLE}></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!-- BEGIN SUB4 -->
+                <tr>
+                  <input type="hidden" id="subcat4{ID4}" name="subcat4" value="{ID4}"/>
+                  <td>{NOME4}</td>
+                  <td>{STATUS4}</td>
+                  <td {DISABLE}>
+                    <a {DISABLE} href="javascript:void(0);" onclick="editmodal4('{ID4}');">
+                      <buttom class="btn btn-sm btn-info">Editar</buttom>
+                    </a>
+                  </td>
+                  <td {DISABLE}><a {DISABLE} href="javascript:void(0);" onclick="remover4('{ID4}');">
+                    <buttom class="btn btn-sm btn-danger">Remover</buttom>
+                  </a>
+                  </td>
+                </tr>
+                <!-- END SUB4 -->
+
+                </tbody>
+              </table>
+
+              <!-- BEGIN NIVEL4_SUBCAT_BT4 -->
+              <div class="btn-group">
+                <button class="btn btn-primary" onclick="addSub4('{CATE4}');">
+                  Adicionar <i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- END NIVEL4_SUBCAT_BT4 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">{CAT5}</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <input type="hidden" id="cate5" name="cate5" value="{CATE5}">
+          <table id="exemple5" class="table table-hover mb-4">
+            <thead>
+            <tr class="">
+              <th>Nome Subcategoria</th>
+              <th>Status</th>
+              <th {DISABLE}></th>
+              <th {DISABLE}></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <!-- BEGIN SUB5 -->
+            <tr>
+              <input type="hidden" id="subcat5{ID5}" name="subcat5" value="{ID5}"/>
+              <td>{NOME5}</td>
+              <td>{STATUS5}</td>
+              <td {DISABLE}>
+                <a {DISABLE} href="javascript:void(0);" onclick="editmodal5('{ID5}');">
+                  <buttom class="btn btn-sm btn-info">Editar</buttom>
+                </a>
+              </td>
+              <td {DISABLE}><a {DISABLE} href="javascript:void(0);" onclick="remover5('{ID5}');">
+                <buttom class="btn btn-sm btn-danger">Editar</buttom>
+              </a>
+              </td>
+            </tr>
+            <!-- END SUB5 -->
+
+            </tbody>
+          </table>
+
+          <!-- BEGIN NIVEL4_SUBCAT_BT5 -->
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="addSub5('{CATE5}');">
+              Adicionar <i class="fa fa-plus"></i>
+            </button>
+          </div>
+          <!-- END NIVEL4_SUBCAT_BT5 -->
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addmodal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="Modal-label-2">
+          {TITULO1}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control p-input" id="cate1" name="cate1" value="{CATE1}">
+
+        <label>Nome da Subcategoria</label>
+        <input type="text" class="form-control p-input" id="nome1" name="nome1" value="{NOMEB1}">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="adicionar1();">Adicionar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addmodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {TITULO2}
+        </h4>
+
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control p-input" id="cate2" name="cate2" value="{CATE2}">
+
+        <label>Nome da Subcategoria</label>
+        <input type="text" class="form-control p-input" id="nome2" name="nome2" value="{NOMEB2}">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="adicionar2();">Adicionar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addmodal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {TITULO3}
+        </h4>
+
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control p-input" id="cate3" name="cate3" value="{CATE3}">
+
+        <label>Nome da Subcategoria</label>
+        <input type="text" class="form-control p-input" id="nome3" name="nome3" value="{NOMEB3}">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="adicionar3();">Adicionar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addmodal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {TITULO4}
+        </h4>
+
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control p-input" id="cate4" name="cate4" value="{CATE4}">
+
+        <label>Nome da Subcategoria</label>
+        <input type="text" class="form-control p-input" id="nome4" name="nome4" value="{NOMEB4}">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="adicionar4();">Adicionar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addmodal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {TITULO5}
+        </h4>
+
+      </div>
+      <div class="modal-body">
+        <label>Nome da Subcategoria</label>
+        <input type="text" class="form-control p-input" id="nome5" name="nome5" value="{NOMEB5}">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="adicionar5();">Adicionar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal EDITAL 1-->
+<div class="modal fade" id="editmodal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {TITULO1}
+        </h4>
+
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control p-input" id="cat1" name="cat1" value="">
+
+        <label>Nome da Subcategoria </label>
+        <input type="text" class="form-control p-input" id="nome_e1" name="nome_e1" value="">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="altemodal1();">Alterar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal EDITAL 2-->
+<div class="modal fade" id="editmodal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {TITULO2}
+        </h4>
+
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control p-input" id="cat2" name="cat2" value="">
+
+        <label>Nome da Subcategoria</label>
+        <input type="text" class="form-control p-input" id="nome_e2" name="nome_e2" value="">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="altemodal2();">Alterar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal EDITAL 3-->
+<div class="modal fade" id="editmodal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {TITULO3}
+        </h4>
+
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control p-input" id="cat3" name="cat3" value="">
+
+        <label>Nome da Subcategoria</label>
+        <input type="text" class="form-control p-input" id="nome_e3" name="nome_e3" value="">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="altemodal3();">Alterar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal EDITAL 4-->
+<div class="modal fade" id="editmodal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {TITULO4}
+        </h4>
+
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control p-input" id="cat4" name="cat4" value="">
+
+        <label>Nome da Subcategoria</label>
+        <input type="text" class="form-control p-input" id="nome_e4" name="nome_e4" value="">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="altemodal4();">Alterar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal EDITAL 5-->
+<div class="modal fade" id="editmodal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">
+          {TITULO5}
+        </h4>
+
+      </div>
+      <div class="modal-body">
+        <input type="hidden" class="form-control p-input" id="cat5" name="cat5" value="">
+
+        <label>Nome da Subcategoria</label>
+        <input type="text" class="form-control p-input" id="nome_e5" name="nome_e5" value="">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success mr-2" onclick="altemodal5();">Alterar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

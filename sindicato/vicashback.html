@@ -1,0 +1,63 @@
+<script type="text/javascript" >
+function verificar(){
+	$("#modalgif").modal();	
+	var token	= $('#token').val();
+	var email 	= $('#email').val();
+	
+		$.post('api_pagseguro.php',{token:token,email:email},function(data){
+			 $('#modalgif').modal('hide'); 
+			 alert(data);
+			  window.location.href = window.location.href;
+		});	
+}
+</script>
+
+
+<div class="content-wrapper">
+    <h3 class="page-heading mb-4">Vizualizar Cashback</h3>
+    <div class="row mb-2">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+					<h5 class="card-title mb-4">Valores Acumulados.<br></h5>
+									
+					<!-- BEGIN ERRO -->   
+						<div class="alert alert-danger" role="alert">
+							<p align="justify">{MSG}</p> 
+						</div>
+					<!-- END ERRO -->
+					
+					<!-- BEGIN SUCESSO -->   
+						<div class="alert alert-success" role="alert">
+							<p align="justify">{MSG}</p> 
+						</div>
+					<!-- END SUCESSO -->
+					
+						<table class="table col-md-6">
+							<tr>
+								<th>Valores</th>
+							</tr>
+							<tr>
+								<td>R$ 150,00</td>
+							</tr>
+						</table>
+					
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+		
+<!-- Modal pagamento-->
+<div class="modal fade" id="modalgif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Aguarde, validando...</h4>
+		<img src="../comum/img/logout.gif" width="50px;">
+    </div>
+  </div>
+</div>
+<!-- Modal pagamento-->
+	
+	

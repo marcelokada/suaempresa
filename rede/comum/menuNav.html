@@ -1,0 +1,237 @@
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <!-- Left navbar links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="index3.html" class="nav-link">Início</a>
+    </li>
+  </ul>
+  <!-- Right navbar links -->
+  <ul class="navbar-nav ml-auto">
+    <!-- Notifications Dropdown Menu -->
+
+    <li class="nav-item">
+      <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+        <i class="fas fa-th-large"></i>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- /.navbar -->
+
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link">
+    <span class="d-block">{NOMEEMPRESA}</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="info">
+        <a href="index.php?idSessao={ID_SESSAO}" class="d-block">Usuario: {NOMEREDE}</a>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        <li class="nav-item">
+          <a href="index.php?idSessao={ID_SESSAO}" class="nav-link">
+            <i class="nav-icon fas fa-home"></i>
+            <p>
+              HOME
+            </p>
+          </a>
+        </li>
+
+        <!-- BEGIN MENU_AGENDAMENTO_MIMO -->
+        <li class="nav-item has-treeview">
+          <a href="agendamento.php?idSessao={ID_SESSAO}" class="nav-link">
+            <i class="nav-icon fas fa-calendar"></i>
+            <p>
+              Agendamento
+            </p>
+          </a>
+        </li>
+
+        <!-- END MENU_AGENDAMENTO_MIMO -->
+
+        <li class="nav-item has-treeview">
+          <a href="listagem_usuario.php?idSessao={ID_SESSAO}" class="nav-link">
+            <i class="nav-icon fas fa-star"></i>
+            <p>
+              Bonificação Manual
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="solicitacao_rede.php?idSessao={ID_SESSAO}" class="nav-link">
+            <i class="nav-icon fas fa-money-bill"></i>
+            <p>
+              Solicitação de Pontos
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-shopping-bag"></i>
+            <p>
+              Produtos
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right">{NOT_AUT}</span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a class="nav-link" href="produtoscadastrados.php?idSessao={ID_SESSAO}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Produtos</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-plus"></i>
+            <p>
+              Cadastros
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right">{NOT_AUT}</span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a class="nav-link" href="cadastraproduto.php?idSessao={ID_SESSAO}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Produtos</p>
+              </a>
+            </li>
+
+            <!-- BEGIN MENU_TIPOEVENTO_MIMO -->
+            <li class="nav-item">
+              <a class="nav-link" href="tipo_evento.php?idSessao={ID_SESSAO}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Tipo Evento</p>
+              </a>
+            </li>
+            <!-- END MENU_TIPOEVENTO_MIMO -->
+
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-plus"></i>
+            <p>
+              Vendas
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right">{NOT_AUT}</span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a class="nav-link" href="vendasprodutos.php?idSessao={ID_SESSAO}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Produtos Vendidos</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+<!--        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-money-bill-wave"></i>
+            <p>
+              CashBack
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right">{NOT_AUT}</span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a class="nav-link" href="vicashback.php?idSessao={ID_SESSAO}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Visualizar</p>
+              </a>
+            </li>
+          </ul>
+        </li>-->
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Relatórios
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right">{NOT_AUT}</span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a class="nav-link" href="rel_usuarios.php?idSessao={ID_SESSAO}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Usuários</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item has-treeview">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-cog"></i>
+            <p>
+              Configurações
+              <i class="fas fa-angle-left right"></i>
+              <span class="badge badge-info right">{NOT_AUT}</span>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+              <a class="nav-link" href="alterasenha.php?idSessao={ID_SESSAO}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Alterar Senha</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="dotbank.php?idSessao={ID_SESSAO}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>DotBank</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pagseguro.php?idSessao={ID_SESSAO}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>PagSeguro</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
+        <li class="nav-item has-treeview">
+          <a href="comum/logout.php" class="nav-link">
+            <i class="fa fa-sign-out-alt"></i>
+            <p>
+              Sair
+            </p>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

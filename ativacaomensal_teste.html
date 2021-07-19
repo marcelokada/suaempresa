@@ -1,0 +1,1321 @@
+<style>
+  .contain {
+    object-fit: contain;
+    max-width: 100%;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+  }
+
+  .inputsemnada:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+
+  .desabilitar {
+    pointer-events: none;
+  }
+
+  .habilitar {
+    pointer-events: auto;
+  }
+
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+<script type="text/javascript">
+
+  jQuery(function ($) {
+    $("#cep_usua").mask("99999-999");
+    $("#cep_usua12").mask("99999-999");
+    $("#celu_usua").mask("(99) 99999-9999");
+    $("#celu_usua12").mask("(99) 99999-9999");
+    $("#cpf_usua12").mask("999.999.999-99");
+    $("#cpf_usua").mask("999.999.999-99");
+  });
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('ende_usua').value = ("");
+    document.getElementById('bairro_usua').value = ("");
+    document.getElementById('cidade_usua').value = ("");
+    document.getElementById('estado_usua').value = ("");
+  }
+
+  function limpa_formulário_cep12() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('ende_usua12').value = ("");
+    document.getElementById('bairro_usua12').value = ("");
+    document.getElementById('cidade_usua12').value = ("");
+    document.getElementById('estado_usua12').value = ("");
+  }
+
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('ende_usua').value = (conteudo.logradouro);
+      document.getElementById('bairro_usua').value = (conteudo.bairro);
+      document.getElementById('cidade_usua').value = (conteudo.localidade);
+      document.getElementById('estado_usua').value = (conteudo.uf);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+  function meu_callback12(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('ende_usua12').value = (conteudo.logradouro);
+      document.getElementById('bairro_usua12').value = (conteudo.bairro);
+      document.getElementById('cidade_usua12').value = (conteudo.localidade);
+      document.getElementById('estado_usua12').value = (conteudo.uf);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep_usua').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('ende_usua').value = (conteudo.logradouro);
+    document.getElementById('bairro_usua').value = (conteudo.bairro);
+    document.getElementById('cidade_usua').value = (conteudo.localidade);
+    document.getElementById('estado_usua').value = (conteudo.uf);
+
+  }
+
+  function verificaCep12() {
+    var cep = $('#cep_usua12').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback12';
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('ende_usua12').value = (conteudo.logradouro);
+    document.getElementById('bairro_usua12').value = (conteudo.bairro);
+    document.getElementById('cidade_usua12').value = (conteudo.localidade);
+    document.getElementById('estado_usua12').value = (conteudo.uf);
+
+  }
+
+
+  function modal(id) {
+    var idcart = $('#idcart').val();
+    var idloja = $('#idloja').val();
+    $.post('listacarrinho.php', {idcart: idcart, idloja: idloja}, function (data) {
+      $('#compra').html('<h2><font color="black"><b>VALOR DA COMPRA: </b></font><font color="red">R$ ' + data.valor + '</font></h2>');
+      $("#cashbackmodal").modal();
+    }, "json");
+  }
+
+  let copiarTexto = () => {
+    //O texto que será copiado
+    var id = $('#link').val();
+    alert('O link foi copiado em seu teclado.');
+    const texto = id;
+    //Cria um elemento input (pode ser um textarea)
+    let inputTest = document.createElement("input");
+    inputTest.value = texto;
+    //Anexa o elemento ao body
+    document.body.appendChild(inputTest);
+    //seleciona todo o texto do elemento
+    inputTest.select();
+    //executa o comando copy
+    //aqui é feito o ato de copiar para a area de trabalho com base na seleção
+    document.execCommand('copy');
+    //remove o elemento
+    document.body.removeChild(inputTest);
+  };
+
+  function apagar_comp(id) {
+
+    $.post('apagacomprovante.php', {id: id}, function () {
+      alert('Apagado com Sucesso.');
+      window.location.href = window.location.href;
+    });
+  }
+
+  function termos(id) {
+    const https = location.protocol;
+    var DIRPAGE = https + "//" + document.location.hostname;
+
+    window.open(DIRPAGE + '/drultraconvenio.com.br/comprovantes.php?idpag=' + id);
+    //window.open(DIRPAGE + '/MultiSYS_Club_DoutorUltra/comprovantes.php?idpag='+id);
+  }
+
+
+  function pagar() {
+
+    $('#exampleModalCenter1').modal('show');
+    var idusua = $('#idusua').val();
+    var idplano = $('#idplano').val();
+    var idloja = 'a';
+    var tipopg = 'pagseguro';
+    var oppag = 'pagseguro';
+
+
+    if ((idplano == '') && (idplano == null)) {
+      alert('Para pagar mensalmente precisa ter um plano ativo.');
+    } else {
+      $.post('verificaStatusPlano.php', {idusua: idusua}, function (data) {
+        var situpag = data.situpag;
+        var situplan = data.situplan;
+
+
+        if ((situpag == 1) && (situplan == null)) {
+          alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e ATIVAÇÃO MENSAL');
+          window.location.href = window.location.href;
+        } else if ((situpag == 3) && (situplan != null)) {
+          alert('Você já está assinando um plano!');
+          window.location.href = window.location.href;
+        } else if ((situpag == 1) && (situplan == 'p')) {
+          alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e ATIVAÇÃO MENSAL');
+          window.location.href = window.location.href;
+        } else {
+
+          $.post('pesqplano.php', {idplano: idplano}, function (data) {
+            var nome = data.nome;
+            var valor = data.valo;
+            var valorF = data.valor_format;
+            var tempo = data.tempo;
+            var mensa = data.mensa;
+            var adesao = data.adesao;
+
+
+            $.post('pagamensal.php', {
+              idusu: idusua,
+              idplano: idplano,
+              tempo: tempo,
+              valor: valor,
+              adesao: adesao,
+              mensa: mensa,
+              tipopg: tipopg,
+              oppag: oppag
+            }, function (data) {
+              var idPedido = data.xxx;
+              //var mes 		= data.mes;
+              var tipo = '1';
+              var email = data.email;
+              var token = data.token;
+
+
+              $.post('api_pagseguro.php', {
+                email: email,
+                token: token,
+                idloja: idloja,
+                tipo: tipo,
+                idPedido: idPedido,
+                valor: mensa,
+                nome: nome
+              }, function (data) {
+                //alert(data)
+                $('#code').val(data);
+                $('#comprar').submit();
+                $('#exampleModalCenter1').modal('hide');
+              });
+            }, "json");
+          }, "json");
+        }
+      }, "json");
+    }
+  }
+
+  function pagar1() {
+    var idusua = $('#idusua').val();
+    var idplano = $('#idplano').val();
+    var idloja = 'a';
+
+    if ((idplano == '') && (idplano == null)) {
+      alert('Para pagar mensalmente precisa ter um plano ativo.');
+    } else {
+      $.post('verificaStatusPlano.php', {idusua: idusua}, function (data) {
+        var situpag = data.situpag;
+        var situplan = data.situplan;
+
+
+        if ((situpag == 1) && (situplan == null)) {
+          alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e ATIVAÇÃO MENSAL');
+        } else if ((situpag == 3) && (situplan != null)) {
+          alert('Você já está assinando um plano!');
+        } else if ((situpag == 1) && (situplan == 'p')) {
+          alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e ATIVAÇÃO MENSAL');
+        } else {
+
+          $.post('pesqplano.php', {idplano: idplano}, function (data) {
+            var nome = data.nome;
+            var valor = data.valo;
+            var valorF = data.valor_format;
+            var tempo = data.tempo;
+            var mensa = data.mensa;
+            var adesao = data.adesao;
+
+
+            $.post('pagamensal.php', {
+              idusu: idusua,
+              idplano: idplano,
+              tempo: tempo,
+              valor: valor,
+              adesao: adesao,
+              mensa: mensa
+            }, function (data) {
+              var idPedido = data.xxx;
+              //var mes 		= data.mes;
+              var tipo = '1';
+              var email = data.email;
+              var token = data.token;
+
+              $.post('api_pagseguro.php', {
+                email: email,
+                token: token,
+                idloja: idloja,
+                tipo: tipo,
+                idPedido: idPedido,
+                valor: mensa,
+                nome: nome
+              }, function (data) {
+                $('#code').val(data);
+                $('#comprar').submit();
+                window.open(siteboleto);
+                $('#exampleModal').modal('hide');
+
+              });
+            }, "json");
+          }, "json");
+        }
+      }, "json");
+    }
+  }
+
+
+  function transferencia() {
+
+    $('#exampleModalCenter1').modal('show');
+    var idusua = $('#idusua').val();
+    var idplano = $('#idplano').val();
+    var idloja = 'a';
+    var tipopg = 'transferencia';
+    var oppag = 'transferencia';
+    var tipopags = '7';
+
+
+    if ((idplano == '') && (idplano == null)) {
+      alert('Para pagar mensalmente precisa ter um plano ativo.');
+    } else {
+      $.post('verificaStatusPlano.php', {idusua: idusua}, function (data) {
+        var situpag = data.situpag;
+        var situplan = data.situplan;
+
+
+        if ((situpag == 1) && (situplan == null)) {
+          alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e ATIVAÇÃO MENSAL');
+          window.location.href = window.location.href;
+        } else if ((situpag == 3) && (situplan != null)) {
+          alert('Você já está assinando um plano!');
+          window.location.href = window.location.href;
+        } else if ((situpag == 1) && (situplan == 'p')) {
+          alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e ATIVAÇÃO MENSAL');
+          window.location.href = window.location.href;
+        } else {
+
+          $.post('pesqplano.php', {idplano: idplano}, function (data) {
+            var nome = data.nome;
+            var valor = data.valo;
+            var valorF = data.valor_format;
+            var tempo = data.tempo;
+            var mensa = data.mensa;
+            var adesao = data.adesao;
+
+
+            $.post('pagamensal.php', {
+              idusu: idusua,
+              idplano: idplano,
+              tempo: tempo,
+              valor: valor,
+              adesao: adesao,
+              mensa: mensa,
+              tipopg: tipopg,
+              oppag: oppag,
+              tipopags: tipopags
+            }, function (data) {
+              let idpagplan = data.xxx;
+              $('#exampleModalCenter').modal('show');
+              window.location.href = "resumo_pagamentoplano.php?idSessao={ID_SESSAO}&pagplano=" + idpagplan;
+              $('#exampleModalCenter').modal('hide');
+
+            }, "json");
+          }, "json");
+        }
+      }, "json");
+    }
+  }
+
+  function abrirmodal() {
+    $('#exampleModal').modal();
+
+  }
+
+  function pagardotbank_boleto() {
+
+    $('#exampleModalCenter').modal('show');
+
+    var idusua = $('#idusua').val();
+    var idplano = $('#idplano').val();
+    var idloja = 'a';
+    var oppag = 'dotbank';
+
+    var nomess = $('#nome_usua').val();
+    var cpfsss = $('#cpf_usua').val();
+    var emails = $('#email_usua').val();
+    var celuls = $('#celu_usua').val();
+    var endess = $('#ende_usua').val();
+    var bairrs = $('#bairro_usua').val();
+    var cidads = $('#cidade_usua').val();
+    var estads = $('#estado_usua').val();
+    var cepsss = $('#cep_usua').val();
+
+
+    if (nomess == "") {
+      alert('Preencher o nome');
+    } else if (cpfsss == "") {
+      alert('Preencher o CPF');
+    } else if (emails == "") {
+      alert('Preencher o email');
+    } else if (celuls == "") {
+      alert('Preencher o celular');
+    } else if (endess == "") {
+      alert('Preencher o endereço');
+    } else if (bairrs == "") {
+      alert('Preencher o bairro');
+    } else if (cidads == "") {
+      alert('Preencher a cidade');
+    } else if (estads == "") {
+      alert('Preencher o estado');
+    } else if (cepsss == "") {
+      alert('Preencher o CEP');
+    } else {
+
+      $.post('verificaStatusPlano.php', {idusua: idusua}, function (data) {
+        var situpag = data.situpag;
+        var situplan = data.situplan;
+
+        if ((situpag == 1) && (situplan == null)) {
+          alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e MEU PLANO');
+        } else if ((situpag == 1) && (situplan == 'p')) {
+          alert('Existe um pedido em andamento! Aguarde.');
+        } else if ((situpag == 3) && (situplan != null)) {
+          alert('Você ja está assinando um plano!');
+        } else {
+
+          $.post('pesqplano.php', {idplano: idplano}, function (data) {
+            var nome = data.nome;
+            var valor = data.valo;
+            var valorF = data.valor_format;
+            var tempo = data.tempo;
+            var mensa = data.mensa;
+            var adesao = data.adesao;
+
+            var nomeusua = $('#nome_usua').val();
+            var cpf = $('#cpf_usua').val();
+            var emails = $('#email_usua').val();
+
+            var celular = $('#celu_usua').val();
+
+            var cell = celular.replace(/[^\d]+/g, '');
+
+            var endereco = $('#ende_usua').val();
+            var numero = $('#nume_usua').val();
+
+            var bairro = $('#bairro_usua').val();
+            var cidade = $('#cidade_usua').val();
+            var estado = $('#estado_usua').val();
+
+            var cep = $('#cep_usua').val();
+            var ceps = cep.replace(/[^\d]+/g, '');
+
+            var cell1 = celular.replace(/[^\d]+/g, '');
+            var emailadmin = 'doutroultra@doutorultra.com.br';
+            var datavenc = $('#' +
+              '').val();
+            var totalvalor = adesao;
+
+
+            /*            alert(nomeusua);
+                        alert(cpf);
+                        alert(emails);
+                        alert(cell);
+                        alert(endereco);
+                        alert(numero);
+                        alert(bairro);
+                        alert(cidade);
+                        alert(estado);
+                        alert(ceps);
+                        alert(cell1);
+                        alert(emailadmin);
+                        alert(datavenc);
+                        alert(totalvalor);
+                        alert(mensa);*/
+
+
+            $.post('pagamensal.php', {
+              idusu: idusua,
+              idplano: idplano,
+              tempo: tempo,
+              valor: valor,
+              adesao: adesao,
+              mensa: mensa,
+              oppag: oppag,
+              nomeusua: nomeusua,
+              cpf: cpf,
+              emails: emails,
+              cell: cell,
+              endereco: endereco,
+              numero: numero,
+              bairro: bairro,
+              cidade: cidade,
+              estado: estado,
+              ceps: ceps,
+              cell1: cell1,
+              emailadmin: emailadmin,
+              datavenc: datavenc,
+              totalvalor: mensa
+
+            }, function (data) {
+              //alert(data)
+              var idPedido = data.xxx;
+              var token_dotbank = data.token_dotbank;
+
+              $.post('api_dotbank.php', {token: token_dotbank, idPedido: idPedido}, function (data) {
+                //alert(data)
+                const json = data;
+                const obj = JSON.parse(json);
+                const id_dotbank = obj.data['id'];
+                const siteboleto = obj.data['url'];
+
+                const status = obj['type'];
+
+                if (status == 'success') {
+                  alert('Boleto Gerado com Sucesso.');
+                  window.open(siteboleto);
+                  $('#exampleModal').modal('hide');
+                  setTimeout(function () {
+                    window.location.href = window.location.href;
+                  }, 3000);
+                } else {
+                  alert('Ocorreu algum problema, entre em contato com administrador do sistema.');
+                }
+
+                /*                 console.log(id_dotbank);
+                                 console.log(obj['type']);
+                                 console.log(obj.data['url']);*/
+
+                // alert(idplano);
+                // alert(id_dotbank);
+
+                $.post('dotbank_bol.php', {dots: id_dotbank, planos: idPedido, boleto: siteboleto}, function () {
+                });
+
+              }, "json");
+            }, "json");
+          }, "json");
+        }
+      }, "json");
+    }
+  }
+
+  function boleto12a() {
+    $('#boleto12').modal();
+  }
+
+  function boleto12b() {
+    $('#bol12').modal('show');
+    $('#boleto12').modal('hide');
+  }
+
+  function boleto12() {
+
+    $('#carregarboleto').modal('show');
+    var idusua = $('#idusua12').val();
+    var idplano = $('#idplano12').val();
+    var idloja = 'a';
+    var oppag = 'dotbank';
+
+    var nomess = $('#nome_usua12').val();
+    var cpfsss = $('#cpf_usua12').val();
+    var emails = $('#email_usua12').val();
+    var celuls = $('#celu_usua12').val();
+    var endess = $('#ende_usua12').val();
+    var bairrs = $('#bairro_usua12').val();
+    var cidads = $('#cidade_usua12').val();
+    var estads = $('#estado_usua12').val();
+    var cepsss = $('#cep_usua12').val();
+
+
+
+    if (nomess == "") {
+      alert('Preencher o nome');
+    } else if (cpfsss == "") {
+      alert('Preencher o CPF');
+    } else if (emails == "") {
+      alert('Preencher o email');
+    } else if (celuls == "") {
+      alert('Preencher o celular');
+    } else if (endess == "") {
+      alert('Preencher o endereço');
+    } else if (bairrs == "") {
+      alert('Preencher o bairro');
+    } else if (cidads == "") {
+      alert('Preencher a cidade');
+    } else if (estads == "") {
+      alert('Preencher o estado');
+    } else if (cepsss == "") {
+      alert('Preencher o CEP');
+    } else {
+
+      for (var i = 1; i <= 12; i++) {
+
+        $.post('verificaStatusPlano.php', {idusua: idusua}, function (data) {
+          var situpag = data.situpag;
+          var situplan = data.situplan;
+
+            $.post('pesqplano.php', {idplano: idplano}, function (data) {
+              var nome = data.nome;
+              var valor = data.valo;
+              var valorF = data.valor_format;
+              var tempo = data.tempo;
+              var mensa = data.mensa;
+              var adesao = data.adesao;
+
+              var nomeusua = $('#nome_usua12').val();
+              var cpf1 = $('#cpf_usua12').val();
+              var cpf = cpf1.replace(/[^\d]+/g, '');
+              var emails = $('#email_usua12').val();
+
+              var celular = $('#celu_usua12').val();
+
+              var cell = celular.replace(/[^\d]+/g, '');
+
+              var endereco = $('#ende_usua12').val();
+              var numero = $('#nume_usua12').val();
+
+              var bairro = $('#bairro_usua12').val();
+              var cidade = $('#cidade_usua12').val();
+              var estado = $('#estado_usua12').val();
+
+              var cep = $('#cep_usua12').val();
+              var ceps = cep.replace(/[^\d]+/g, '');
+
+              var cell1 = celular.replace(/[^\d]+/g, '');
+              var emailadmin = 'doutroultra@doutorultra.com.br';
+              var datavenc = $('#data_venc12').val();
+              var totalvalor = adesao;
+
+/*                        alert(nomeusua);
+                          alert(cpf);
+                          alert(emails);
+                          alert(cell);
+                          alert(endereco);
+                          alert(numero);
+                          alert(bairro);
+                          alert(cidade);
+                          alert(estado);
+                          alert(ceps);
+                          alert(cell1);
+                          alert(emailadmin);
+                          alert(datavenc);
+                          alert(totalvalor);
+                          alert(mensa);*/
+
+              $.post('pagamensal.php', {
+                idusu: idusua,
+                idplano: idplano,
+                tempo: tempo,
+                valor: valor,
+                adesao: adesao,
+                mensa: mensa,
+                oppag: oppag,
+                nomeusua: nomeusua,
+                cpf: cpf,
+                emails: emails,
+                cell: cell,
+                endereco: endereco,
+                numero: numero,
+                bairro: bairro,
+                cidade: cidade,
+                estado: estado,
+                ceps: ceps,
+                cell1: cell1,
+                emailadmin: emailadmin,
+                datavenc: datavenc,
+                totalvalor: mensa
+
+              }, function (data) {
+                //alert(data)
+                var idPedido = data.xxx;
+                var token_dotbank = data.token_dotbank;
+
+                $.post('api_dotbank.php', {token: token_dotbank, idPedido: idPedido}, function (data) {
+                  //alert(data)
+                  const json = data;
+                  const obj = JSON.parse(json);
+                  const id_dotbank = obj.data['id'];
+                  const siteboleto = obj.data['url'];
+
+                  const status = obj['type'];
+
+                  if (status == 'success') {
+                    alert('Boleto Gerado com Sucesso.');
+                    window.open(siteboleto);
+                    $('#exampleModal').modal('hide');
+                    setTimeout(function () {
+                      window.location.href = window.location.href;
+                    }, 3000);
+                  } else {
+                    alert('Ocorreu algum problema, entre em contato com administrador do sistema.');
+                  }
+
+                  /*                 console.log(id_dotbank);
+                                 console.log(obj['type']);
+                                 console.log(obj.data['url']);*/
+
+                  // alert(idplano);
+                  // alert(id_dotbank);
+
+                  $.post('dotbank_bol.php', {dots: id_dotbank, planos: idPedido, boleto: siteboleto}, function () {
+                  });
+
+                }, "json");
+              }, "json");
+            }, "json");
+        }, "json");
+      }//for
+    }//else final do role
+
+
+  }
+
+
+  function somenteNumeros(e) {
+    if (document.all) {
+      var evt = event.keyCode;
+    } // caso seja IE
+    else {
+      var evt = e.charCode;
+    }	// do contrário deve ser Mozilla
+
+    var valid_chars = '0123456789';	// criando a lista de teclas permitidas
+    var chr = String.fromCharCode(evt);	// pegando a tecla digitada
+
+    if (valid_chars.indexOf(chr) > -1) {
+      return true;
+    }
+    return false;	// do contrário nega
+  }
+
+  jQuery('cpf').attr('autocomplete', 'off');
+
+  function abrirtransf() {
+    $("#pagatransf").modal();
+  }
+
+</script>
+<form method="post">
+  <div class="colors-switcher">
+    <a id="show-panel" class="hide-panel"><i class="fa fa-money fa-blink" aria-hidden="true"></i><font color="red"> {QTDECAR}</font></i>
+    </a>
+    <div class="form-group">
+      <!-- BEGIN MEUPLANO -->
+      <p class="text-center"><h4>{MEUPLANO}</h4></p><br>
+      <!-- END MEUPLANO -->
+      <hr>
+      <button onclick="copiarTexto()" class="btn btn-primary">LINK DE INDICAÇÃO</button>
+      <hr>
+      <p class="text-center">
+      <h4><i>Meu Cashback: <font color="green">R$ {MEUCASH}</font></i></h4>
+      <h4><i>Meu Voucher: <font color="green">R$ {MEUVOUCHER}</font></i></h4>
+      <hr>
+      <h4><i>Meu Bônus Unilevel: <font color="green">R$ {MEUBONUS}</font></i></h4>
+      </p>
+
+    </div>
+  </div>
+</form>
+
+<!-- Start Home Page Slider -->
+<section class="pricing-section">
+</section>
+<!-- End Home Page Slider -->
+
+
+<form method="post" action="" enctype="multipart/form-data" name="form2" id="form2">
+  <input type="hidden" id="idsessao" name="idsessao" value="{ID_SESSAO}"/>
+  <input type="hidden" id="idcart" name="idcart" value="{IDCART}"/>
+  <input type="hidden" id="idloja" name="idloja" value="{ID_CRED}">
+  <input type="hidden" id="idusua" name="idusua" value="{IDUSUA}"/>
+  <input type="hidden" id="idusua12" name="idusua12" value="{IDUSUA}"/>
+  <input type="hidden" id="tempo" name="tempo" value="{TEMPO}">
+  <input type="hidden" id="idusu" name="idusu" value="{IDUSUA}">
+  <input type="hidden" id="idplano" name="idplano" value="{IDPLANO}">
+  <input type="hidden" id="idplano12" name="idplano12" value="{IDPLANO}">
+  <input type="hidden" id="valor" name="valor" value="{VALOR}">
+</form>
+
+<form method="post" action="" enctype="multipart/form-data">
+
+  <!-- Start About Us Section -->
+  <section class="about-us-section-rede">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="section-title text-center">
+            <h3>ATIVAÇÃO MENSAL</h3>
+            <p></p>
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table">
+                  <tbody>
+                  <thead>
+
+                  <tr bgcolor="#a9a9a9">
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Valor/Mês R$</td>
+                    <td>Validade</td>
+                    <td></td>
+
+                  </tr>
+                  <!--  BEGIN PLANOS -->
+                  <tr>
+                    <td style="vertical-align:middle;">{ID1}</td>
+                    <td style="vertical-align:middle;">{NOMEPLANO1}</td>
+                    <td style="vertical-align:middle;">{DESC1}</td>
+                    <td style="vertical-align:middle;">{VALOR1}</td>
+                    <td style="vertical-align:middle;">{VALIDADE1} dias</td>
+
+                  </tr>
+                  <!--  END PLANOS -->
+
+                  <!--  BEGIN PLANOS2 -->
+                  <tr>
+                    <td colspan="5" style="vertical-align:middle;">----------------------</td>
+                  </tr>
+                  <!--  END PLANOS2 -->
+                  </thead>
+                  </tbody>
+                </table>
+              </div>
+            </div><!-- /.row -->
+            <hr>
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+
+                <div class="list-group">
+                  <h4>ESCOLHA O MÉTODO DE PAGAMENTO ABAIXO:</h4>
+                  <!-- BEGIN PAGS -->
+                  <a href="javascript:void(0);" class="list-group-item list-group-item-action" onclick="pagar('{IDUSUA}');" class="{DISA}">
+                    PAGSEGURO <img src="comum/img/pagseguro.gif" width="50px">
+                  </a>
+                  <!-- END PAGS -->
+
+                  <!-- BEGIN DOTS -->
+                  <a href="javascript:void(0);" class="list-group-item list-group-item-action" onclick="abrirmodal();">
+                    BOLETO DOTBANK <img src="comum/img/dotbank.jpeg" width="50px">
+                  </a>
+                  <!-- END DOTS -->
+
+                  <!-- BEGIN TRANSF -->
+                  <a class="list-group-item list-group-item-action" onclick="abrirtransf('{IDCART}');" href="javascript:void(0);">
+                    TRANSFERÊNCIA BANCÁRIA <i class="fa fa-exchange" aria-hidden="true"></i>
+                  </a>
+                  <!-- END TRANSF -->
+
+                  <!-- BEGIN MENU_DOTBANK12 -->
+                  <a class="list-group-item list-group-item-action" onclick="boleto12a('{IDCART}');" href="javascript:void(0);">
+                    CARNÊ DOTBANK 12 (MESÊS) <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  </a>
+                  <!-- END MENU_DOTBANK12 -->
+                </div>
+              </div>
+            </div>
+
+          </div><!-- div anes dos conteudos-->
+        </div><!-- col-md-12 col-sm-12-->
+      </div><!-- class="row" -->
+    </div><!-- /.container -->
+          <!--    <a href="javascript:void(0);" onclick="pagar1('{IDUSUA}');" >-->
+          <!--      .....-->
+          <!--    </a>-->
+  </section>
+</form>
+<form method="post" action="" enctype="multipart/form-data">
+  <!-- Start About Us Section -->
+  <section class="about-us-section-rede">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="section-title text-center">
+            <h3>ULTIMAS ATIVAÇÕES</h3>
+            <p></p>
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table">
+                  <tbody>
+                  <thead>
+
+                  <tr bgcolor="#90ee90">
+                    <td>ID</td>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Valor/Mês R$</td>
+                    <td>Tipo Pagmto.</td>
+                    <td>Validade</td>
+                    <td>Status do Pagamento</td>
+
+                    <td></td>
+                    <!--  BEGIN SEGBOL -->
+                    <!--  END SEGBOL -->
+                    <!--  BEGIN DADOSTRANSF1 -->
+                    <td>Ver Dados Novamente</td>
+                    <td>Anexar Comprovante</td>
+                    <!--  END DADOSTRANSF1 -->
+
+                    <!--  BEGIN DADOSTRANSF1CC -->
+                    <td>Ver Dados Novamente</td>
+                    <td>Visualizar Comprovante</td>
+                    <!--  END DADOSTRANSF1CC -->
+                  </tr>
+                  <!--  BEGIN PLANOS1 -->
+                  <tr bgcolor="{COR}">
+                    <td style="vertical-align:middle;">{ID}</td>
+                    <td style="vertical-align:middle;">{NOMEPLANO}</td>
+                    <td style="vertical-align:middle;">{DESC}</td>
+                    <td style="vertical-align:middle;">{VALOR}</td>
+                    <td style="vertical-align:middle;">{TIPOP}</td>
+                    <td style="vertical-align:middle;">{VALIDADE}</td>
+                    <td style="vertical-align:middle;">{SITUA}</td>
+
+
+                    <!--  BEGIN SEGBOL1 -->
+                    <td>
+                      <a href="{LINKBOLETO}" target="_blank">2º Via do Boleto</a>
+                    </td>
+                    <!--  END SEGBOL1 -->
+
+                    <!--  BEGIN DADOSTRANSFCC -->
+                    <td>
+                      <a href="resumo_pagamentoplano.php?idSessao={ID_SESSAO}&pagplano={IDPAGA}" target="_blank">Dados Para Transferência aaa</a>
+                    </td>
+                    <td>
+                      <a href="javascript:void(0);" onclick="termos('{IDPAGA}');" title="VISULIZAR COMPROVANTE">Vizualizar</a> <br>
+                      <a href="javascript:void(0);" onclick="apagar_comp('{IDPAGA}');" title="APAGAR COMPROVANTE"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                    <!--  END DADOSTRANSFCC -->
+
+                    <!--  BEGIN DADOSTRANSF -->
+                    <td>
+                      <a href="resumo_pagamentoplano.php?idSessao={ID_SESSAO}&pagplano={IDPAGA}" target="_blank">Dados Para Transferência</a>
+                    </td>
+                    <td>
+                      <input type="hidden" name="idpagplano" value="{IDPAGA}">
+                      <input type="hidden" name="enviou" value="1">
+                      <input type="file" class="btn btn-primary" name="arquivo"><br>
+                      <input type="submit" class="btn btn-success" value="Anexar">
+                    </td>
+                    <!--  END DADOSTRANSF -->
+
+                  </tr>
+                  <!--  END PLANOS1 -->
+
+                  </thead>
+                  </tbody>
+                </table>
+              </div>
+            </div><!-- /.row -->
+          </div><!-- div anes dos conteudos-->
+        </div><!-- col-md-12 col-sm-12-->
+      </div><!-- class="row" -->
+    </div><!-- /.container -->
+          <!--    <a href="javascript:void(0);" onclick="pagar1('{IDUSUA}');" >-->
+          <!--      .....-->
+          <!--    </a>-->
+  </section>
+</form>
+
+<!--<form id="comprar" action="https://sandbox.pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">-->
+
+
+<form id="comprar" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+
+  <input type="hidden" name="code" id="code" value=""/>
+
+</form>
+
+<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+
+<!--<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>-->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Pagamento com DOTBANK</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-header">
+        <a class="btn btn-primary text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Pagamento em Boleto
+        </a>
+      </div>
+
+      <div class="modal-body">
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="nome_usua">Nome:</label>
+                  <input type="text" class="form-control" id="nome_usua" name="nome_usua" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="cpf_usua">CPF: (sem pontos e traços)</label>
+                  <input type="text" class="form-control" id="cpf_usua" name="cpf_usua" onkeypress="return somenteNumeros(event);" maxlength="11" autocomplete="off" value="{CPF_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="email_usua">EMAIL:</label>
+                  <input type="text" class="form-control" id="email_usua" name="email_usua" value="{EMAIL_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="celu_usua">CELULAR:</label>
+                  <input type="text" class="form-control" id="celu_usua" name="celu_usua" value="{CELU_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="cep_usua">CEP: (ex: 99999-99)</label>
+                  <input type="text" class="form-control" id="cep_usua" name="cep_usua" maxlength="9" autocomplete="off" onblur="verificaCep();" value="{CEP_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-10">
+                <label for="ende_usua">ENDEREÇO:</label>
+                <input type="text" class="form-control" id="ende_usua" name="ende_usua" value="{ENDE_USUA}" required>
+              </div>
+              <div class="col-md-2">
+                <label for="nume_usua">nº:</label>
+                <input type="text" class="form-control" id="nume_usua" name="nume_usua" value="{ENDE_USUA}" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-5">
+                <label for="bairro_usua">BAIRRO:</label>
+                <input type="text" class="form-control" id="bairro_usua" name="bairro_usua" value="{BAIRRO_USUA}" required>
+              </div>
+              <div class="col-md-5">
+                <label for="cidade_usua">CIDADE:</label>
+                <input type="text" class="form-control" readonly id="cidade_usua" name="cidade_usua" value="{CIDADE_USUA}" required>
+              </div>
+              <div class="col-md-2">
+                <label for="estado_usua">UF:</label>
+                <input type="text" class="form-control" readonly id="estado_usua" name="estado_usua" value="{ENDE_USUA}" required>
+                <hr class="mb-5">
+              </div>
+              <input type="hidden" id="data_venc" name="data_venc" value="{DATA_VENC}">
+            </div>
+
+
+
+            <div class="form-row ">
+              <div class="col-md-10 mb-5">
+                <a class="btn btn-primary" onclick="pagardotbank_boleto();">
+                  Gerar Boleto
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalCenterTitle mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="text-center">
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only"></span>
+                  </div>
+                  <p>
+                  <h3>Carregando...<br>Aguarde Gerando o boleto...</h3></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalemail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          Carregando...
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalCenterTitle mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+          </div>
+          <p>
+          <h3>Carregando...<br>Aguarde Gerando o boleto...</h3></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal pagamento-->
+<div class="modal fade" id="pagatransf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="Modal-label-2">
+          Deseja mesmo pagar através da transferência bancária??
+        </h3>
+      </div>
+      <div class="modal-body">
+        <p>Você pode fazer uma transferência simples (TED e DOC), não esqueça após fazer a transferência anexar o comprovante.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-center" onclick="transferencia();">
+          PAGAR
+        </button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal pagamento-->
+
+<!-- Modal pagamento-->
+<div class="modal fade" id="boleto12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title">
+          Deseja mesmo gerar um carnê??
+        </h3>
+      </div>
+      <div class="modal-body">
+        <p>Confirmando a geração do carnê, sera gerado 12 boletos.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-center" onclick="boleto12b();">
+          PAGAR
+        </button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal pagamento-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="bol12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pagamento com DOTBANK 12(meses)</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-header">
+        <a class="btn btn-primary text-center" data-toggle="collapse" href="#collapseExample12" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Pagamento em Boleto
+        </a>
+      </div>
+
+      <div class="modal-body">
+        <div class="collapse" id="collapseExample12">
+          <div class="card card-body">
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="nome_usua">Nome:</label>
+                  <input type="text" class="form-control" id="nome_usua12" name="nome_usua12" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="cpf_usua">CPF: (sem pontos e traços)</label>
+                  <input type="text" class="form-control" id="cpf_usua12" name="cpf_usua12" maxlength="11" autocomplete="off" value="{CPF_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="email_usua">EMAIL:</label>
+                  <input type="text" class="form-control" id="email_usua12" name="email_usua12" value="{EMAIL_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="celu_usua">CELULAR:</label>
+                  <input type="text" class="form-control" id="celu_usua12" name="celu_usua12" value="{CELU_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="cep_usua">CEP: (ex: 99999-99)</label>
+                  <input type="text" class="form-control" id="cep_usua12" name="cep_usua12" maxlength="9" autocomplete="off" onblur="verificaCep12();" value="{CEP_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-10">
+                <label for="ende_usua">ENDEREÇO:</label>
+                <input type="text" class="form-control" id="ende_usua12" name="ende_usua12" value="{ENDE_USUA}" required>
+              </div>
+              <div class="col-md-2">
+                <label for="nume_usua">nº:</label>
+                <input type="text" class="form-control" id="nume_usua12" name="nume_usua12" value="{ENDE_USUA}" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-5">
+                <label for="bairro_usua">BAIRRO:</label>
+                <input type="text" class="form-control" id="bairro_usua12" name="bairro_usua12" value="{BAIRRO_USUA}" required>
+              </div>
+              <div class="col-md-5">
+                <label for="cidade_usua">CIDADE:</label>
+                <input type="text" class="form-control" readonly id="cidade_usua12" name="cidade_usua12" value="{CIDADE_USUA}" required>
+              </div>
+              <div class="col-md-2">
+                <label for="estado_usua">UF:</label>
+                <input type="text" class="form-control" readonly id="estado_usua12" name="estado_usua12" value="{ENDE_USUA}" required>
+                <hr class="mb-5">
+              </div>
+              <input type="hidden" id="data_venc12" name="data_venc12" value="{DATA_VENC}">
+            </div>
+
+
+
+            <div class="form-row ">
+              <div class="col-md-10 mb-5">
+                <a class="btn btn-primary" onclick="boleto12();">
+                  Gerar Boleto
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal fade" id="carregarboleto" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalCenterTitle mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="text-center">
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only"></span>
+                  </div>
+                  <p>
+                  <h3>Carregando...<br>Aguarde Gerando o boleto...</h3></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

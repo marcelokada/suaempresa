@@ -1,0 +1,8 @@
+[22-Dec-2020 15:59:16 America/Sao_Paulo] PHP Warning:  move_uploaded_file(/home2/club98752/public_html/drultraconvenio.com.br/admin/uploads/img/sindicato/61a3225383ba614896caad10f105033f.png): failed to open stream: Arquivo ou diret�rio n�o encontrado in /home2/club98752/public_html/drultraconvenio.com.br/admin/cadastrasindicato.php on line 109
+[22-Dec-2020 15:59:16 America/Sao_Paulo] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpgbhi7u' to '/home2/club98752/public_html/drultraconvenio.com.br/admin/uploads/img/sindicato/61a3225383ba614896caad10f105033f.png' in /home2/club98752/public_html/drultraconvenio.com.br/admin/cadastrasindicato.php on line 109
+[15-Jan-2021 15:37:57 America/Sao_Paulo] PHP Notice:  Undefined index: links in /home2/club98752/public_html/drultraconvenio.com.br/admin/cadastrarede.php on line 286
+[28-Jan-2021 11:45:37 America/Sao_Paulo] PHP Notice:  Undefined index: links in /home2/club98752/public_html/drultraconvenio.com.br/admin/cadastrarede.php on line 286
+[28-Jan-2021 15:26:20 America/Sao_Paulo] PHP Notice:  Undefined index: links in /home2/club98752/public_html/drultraconvenio.com.br/admin/cadastrarede.php on line 286
+[28-Jan-2021 15:37:03 America/Sao_Paulo] PHP Notice:  Undefined index: links in /home2/club98752/public_html/drultraconvenio.com.br/admin/cadastrarede.php on line 286
+[18-Feb-2021 11:01:31 America/Sao_Paulo] PHP Notice:  Undefined index: links in /home2/club98752/public_html/drultraconvenio.com.br/admin/cadastrarede.php on line 286
+[22-Feb-2021 14:39:08 America/Sao_Paulo] PHP Notice:  Undefined index: links in /home2/club98752/public_html/drultraconvenio.com.br/admin/cadastrarede.php on line 286

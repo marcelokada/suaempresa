@@ -1,0 +1,925 @@
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#cep_usua").mask("99999-999");
+    $("#celu_usua").mask("(99) 99999-9999");
+  });
+
+  jQuery(function ($) {
+    $("#cep_usua").mask("99999-999");
+    $("#cpf_usua").mask("999.999.999-99");
+    $("#celu_usua").mask("(99) 99999-9999");
+  });
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('ende_usua').value = ("");
+    document.getElementById('bairro_usua').value = ("");
+    document.getElementById('cidade_usua').value = ("");
+    document.getElementById('estado_usua').value = ("");
+  }
+
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('ende_usua').value = (conteudo.logradouro);
+      document.getElementById('bairro_usua').value = (conteudo.bairro);
+      document.getElementById('cidade_usua').value = (conteudo.localidade);
+      document.getElementById('estado_usua').value = (conteudo.uf);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep_usua').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('ende_usua').value = (conteudo.logradouro);
+    document.getElementById('bairro_usua').value = (conteudo.bairro);
+    document.getElementById('cidade_usua').value = (conteudo.localidade);
+    document.getElementById('estado_usua').value = (conteudo.uf);
+
+  }
+
+  function addProdu(id) {
+
+    $.post('listcart.php', {id: id}, function (data) {
+      var idprod = $('#idcred' + id).val();
+      var idcart = $('#idcart').val();
+      var idloja = $('#idloja').val();
+
+      var nome = data.nome;
+      var valor = data.valor;
+      var cashs = data.cash;
+
+      $.post('addcart.php?idprod=' + idprod + '&idloja=' + idloja, {
+        nome: nome,
+        valor: valor,
+        idcart: idcart,
+        cashs: cashs
+      }, function () {
+        //alert(data);
+
+        window.location.href = window.location.href
+      });
+    }, "json");
+
+  }
+
+  function deleteData(id) {
+
+    $.post('listcart.php', {id: id}, function () {
+      var idprod = $('#idcred' + id).val();
+      var idcart = $('#idcart').val();
+      var idloja = $('#idloja').val();
+
+      $.post('delcartitem.php', {idprod: idprod, idcart: idcart, idloja: idloja}, function (data) {
+        alert(data);
+        window.location.href = window.location.href;
+      });
+    });
+  }
+
+
+  function delcar(id) {
+
+    $.post('listcart.php', {id: id}, function (data) {
+      var idprod = $('#idcred' + id).val();
+      var idcart = $('#idcart').val();
+      var idloja = $('#idloja').val();
+      var nome = data.nome;
+      var valor = data.valor;
+
+      $.post('delcart.php?idprod=' + idprod + '&idcart=' + idcart + '&idloja=' + idloja, {
+        nome: nome,
+        valor: valor
+      }, function (data) {
+        alert(data);
+        window.location.href = window.location.href
+      });
+    }, "json");
+  }
+
+
+  function adicionar(id, id2) {
+
+    let val_normal = $('#qtde' + id2).val();
+    let val_add = 1;
+    let link = 1;
+
+    //alert(val_normal);
+
+    let total = parseInt(val_normal) + parseInt(val_add);
+
+    $('#qtde' + id2).val(total);
+
+    $.post('listcart.php', {id: id}, function (data) {
+      var tipo = "1";
+      var idprod = $('#idcred' + id).val();
+      var idcart = $('#idcart').val();
+      var idloja = $('#idloja').val();
+
+      var cash = $('#cash' + id2).val();
+      var nome = data.nome;
+      var valor = data.valor;
+
+      $.post('alteracart.php?idprod=' + idprod + '&idloja=' + idloja, {
+        tipo: tipo,
+        idprod: idprod,
+        idcart: idcart,
+        idloja: idloja,
+        link: link
+
+      }, function (data) {
+        //console.log(data);
+        $('#valor' + id2).val(data.valor_total);
+        $('#cash' + id2).val(data.valor_cash);
+        $('#total-car').val(data.valor_total_car);
+        $('#total-cash').val(data.valor_total_cash);
+        window.location.href = window.location.href
+      }, "json");
+    }, "json");
+
+  }
+
+  function subtrair(id, id2) {
+
+    let val_normal = $("#qtde" + id2).val();
+    let val_add = 1;
+    let total = parseInt(val_normal) - parseInt(val_add);
+    let link = 1;
+
+    if (val_normal < 2) {
+      alert("A quantidade não pode ser menor que 1(um)!");
+    } else {
+
+      $('#qtde' + id2).val(total);
+      $('#qtde2' + id2).val(total);
+
+      $.post('listcart.php', {id: id}, function (data) {
+
+        var tipo = "2";
+        var idprod = $('#idcred' + id).val();
+        var idcart = $('#idcart').val();
+        var idloja = $('#idloja').val();
+        var cash = $('#cash' + id2).val();
+        var nome = data.nome;
+        var valor = data.valor;
+
+        $.post('alteracart.php?idprod=' + idprod + '&idloja=' + idloja, {
+          tipo: tipo,
+          idprod: idprod,
+          idcart: idcart,
+          idloja: idloja,
+          valor: valor,
+          cash: cash,
+          qtde: total,
+          link: link
+
+        }, function (data) {
+
+          $('#valor' + id2).val(data.valor_total);
+          $('#cash' + id2).val(data.valor_cash);
+          $('#total-car').val(data.valor_total_car);
+          $('#total-cash').val(data.valor_total_cash);
+          window.location.href = window.location.href
+        }, "json");
+      }, "json");
+    }
+  }
+
+  function modal(id) {
+    var idcart = $('#idcart').val();
+    var idloja = $('#idloja').val();
+    $.post('listacarrinho.php', {idcart: idcart, idloja: idloja}, function (data) {
+      $('#compra').html('<h2><font color="black"><b>VALOR DA COMPRA: </b></font><font color="red">R$ ' + data.valor + '</font></h2>');
+      $("#cashbackmodal").modal('show');
+    }, "json");
+  }
+
+  function pagarcash(id) {
+    var idcart = $('#idcart').val();
+    var idloja = $('#idloja').val();
+    var senha = $('#senha').val();
+    var valor = $('#valortotalcompra').val();
+    var idusua = $('#idusua').val();
+
+    var valor_cash_p = $('#valor_cash_p').val();
+
+
+    if (senha == '') {
+      alert('Por favor preencher a senha!');
+    } else {
+      $.post('verificausuario.php', {idusua: idusua, senha: senha, valor: valor}, function (data) {
+        var res = data.usua;
+        var cash = data.valorcash;
+        let resultado_cash = data.resultado_cash;
+
+        if (res == 2) {
+          alert('A senha está incorreta, tente novamente.');
+          $("#cashbackmodal").modal();
+        } else if (resultado_cash == 1) {
+          alert('Voce não tem saldo suficiente');
+          window.location.href = window.location.href;
+        } else {
+
+          $.post('verificacart.php', {idusua: idusua, idcart: idcart, idloja: idloja}, function (data) {
+            if (data.ca == '1') {
+              alert('Essa compra já foi paga, ou tente fazer a compra novamente.');
+            } else {
+
+              var tipo = "0";
+              $.post('alteracart.php', {tipo: tipo, idcart: idcart, idloja: idloja}, function (data) {
+                $.post('pagacashback.php', {
+                  idusua: idusua,
+                  valor: valor,
+                  idcart: idcart,
+                  idloja: idloja,
+                  valor_cash_p: valor_cash_p
+                }, function (data) {
+                  //alert(data);
+                  $.post('alterasitucar.php', {
+                    idusua: idusua,
+                    idcart: idcart,
+                    idloja: idloja
+                  }, function (data) {
+                    //alert('Compra Realizada com Sucesso!');
+                    window.location.href = "resumocompra.php?idSessao={ID_SESSAO}&idLoja={ID_CRED}&idcart={IDCART}&pag={MD5PAG1}";
+                  });
+                });
+              });
+
+            }
+          }, 'json');
+        }
+      }, "json");
+
+    }
+  }
+
+
+  function modalpaga(id) {
+    var idcart = $('#idcart').val();
+    var idloja = $('#idloja').val();
+
+    $.post('listacarrinho.php', {idcart: idcart, idloja: idloja}, function (data) {
+      $('#compra1').html('<h2><font color="black"><b>VALOR DA COMPRA: </b></font><font color="red">R$ ' + data.valor + '</font></h2>');
+      //alert(data.valor);
+      $("#pagamentomodal").modal();
+    }, "json");
+  }
+
+  function abrirtransf() {
+    $("#pagatransf").modal();
+  }
+
+
+  function enviaPagseguro() {
+
+    $('#exampleModalCenter1').modal('show');
+
+    var idcart = $('#idcart').val();
+    var idloja = $('#idloja').val();
+    var valor = $('#valortotalcompra1').val();
+    var idusua = $('#idusua').val();
+    var cash_js = $('#cash_js').val();
+    var tipopag = 'pagseguro';
+
+
+    $.post('verificacart.php', {idusua: idusua, idcart: idcart, idloja: idloja}, function (data) {
+
+      if (data.ca == '1') {
+        alert('Essa compra já foi paga, ou tente fazer a compra novamente.');
+        window.location.href = window.location.href;
+
+      } else {
+        $.post('alterasitucar.php', {idusua: idusua, idcart: idcart, idloja: idloja}, function (data) {
+
+          $.post('pagmtocart.php', {
+            idusua: idusua,
+            idcart: idcart,
+            idloja: idloja,
+            valor: valor,
+            cash_js: cash_js,
+            tipopag: tipopag
+          }, function (data) {
+            var idPedido = 'c' + data.seqcompra + 'p' + idloja;
+            var idcart1 = data.idcart;
+            var tipo = '2';
+            var val = data.valor;
+            var email = data.email;
+            var token = data.token;
+
+
+            $.post('api_pagseguro', {
+              email: email,
+              token: token,
+              tipo: tipo,
+              idPedido: idPedido,
+              valor: val,
+              idcart1: idcart1
+            }, function (data) {
+              alert(data);
+              //window.location.href ="resumocompra.php?idSessao={ID_SESSAO}&idLoja={ID_CRED}&idcart={IDCART}&pag=1";
+              $('#code').val(data);
+              $('#comprar').submit();
+            });
+          }, 'json');
+        });
+      }
+    }, 'json');
+  }
+
+
+  function pagardotbank_boleto() {
+
+    $('#exampleModalCenter').modal('show');
+
+    var idcart = $('#idcart').val();
+    var idloja = $('#idloja').val();
+    var valor = $('#valortotalcompra').val();
+    var idusua = $('#idusua').val();
+    var cash_js = $('#cash_js').val();
+    var tipopag = 'dotbank';
+    var tipoppag = '3';
+
+    var nomess = $('#nome_usua').val();
+    var cpfsss = $('#cpf_usua').val();
+    var emails = $('#email_usua').val();
+    var celuls = $('#celu_usua').val();
+    var endess = $('#ende_usua').val();
+    var bairrs = $('#bairro_usua').val();
+    var cidads = $('#cidade_usua').val();
+    var estads = $('#estado_usua').val();
+    var cepsss = $('#cep_usua').val();
+
+
+    if (nomess == "") {
+      alert('Preencher o nome');
+    } else if (cpfsss == "") {
+      alert('Preencher o CPF');
+    } else if (emails == "") {
+      alert('Preencher o email');
+    } else if (celuls == "") {
+      alert('Preencher o celular');
+    } else if (endess == "") {
+      alert('Preencher o endereço');
+    } else if (bairrs == "") {
+      alert('Preencher o bairro');
+    } else if (cidads == "") {
+      alert('Preencher a cidade');
+    } else if (estads == "") {
+      alert('Preencher o estado');
+    } else if (cepsss == "") {
+      alert('Preencher o CEP');
+    } else {
+
+      $.post('verificacart.php', {idusua: idusua, idcart: idcart, idloja: idloja}, function (data) {
+
+        if (data.ca == '1') {
+          alert('Essa compra já foi paga ou está em analise, aguarde e tente fazer a compra novamente.');
+
+        } else {
+          $.post('alterasitucar.php', {idusua: idusua, idcart: idcart, idloja: idloja}, function (data) {
+
+            var nomeusua = $('#nome_usua').val();
+            var cpf = $('#cpf_usua').val();
+            var emails = $('#email_usua').val();
+
+            var celular = $('#celu_usua').val();
+
+            var cell = celular.replace(/[^\d]+/g, '');
+
+            var endereco = $('#ende_usua').val();
+            var numero = $('#nume_usua').val();
+
+            var bairro = $('#bairro_usua').val();
+            var cidade = $('#cidade_usua').val();
+            var estado = $('#estado_usua').val();
+
+            var cep = $('#cep_usua').val();
+            var ceps = cep.replace(/[^\d]+/g, '');
+
+            var cell1 = celular.replace(/[^\d]+/g, '');
+            var emailadmin = 'doutroultra@doutorultra.com.br';
+            var datavenc = $('#data_venc').val();
+            /*
+                        alert(nomeusua);
+                        alert(cpf);
+                        alert(emails);
+                        alert(cell);
+                        alert(endereco);
+                        alert(numero);
+                        alert(bairro);
+                        alert(cidade);
+                        alert(estado);
+                        alert(ceps);
+                        alert(cell1);
+                        alert(emailadmin);
+                        alert(datavenc);
+                        alert(valor);*/
+
+            $.post('pagmtocart.php', {
+              idusua: idusua,
+              idcart: idcart,
+              idloja: idloja,
+              valor: valor,
+              cash_js: cash_js,
+              tipopag: tipopag,
+              tipoppag: tipoppag,
+              nomeusua: nomeusua,
+              cpf: cpf,
+              emails: emails,
+              cell: cell,
+              endereco: endereco,
+              numero: numero,
+              bairro: bairro,
+              cidade: cidade,
+              estado: estado,
+              ceps: ceps,
+              cell1: cell1,
+              emailadmin: emailadmin,
+              datavenc: datavenc,
+              totalvalor: valor
+
+            }, function (data) {
+              var idPedido = data.xxx;
+              var val = data.valor;
+
+              var token_dotbank = data.token_dotbank;
+
+              var total_value = val;
+
+              /*              alert(idPedido);
+                            alert(token_dotbank);*/
+
+              $.post('api_dotbankcc.php', {token: token_dotbank, idPedido: idPedido}, function (data) {
+                const json = data;
+                const obj = JSON.parse(json);
+
+                //var array = url.split('/');
+                const id_dotbank = obj.data['id'];
+
+                const siteboleto = obj.data['url'];
+
+                const status = obj['type'];
+
+                if (status == 'success') {
+                  alert('Boleto Gerado com Sucesso.');
+                  window.open(siteboleto);
+                  $('#exampleModal').modal('hide');
+                  window.location.href = window.location.href;
+                } else {
+                  alert('Ocorreu algum problema, entre em contato com administrador do sistema.');
+                }
+
+              }, "json");
+            }, 'json');
+          });
+        }
+      }, 'json');
+    }
+  }
+
+  function abrirmodal() {
+    $('#dotbankboleto').modal('show');
+  }
+
+
+  function somenteNumeros(e) {
+    if (document.all) {
+      var evt = event.keyCode;
+    } // caso seja IE
+    else {
+      var evt = e.charCode;
+    }	// do contrário deve ser Mozilla
+
+    var valid_chars = '0123456789';	// criando a lista de teclas permitidas
+    var chr = String.fromCharCode(evt);	// pegando a tecla digitada
+
+    if (valid_chars.indexOf(chr) > -1) {
+      return true;
+    }
+    return false;	// do contrário nega
+  }
+
+  //jQuery('cpf').attr('autocomplete','off');
+</script>
+
+<style>
+
+  .desabilitar {
+    pointer-events: none;
+  }
+
+  .habilitar {
+    pointer-events: auto;
+  }
+
+  .cropped {
+    margin-top: 30px;
+    width: 150px; /* width of container */
+    height: 150px; /* height of container */
+    overflow: hidden;
+  }
+
+  .cropped img {
+    margin: -10px 0px 0px -180px;
+  }
+</style>
+<section class="breadcrumbs">
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col-4">
+        <ol>
+          <li><a href="index.php?idSessao={ID_SESSAO}">Home</a></li>
+          <li>Finalizar Compra</li>
+        </ol>
+        <h2>Finalizar Compra</h2>
+      </div>
+    </div>
+  </div>
+</section><!-- End Breadcrumbs -->
+
+<form method="post" action="" enctype="multipart/form-data">
+
+  <input type="hidden" id="idusua" name="idusua" value="{IDUSUA}"/>
+  <input type="hidden" id="idsessao" name="idsessao" value="{ID_SESSAO}"/>
+  <input type="hidden" id="idcart" name="idcart" value="{IDCART}"/>
+  <!-- Start About Us Section -->
+  <section class="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="section-title text-center">
+            <h3>{NOMELOJA}</h3>
+            <p>Categoria: {CATEGORIALOJA}</p>
+            <p>{VAZIO}</p>
+
+            <div class="row">
+              <div class="col-md-12">
+
+                <!-- BEGIN VAZIO_CAR -->
+                <div class="welcome-section">
+                  <h4 class="titu">{VAZIO}</h4>
+                </div>
+                <!-- END VAZIO_CAR -->
+
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                  <!-- BEGIN CARRINHO -->
+                  <input type="hidden" name="id" id="idcred{ID}" value="{ID}">
+                  <input type="hidden" name="idloja" id="idloja" value="{ID_CRED}">
+                  <input type="hidden" name="no" id="nomes{NOMEPRODU}" value="{NOMEPRODU}"/>
+                  <input type="hidden" name="valor" id="valor" value="{VALOR_SHOP}"/>
+                  <input type="hidden" name="cashs" id="cashs" value="{CASHBACK_VALOR}"/>
+                  <input type="hidden" id="cash" name="cash" value="{CASHVALOR_DB}">
+
+                  <div class="col">
+                    <div class="card">
+                      <div class="img-responsive">
+                        <img src="{IMAGEM}" class="img-loja cropped" alt="...">
+                      </div>
+                      <div class="card-body">
+
+                      </div>
+                      <div class="card-footer">
+                        <h4 class="card-title">{NOMEPRODU}</h4>
+                        <p class="card-text">{DESC}</p>
+
+                        <p class="card-text">
+                          <a href="javascript:void(0);" onclick="subtrair('{ID}','{ID2}');">
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                          </a>
+
+                        <h2> {QTDE} </h2><input type="hidden" id="qtde{ID}" value="{QTDE}">
+                        <input type="hidden" class="form-control" id="qtde{ID2}" name="qtde" value="{QTDE}">
+
+                        <a href="javascript:void(0);" onclick="adicionar('{ID}','{ID2}');">
+                          <i class="fa fa-plus" aria-hidden="true"></i>
+                        </a>
+                        </p>
+
+                        <p class="card-text">Valor Unitário: R$ {VALOR}</p>
+                        <p class="card-text"><h4>Valor Total: R$ {VALOR_TOTAL_PRODU}</h4></p>
+                        <p class="card-text mb-4">CashBack: {CASHVALOR}</p>
+
+                        <a href="javascript:void(0);" onclick="deleteData('{ID}');">
+                          <div class="btn btn-danger">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          </div>
+                        </a>
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- END CARRINHO -->
+                </div>
+
+                <br>
+                <br>
+
+                <table class="table">
+                  <tbody>
+                  <thead>
+                  <tr>
+                    <td colspan="3"><h3>Total: R$ <font color="red">{TOTAL}</font></h3></td>
+                    <td colspan="3"><h3>CashBack Gerado:<font color="green"> R$ {TOTALCASH}</font></h3></td>
+                  </tr>
+                  </thead>
+                  </tbody>
+                </table>
+              </div>
+            </div><!-- /.row -->
+
+            <hr>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+
+                <div class="list-group">
+                  <h4>ESCOLHA O MÉTODO DE PAGAMENTO ABAIXO:</h4>
+
+                  <a href="lojarede.php?idSessao={ID_SESSAO}&idLoja={ID_CRED}&idcart={IDCART}" class="{HREF} btn btn-warning list-group-item list-group-item-action">
+                    <i class="fa fa-plus-circle" aria-hidden="true"></i> ADICIONAR MAIS ITENS
+                  </a>
+
+                  <!-- BEGIN MENU_PAGA_VIACASHBACK -->
+                  <a onclick="modal('{IDCRED}');" href="javascript:void(0);" class="{HREF} list-group-item list-group-item-action">
+                    <i class="fa fa-money" aria-hidden="true"></i> PAGAR COM CASHBACK
+                  </a>
+                  <!-- END MENU_PAGA_VIACASHBACK -->
+
+                  <!-- BEGIN PAGS -->
+                  <a onclick="modalpaga('{IDCRED}');" href="javascript:void(0);" class="{HREF} list-group-item list-group-item-action">
+                    <img src="comum/img/pagseguro.gif" width="50px"> PAGAR COM PAGSEGURO
+                  </a>
+                  <!-- END PAGS -->
+
+                  <!-- BEGIN DOTS -->
+                  <a href="javascript:void(0);" onclick="abrirmodal();" class="{HREF} list-group-item list-group-item-action">
+                    <img src="comum/img/dotbank.jpeg" width="50px"> DOTBANK BOLETO
+                  </a>
+
+                  <!-- END DOTS -->
+
+                  <!-- BEGIN TRANSF -->
+                  <!--
+                                  <a class="btn btn-primary text-center" onclick="abrirtransf('{IDCART}');" href="javascript:void(0);">
+                                    TRANSFERÊNCIA BANCÁRIA
+                                  </a>
+                  -->
+
+                  <!-- END TRANSF -->
+
+                </div>
+              </div>
+            </div>
+
+          </div><!-- div anes dos conteudos-->
+        </div><!-- col-md-12 col-sm-12-->
+      </div><!-- class="row" -->
+    </div><!-- /.container -->
+  </section>
+
+  <!-- Modal pagamento-->
+  <div class="modal fade" id="pagatransf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel22" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title" id="exampleModalLabel22">
+            Deseja mesmo pagar através da transferencia bancária??
+          </h3>
+        </div>
+        <div class="modal-body">
+          <p>Você pode fazer uma transferência simples (TED e DOC), não esqueça após fazer a transferência anexar o comprovante.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary text-center" name="transf" value="{IDCART}">
+            PAGAR
+          </button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal pagamento-->
+
+</form>
+
+
+<!-- PAGSEGURO -->
+
+<!--
+<form id="comprar" action="https://sandbox.pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+-->
+
+<form id="comprar" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+  <input type="hidden" name="code" id="code" value=""/>
+</form>
+
+<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+<!--<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>-->
+
+<!-- PAGSEGURO -->
+
+
+<form method="post">
+
+  <!-- Modal cashback-->
+  <div class="modal fade" id="cashbackmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <div class="modal-body">
+          <h3 class="modal-title">
+            Pagar com CashBack
+          </h3>
+          <h3>Seu saldo é: <font color="green">R$ {MEUCASH}</font></h3>
+
+          <p>Valores pagos com cashback não geram CashBack.</p>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-works">
+            <div id="compra" name="valor"></div>
+            <input type="hidden" id="valortotalcompra" name="valortotalcompra" value="{VALOR_TOTAL}"/>
+
+          </div>
+          <div class="modal-header">
+            <label>Digite a sua senha:</label>
+            <input class="form-control" type="password" name="senha" id="senha" required placeholder="Senha" alt="SENHA" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" onclick="pagarcash();" data-bs-dismiss="modal">Pagar</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal cashback-->
+  <input type="hidden" id="cash_js" name="cash_js" value="{TOTALCASH1}">
+
+  <!-- Modal pagamento-->
+  <div class="modal fade" id="pagamentomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title" id="Modal-label-2">
+            Escolha as Formas de Pagmento
+          </h3>
+          <p>Após a verificação do pagamento o cashback gerado será adicionado em sua conta.</p>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-works">
+
+            <h3 class="text-center">
+              <font color="black"><b>VALOR DO CASHBACK: </b></font><font color="green">R$ {TOTALCASH}</font></h3>
+            <div class="text-center" id="compra1" name="valor1"></div>
+            <input type="hidden" id="valortotalcompra1" name="valortotalcompra1" value="{VALOR_TOTAL}"/>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" onclick="enviaPagseguro();" data-dismiss="modal">Pagar</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal pagamento-->
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="dotbankboleto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pagamento com DOTBANK</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group mb-4">
+          <label for="nome_usua">Nome:</label>
+          <input type="text" class="form-control" id="nome_usua" name="nome_usua" required>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="cpf_usua">CPF:(sem pontos e traços)</label>
+          <input type="text" class="form-control" id="cpf_usua" name="cpf_usua" maxlength="11" onkeypress="return somenteNumeros(event);" value="{CPF_USUA}" required>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="email_usua">EMAIL:</label>
+          <input type="text" class="form-control" id="email_usua" name="email_usua" value="{EMAIL_USUA}" required>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="celu_usua">CELULAR:</label>
+          <input type="text" class="form-control" id="celu_usua" name="celu_usua" value="{CELU_USUA}" required>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="cep_usua">CEP: (ex: 99999-99)</label>
+          <input type="text" class="form-control" id="cep_usua" name="cep_usua" maxlength="9" onblur="verificaCep();" value="{CEP_USUA}" required>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-10">
+            <label for="ende_usua">ENDEREÇO:</label>
+            <input type="text" class="form-control" id="ende_usua" name="ende_usua" value="{ENDE_USUA}" required>
+          </div>
+          <div class="col-md-2">
+            <label for="nume_usua">nº:</label>
+            <input type="text" class="form-control" id="nume_usua" name="nume_usua" value="{ENDE_USUA}" required>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-5">
+            <label for="bairro_usua">BAIRRO:</label>
+            <input type="text" class="form-control" id="bairro_usua" name="bairro_usua" value="{BAIRRO_USUA}" required>
+          </div>
+          <div class="col-md-5">
+            <label for="cidade_usua">CIDADE:</label>
+            <input type="text" class="form-control" readonly id="cidade_usua" name="cidade_usua" value="{CIDADE_USUA}" required>
+          </div>
+          <div class="col-md-2">
+            <label for="estado_usua">UF:</label>
+            <input type="text" class="form-control" readonly id="estado_usua" name="estado_usua" value="{ENDE_USUA}" required>
+            <hr class="mb-5">
+          </div>
+          <input type="hidden" id="data_venc" name="data_venc" value="{DATA_VENC}">
+        </div>
+
+        <a class="btn btn-primary" onclick="pagardotbank_boleto();">
+          Gerar Boleto
+        </a>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalCenterTitle mySmallModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="text-center">
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only"></span>
+                  </div>
+                  <p>
+                  <h3>Carregando...<br>Aguarde Gerando o boleto...</h3></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalCenterTitle mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+          </div>
+          <p>
+          <h3>Carregando...<br>Aguarde Gerando o boleto...</h3></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="content-wrapper">
+	<input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Autorizações {REDE_CRED}</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">Home</li>
+						<li class="breadcrumb-item active">{REDE_CRED}</li>
+					</ol>
+				</div>
+			</div>
+		</div><!-- /.container-fluid -->
+	</section>
+
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Solicitações de Pendentes de Pacotes.</h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<div id="export-buttons1"></div>
+							<form method="post">
+								<table id="exemple1" class="table table-hover">
+									<thead>
+									<tr class="">
+										<th>ID</th>
+										<th>Nome</th>
+										<th>Email</th>
+										<th>Data/Hora Envio</th>
+										<th>Data/Hora Resposta</th>
+										<th>Assunto</th>
+										<th>Mensagem</th>
+										<th>Status</th>
+										<th>Opções</th>
+									</tr>
+									</thead>
+									<tbody>
+									<!-- BEGIN AUT -->
+									<tr>
+										<input type="hidden" id="id_msg" name="id_msg" value="{ID}"/>
+										<td>{ID}</td>
+										<td>{NOME}</td>
+										<td>{EMAIL}</td>
+										<td>{DATAENV}</td>
+										<td>{DATARES}</td>
+										<td>{ASSUNTO}</td>
+										<td>{MENSAGEM}</td>
+										<td><font color="{COR}">{STATUS}</font></td>
+										<td>
+											<a href="mailto:{EMAIL}" target="_blank" class="btn btn-primary btn-primary" title="Responder">
+												<i class="fa fa-reply"></i>
+											</a>
+
+											<button type="submit" class="btn btn-success" name="arquivar" value="{ID}" title="Arquivar/Respondido">
+												<i class="fa fa-check"></i>
+											</button>
+
+											<button type="submit" class="btn btn-danger" name="excluir" value="{ID}" title="Excluir">
+												<i class="fa fa-trash"></i>
+											</button>
+										</td>
+									</tr>
+									<!-- END AUT -->
+									</tbody>
+								</table>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        let table = $('#exemple1').DataTable({
+            "autoWidth": false,
+            "responsive": true,
+            "lengthChange": true,
+            colReorder: true,
+            buttons: [
+                {
+                    extend: 'collection',
+                    text: 'Exportar',
+                    buttons: [
+                        'copy',
+                        'excel',
+                        'csv',
+                        'pdf',
+                        'print'
+                    ]
+                }
+            ]
+        });
+
+        document.getElementById('export-buttons1').appendChild(table.buttons().container()[0]);
+    });
+
+</script>

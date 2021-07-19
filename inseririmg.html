@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Armazenando imagens no banco de dados Mysql</title>
+</head>
+<body>
+<h2>Selecione um novo arquivo de imagem</h2>
+  
+<section id="novos" class="feature-section">
+<div class="container">
+  
+<img src="{IMG1}" width="150px" height="150px" > 
+  
+<form enctype="multipart/form-data" action="" method="post">
+<div><input name="nome_evento" type="text"/></div>
+<div><input name="descricao_evento" type="textarea"/></div>    
+<input type="hidden" name="MAX_FILE_SIZE" value="99999999"/>
+    <div><input name="imagem" type="file"/></div>
+    <div><input type="submit" name="salvar" value="Salvar"/></div>
+</form>
+
+
+</div>
+</section>
+  
+</body>
+</html>

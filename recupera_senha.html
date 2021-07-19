@@ -1,0 +1,75 @@
+
+<script type="application/javascript">
+  function login() {
+    $("#login").modal('show');
+  }
+
+  function recaptchaCallback() {
+    //alert("Botão Enviar Liberado, Você não é um Robô!");
+    $('#log').html('<input type="submit" class="btn btn-success mb-4"  name="enviar" value="Enviar">');
+  }
+</script>
+
+<main id="main">
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+      <div class="row align-items-end">
+        <div class="col-4">
+          <ol>
+            <li><a href="index.php?idSessao={ID_SESSAO}">Home</a></li>
+            <li>Recuperação da Senha</li>
+          </ol>
+          <h2>Recuperação da Senha</h2>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+  <section>
+    <div class="container" data-aos="fade-up">
+      <form method="post">
+
+
+        <div class="row">
+
+          <!-- BEGIN ERRO1 -->
+          <div class="alert alert-danger" role="alert">
+            <h4>{MSG}</h4>
+          </div>
+          <!-- END ERRO1 -->
+
+          <!-- BEGIN SUCESSO1 -->
+          <div class="alert alert-success" role="alert">
+            <h4>{MSG}</h4>
+          </div>
+          <!-- END SUCESSO1 -->
+
+
+          <div class="col-lg-6 entries mb-6">
+
+            <!-- BEGIN MOSTRAR_EMAIL -->
+            <div class="alert alert-warning mb-4" role="alert">
+              <h6>Enviar o link para esse email: {EMAIL_M}</h6>
+            </div>
+            <!-- END MOSTRAR_EMAIL -->
+
+            <label class="mb-1">Email:</label>
+            <input class="form-control mb-4" type="email" name="email" placeholder="Email" alt="Email de Recuperação" required>
+
+            <!-- BEGIN BTN_LIMPO -->
+            <input type="submit" class="btn btn-success mb-4" name="enviar" value="Enviar">
+            <!-- END BTN_LIMPO -->
+
+            <!-- BEGIN GOOGLE -->
+            <div class="g-recaptcha mb-4" data-sitekey="{KEY_GOOGLE}" data-callback="recaptchaCallback"></div>
+            <!-- END GOOGLE -->
+
+            <div id="log"></div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>

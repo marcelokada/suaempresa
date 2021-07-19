@@ -1,0 +1,445 @@
+
+
+<script type="text/javascript">
+  jQuery(function ($) {
+    $("#cep_usua").mask("99999-999");
+    $("#celu_usua").mask("(99) 99999-9999");
+    $("#cnpj").mask("99.999.999/9999-99");
+  });
+
+
+  $(function () {
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+  function aplicar(id) {
+
+    var idsind = $('#idsind').val();
+    var idusua = id;
+    $.post('addusuario.php', {
+      idsind: idsind,
+      idusua: idusua
+    }, function (data) {
+      alert("Solicitação Enviada com Sucecsso");
+      window.location.href = window.location.href
+    });
+  }
+
+  jQuery(function ($) {
+    $("#cpf").mask("999.999.999-99");
+  });
+
+
+  $().ready(function () {
+
+    $("#marcar").click(function () {
+      $("input[name^='usuarios']").prop('checked', true);
+      return false;
+    });
+
+    $("#desmarcar").click(function () {
+      $("input[name^='usuarios']").prop('checked', false);
+      return false;
+    });
+
+    $("#marcar1").click(function () {
+      $("input[name^='usuarios']").prop('checked', true);
+      return false;
+    });
+
+    $("#desmarcar1").click(function () {
+      $("input[name^='usuarios']").prop('checked', false);
+      return false;
+    });
+
+  });
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('ende_usua').value = ("");
+    document.getElementById('bairro_usua').value = ("");
+    document.getElementById('cidade_usua').value = ("");
+    document.getElementById('estado_usua').value = ("");
+  }
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('ende_usua').value = (conteudo.logradouro);
+      document.getElementById('bairro_usua').value = (conteudo.bairro);
+      document.getElementById('cidade_usua').value = (conteudo.localidade);
+      document.getElementById('estado_usua').value = (conteudo.uf);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+  function verificaCep() {
+    var cep = $('#cep_usua').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('ende_usua').value = (conteudo.logradouro);
+    document.getElementById('bairro_usua').value = (conteudo.bairro);
+    document.getElementById('cidade_usua').value = (conteudo.localidade);
+    document.getElementById('estado_usua').value = (conteudo.uf);
+
+  }
+</script>
+
+<input type="hidden" name="idsessao" id="idsessao" value="{ID_SESSAO}">
+<input type="hidden" name="idrede" value="{ID_REDE}">
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Pagamento dos Usuários</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">Pagamento dos Usuários</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /.container-fluid -->
+
+<!-- BEGIN ERRO -->
+<div class="alert alert-danger" role="alert">
+  <p align="justify">{MSG}</p>
+</div>
+<!-- END ERRO -->
+
+<!-- BEGIN SUCESSO -->
+<div class="alert alert-success" role="alert">
+  <p align="justify">{MSG}</p>
+  <script>
+    setTimeout(function () {
+
+    }, 4000);
+  </script>
+</div>
+<!-- END SUCESSO -->
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">asd</h3>
+          </div>
+          <!-- /.card-header -->
+
+
+          <form method="post">
+
+            <div class="card-body">
+
+              <div class="row">
+                <div class="col-2">
+                  <label>CPF:</label>
+                  <input type="text" class="form-control" id="cpf" name="cpf">
+                </div>
+
+                <div class="col-3">
+                  <label>Data de Vencimento:</label>
+                  <select class="form-control" name="vencimento">
+                    <option value="">Todos</option>
+                    <option value="5">05</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                  </select>
+                </div>
+
+                <div class="col-3">
+                  <label>Status Usuário:</label>
+                  <select class="form-control" name="status">
+                    <option value="t">Todos</option>
+                    <option value="a">Ativos</option>
+                    <option value="c">Inativos</option>
+                  </select>
+                </div>
+
+                <div class="col-3">
+                  <label>Tipo:</label>
+                  <select class="form-control" name="tipo">
+                    <option value="a">Adesão</option>
+                    <option value="m">Mensalidade</option>
+                  </select>
+                </div>
+
+                <div class="col-1">
+                  <label> &nbsp</label>
+                  <input type="submit" class="btn btn-success form-control" name="listar" value="LISTAR">
+                </div>
+
+              </div>
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">asd</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <form method="post">
+              <h5 class="card-title mb-4">Pesquisar Usuário</h5>
+              <input type="hidden" id="idsind" name="idsind" value="{ID_SIND}">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th colspan="12">
+                    <a href="#" id="marcar" name="marcar"><font size="1">Marcar todas</font></a> |
+                    <a href="#" id="desmarcar" name="desmarcar"><font size="1">Desmarcar todas</font></a>
+                  </th>
+                </tr>
+                </thead>
+                <thead>
+                <tr bgcolor="#e6e6fa">
+                  <th></th>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Email</th>
+                  <th>Plano</th>
+                  <th>Tipo</th>
+                  <th>Valor R$</th>
+                  <th>Dia Vencimento</th>
+                  <th>Status</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <!-- BEGIN NUSUARIOS -->
+                <tr bgcolor="#f7f7f7">
+                  <td colspan="5">Nenhum usuário encontrado!</td>
+                </tr>
+                <!-- END NUSUARIOS -->
+
+                <!-- BEGIN USUARIOS -->0
+                <tr bgcolor="#f7f7f7">
+                  <td><input type="checkbox" id="usuarios[]" name="usuarios[]" value="{REDE_SEQUSUA}/{TIPO_P}"></td>
+                  <td>{REDE_SEQUSUA}</td>
+                  <td>{REDE_NOMEUSU}</td>
+                  <td>{REDE_CPFUSUA}</td>
+                  <td>{REDE_EMAILUS}</td>
+                  <td>{PLANO}</td>
+                  <td>{TIPO}</td>
+                  <td>{VALOR}</td>
+                  <td>{VENC1}</td>
+                  <td>{STATUS1}</td>
+                </tr>
+                <!-- END USUARIOS -->
+                </tbody>
+
+                <tfoot>
+                <tr>
+                  <th colspan="12">
+                    <a href="#" id="marcar1" name="marcar1"><font size="1">Marcar todas</font></a> |
+                    <a href="#" id="desmarcar1" name="desmarcar1"><font size="1">Desmarcar todas</font></a>
+                  </th>
+                </tr>
+                </tfoot>
+              </table>
+
+              <div class="card-footer">
+                <!--<input type="submit" class="btn btn-primary" name="gerar" value="Gerar Boletos">-->
+                <input type="button" class="btn btn-primary" value="Gerar Boletos" data-toggle="modal" data-target="#geraboleto">
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="geraboleto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Pagamento com DOTBANK</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-header">
+                      <a class="btn btn-primary text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Pagamento em Boleto
+                      </a>
+                    </div>
+
+                    <div class="modal-body">
+                      <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+
+                          <div class="form-row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="nome_usua">Nome:</label>
+                                <input type="text" class="form-control" id="nome_usua" name="nome_usua" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="cnpj">CNPJ: (sem pontos e traços)</label>
+                                <input type="text" class="form-control" id="cnpj" name="cnpj" onkeypress="return somenteNumeros(event);"
+                                       autocomplete="off" value="{CNPJ}" required
+                                >
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="email_usua">EMAIL:</label>
+                                <input type="text" class="form-control" id="email_usua" name="email_usua" value="{EMAIL_USUA}" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label for="celu_usua">CELULAR:</label>
+                                <input type="text" class="form-control" id="celu_usua" name="celu_usua" value="{CELU_USUA}" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="cep_usua">CEP: (ex: 99999-99)</label>
+                                <input type="text" class="form-control" id="cep_usua" name="cep_usua" maxlength="9" autocomplete="off" onblur="verificaCep();" value="{CEP_USUA}" required>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="col-md-10">
+                              <label for="ende_usua">ENDEREÇO:</label>
+                              <input type="text" class="form-control" id="ende_usua" name="ende_usua" value="{ENDE_USUA}" required>
+                            </div>
+                            <div class="col-md-2">
+                              <label for="nume_usua">nº:</label>
+                              <input type="text" class="form-control" id="nume_usua" name="nume_usua" value="{ENDE_USUA}" required>
+                            </div>
+                          </div>
+
+                          <div class="form-row">
+                            <div class="col-md-5">
+                              <label for="bairro_usua">BAIRRO:</label>
+                              <input type="text" class="form-control" id="bairro_usua" name="bairro_usua" value="{BAIRRO_USUA}" required>
+                            </div>
+                            <div class="col-md-5">
+                              <label for="cidade_usua">CIDADE:</label>
+                              <input type="text" class="form-control" readonly id="cidade_usua" name="cidade_usua" value="{CIDADE_USUA}" required>
+                            </div>
+                            <div class="col-md-2">
+                              <label for="estado_usua">UF:</label>
+                              <input type="text" class="form-control" readonly id="estado_usua" name="estado_usua" value="{ENDE_USUA}" required>
+                              <hr class="mb-5">
+                            </div>
+                            <input type="hidden" id="data_venc" name="data_venc" value="{DATA_VENC}">
+                          </div>
+                          <div class="form-row ">
+                            <div class="col-md-10 mb-5">
+                              <input type="submit" class="btn btn-primary" name="gerar" value="Gerar Boletos">
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalCenterTitle mySmallModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-body">
+                              <div class="text-center">
+                                <div class="spinner-border" role="status">
+                                  <span class="sr-only"></span>
+                                </div>
+                                <p>
+                                <h3>Carregando...<br>Aguarde Gerando o boleto...</h3></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Modal -->
+<form method="post">
+  <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <div id="nomeusua"></div>
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="idusua" name="idusua">
+
+          <div class="form-group">
+            <label>Valor da compra:</label>
+            <input type="text" class="form-control" id="valor_compra" name="valor_compra" onKeyPress="return(moeda(this,'.',',',event))"/>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary" name="aplicar">Aplicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

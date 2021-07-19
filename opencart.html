@@ -1,0 +1,241 @@
+<style>
+  .contain {
+    object-fit: contain;
+    max-width: 100%;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+  }
+
+  .inputsemnada:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+
+  .desabilitar {
+    pointer-events: none;
+  }
+
+  .habilitar {
+    pointer-events: auto;
+  }
+
+  .compras {
+    cursor: pointer;
+    padding: 15px;
+    background-color: #D8D8D8;
+  }
+
+  .compras1 {
+    margin-bottom: 25px;
+  }
+
+  .subcompra {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .subcompra1 {
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+  }
+
+  .compras:hover {
+    background-color: #BDBDBD;
+  }
+
+  .titulo_compra {
+    background-color: #848484;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .bola {
+    border-radius: 50%;
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    background-color: #FF4000;
+    margin-left: -18px;
+    margin-bottom: 15px;
+  }
+
+
+  /* unvisited link */
+  .carr:link {
+    color: #585858;
+  }
+
+  /* visited link */
+  .carr:visited {
+    color: #424242;
+  }
+
+  /* mouse over link */
+  .carr:hover {
+    color: #424242;
+  }
+
+  /* selected link */
+  .carr:active {
+    color: red;
+  }
+
+  .numero {
+    color: white;
+    margin-top: 2px;
+  }
+
+  .carr {
+    cursor: pointer;
+    color: #424242;
+  }
+
+
+  .trash {
+    display: block;
+    position: relative;
+    margin-right: -83%;
+    margin-top: -30px;;
+
+  }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+
+  function deleteData(id) {
+
+    $.post('listcartdel.php', {id: id}, function (data) {
+      var idloja = data.idlojas;
+      $.post('delcarttotal.php', {id: id, idloja: idloja}, function (data) {
+        alert(data);
+        window.location.href = window.location.href
+      });
+    }, "json");
+  }
+
+
+</script>
+
+<form method="post" action="" enctype="multipart/form-data" name="form2" id="form2">
+  <input type="hidden" id="idsessao" name="idsessao" value="{ID_SESSAO}"/>
+  <input type="hidden" id="idloja" name="idloja" value="{ID_CRED}">
+  <input type="hidden" id="idusua" name="idusua" value="{IDUSUA}"/>
+  <input type="hidden" id="tempo" name="tempo" value="{TEMPO}">
+  <input type="hidden" id="idusu" name="idusu" value="{IDUSUA}">
+  <input type="hidden" id="idplano" name="idplano" value="{IDPLANO}">
+  <input type="hidden" id="valor" name="valor" value="{VALOR}">
+</form>
+
+
+
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col-4">
+        <ol>
+          <li><a href="index.php?idSessao={ID_SESSAO}">Home</a></li>
+          <li>Compras em Aberto</li>
+        </ol>
+        <h2>Compras em Aberto</h2>
+      </div>
+    </div>
+  </div>
+</section><!-- End Breadcrumbs -->
+
+<form method="post" action="" enctype="multipart/form-data">
+  <!-- Start About Us Section -->
+  <section class="about-us-section-rede">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="section-title text-center">
+            <h3 class="mb-4">
+              <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+              Meu(s) Carrinho(s)
+            </h3>
+
+            <!--  BEGIN COMPRAS -->
+            <table class="table table-hover">
+              <thead>
+              <tr bgcolor="#a9a9a9">
+                <th>Carrinho de nº</th>
+                <th>Nome da Rede</th>
+                <th>Valor do carrinho</th>
+                <th>Data da Compra</th>
+                <th>Status do carrinho</th>
+                <th colspan="2">Opções</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr>
+                <input type="hidden" name="idcart" id="idcart" value="{ID}">
+                <td>{ID}</td>
+                <td>{REDE}</td>
+                <td>{VALOR_TOTAL}</td>
+                <td>{DATACART}</td>
+                <td>Em aberto</td>
+                <td>
+
+                  <a class="btn btn-success" href="finalizarcompra.php?idSessao={ID_SESSAO}/purchases/{ID_CRED}/{ID}/2">
+                    Finalizar Compra
+                  </a>
+                </td>
+
+                <td>
+                  <a class="btn btn-danger " href="javascript:void(0);" onclick="deleteData('{ID}');">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  </a>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="12">Informações do Carrinho - <b>Loja:</b> <font color="red">{NOMEDALOJA}</font></td>
+              </tr>
+              <tr bgcolor="#f5f5dc">
+                <th colspan="2">Nome do produto</th>
+                <th>Valor Unit.</th>
+                <th>Quantidade</th>
+                <th>Valor Total</th>
+                <th>% do Cashback</th>
+                <th>CashBack Gerado</th>
+              </tr>
+              <!-- BEGIN PRODUTOS -->
+
+              <tr>
+                <td colspan="2"> {NOMEPROD}</td>
+                <td> {VALUNITA}</td>
+                <td> {QUANTIDA}</td>
+                <td> {VALTPROD}</td>
+                <td> {CASHPORC} %</td>
+                <td> {CASHBACK}</td>
+                <!-- END PRODUTOS -->
+              </tr>
+
+              <tr>
+                <td colspan="2"></td>
+                <td><b>TOTAL</b></td>
+                <td>{QTDE_ITEM}</td>
+                <td><b>{VALOR_TOTAL}</b></td>
+                <td><b></b></td>
+                <td><b>{TOTALCASH}</b></td>
+              </tr>
+              <!--  END COMPRAS -->
+              </tbody>
+            </table><!-- /.row -->
+
+          </div><!-- col-md-12 col-sm-12-->
+        </div><!-- /.container -->
+      </div><!-- /.container -->
+    </div><!-- /.container -->
+    </div><!-- /.container -->
+  </section>
+</form>

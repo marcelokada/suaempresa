@@ -1,0 +1,166 @@
+<!--<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+
+<script type="text/javascript">
+
+  function modal(id) {
+    var idcart = $('#idcart').val();
+    var idloja = $('#idloja').val();
+    $.post('listacarrinho.php', {idcart: idcart, idloja: idloja}, function (data) {
+      $('#compra').html('<h2><font color="black"><b>VALOR DA COMPRA: </font><font color="red">R$ ' + data.valor + '</font></h2>');
+      $("#cashbackmodal").modal();
+    }, "json");
+  }
+
+  function Open(id) {
+    var idusua = $('#idusua').val();
+  }
+
+  let copiarTexto = () => {
+    //O texto que será copiado
+    var id = $('#link').val();
+    alert('O link foi copiado em seu teclado.');
+    const texto = id;
+    //Cria um elemento input (pode ser um textarea)
+    let inputTest = document.createElement("input");
+    inputTest.value = texto;
+    //Anexa o elemento ao body
+    document.body.appendChild(inputTest);
+    //seleciona todo o texto do elemento
+    inputTest.select();
+    //executa o comando copy
+    //aqui é feito o ato de copiar para a area de trabalho com base na seleção
+    document.execCommand('copy');
+    //remove o elemento
+    document.body.removeChild(inputTest);
+  };
+</script>
+
+<form method="post" action="" enctype="multipart/form-data" name="form2" id="form2">
+  <input type="hidden" id="idsessao" name="idsessao" value="{ID_SESSAO}"/>
+  <input type="hidden" id="idcart" name="idcart" value="{IDCART}"/>
+  <input type="hidden" id="idloja" name="idloja" value="{ID_CRED}">
+  <input type="hidden" id="idusua" name="idusua" value="{IDUSUA}"/>
+  <input type="hidden" id="tempo" name="tempo" value="{TEMPO}">
+  <input type="hidden" id="idusu" name="idusu" value="{IDUSUA}">
+  <input type="hidden" id="idplano" name="idplano" value="{IDPLANO}">
+  <input type="hidden" id="valor" name="valor" value="{VALOR}">
+</form>
+
+<!-- BEGIN MENU_USUA -->
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col-4">
+        <ol>
+          <li><a href="index.php?idSessao={ID_SESSAO}">Home</a></li>
+          <li>Meus Pedidos</li>
+        </ol>
+        <h2>Meus Pedidos</h2>
+      </div>
+    </div>
+  </div>
+</section><!-- End Breadcrumbs -->
+<!-- END MENU_USUA -->
+
+
+<form method="post" action="" enctype="multipart/form-data">
+  <!-- Start About Us Section -->
+  <section class="blog">
+    <div class="container" data-aos="fade-up">
+
+      <!-- BEGIN OPEN -->
+      <div class="text-center">
+        <a href="opencart.php?idSessao={ID_SESSAO}&idUsuario={ID_USUA_CR}" class="carr" title="{TITULO_OPEN}">
+          <h1><i class="bx bx-shopping-bag " aria-hidden="true"></i></h1> <span class="text-lg">{OPENCART}</span> Compras em Aberto
+        </a>
+      </div>
+      <!-- END OPEN -->
+
+    </div><!-- /.container -->
+  </section>
+</form>
+
+
+<section class="blog">
+  <div class="container" data-aos="fade-up">
+    <div class="row">
+      <div class="col-lg-12 entries">
+        <div class="row">
+          <div class="section-title text-center">
+            <p >MINHAS COMPRAS</p>
+
+            <!--  BEGIN COMPRAS -->
+            <table class="table">
+              <thead>
+              <tr align="center" bgcolor="#{COR}">
+                <th  colspan="12">Informações do Carrinho (#{IDCART})- <b>Loja:</b> <font color="red">{NOMEDALOJA}</font></th>
+              </tr>
+
+              <tr bgcolor="#a9a9a9">
+                <th>Nome</th>
+                <th>Valor R$</th>
+                <th>Tipo Pagmto.</th>
+                <th>Data da Compra</th>
+                <th>Status do Pagamento</th>
+                <th>Status do Carrinho</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr>
+                <input type="hidden" id="idcar" name="idcar" value="{ID}">
+                <td>{NOMEREDE}</td>
+                <td>{VALOR}</td>
+                <td>{TIPOP}</td>
+                <td>{DATA}</td>
+                <td>{SITUA}</td>
+                <td>{STATUSCAR}</td>
+              </tr>
+              <tr bgcolor="#faebd7">
+                <td><b>Nome do produto</td>
+                <td><b>Valor Unit.</td>
+                <td><b>Quantidade</td>
+                <td><b>Valor Total</td>
+                <td><b>% do cashback</td>
+                <td><b>CashBack Gerado</td>
+              </tr>
+              <!-- BEGIN PRODUTOS -->
+              <tr>
+                <td>{NOMEPROD}</td>
+                <td>{VALUNITA}</td>
+                <td>{QUANTIDA}</td>
+                <td>{VALTPROD}</td>
+                <td>{CASHPORC}</td>
+                <td>{CASHBACK}</td>
+              </tr>
+              <!-- END PRODUTOS -->
+              <tr>
+                <td></td>
+                <td></td>
+                <td><b>TOTAL</td>
+                <td><b>{VALOR_TOTAL}</td>
+                <td><b></td>
+                <td><b>{TOTALCASH}</td>
+              </tr>
+              </tbody>
+            </table><!-- /.row -->
+            <!--  END COMPRAS -->
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <a href="">
+                  <div class="btn btn-primary text-center"> IMPRIMIR RESUMO DA COMPRA
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div><!-- div anes dos conteudos-->
+        </div><!-- col-md-12 col-sm-12-->
+      </div><!-- class="row" -->
+
+    </div><!-- End blog entries list -->
+  </div>
+</section><!-- End Blog Section -->

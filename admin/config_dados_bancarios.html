@@ -1,0 +1,97 @@
+<script text="javascript">
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+</script>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Dados Bancários</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Dados Bancários</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Informações do Dados Bancários</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+              <form method="post">
+
+                <label for="nomebanco">Nome do Banco:</label>
+                <input type="text" class="form-control mb-3" id="nomebanco" name="nomebanco" value="{NOMEBANCO}">
+
+                <label for="agencia">Agência:</label>
+                <input type="text" class="form-control mb-3" id="agencia" name="agencia" value="{AGENCIA}">
+
+                <label for="conta">Conta:</label>
+                <input type="text" class="form-control mb-3" id="conta" name="conta" value="{CONTA}">
+
+                <label for="cpcj">CPF ou CNPJ:</label>
+                <input type="text" class="form-control mb-3" id="cpcj" name="cpcj" value="{CPFCNPJ}">
+
+                <label for="nome">Nome Favorecido:</label>
+                <input type="text" class="form-control mb-3" id="nome" name="nome" value="{NOME}">
+
+                <input type="submit" class="btn btn-outline-success mr-2" name="alterar" value="Alterar">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

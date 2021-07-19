@@ -1,0 +1,194 @@
+<script type="text/javascript">
+
+
+  function editarcash(id) {
+
+    var id = id;
+
+    $.post('viewCash.php', {id: id}, function (data) {
+      $('#idp').val(data.id);
+      $('#nomeu').val(data.nome);
+      $('#valor').val(data.valor);
+      $("#staticBackdrop").modal();
+    }, 'json');
+
+  }
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+  $(function () {
+    let table = $('#exemple1').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    document.getElementById('export-buttons1').appendChild(table.buttons().container()[0]);
+  });
+
+
+</script>
+
+<style>
+  .estrelas input[type=radio] {
+    display: none;
+
+  }
+
+  .estrelas label i.fa:before {
+    content: '\f005';
+    color: #FC0;
+  }
+
+  .estrelas input[type=radio]:checked ~ label i.fa:before {
+    color: #CCC;
+  }
+</style>
+
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Cashback dos Usuários</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Cashback dos Usuários</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Cashback Usuários</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+              <div id="export-buttons1"></div>
+              <table id="exemple1" class="table table-hover table-responsive-md">
+                <thead>
+                <tr class="">
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>Valor</th>
+                  <th {DISABLE}>Editar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- BEGIN CASH -->
+                <tr>
+                  <input type="hidden" id="idcash" name="idcash" value="{SEQCASH}">
+                  <td>{SEQCASH}</td>
+                  <td>{NOME}</td>
+                  <td>R$ {VVALUSCASH}</td>
+                  <td><a {DISABLE} href="javascript:void(0);" onclick="editarcash('{NIDUSUCASH}');"><i class="ion ion-edit" aria-hidden="true"></i></a>
+                  </td>
+                </tr>
+                <!-- END CASH -->
+                </tbody>
+
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alterar a Porcentagem</h5>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nome do usuario:</label>
+            <input type="hidden" id="idp" name="idp" value=""/>
+            <input type="text" class="form-control p-input" readonly id="nomeu" name="nomeu" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Valor:</label>
+            <input type="text" class="form-control p-input" id="valor" name="valor" value="" required onKeyPress="return(moeda(this,'.',',',event))"/>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-outline-success mr-2" name="alterar" value="Alterar">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

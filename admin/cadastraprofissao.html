@@ -1,0 +1,192 @@
+<script type="text/javascript">
+
+    function editar(id) {
+
+        let idd = id;
+
+        $.getJSON('visualizarprof.php?id=' + idd, {}, function (data) {
+            //console.log(data)
+            $("#nnumeprof").html('<input type="hidden" name="nnumeprof" value="' + data.nnumeprof + '">');
+            $("#cnomeprof").html('<input type="text" class="form-control" name="cnomeprof" value="' + data.cnomeprof + '">');
+            opcao = '<option value="' + data.ncateprof + '" selected>' + data.nocatprof + '</option>';
+            $('#ncategoria').append(opcao);
+            $("#editarprof").modal('show');
+        });
+    }
+
+    function Ativar(id){
+      var tp = 'a';
+      $.post('altprof.php',{id:id,tp:tp},function(){
+        window.location.href=window.location.href;
+      });
+    }
+
+    function Desativar(id){
+      var tp = 'b';
+      $.post('altprof.php',{id:id,tp:tp},function(){
+        window.location.href=window.location.href;
+
+      });
+    }
+
+</script>
+
+<div class="content-wrapper">
+	<input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1>Cadastro de Profissão</h1>
+				</div>
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">Home</li>
+						<li class="breadcrumb-item active">Cadastro de Profissão</li>
+					</ol>
+				</div>
+			</div>
+		</div><!-- /.container-fluid -->
+	</section>
+
+
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<!-- BEGIN ERRO -->
+				<div class="alert alert-danger" role="alert">
+					<p align="justify">{MSG}</p>
+				</div>
+				<!-- END ERRO -->
+
+				<!-- BEGIN SUCESSO -->
+				<div class="alert alert-success" role="alert">
+					<p align="justify">{MSG}</p>
+				</div>
+				<!-- END SUCESSO -->
+
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Informações das Profissões</h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+
+							<div class="row">
+								<form class="forms-sample" method="post" enctype="multipart/form-data">
+
+									<div class="form-group ">
+										<label>Nome:</label>
+										<input type="text" class="form-control " id="nome" name="nome" value="{NOME}" required/>
+										<div>&nbsp;</div>
+									</div>
+
+									<div class="form-group">
+										<label>Categoria:</label>
+										<select type="text" class="form-control" id="categoria" name="categoria">
+											<!-- BEGIN CATE_P -->
+											<option value="{NNUMECATE}">{CNOMECATE}</option>
+											<!-- END CATE_P -->
+										</select>
+									</div>
+
+									<div class="form-group">
+										<input type="submit" class="btn btn-primary" id="salvar" name="salvar" value="Salvar"/>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header">
+							<h3 class="card-title">Profissões Cadastradas</h3>
+						</div>
+						<!-- /.card-header -->
+						<div class="card-body">
+							<div class="row">
+
+								<table class="table">
+									<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">Nome</th>
+										<th scope="col">Categoria</th>
+										<th scope="col">Status</th>
+										<th scope="col">Ativar/Desativar</th>
+										<th></th>
+									</tr>
+									</thead>
+									<tbody>
+									<!-- BEGIN PROF -->
+									<tr>
+										<th>{NNUMEPROF}</th>
+										<td>{CNOMEPROF}</td>
+										<td>{NCATEPROF}</td>
+										<td>{STATUS}</td>
+										<td>
+											<div class="form-check form-switch">
+												<input class="form-check-input" type="checkbox" {CHECK} id="check" onclick="{TITU}('{NNUMEPROF}');">
+												<label class="form-check-label" for="check"></label>
+											</div>
+										</td>
+										<td>
+											<a href="javascript:void(0);" onclick="editar('{NNUMEPROF}');" title="Editar">
+												<i class="fa fa-edit"></i>
+											</a>
+										</td>
+									</tr>
+									<!-- END PROF -->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editarprof" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Alterar Profissão</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<form method="post">
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="label">Nome:</label>
+						<div id="nnumeprof"></div>
+						<div id="cnomeprof"></div>
+					</div>
+
+					<div class="form-group">
+						<label>Categoria:</label>
+						<select type="text" class="form-control" id="ncategoria" name="ncategoria">
+
+							<!-- BEGIN CATE_P1 -->
+							<option value="{NNUMECATE1}" {SEL}>{CNOMECATE1}</option>
+							<!-- END CATE_P1 -->
+						</select>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+					<button type="submit" class="btn btn-primary" name="editar">Alterar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

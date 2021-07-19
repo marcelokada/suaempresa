@@ -1,0 +1,215 @@
+<script type="text/javascript">
+
+
+  function editarcash(id) {
+
+    var id = id;
+
+    $.post('viewCash.php', {id: id}, function (data) {
+      $('#idp').val(data.id);
+      $('#nomeu').val(data.nome);
+      $('#valor').val(data.valor);
+      $("#staticBackdrop").modal();
+    }, 'json');
+
+  }
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+  $(function () {
+    let table = $('#exemple1').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    document.getElementById('export-buttons1').appendChild(table.buttons().container()[0]);
+  });
+</script>
+
+<style>
+  .estrelas input[type=radio] {
+    display: none;
+
+  }
+
+  .estrelas label i.fa:before {
+    content: '\f005';
+    color: #FC0;
+  }
+
+  .estrelas input[type=radio]:checked ~ label i.fa:before {
+    color: #CCC;
+  }
+</style>
+
+
+<div class="content-wrapper">
+  <h3 class="page-heading mb-4">Relatórios de Pagamentos dos Usuários</h3>
+  <div class="row mb-2">
+    <div class="col-lg-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Usuários com mensalidade atrasada.</h5>
+          <form method="post">
+            <div class="form-row">
+              <div class="form-group col-md-1">
+                <label>Mês:</label>
+                <select class="form-control p-input" id="mes" name="mes">
+                  <option value="todos">Todos</option>
+                  <option value="01">Janeiro</option>
+                  <option value="02">Fevereiro</option>
+                  <option value="03">Março</option>
+                  <option value="04">Abril</option>
+                  <option value="05">Maio</option>
+                  <option value="06">Junho</option>
+                  <option value="07">Julho</option>
+                  <option value="08">Agosto</option>
+                  <option value="09">Setembro</option>
+                  <option value="10">Outubro</option>
+                  <option value="11">Novembro</option>
+                  <option value="12">Dezembro</option>
+                </select>
+              </div>
+              <div class="form-group col-md-1">
+                <label>Ano:</label>
+                <select class="form-control p-input" id="ano" name="ano">
+                  <option value="todos">Todos</option>
+                  <!-- BEGIN ANO1 -->
+                  <option value="{ANO}">{ANO}</option>
+                  <!-- END ANO1 -->
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <label>Plano:</label>
+                <select class="form-control p-input" id="plano" name="plano">
+                  <option value="todos">Todos</option>
+                  <!-- BEGIN PLANOS -->
+                  <option value="{SEQPLAN}">{CNOMEPLANO}</option>
+                  <!-- END PLANOS -->
+                </select>
+              </div>
+
+<!--              <div class="form-group col-md-2">
+                <label>Status Pagamento:</label>
+                <select class="form-control p-input" id="situa" name="situa">
+                  <option value="todos">Todos</option>
+                  &lt;!&ndash; BEGIN SITUPAG &ndash;&gt;
+                  <option value="{IDSITU}">{CSITPAGPLAN}</option>
+                  &lt;!&ndash; END SITUPAG &ndash;&gt;
+                </select>
+              </div>-->
+
+<!--              <div class="form-group col-md-2">
+                <label>Tipo Pagamento:</label>
+                <select class="form-control p-input" id="tpag" name="tpag">
+                  <option value="todos">Todos</option>
+                  &lt;!&ndash; BEGIN TPAG &ndash;&gt;
+                  <option value="{IDTPAG}">{CTIPOPGPLAN}</option>
+                  &lt;!&ndash; END TPAG &ndash;&gt;
+                </select>
+              </div>-->
+
+              <div class="form-group col-md-2">
+                <label>&nbsp;</label>
+                <input type="submit" class="form-control btn btn-success" name="listar" value="PESQUISAR">
+              </div>
+            </div>
+          </form>
+          <table id="exemple1" class="table table-hover">
+            <div id="export-buttons1"></div>
+            <thead>
+            <tr class="">
+              <th>Nome do usuário</th>
+              <th>Plano</th>
+              <th>Patrocinador<br>Nome/Login</th>
+              <th>Data Compra</th>
+              <th>Status do Pagamento</th>
+              <th>Tipo Pagamento</th>
+              <th>Data Vencimento</th>
+              <th>Valor</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- BEGIN REL1 -->
+            <tr>
+              <td>{NOMEUSUA}</td>
+              <td>{NOMEPLANO}</td>
+              <td>{PAT}</td>
+              <td>{DATA}</td>
+              <td>{STATUSPAG}</td>
+              <td>{TIPOPAG}</td>
+              <td class="text-danger">{DATAVENC}</td>
+              <td>R$ {VALORM}</td>
+            </tr>
+            <!-- END REL1 -->
+            </tbody>
+            <tfoot>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><b>Total:</b></td>
+              <td>R$ {TOTAL}</td>
+            </tr>
+            </tfoot>
+
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

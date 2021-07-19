@@ -1,0 +1,97 @@
+<input type="hidden" name="idsessao" id="idsessao" value="{ID_SESSAO}">
+<input type="hidden" name="idadmin" id="idadmin" value="{ID_ADMIN}">
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Home</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active"></li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <section class="content">
+    <div class="container-fluid">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+
+        <!-- BEGIN EMPRESAS_MIMOS -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-dark">
+            <div class="inner">
+              <h3>{TOTAL_AUT_CRED}</h3>
+              <p>Autorizações de {REDE_CRED} pendentes</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-checkmark"></i>
+            </div>
+          </div>
+        </div>
+        <!-- END EMPRESAS_MIMOS -->
+
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>{TOTAL_AUT}</h3>
+              <p>Autorizações Pendentes</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-checkmark"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{QTDE_REDE}<sup style="font-size: 20px"></sup></h3>
+
+              <p>Total de <b>{REDE_NOME}</b> cadastradas(os)</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{TOTAL_USUA}</h3>
+
+              <p>Total de Usuários Cadastrados</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- Main row -->
+      <div class="row">
+      </div>
+      <!-- /.row (main row) -->
+
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>

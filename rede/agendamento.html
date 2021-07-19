@@ -1,0 +1,358 @@
+
+<input type="hidden" name="idrede" value="{ID_REDE}">
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Agendamento</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">Agendamento</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <!-- BEGIN ERRO -->
+        <section class="about-us-section-rede">
+        </section>
+        <div class="alert alert-danger" role="alert">
+          <p align="justify">{MSG}</p>
+        </div>
+        <!-- END ERRO -->
+
+        <!-- BEGIN SUCESSO -->
+        <section class="about-us-section-rede">
+        </section>
+        <div class="alert alert-success" role="alert">
+          <p align="justify">{MSG}</p>
+        </div>
+        <!-- END SUCESSO -->
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Agendamento</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <input type="hidden" id="idloja" name="idloja" value="{ID_REDE}">
+            <div id="calendar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+    let idlojas = $("#idloja").val();
+
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      locale: 'pt-br',
+      headerToolbar: {
+        left: 'today',
+        center: 'title',
+        right: 'prev,next dayGridMonth'
+      },
+      navLinks: false, // can click day/week names to navigate views
+      businessHours: true, // display business hours
+      editable: true,
+      selectable: true,
+      events: 'listar_eventos.php?idloja={ID_REDE}',
+
+      eventClick: function (info) {
+        info.jsEvent.preventDefault();
+        $("#titulo").text(info.event.title);
+        $("#id").text(info.event.id);
+        $("#idcale").val(info.event.id);
+        $("#idcal").html('<input type="hidden" id="id_cale" name="id_cale" value="' + info.event.id + '">');
+        $("#dataini").text(info.event.start.toLocaleString());
+
+        let idevento = info.event.id;
+
+        $.post('listar_eventos2.php', {idevento: idevento, idloja: idlojas}, function (data) {
+          console.log(data);
+
+          let situa = data[0]['status'];
+          let statuspg = data[0]['situacao'];
+          let pagmto = data[0]['pagamento'];
+          let tipopgmto = data[0]['tipopgmto'];
+
+          $("#valor").text(data[0]['valor']);
+
+          /*if (tipopgmto == '1') {
+              $("#form_pg").text("Cartão");
+          } else if (tipopgmto == '2') {
+              $("#form_pg").text("Boleto");
+          } else if (tipopgmto == '3') {
+              $("#form_pg").text("Transferência");
+          } else if (tipopgmto == '4') {
+              $("#form_pg").text("Pagamento Local");
+          } else {
+              $("#form_pg").text(" --- ");
+          }*/
+
+          $("#form_pg").text(tipopgmto);
+
+
+          if (pagmto == 's') {
+            $("#pagamento").text("Sim");
+          } else if (pagmto == 'n') {
+            $("#pagamento").text("Não");
+          } else {
+            $("#pagamento").text(" --- ");
+          }
+
+          if (situa == 1) {
+            $("#situa").text("Liberado");
+            $("#btn_apagar").html('<input type="submit" class="btn btn-danger" name="apagar" value="Apagar">');
+          } else if (situa == 2) {
+            $("#situa").text("Reservado");
+            $("#btn_limpar").html('<input type="submit" class="btn btn-warning" name="limpar" value="Limpar Reserva">');
+            $("#btn_confirmar").html('<input type="submit" class="btn btn-success" name="confirmar" value="Confirmar">');
+          } else if (situa == 3) {
+            $("#situa").text("Pago");
+            $("#btn_limpar").html('<input type="submit" class="btn btn-warning" name="limpar" value="Limpar Reserva">');
+          }
+
+          if (statuspg == 1) {
+            $("#situacao").text("Não Pago");
+          } else if (statuspg == 2) {
+            $("#situacao").text("Em Análise");
+          } else if (statuspg == 3) {
+            $("#situacao").text("Pago");
+          }
+
+          $("#idred").val(data[0]['idrede']);
+          $("#obs").text(data[0]['obs']);
+
+
+          $("#nomeusua").text(data[1]['nomeusua']);
+          $("#endeusua").text(data[1]['endeusua']);
+          $("#dnasusua").text(data[1]['dnasusua']);
+          $("#celuusua").text(data[1]['celuusua']);
+          $("#faceusua").text(data[1]['faceusua']);
+          $("#instusua").text(data[1]['instusua']);
+
+        }, "json");
+
+        $("#staticBackdrop").modal('show');
+      },
+      select: function (info) {
+        //alert('selected ' + info.startStr + ' to ' + info.endStr.toLocaleString());
+        $("#data_evento").val(info.startStr);
+        $("#data_evento1").val(info.startStr);
+        $("#modalRegistro").modal('show');
+      }
+    });
+    calendar.render();
+  });
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+</script>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          <div id="titulo"></div>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post">
+        <div class="modal-body">
+
+          <input type="hidden" id="idcale" name="idcale">
+          <input type="hidden" id="idred" name="idred">
+
+          <div id="idcal"></div>
+
+          <dl class="row">
+            <dt class="col-sm-1 col-md-3">ID Evento:</dt>
+            <dd class="col-sm-3 col-md-9" id="id"></dd>
+
+            <dt class="col-sm-1 col-md-3">Situação:</dt>
+            <dd class="col-sm-3 col-md-9" id="situa"></dd>
+
+            <dt class="col-sm-1 col-md-3">Data:</dt>
+            <dd class="col-sm-3 col-md-9" id="dataini"></dd>
+
+            <dt class="col-sm-1 col-md-3">Valor:</dt>
+            <dd class="col-sm-3 col-md-9" id="valor"></dd>
+
+            <dt class="col-sm-1 col-md-3">Status Pagamento:</dt>
+            <dd class="col-sm-3 col-md-9" id="situacao"></dd>
+
+            <dt class="col-sm-1 col-md-3">Observação:</dt>
+            <dd class="col-sm-3 col-md-9" id="obs"></dd>
+
+            <dt class="col-sm-1 col-md-3">Pagamento No Local?:</dt>
+            <dd class="col-sm-3 col-md-9" id="pagamento"></dd>
+
+            <dt class="col-sm-1 col-md-3">Forma de Pagamento:</dt>
+            <dd class="col-sm-3 col-md-9" id="form_pg"></dd>
+
+
+            <br><br>
+            <hr>
+
+            <h5>Informações Pessoais do Usuário:</h5>
+
+            <dt class="col-sm-1 col-md-3">Nome:</dt>
+            <dd class="col-sm-3 col-md-9" id="nomeusua"></dd>
+
+            <dt class="col-sm-1 col-md-3">Dt Nasc.:</dt>
+            <dd class="col-sm-3 col-md-9" id="dnasusua"></dd>
+
+            <dt class="col-sm-1 col-md-3">Endereço:</dt>
+            <dd class="col-sm-3 col-md-9" id="endeusua"></dd>
+
+            <dt class="col-sm-1 col-md-3">Celular:</dt>
+            <dd class="col-sm-3 col-md-9" id="celuusua"></dd>
+
+            <dt class="col-sm-1 col-md-3">Facebook:</dt>
+            <dd class="col-sm-3 col-md-9" id="faceusua"></dd>
+
+          </dl>
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <div id="btn_apagar"></div>
+          <div id="btn_limpar"></div>
+          <div id="btn_confirmar"></div>
+
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalRegistro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel1">
+          Registrar Evento
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post">
+
+        <input type="hidden" id="idrede" name="idrede" value="{ID_REDE}">
+
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label for="tipo_evento" class="form-label">Tipo do Evento:</label>
+            <select class="form-control" id="tipo_evento" name="tipo_evento" required>
+              <option value=""></option>
+              <!-- BEGIN EVENTOS -->
+              <option value="{NNUMEEVENT}">{CNOMEEVENT}</option>
+              <!-- END EVENTOS -->
+            </select>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="nome_evento" class="form-label">Data :</label>
+                <input type="date" class="form-control" id="data_evento1" readonly>
+                <input type="hidden" class="form-control" id="data_evento" name="data_evento">
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="hora_evento" class="form-label">Hora :</label>
+                <input type="time" class="form-control" id="hora_evento" name="hora_evento" required>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="valo_evento" class="form-label">Valor :</label>
+                <input type="text" class="form-control" id="valo_evento" name="valo_evento" onKeyPress="return(moeda(this,'.',',',event))" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">
+              <div class="mb-3">
+                <label for="nome_evento" class="form-label">Obs:</label>
+                <textarea type="text" class="form-control" id="nome_evento" name="nome_evento" rows="4" required></textarea>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="nome_evento" class="form-label">Duração da sessão: hr:min</label>
+                <p class="text-sm">Deixar em branco utiliza o tempo padrão do sistema.</p>
+                <input type="time" class="form-control" id="tempo_evento" name="tempo_evento" >
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <input type="submit" class="btn btn-success" name="agendar" value="Agendar">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

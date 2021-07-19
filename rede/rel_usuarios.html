@@ -1,0 +1,207 @@
+<input type="hidden" name="id_rede" value="{ID_REDE}">
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Relatório</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">Relatório</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+
+    <!-- BEGIN ERRO -->
+    <div class="alert alert-danger" role="alert">
+      <p align="justify">{MSG}</p>
+    </div>
+    <!-- END ERRO -->
+
+    <!-- BEGIN SUCESSO -->
+    <div class="alert alert-success" role="alert">
+      <p align="justify">{MSG}</p>
+      <script>
+        setTimeout(function () {
+
+        }, 4000);
+      </script>
+    </div>
+    <!-- END SUCESSO -->
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Relatório</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+              <div class="row mb-4">
+
+                <div class="col-md-2 col-sm-12">
+                  <label>TIPO:</label>
+                  <select name="tipo" id="tipo" class="form-control p-input">
+                    <option value="n">NOME</option>
+                    <option value="c">CPF (somente números)</option>
+                    <option value="e">EMAIL</option>
+                  </select>
+                </div>
+
+                <div class="col-md-10 col-sm-12">
+                  <label>PESQUISAR:</label>
+                  <input type="text" class="form-control" id="pesquisar" name="pesquisar"/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-1 col-sm-12">
+                  <button type="submit" class="btn btn-success" name="listar">Pesquisar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="card-body">
+
+            <!-- BEGIN MOSTRAR -->
+
+            <table id="example32" class="table">
+              <thead>
+              <tr bgcolor="#e6e6fa">
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Situação</th>
+              </tr>
+              </thead>
+
+              <tbody>
+
+              <!-- BEGIN USUARIOS -->
+              <tr bgcolor="#f7f7f7">
+                <td>{REDE_SEQUSUA}</td>
+                <td>{REDE_NOMEUSU}</td>
+                <td>{REDE_CPFUSUA}</td>
+                <td>{REDE_EMAILUS}</td>
+                <td>{REDE_LOGBLOK}</td>
+              </tr>
+              <!-- END USUARIOS -->
+              </tbody>
+            </table>
+
+            <!-- END MOSTRAR -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</section>
+
+
+<script type="text/javascript">
+  $(function () {
+    $('#example32').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+  function aplicar(id) {
+
+    $('#idusua').val(id);
+
+    $.post('listarusuario.php', {id: id}, function (data) {
+      alert(data)
+      $('#nomeusua').text('Usuário: ' + data);
+      $('#exampleModal').modal();
+
+    });
+
+  }
+</script>
+
+<!-- Modal -->
+<form method="post">
+  <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <div id="nomeusua"></div>
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="idusua" name="idusua">
+          <div class="form-group">
+            <label>Valor da compra:</label>
+            <input type="text" class="form-control" id="valor_compra" name="valor_compra" onKeyPress="return(moeda(this,'.',',',event))"/>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary" name="aplicar">Aplicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

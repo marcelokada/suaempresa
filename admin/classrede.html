@@ -1,0 +1,127 @@
+<script type="text/javascript">
+
+
+  function editarcash1(id) {
+
+    var id = id;
+    $.post('viewCashRede.php', {id: id}, function (data) {
+      $('#class').val(data.nivel);
+      $('#cash').val(data.cash);
+      $("#staticBackdrop").modal();
+    }, 'json');
+
+  }
+
+
+</script>
+
+<style>
+  .estrelas input[type=radio] {
+    display: none;
+
+  }
+
+  .estrelas label i.fa:before {
+    content: '\f005';
+    color: #FC0;
+  }
+
+  .estrelas input[type=radio]:checked ~ label i.fa:before {
+    color: #CCC;
+  }
+</style>
+
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Classificação da Rede</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Classificação da Rede</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Informações das Porcentagens da Classificação</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-hover table-responsive-md">
+                <thead>
+                <tr class="">
+                  <th>Classificação</th>
+                  <th>Estrelas</th>
+                  <th>% do cashback</th>
+                  <th {DISABLE}>Opções</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- BEGIN CLASS -->
+                <tr>
+
+                  <td>{ESTRELAS}</td>
+                  <td>{NCLASS}</td>
+                  <td>{CASHCLASS}</td>
+                  <td {DISABLE}><a href="javascript:void(0);" onclick="editarcash1('{NCLASS}');" title="Editar"><i class="ion ion-edit" aria-hidden="true"></i></a>
+                  </td>
+
+                </tr>
+                <!-- END CLASS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alterar a CashBack da rede por classificação</h5>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Classificação:</label>
+            <input type="text" class="form-control p-input" readonly id="class" name="class" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>CashBack da Rede:</label>
+            <input type="number" class="form-control p-input" id="cash" name="cash" value="" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-outline-success mr-2" name="alterar" value="ALterar">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

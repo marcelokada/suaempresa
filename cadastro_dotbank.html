@@ -1,0 +1,388 @@
+
+
+<script type="text/javascript">
+  jQuery(function ($) {
+    $("#cep").mask("99999-999");
+    $("#dnasc").mask("99/99/9999");
+    $("#cel").mask("(99) 99999-9999");
+    $("#tel1").mask("(99) 9999-9999");
+    $("#uf").mask("aa");
+  });
+
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('ende').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('estado').value = ("");
+  }
+
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('ende').value = (conteudo.logradouro);
+      document.getElementById('bairro').value = (conteudo.bairro);
+      document.getElementById('cidade').value = (conteudo.localidade);
+      document.getElementById('estado').value = (conteudo.uf);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('ende').value = (conteudo.logradouro);
+    document.getElementById('bairro').value = (conteudo.bairro);
+    document.getElementById('cidade').value = (conteudo.localidade);
+    document.getElementById('estado').value = (conteudo.uf);
+
+  }
+
+  function somenteNumeros(num) {
+    var er = /[^0-9]/;
+    er.lastIndex = 0;
+    var campo = num;
+    if (er.test(campo.value)) {
+      campo.value = "";
+    }
+  }
+
+  function modal(id) {
+    var senha1 = $('#nova_senha1').val();
+    var senha2 = $('#nova_senha2').val();
+    var idusua = id;
+
+    var nome = $('#nome').val();
+    var mail = $('#mail').val();
+    var dnasc = $('#dnasc').val();
+    var cpf = $('#cpf').val();
+    var rg = $('#rg').val();
+    var phone = $('#phone').val();
+    var ende = $('#ende').val();
+    var nende = $('#nende').val();
+    var cidade = $('#cidade').val();
+    var estado = $('#estado').val();
+    var cep = $('#cep').val();
+    var comp = $('#comp').val();
+    var bairro = $('#bairro').val();
+
+    if (senha1 != senha2) {
+      alert('Senhas não conferem.');
+    }else if(senha1 == ""){
+      alert('Senha Vazia.');
+    }else if(senha2 == ""){
+      alert('Senha Vazia.');
+    } else if(senha1.length < 7){
+      alert('Senhas maior ou igual 8 dígitos.');
+    } else if(senha2.length < 7){
+      alert('Senhas maior ou igual 8 dígitos.');
+    } else if(nome == ""){
+      alert('O campo Nome não pode ser vazio');
+    }else if(mail == ""){
+      alert('O campo Email não pode ser vazio');
+    }else if(dnasc == ""){
+      alert('O campo Data de Nascimento não pode ser vazio');
+    }else if(cpf == ""){
+      alert('O campo CPF não pode ser vazio');
+    }else if(rg == ""){
+      alert('O campo RG não pode ser vazio');
+    }else if(phone == ""){
+      alert('O campo CELULAR/TELEFONE não pode ser vazio');
+    }else if(ende == ""){
+      alert('O campo Endereço não pode ser vazio');
+    }else if(nende == ""){
+      alert('O campo Nº do Endereço não pode ser vazio');
+    }else if(cidade == ""){
+      alert('O campo Cidade não pode ser vazio');
+    }else if(estado == ""){
+      alert('O campo Estado não pode ser vazio');
+    }else if(cep == ""){
+      alert('O campo CEP não pode ser vazio');
+    }else if(bairro == ""){
+      alert('O campo Bairro não pode ser vazio');
+    } else {
+
+      $.post('cad_dotbank.php', {
+        nome: nome,
+        mail: mail,
+        dnasc : dnasc,
+        cpf: cpf,
+        rg: rg,
+        phone: phone,
+        ende: ende,
+        nende: nende,
+        cidade: cidade,
+        estado: estado,
+        cep: cep,
+        comp: comp,
+        bairro: bairro,
+        idusua : idusua,
+        senha2 : senha2
+
+      }, function (data) {
+
+        $.post('dotbank_cadastro.php', {
+          nome: nome,
+          mail: mail,
+          cpf: cpf,
+          rg: rg,
+          dnasc : dnasc,
+          phone: phone,
+          ende: ende,
+          nende: nende,
+          cidade: cidade,
+          estado: estado,
+          cep: cep,
+          comp: comp,
+          bairro: bairro,
+          senhas1 : senha1,
+          senha2 : senha2
+
+
+        }, function (data) {
+          //alert(data);
+          //alert('Solicitação Enviada com sucesso! Entre no Site do Dotbank e acompanhe sua solicitação');
+          //window.location.href=window.location.href;
+          $('#staticBackdrop').modal();
+        });
+      });
+    }
+  }
+
+  function fecharmodal(){
+    $('#staticBackdrop').modal('hide');
+    window.location.href=window.location.href;
+  }
+
+
+  $(document).ready(function () {
+    $('#showPassword').on('click', function () {
+
+      var passwordField = $('#senha_atual');
+      var passwordFieldType = passwordField.attr('type');
+      if (passwordFieldType == 'senha_atual') {
+        passwordField.attr('type', 'password');
+        $(this).val('Hide');
+      } else {
+        passwordField.attr('type', 'senha_atual');
+        $(this).val('Show');
+      }
+    });
+  });
+
+  function mostrar1() {
+
+    var passwordField = $('#nova_senha1');
+    var passwordFieldType = passwordField.attr('type');
+    if (passwordFieldType == 'nova_senha1') {
+      passwordField.attr('type', 'password');
+      $(this).val('Hide');
+    } else {
+      passwordField.attr('type', 'nova_senha1');
+      $(this).val('Show');
+    }
+  };
+
+
+  function mostrar2() {
+
+    var passwordField = $('#nova_senha2');
+    var passwordFieldType = passwordField.attr('type');
+    if (passwordFieldType == 'nova_senha2') {
+      passwordField.attr('type', 'password');
+      $(this).val('Hide');
+    } else {
+      passwordField.attr('type', 'nova_senha2');
+      $(this).val('Show');
+    }
+  };
+</script>
+
+
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col-4">
+        <ol>
+          <li>Home</li>
+          <li>Cadastro DotBank</li>
+        </ol>
+        <h2>Cadastro DotBank</h2>
+      </div>
+    </div>
+  </div>
+</section><!-- End Breadcrumbs -->
+
+
+<div class="msg container">
+  <!-- BEGIN ERRO -->
+  <section class="about-us-section-rede">
+  </section>
+  <div class="alert alert-danger" role="alert">
+    <p align="justify">{MSG}</p>
+  </div>
+  <!-- END ERRO -->
+
+  <!-- BEGIN SUCESSO -->
+  <section class="about-us-section-rede">
+  </section>
+  <div class="alert alert-success" role="alert">
+    <p align="justify">{MSG}</p>
+  </div>
+  <!-- END SUCESSO -->
+</div>
+
+<form method="post">
+  <!-- Start About Us Section -->
+  <section class="about-us-section-rede">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="section-title text-center">
+            <!--  BEGIN PENDENTE -->
+            <h3>CADASTRO DOTBANK</h3>
+            <p></p>
+
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Informações do usuários</h4>
+                <input type="hidden" name="idusua" id="idusua" value="{IDUSUA}">
+
+                <div class="form-group" align="left">
+                  <label>NOME:</label>
+                  <input type="text" class="form-control mb-4" name="nome" id="nome" value="{NOME}" autocomplete="off">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>E-MAIL:</label>
+                  <input type="email" class="form-control mb-4" name="mail" id="mail" value="{EMAI}" autocomplete="off">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>DATA NASCIMENTO:</label>
+                  <input type="email" class="form-control mb-4" name="dnasc" id="dnasc" value="{DNASC}" maxlength="10" autocomplete="off">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>CPF:(apenas números)</label>
+                  <input type="text" class="cpf form-control mb-4" onkeyup="somenteNumeros(this);" maxlength="11" name="cpf" id="cpf" value="{NCPF_DOT}" autocomplete="off">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>RG:</label>
+                  <input type="text" class="cpf form-control mb-4" maxlength="11" name="rg" id="rg" value="{NRG__DOT}" autocomplete="off">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>CELULAR: (apenas números)</label>
+                  <input type="text" class="form-control " name="phone" onkeyup="somenteNumeros(this);" id="phone" value="{CELU}" maxlength="11" autocomplete="off">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>ENDEREÇO:</label>
+                  <input type="text" class="form-control mb-4" name="ende" id="ende" value="{ENDERDOT}" required autocomplete="off">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>NÚMERO</label>
+                  <input type="text" class="form-control mb-4" name="nende" id="nende" value="{NENDEDOT}" required autocomplete="off">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <h4> &nbsp;</h4>
+                <div class="form-group" align="left">
+                  <label>CIDADE: </label>
+                  <input type="text" class="form-control mb-4" name="cidade" id="cidade" value="{CIDADDOT}">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>ESTADO: (EX: SP,CE,RJ)</label>
+                  <input type="text" class="form-control mb-4" name="estado" id="estado" value="{ESTADDOT}" maxlength="2">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>CEP: (apenas números)</label>
+                  <input type="text" class="form-control mb-4"  onblur="verificaCep();" name="cep" id="cep" value="{CCEP_DOT}" maxlength="9">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>Complemento:</label>
+                  <input type="text" class="form-control mb-4" name="comp" id="comp" value="{COMPLDOT}">
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>Bairro:</label>
+                  <input type="text" class="form-control mb-4" name="bairro" id="bairro" value="{BAIRRO}">
+                </div>
+
+                <div class="form-group mb-4" align="left">
+                  <label>NOVA SENHA: (<i>mínimo de 8 caracteres</i>)</label>
+                  <input type="password" class="form-control" name="nova_senha1" id="nova_senha1">
+                  <a href="javascript:void(0);" id="showPassword1" onclick="mostrar1();">ver senha</a>
+                </div>
+
+                <div class="form-group" align="left">
+                  <label>CONFIRME A NOVA SENHA: (<i>mínimo de 8 caracteres</i>)</label>
+                  <input type="password" class="form-control" name="nova_senha2" id="nova_senha2">
+                  <a href="javascript:void(0);" id="showPassword2" onclick="mostrar2();">ver senha</a>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+
+              <!-- BEGIN BTN_NCAD -->
+              <div class="col-lg-12 text-center">
+                <div id="success"></div>
+                <a href="javascript:void(0)" class="btn btn-primary" onclick="modal('{IDUSUA}')" ;>
+                  Fazer Cadastro
+                </a>
+              </div>
+              <!-- END BTN_NCAD -->
+
+            </div>
+            <!-- END PENDENTE -->
+
+          </div><!-- divo anes dos conteudos-->
+        </div><!-- col-md-12 col-sm-12-->
+      </div><!-- class="row" -->
+    </div><!-- /.container -->
+  </section>
+</form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Cadastro Realizado com Sucesso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-header">
+        Solicitação Enviada com sucesso! Entre no Site do Dotbank e acompanhe sua solicitação, Clique no Link e Ative sua CONTA!<br>
+        <a href="https://web.dotbank.com.br/login" target="_blank">LINK PARA ATIVAÇÃO</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" onclick="fecharmodal();">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

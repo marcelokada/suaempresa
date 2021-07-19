@@ -1,0 +1,48 @@
+<div class="content-wrapper">
+  <input type="hidden" id="idadmin" name="idadmin" value="{ID_ADMIN}">
+  <h3 class="page-heading mb-4">Autorizações</h3>
+  <div class="row mb-2">
+    <div class="col-lg-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Planos pendentes dos usuários</h5>
+          <form method="post">
+            <table class="table table-hover">
+              <thead>
+              <tr class="">
+                <th>Nome</th>
+                <th>Plano</th>
+                <th>Status do Pagamento</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>Status do Usuário</th>
+                <th>Opções</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!-- BEGIN AUT -->
+              <tr>
+                <input type="hidden" id="subcat1" name="subcat1" value="{ID}" />
+                <td>{NOME}</td>
+                <td>{PLANO}</td>
+                <td>{STATUS_PAG}</td>
+                <td>{DATA}</td>
+                <td>{VALORPLANO}</td>
+                <td><font color="{COR}">{STATUSUSUA}</font></td>
+                <td>
+                  <button type="submit" class="btn btn-{COR1}" name="alterar" {DISA} value="{ID}" title="Alterar">Alterar</button>
+                  <!-- BEGIN CANCELAR -->
+                  <button type="submit" class="btn btn-danger" name="canc" {DISA2} value="{ID}" title="Cancelar">Cancelar</button>
+                  <!-- END CANCELAR -->
+                </td>
+                <!--<td><button type="submit" class="btn btn-danger" name="del" {DISA1} value="{ID}"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>-->
+              </tr>
+              <!-- END AUT -->
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

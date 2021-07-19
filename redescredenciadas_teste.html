@@ -1,0 +1,215 @@
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+$().ready(function() {
+  $("#regiao").change(function() {
+		var idregiao = $('#regiao').val();
+	    $.post('listaestado.php',{idregiao: idregiao},function(data){
+			$("#estado").html(data);
+	   });
+   });
+});
+
+$().ready(function() {
+  $("#estado").change(function() {
+		var idestado = $('#estado').val();
+	    $.post('listacidade.php',{idestado: idestado},function(data){
+			$("#cidade").html(data);
+	   });
+   });
+});
+
+function modal(id)
+{
+   var id = $('#idcred'+id).val();
+   
+	$.post('modal.php',{id: id},function(data){
+		//$('#nomes').html('<font color="black"><b>NOME:</b> ' + data.nome + '</font>');
+		$('#nomes').html('<font color="black"><b>NOME:</b> ' + data.nome + '</font>');
+		$('#endereco').html('<font color="black"><b>ENDEREÇO:</b> ' + data.endereco + '- <b>CIDADE:</b> ' + data.cidade + '</font>');
+		$('#cupom').html('<font color="black" size="5px">CÓDIGO DO DESCONTO:</font> <font size="5px"> <strong class="page-scroll btn-primary animated1">'+ data.cupom +'</strong></font>');
+		$('#imagem').html('<img src='+data.imagem+' class="img-responsive modal_img" />');
+		$("#exampleModal").modal();
+	},"json");
+}
+
+</script>
+
+<style>
+.contain {
+	object-fit: cover;
+	max-width: 100%;
+	width: 150px;
+	height: 100px;
+	padding: 5px;
+}
+
+.modal_img {
+	object-fit: cover;
+	max-width: 100%;
+	width: 300px;
+	height: 200px;
+	padding: 5px;
+}
+</style>
+
+<!-- Start Home Page Slider -->
+	<section class="pricing-section">
+    </section>
+<!-- End Home Page Slider -->
+
+<form method="POST" action="" enctype="multipart/form-data">
+
+	<!-- Start About Us Section -->
+    <section class="about-us-section-rede">
+    <div class="container">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<a href="redescredenciadas_teste.php?idSessao={ID_SESSAO}&cat=0">Todas as Categorias</a>
+			</ol>
+		</nav>
+		
+		<nav aria-label="breadcrumb">
+		
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="principal_teste.php?idSessao={ID_SESSAO}">Principal</a></li>
+				<li class="breadcrumb-item">Rede</li>
+				{CRUMB1}
+				{CRUMB2}
+				{CRUMB3}
+				{CRUMB4}				
+			</ol>
+		</nav>
+					
+		<div class="form-group">
+			<div class="col-md-12">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Pesquisar" id="pesquisar" name="pesquisar" >
+					<p class="help-block text-danger"></p>
+				</div>
+			</div>
+			<div class="col-md-2">
+                   <div class="form-group">
+				<p class="help-block text-danger">Região</p>
+                       <select class="form-control" name="regiao" id="regiao"> 
+						<option value="#">Todas</option>
+						<!-- BEGIN REGIAO -->
+						<option value="{ID_REGIAO}">{NOME_REGIAO}</option>
+						<!-- END REGIAO -->
+					</select>
+				</div>
+               </div>
+			<div class="col-md-3">
+                   <div class="form-group">
+				<p class="help-block text-danger">Estado</p>
+                       <!-- <div id="resultado"></div> -->
+					<select class="form-control" name="estado" id="estado">
+					<option value="#">Todos</option>
+					</select>
+				</div>
+               </div>
+			<div class="col-md-5">
+                   <div class="form-group">
+					<p class="help-block text-danger">Cidade:</p>
+                    <select class="form-control" name="cid" id="cidade">
+						<option value="#">Todas</option>
+					</select>
+                   </div>
+               </div>
+			
+			<div class="col-md-2">
+			<p class="help-block text-danger">&nbsp;</p>
+				<div class="form-group">
+				  <input type="submit" class="form-control btn btn-primary"  name="listar" id="listar" value="Pesquisar"/> 
+				</div>
+            </div>
+		</div>		
+		<br>
+		<div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section-title text-center">
+                    <h3>{CAT}</h3>
+					<p>{PESQ}{REGIAOREDE}{ESTADOREDE}{CIDADEREDE}</p>
+						<div class="row">
+						
+						<!-- BEGIN ESTADO_REDE -->
+						<div class="col-md-12">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><h5 align="left">{ESTADO1}</h5></li>		
+								</ol>
+							</nav>
+													
+							<!-- BEGIN REDE_CIDADE -->
+							<div class="col-md-2">
+							<input type="hidden" name="idcred" id="idcred{IDCRED}" value="{IDCRED}">
+								<a onclick="modal('{IDCRED}');" href="javascript:void(0);">
+									<div class="welcome-section text-center">
+										<img src="{IMAGEM}" class="contain img-responsive" title="{NOMEREDE}" />
+										<h4>{NOMEREDE} - {IDCRED}</h4>
+										<div class="border"></div>
+										{CATE_REDE}
+									</div>
+								</a>
+							</div>						
+							<!-- END REDE_CIDADE -->
+						</div>
+						<!-- END ESTADO_REDE -->
+						
+						<!-- BEGIN REDE1 -->
+						<div class="col-md-12">
+							<h5></h5>
+							<!-- BEGIN REDE -->
+								<div class="col-md-2">
+								
+								<input type="hidden" name="idcred" id="idcred{IDCRED}" value="{IDCRED}">
+									<a onclick="modal('{IDCRED}');" href="javascript:void(0);">
+										<div class="welcome-section text-center">
+											<img src="{IMAGEM}" class="contain img-responsive" title="{NOMEREDE}" />
+											<h4>{NOMEREDE} - {IDCRED}</h4>
+											<div class="border"></div>
+										</div>
+									</a>
+								</div>
+							<!--  END REDE -->
+						</div>
+						<!--  END REDE1 -->
+					</div><!-- /.row -->  
+				</div><!-- divo anes dos conteudos-->
+			</div><!-- col-md-12 col-sm-12-->
+		</div><!-- class="row" -->
+	</div><!-- /.container -->
+    </section>
+	
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title" id="Modal-label-2">
+			<div id="nomes" name="nomes"></div>
+		</h4>
+		<p><div id="endereco" name="endereco"></div><i class="fa fa-maps"></i></p>
+      </div>
+      <div class="modal-body">
+        <center>
+			<div id="imagem" name="imagem"></div>
+		</center>
+		<hr>
+		<div class="modal-works">
+			<a href="#"  class=" btn btn-primary" target="_blank">Ir ao site</a>
+		</div> 
+		<div class="modal-header">
+			<div id="cupom" name="cupom"></div>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

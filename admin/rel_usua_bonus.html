@@ -1,0 +1,105 @@
+<script type="text/javascript">
+
+  $(function () {
+
+    let table = $('#example12').DataTable({
+
+      "autoWidth": false,
+      "responsive": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+    document.getElementById('export-buttons').appendChild(table.buttons().container()[0]);
+
+  });
+
+</script>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Relatório de Bonificação</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Relatório de Bonificação</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Relatório</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+
+                  <table id="example12" class="table table-hover table-responsive-md">
+                    <thead>
+                    <tr bgcolor="#e6e6fa">
+                      <th>Id pedido</th>
+                      <th>Nome</th>
+                      <th>Plano</th>
+                      <th>Data</th>
+                      <th>Tipo</th>
+                      <th>Valor</th>
+                      <th>Bônus Acumulado</th>
+                      <th>Detalhe</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <!-- BEGIN NIVEIS1 -->
+                    <tr>
+                      <td>{ID}</td>
+                      <td>{NOME}</td>
+                      <td>{PLANO}</td>
+                      <td>{DATA}</td>
+                      <td>{TIPO}</td>
+                      <td>{VALORPLANO}</td>
+                      <td>R$ {BONIFICACAO}</td>
+                      <td><a class="btn btn-info" href="extrato_usuario.php?idSessao={ID_SESSAO}&idUsuario={USUA}" target="_blank">Detalhe</a></td>
+                    </tr>
+                    <!-- END NIVEIS1 -->
+
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+

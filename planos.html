@@ -1,0 +1,195 @@
+<script src="https://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+
+
+<script text="javascript">
+  jQuery(function ($) {
+    $("#adesao").mask("99999-999");
+    $("#cpf").mask("999.999.999-99");
+
+  });
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+  function add(id) {
+    var id = $('#idplan').val();
+
+    $.post('viewplano.php', {id: id}, function (data) {
+      $('#id').val(data.id);
+      $('#divnome').val(data.nome);
+      $('#divdesc').html('<textarea type="text" class="form-control p-input" id="desc" name="desc" >' + data.desc + '</textarea>');
+      $('#divtempo').html('<input type="text" class="form-control p-input" id="tempo" name="tempo" value=' + data.tempo + ' >');
+      $('#divadesao').html('<input type="text" class="form-control p-input" id="adesao" name="adesao" value=' + data.valort + ' >');
+      $('#divmensal').html('<input type="text" class="form-control p-input" id="mensa" name="mensa" value=' + data.valorm + ' >');
+      $("#editarplano").modal();
+    }, 'json');
+
+  }
+
+  function remover(id) {
+    var id = id;
+
+
+    $.post('delplano.php', {id: id}, function (data) {
+      window.location.href = window.location.href
+    });
+  }
+</script>
+
+<div class="content-wrapper">
+  <h3 class="page-heading mb-4">Lista de Planos</h3>
+  <div class="row mb-2">
+    <div class="col-lg-12 mb-4">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Planos</h5>
+          <button {DISABLE} type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            + Adicional Plano
+          </button>
+          <br>
+          <br>
+          <table class="table table-hover table-responsive-md">
+            <thead>
+            <tr class="">
+              <th>#</th>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Tempo</th>
+              <th>Valor Adesão</th>
+              <th>Mensalidade</th>
+              <th>Dependentes</th>
+              <th>Agregados</th>
+              <th>Limite Unilevel</th>
+              <th>Carnê? (12 Mesês)</th>
+              <th {DISABLE}></th>
+              <th {DISABLE}></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <!-- BEGIN PLANOS -->
+            <tr>
+              <input type="hidden" id="idplan" name="idplan" value="{SEQPLANO}">
+              <td>{SEQPLANO}</td>
+              <td>{CNOMEPLANO}</td>
+              <td>{CDESCPLANO}</td>
+              <td>{CTEMPPLANO}</td>
+              <td>{VVALTPLANO}</td>
+              <td>{MENSAPLANO}</td>
+              <td>{DEPENDENTES}</td>
+              <td>{AGREGADOS}</td>
+              <td>{LIMITE_UNILEVEL}</td>
+              <td>{VCARNE}</td>
+              <td {DISABLE}><a href="editaplano.php?idSessao={ID_SESSAO}&idplano={SEQPLANO}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+              <td {DISABLE}><a href="javascript:void(0);" onclick="remover('{SEQPLANO}');"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+            </tr>
+            <!-- END PLANOS -->
+            </tbody>
+
+          </table>
+          <p><font color="#f08080">Obs: 99 - Sem limite | 0 - nenhum Dependente ou Agregado</font></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" class="form-control p-input" id="nome" name="nome" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Descrição:</label>
+            <input type="text" class="form-control p-input" id="desc" name="desc" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Tempo do plano:</label>
+            <input type="number" class="form-control p-input" id="tempo" name="tempo" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Valor da adesão:</label>
+            <input type="text" class="form-control p-input" id="adesao" name="adesao" onKeyPress="return(moeda(this,'.',',',event))" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Valor da mensalidade:</label>
+            <input type="text" class="form-control p-input" id="mensa" name="mensa" onKeyPress="return(moeda(this,'.',',',event))" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Dependentes:</label>
+            <input type="number" class="form-control p-input" id="depen" name="depen" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Agregados:</label>
+            <input type="number" class="form-control p-input" id="agreg" name="agreg" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Valor Limite do Unilevel:</label>
+            <input type="text" class="form-control p-input" id="unilevel" name="unilevel" onKeyPress="return(moeda(this,'.',',',event))" value="" required/>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-outline-success mr-2" name="inserir" value="Inserir">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

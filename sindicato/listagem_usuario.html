@@ -1,0 +1,224 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<script type="text/javascript">
+
+  $(function () {
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+  function aplicar(id){
+
+    var idsind = $('#idsind').val();
+    var idusua = id;
+    $.post('addusuario.php', {
+      idsind: idsind,
+      idusua: idusua
+    }, function (data) {
+      alert("Solicitação Enviada com Sucecsso");
+      window.location.href = window.location.href
+    });
+  }
+
+  jQuery(function ($) {
+    $("#cpf").mask("999.999.999-99");
+  });
+
+  function verificaIndicador() {
+    var indicador = $('#indicador').val();
+
+    if (indicador == '') {
+      $('#alerta4').html('<p align="justify"> </font></p>');
+      //$('#indi').val('admin');
+
+    } else {
+
+      $.post('verificaIndicador.php', {indicador: indicador}, function (data) {
+
+        if (data.ind == '0') {
+          $('#alerta4').html('<p align="justify"><font color="red">Não existe esse vendedor. Por favor Preencher com um vendedor válido</font></p>');
+          $('#indi').val('0');
+          //$('#log_ind').val('admin');
+          document.getElementById('indicador').focus();
+        } else {
+          $('#alerta4').html('<p align="justify"><font color="green">Indicador válido.</font></p>');
+          $('#indi').val(data.ind);
+          $('#log_ind').val(data.log_ind);
+        }
+      }, "json");
+    }
+  }
+</script>
+
+<input type="hidden" name="idsessao" id="idsessao" value="{ID_SESSAO}">
+<input type="hidden" name="idrede" value="{ID_REDE}">
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Adicionar Usuário</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Adicionar Usuário</li>
+          <li class="breadcrumb-item active">Início</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /.container-fluid -->
+
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Convite para o Usuário</h3>
+          </div>
+          <!-- /.card-header -->
+
+          <!-- /.card-header -->
+          <div class="card-body">
+
+
+            <!-- BEGIN ERRO -->
+            <div class="alert alert-danger" role="alert">
+              <p align="justify">{MSG}</p>
+            </div>
+            <!-- END ERRO -->
+
+            <!-- BEGIN SUCESSO -->
+            <div class="alert alert-success" role="alert">
+              <p align="justify">{MSG}</p>
+              <script>
+                setTimeout(function () {
+
+                }, 4000);
+              </script>
+            </div>
+            <!-- END SUCESSO -->
+
+            <div class="row">
+              <div class="col-12">
+
+                <form method="post">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-3">
+                          <label>CPF:</label>
+                          <input type="text" class="form-control" id="cpf" name="cpf">
+                        </div>
+
+                        <div class="col-3">
+                          <label>Nome do Vendedor (Obrigatório):  </label>
+                          <input type="hidden" name="indi" id="indi" value="">
+                          <input type="hidden" name="log_ind" id="log_ind" value="">
+                          <input class="form-control" type="text" name="indicador" id="indicador"
+                                 onkeypress="return sem_acento(event);" onkeyup="verificaIndicador();"
+                                 onblur="verificaIndicador();" value="{INDI}"
+                                 placeholder="É permitido somente letras e números." title="Login do seu patrocinador"
+                                 required
+                          >
+                          Somente Numeros e Letras (Qualquer caracteres especial ex: @*. não serão aceitos).
+                          <br><i>Para poder fazer o convite é necessario informar o nome do vendedor.</i>
+                          <div id="alerta4">&nbsp;</div>
+                        </div>
+
+                        <div class="col-3">
+                          <label> &nbsp</label>
+                          <input type="submit" class="btn btn-success form-control" name="listar" value="LISTAR">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+
+                <h5 class="card-title mb-4">Pesquisar Usuário</h5>
+                <input type="hidden" id="idsind" name="idsind" value="{ID_SIND}">
+                <table id="example2" class="table">
+                  <thead>
+                  <tr bgcolor="#e6e6fa">
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Email</th>
+                    <th>Enviar Convite</th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+
+                  <!-- BEGIN NUSUARIOS -->
+                  <tr bgcolor="#f7f7f7">
+                    <td colspan="5">Nenhum usuário encontrado!</td>
+                  </tr>
+                  <!-- END NUSUARIOS -->
+
+                  <!-- BEGIN USUARIOS -->
+                  <tr bgcolor="#f7f7f7">
+                    <td>{REDE_SEQUSUA}</td>
+                    <td>{REDE_NOMEUSU}</td>
+                    <td>{REDE_CPFUSUA}</td>
+                    <td>{REDE_EMAILUS}</td>
+                    <td>
+                      <a href="javascript:void(0);" onclick="aplicar('{REDE_SEQUSUA}')">+ Adicionar</a>
+                    </td>
+                  </tr>
+                  <!-- END USUARIOS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Modal -->
+<form method="post">
+  <div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <div id="nomeusua"></div>
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="idusua" name="idusua">
+
+          <div class="form-group">
+            <label>Valor da compra:</label>
+            <input type="text" class="form-control" id="valor_compra" name="valor_compra" onKeyPress="return(moeda(this,'.',',',event))"/>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary" name="aplicar">Aplicar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

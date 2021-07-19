@@ -1,0 +1,302 @@
+<script type="text/javascript">
+
+
+  jQuery(function ($) {
+    $("#cep").mask("99999-999");
+    $("#cnpj").mask("99.999.999/9999-99");
+    $("#cel").mask("(99) 99999-9999");
+    $("#tel1").mask("(99) 9999-9999");
+    $("#uf").mask("aa");
+
+  });
+
+
+  $().ready(function () {
+    $("#categoria").change(function () {
+      var id = $('#categoria').val();
+      $.post('listasubcategoria.php', {id: id}, function (data) {
+        $("#subcategoria").html(data);
+      });
+    });
+  });
+
+
+  $(document).ready(function () {
+
+    $("#cnpj").bind('paste', function (e) {
+      e.preventDefault();
+    });
+
+  });
+
+
+  function ativar(id) {
+    var id = $('#ativo' + id).val();
+
+    $.post('altstaprodu.php?status=a', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href;
+    });
+  }
+
+
+  function desativar(id) {
+    var id = $('#ativo' + id).val();
+
+    $.post('altstaprodu.php?status=c', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href;
+    });
+  }
+
+  function deletar(id) {
+
+    var id = $('#ativo' + id).val();
+
+    $.post('altstaprodu.php?status=d', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+
+  }
+
+  function listar(id) {
+
+    var id = $('#ativo' + id).val();
+    $.post('listaprodu.php', {id: id}, function (data) {
+      $('#id').val(data.id);
+      $('#nomes').html('<input type="text" name="nomes" class="form-control" value="' + data.nome + '" />');
+      $('#desc').html('<input type="text" name="desc" class="form-control" value="' + data.desc + '"/>');
+      //$('#valor').html('<input type="text" name="desc" class="form-control" value="' + data.valor + '"/>');
+      $('#valor').val(data.valor);
+      $('#cash').html('<input type="text" name="cash" class="form-control" value="' + data.cash + '"/>');
+      $('#img').html('<img src="' + data.img + '" alt="" width="200px;" />');
+      $("#exampleModalScrollable").modal('show');
+    }, "json");
+  }
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+
+</script>
+<style>
+  .nome {
+    height: 40px;
+  }
+
+  .desc {
+    height: 40px;
+  }
+
+  .cropped {
+    margin-top: 30px;
+    width: 150px; /* width of container */
+    height: 150px; /* height of container */
+    overflow: hidden;
+  }
+
+  .cropped img {
+    margin: -10px 0px 0px -180px;
+  }
+</style>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Produtos Cadastrados</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">Produtos Cadastrados</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Informações dos Produtos</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+
+          <!-- BEGIN ERRO -->
+          <div class="alert alert-danger" role="alert">
+            <p align="justify">{MSG}</p>
+          </div>
+          <!-- END ERRO -->
+
+          <!-- BEGIN SUCESSO -->
+          <div class="alert alert-success" role="alert">
+            <p align="justify">{MSG}</p>
+          </div>
+          <!-- END SUCESSO -->
+
+
+          <!-- BEGIN REDE1 -->
+
+          <div class="row">
+            <!-- BEGIN CADAREDE -->
+
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4 ">
+
+                  <div class="card text-center {COR}">
+
+                    <div class="img-responsive mb-4">
+                      <img src="{IMAGEM}" class="img-loja cropped" alt="..." >
+                    </div>
+                      <h4>{NOMEPRODUTO}</h4>
+                      <p class="card-text">{DESC}</p>
+                      <h5 class="card-text">R$ {VALOR}</h5>
+
+                    <input type="hidden" id="ativo{SEQ}" name="ativo" value="{SEQ}">
+                    <div class="form-check">
+                      <label>
+                        <input type="checkbox" onclick="{ATIV}('{SEQ}');" {CHK} class="form-check-input" id="checkbox" id="checkbox" value="{SEQ}">
+                        Ativo?
+                      </label>
+                    </div>
+
+                    <div class="card-footer text-muted">
+                      <a href="javascript:void(0);" class="btn btn-primary" onclick="listar('{SEQ}');">Alterar</a>
+                    </div>
+                  </div>
+
+<!--                  <div class="form-check">-->
+<!--                    <h4 class="card-subtitle mb-4">CashBack: {CASH}%&nbsp;</h4>-->
+<!--                  </div>-->
+
+
+                  <div class="form-check botoes">
+
+                    <table>
+                      <tr>
+                        <td>
+
+                        </td>
+
+<!--                        <td>-->
+<!--                          <button class="alert alert-danger" onclick="deletar('{SEQ}');"><i class="fa fa-trash" aria-hidden="true"></i></button>-->
+<!--                        </td>-->
+                      </tr>
+                    </table>
+                  </div>
+
+            </div>
+            <!-- END CADAREDE -->
+          </div>
+          <!-- END REDE1 -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<form enctype="multipart/form-data" action="" method="post">
+  <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="exampleModalLabel">Alteração do Produto</h3>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <input type="hidden" id="id" name="id" value="">
+        <input type="hidden" id="idrede" name="idrede" value="{ID_REDE}">
+
+        <div class="modal-body">
+          <label>Titulo:</label>
+          <div id="nomes"></div>
+          <br>
+
+          <label>Descrição:</label>
+          <div id="desc"></div>
+          <br>
+
+          <div class="row">
+            <div class="col-8 col-sm-6">
+              <label>Valor:</label>
+              <input type="text" class="form-control" id="valor" name="valor" onKeyPress="return(moeda(this,'.',',',event))" value="">
+            </div>
+            <!--<div class="col-4 col-sm-6">
+               <label>CashBack:</label>
+               <div id="cash"></div>
+             </div>-->
+           </div>
+<br>
+          <div class="form-group bg-secondary">
+            <label>Inserir Imagem</label>
+            <div class="fileupload fileupload-new" data-provides="fileupload">
+              <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                <div id="img"></div>
+              </div>
+              <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+              <div>
+					<span class="btn btn-default btn-file">
+					<span class="fileupload-new alert alert-warning" role="alert"><i class="fa fa-folder-o"></i> Selecionar Imagem</span>
+					<span class="fileupload-exists"><i class="fa fa-undo"></i> Mudar</span>
+					<input type="file" name="imagem" class="default" value="{IMAGEM}"/>
+					</span>
+<!--                <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">
+                  <i class="fa fa-trash"></i> Remover
+                </a>-->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="Fechar">
+          <input type="submit" class="btn btn-primary" name="alterar" id="alterar" value="Alterar">
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+

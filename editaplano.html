@@ -1,0 +1,117 @@
+<script text="javascript">
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+</script>
+
+<div class="content-wrapper mb-4">
+  <h3 class="page-heading mb-4">Lista de usuários</h3>
+  <div class="row mb-2">
+
+    <div class="col-lg-12 mb-4">
+      <div class="card">
+        <!-- BEGIN SUCESSO -->
+        <div role="alert">
+          <p class="alert alert-success" align="center">{MSG}</p>
+        </div>
+        <!-- END SUCESSO -->
+        <div class="card-body">
+          <h5 class="card-title mb-4">Admins</h5>
+          <a href="planos.php?idSessao={ID_SESSAO}" class="btn btn-info">VOLTAR</a><br><br>
+          <form method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+              <label>Nome:</label>
+              <input type="text" class="form-control p-input" id="nome" name="nome" value="{CNOMEPLANO}" required/>
+              <input type="hidden" id="idplan" name="idplan" value="{IDPLANO}">
+              <input type="hidden" id="seqplan" name="seqplan" value="{SEQPLANO}">
+            </div>
+
+            <div class="form-group">
+              <label>Descrição:</label>
+              <input type="text" class="form-control p-input" id="desc" name="desc" value="{CDESCPLANO}" required/>
+            </div>
+
+            <div class="form-group">
+              <label>Tempo do plano:</label>
+              <input type="text" class="form-control p-input" id="tempo" name="tempo" value="{CTEMPPLANO}" required/>
+            </div>
+
+            <div class="form-group">
+              <label>Valor da adesão:</label>
+              <input type="text" class="form-control p-input" id="adesao" name="adesao" onKeyPress="return(moeda(this,'.',',',event))" value="{VVALTPLANO}" required/>
+            </div>
+
+            <div class="form-group">
+              <label>Valor da mensalidade:</label>
+              <input type="text" class="form-control p-input" id="mensa" name="mensa" onKeyPress="return(moeda(this,'.',',',event))" value="{MENSAPLANO}" required/>
+            </div>
+
+            <div class="form-group">
+              <label>Dependentes:</label>
+              <input type="number" class="form-control p-input" id="depen" name="depen" value="{DEP}" required/>
+            </div>
+
+            <div class="form-group">
+              <label>Agregados:</label>
+              <input type="number" class="form-control p-input" id="agreg" name="agreg" value="{AGRE}" required/>
+            </div>
+
+            <div class="form-group">
+              <label>Valor Limite do Unilevel:</label>
+              <input type="text" class="form-control p-input" id="unilevel" name="unilevel" onKeyPress="return(moeda(this,'.',',',event))" value="{LIMITE}" required/>
+            </div>
+
+            <div class="form-group">
+              <label>Geração da Mensalidade por Carnê de 12 (Mesês):</label>
+              <select id="carne" name="carne" class="form-control col-1">
+                <option value="{VAL_CARNE}">{VCARNE}</option>
+                <option value="" disabled></option>
+                <option value="s">SIM</option>
+                <option value="n">NÃO</option>
+              </select>
+            </div>
+
+            <br>
+            <input type="submit" class="btn btn-primary" name="alterar" value="Alterar">
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

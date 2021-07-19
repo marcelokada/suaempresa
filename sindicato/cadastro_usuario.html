@@ -1,0 +1,533 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+
+<script type="text/javascript">
+  jQuery(function ($) {
+    //$("#dtnasc").mask("99/99/9999");
+    $("#cpf").mask("999.999.999-99");
+    $("#celular").mask("(99) 99999-9999");
+    $("#cep").mask("99999-999");
+  });
+
+  $("#dtnasc").mask("99/99/9999");
+
+  function verificaCPF() {
+    var cpf = $('#cpf').val();
+
+    var cpf1 = cpf.replace(/[^0-9]/g, '');
+
+    var idl1 = cpf1.length;
+
+    if (idl1 <= 10) {
+      document.getElementById('cpf').focus();
+      $('#alerta').html('<p align="justify"><font color="red">Preencha o C.P.F!!</font></p>');
+      $('#verifica').val('cpfmenos');
+    } else {
+
+      $.post('verificaCPF.php', {cpf: cpf1}, function (data) {
+
+        if (data.id == '0') {
+          $('#alerta').html('<p align="justify"><font color="green">C.P.F liberado para cadastro!!!</font></p>');
+        } else {
+          document.getElementById('cpf').focus();
+          $('#alerta').html('<p align="justify"><font color="red">C.P.F já cadastrado!!!</font></p>');
+          $('#verifica').val('cpf');
+        }
+      }, "json");
+    }
+  }
+
+  function verificaLogin() {
+    var login = $('#login').val();
+    if (login == '') {
+      document.getElementById('login').focus();
+      $('#alerta2').html('<p align="justify"><font color="red">Por Favor preencher o Login.</font></p>');
+      $('#verifica_login').val('1');
+    } else if (login != null) {
+      console.log(login);
+      $.post('verificaLogin.php', {login: login}, function (data) {
+
+        if (data.log == '0') {
+          $('#alerta2').html('<p align="justify"><font color="green">Login liberado para utilização.</font></p>');
+          $('#verifica_login').val('0');
+        } else {
+          document.getElementById('login').focus();
+          $('#alerta2').html('<p align="justify"><font color="red">Login já utlizado.</font></p>');
+          $('#verifica_login').val('1');
+        }
+
+      }, "json");
+    }
+  }
+
+  function verificaEmail() {
+    var email = $('#email').val();
+
+    if (email == '') {
+      document.getElementById('email').focus();
+      $('#alerta9').html('<p align="justify"><font color="red">Por Favor preencher o Email.</font></p>');
+      $('#verifica_email').val('1');
+    } else {
+
+      $.post('verificaEmail.php', {email: email}, function (data) {
+
+        if (data.log == '0') {
+          $('#alerta9').html('<p align="justify"><font color="green">Email liberado para utilização.</font></p>');
+          $('#verifica_email').val('0');
+        } else {
+          document.getElementById('email').focus();
+          $('#alerta9').html('<p align="justify"><font color="red">Email já utlizado.</font></p>');
+          $('#verifica_email').val('1');
+        }
+      }, "json");
+    }
+  }
+
+
+  function validacaoCalcularIdade(dtnasc) {
+    var dtnasc = $('#dtnasc').val();
+    var dataAtual = new Date();
+    var anoAtual = dataAtual.getFullYear();
+    var anoNascParts = dtnasc.split('/');
+    var diaNasc = anoNascParts[0];
+    var mesNasc = anoNascParts[1];
+    var anoNasc = anoNascParts[2];
+    var idade = anoAtual - anoNasc;
+    var mesAtual = dataAtual.getMonth() + 1;
+
+    if (mesAtual < mesNasc) {
+      idade--;
+    } else {
+
+      if (mesAtual == mesNasc) {
+        if (dataAtual.getDate() < diaNasc) {
+          idade--;
+        }
+      }
+    }
+
+    var nasc = dtnasc.replace(/[^0-9]/g, '');
+    var dt = nasc.length;
+
+    if (dt <= 7) {
+      document.getElementById('dtnasc').focus();
+      $('#alerta3').html('<p align="justify"><font color="red">Data inválida!</font></p>');
+    } else {
+
+      if (idade <= '17') {
+        $('#verifica').val('menos17');
+        document.getElementById('dtnasc').focus();
+        $('#alerta3').html('<p align="justify"><font color="red">Você nao tem idade suficiente.</font></p>');
+        $('#verifica_idade').val('1');
+
+      } else {
+        $('#alerta3').html('<p align="justify"><font color="green">Idade confirmada</font></p>');
+        $('#verifica_idade').val('0');
+      }
+    }
+  }
+
+
+  function verificaIndicador() {
+    var indicador = $('#indicador').val();
+
+    if (indicador == '') {
+      $('#alerta4').html('<p align="justify"> </font></p>');
+      //$('#indi').val('admin');
+
+    } else {
+
+      $.post('verificaIndicador.php', {indicador: indicador}, function (data) {
+
+        if (data.ind == '0') {
+          $('#alerta4').html('<p align="justify"><font color="red">Não existe esse vendedor. Por favor Preencher com um vendedor válido</font></p>');
+          $('#indi').val('0');
+          //$('#log_ind').val('admin');
+          document.getElementById('indicador').focus();
+        } else {
+          $('#alerta4').html('<p align="justify"><font color="green">Indicador válido.</font></p>');
+          $('#indi').val(data.ind);
+          $('#log_ind').val(data.log_ind);
+        }
+      }, "json");
+    }
+  }
+
+
+  function sem_acento(e, args) {
+    if (document.all) {
+      var evt = event.keyCode;
+    } // caso seja IE
+    else {
+      var evt = e.charCode;
+    }	// do contrário deve ser Mozilla
+
+    var valid_chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_' + args;	// criando a lista de teclas permitidas
+    var chr = String.fromCharCode(evt);	// pegando a tecla digitada
+
+    if (valid_chars.indexOf(chr) > -1) {
+      return true;
+    }
+    return false;	// do contrário nega
+  }
+
+  $(document).ready(function () {
+
+    $("#login").bind('paste', function (e) {
+      e.preventDefault();
+    });
+    $("#indicado").bind('paste', function (e) {
+      e.preventDefault();
+    });
+  });
+
+
+  $(window).load(function () {
+    verificaIndicador();
+  });
+
+
+  function termos() {
+    const https = location.protocol;
+    var DIRPAGE = https + "//" + document.location.hostname;
+
+    window.open(DIRPAGE + '/drultraconvenio.com.br/termos.php');
+  }
+
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('rua').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
+    document.getElementById('ibge').value = ("");
+  }
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('rua').value = (conteudo.logradouro);
+      document.getElementById('bairro').value = (conteudo.bairro);
+      document.getElementById('cidade').value = (conteudo.localidade);
+      document.getElementById('uf').value = (conteudo.uf);
+      document.getElementById('ibge').value = (conteudo.ibge);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('rua').value = (conteudo.logradouro);
+    document.getElementById('bairro').value = (conteudo.bairro);
+    document.getElementById('cidade').value = (conteudo.localidade);
+    document.getElementById('uf').value = (conteudo.uf);
+    document.getElementById('ibge').value = (conteudo.ibge);
+
+  }
+
+  function mostrar1() {
+
+    var passwordField = $('#nova_senha');
+    var passwordFieldType = passwordField.attr('type');
+    if (passwordFieldType == 'nova_senha') {
+      passwordField.attr('type', 'password');
+      $(this).val('Hide');
+    } else {
+      passwordField.attr('type', 'nova_senha');
+      $(this).val('Show');
+    }
+  };
+
+
+  function mostrar2() {
+
+    var passwordField = $('#nova_senha1');
+    var passwordFieldType = passwordField.attr('type');
+    if (passwordFieldType == 'nova_senha1') {
+      passwordField.attr('type', 'password');
+      $(this).val('Hide');
+    } else {
+      passwordField.attr('type', 'nova_senha1');
+      $(this).val('Show');
+    }
+  };
+
+
+  function compararSenhas() {
+
+    var senha1 = $('#nova_senha').val();
+    var senha2 = $('#nova_senha1').val();
+
+    if (senha1 != senha2) {
+      $('#alerta6').html('<p align="justify"><font color="red">As senhas estão diferentes.</font></p>');
+    } else {
+      $('#alerta6').html('');
+    }
+  }
+
+  function compararSenhas2() {
+
+    var senha1 = $('#nova_senha').val();
+    var senha2 = $('#nova_senha1').val();
+
+    if (senha1 != senha2) {
+      $('#alerta8').html('<p align="justify"><font color="red">As senhas estão diferentes.</font></p>');
+      document.getElementById('nova_senha1').focus();
+    } else {
+      $('#alerta6').html('<p align="justify"><font color="gree">As senhas estão corretas..</font></p>');
+      $('#alerta8').html('<p align="justify"><font color="gree">As senhas estão corretas..</font></p>');
+    }
+  }
+
+  $(window).load(function () {
+    verificaIndicador();
+  });
+</script>
+
+<input type="hidden" name="idsessao" id="idsessao" value="{ID_SESSAO}">
+<input type="hidden" name="idrede" value="{ID_REDE}">
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Cadastro de Usuário</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">Cadastro de Usuário</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /.container-fluid -->
+
+
+<section class="content">
+  <div class="container-fluid">
+
+    <!-- BEGIN ERRO -->
+    <div class="alert alert-danger" role="alert">
+      <p align="justify">{MSG}</p>
+    </div>
+    <!-- END ERRO -->
+
+    <!-- BEGIN SUCESSO -->
+    <div class="alert alert-success" role="alert">
+      <p align="justify">{MSG}</p>
+      <script>
+        setTimeout(function () {
+
+        }, 4000);
+      </script>
+    </div>
+    <!-- END SUCESSO -->
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Adicionar Usuários</h3>
+          </div>
+          <!-- /.card-header -->
+
+        <div class="card-body">
+          <form method="post">
+            <div class="row">
+
+              <div class="col-md-2 col-sm-12">
+                <label>Login:</label>
+                <input class="form-control" type="text" name="login" id="login" required
+                       onkeypress="return sem_acento(event);" onkeyup="verificaLogin();"
+                       onblur="verificaLogin();" autocomplete="off" value="{LOGIN}"
+                       placeholder="Nome de um login (somente números e letras)" title="Seu login">
+                <div id="alerta2">&nbsp;</div>
+              </div>
+
+              <div class="col-md-4 col-sm-12 mb-4">
+                <label>Nome Completo:</label>
+                <input class="form-control" type="text" name="nome" id="nome" value="{NOME}" required
+                       placeholder="Nome completo"  title="Seu Nome"
+                >
+              </div>
+
+              <div class="col-md-2 col-sm-12 mb-4">
+                <label>CPF:</label>
+                <input class="form-control" type="text" name="cpf" id="cpf" value="{CPF}" required
+                       placeholder="CPF"  title="CPF"
+                >
+              </div>
+
+              <div class="col-md-4 col-sm-12 mb-4">
+                <label>Email: </label>
+                <input class="form-control" type="email" name="email" id="email" value="{EMAIL}" required
+                       onkeyup="verificaEmail();" placeholder="Coloque seu Email"
+                        title="Coloque seu Email"
+                >
+                <input type="hidden" name="verificae" id="verificae" value="">
+                <div id="alerta9">&nbsp;</div>
+              </div>
+            </div>
+
+            <div class="row ">
+
+              <div class="col-md-2 col-sm-12 ">
+                <label>Data de Nascimento (+18):</label>
+                <input class="form-control" type="text" maxlength="10" name="dtnasc" id="dtnasc" value="{DNASC}"
+                       onblur="validacaoCalcularIdade();" onkeyup="validacaoCalcularIdade();"
+                       placeholder="Data de Nascimento" 
+                       title="Data de Nascimento"
+                >
+                <div id="alerta3">&nbsp;</div>
+              </div>
+
+              <div class="col-md-2 col-sm-12 mb-4">
+                <label>Celular: </label>
+                <input class="form-control" type="text" name="celular" id="celular" value="{CELU}"
+                       placeholder="Celular"  title="Data de Nascimento"
+                >
+              </div>
+
+              <div class="col-md-3 col-sm-12 mb-4">
+                <label>Dia do Vencimento do Boleto: </label>
+                <select class="form-control" type="text" name="venc" id="venc">
+                  <option value=""></option>
+                  <option value="5">DIA 5</option>
+                  <option value="5">DIA 10</option>
+                  <option value="10">DIA 15</option>
+                </select>
+                <p>opção em branco pegará o dia padrão do sistema (dia 10).</p>
+              </div>
+
+              <div class="col-md-5 col-sm-12">
+                <label>Nome do Vendedor (Obrigatório):  </label>
+                <input type="hidden" name="indi" id="indi" value="">
+                <input type="hidden" name="log_ind" id="log_ind" value="">
+                <input class="form-control" type="text" name="indicador" id="indicador"
+                       onkeypress="return sem_acento(event);" onkeyup="verificaIndicador();"
+                       onblur="verificaIndicador();" value="{INDI}"
+                       placeholder="É permitido somente letras e números." title="Login do seu patrocinador"
+                      required
+                >
+                Somente Numeros e Letras (Qualquer caracteres especial ex: @*. não serão aceitos).
+                <div id="alerta4">&nbsp;</div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-1 col-sm-12">
+                <label>CEP:</label>
+                <input type="text" class="form-control" name="cep" id="cep" maxlength="8" onkeyup="somenteNumeros(this);" onblur="verificaCep();" value="{CEP}">
+              </div>
+
+              <div class="col-md-4 col-sm-12">
+                <label>ENDEREÇO:</label>
+                <input type="text" class="form-control" name="rua" id="rua" value="{RUA}" required>
+              </div>
+
+              <div class="col-md-1 col-sm-12">
+                <label>Número:</label>
+                <input type="text" class="form-control" name="nume" id="nume" value="{NUM}" required>
+              </div>
+
+              <div class="col-md-3 col-sm-12">
+                <label>Bairro:</label>
+                <input type="text" class="form-control" name="bairro" id="bairro" value="{BAIRRO}" required>
+              </div>
+
+              <div class="col-md-3 col-sm-12">
+                <label>Cidade:</label>
+                <input type="text" class="form-control" name="cidade" id="cidade" value="{CIDADE}" required>
+                <input type="hidden" class="form-control" name="ibge" id="ibge" value="{IBGE}">
+              </div>
+
+            </div>
+
+            <div class="row mb-4">
+
+              <div class="col-md-1 col-sm-12">
+                <label>Estado:</label>
+                <input type="text" class="form-control" name="uf" id="uf" value="{UF}">
+              </div>
+
+              <div class="col-md-11 col-sm-12">
+                <label>COMPLEMENTO:</label>
+                <input type="text" class="form-control" name="comp" id="comp" value="{COMP}">
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+
+                <div class="form-group" align="left">
+                  <label>NOVA SENHA: (<i>mínimo de 8 caracteres</i>)</label>
+                  <div class="input-group">
+                    <input type="password" class="adulto form-control" name="nova_senha" id="nova_senha" minlength="8" required>
+                    <span class="input-group-btn">
+											<button type="button" class="form-control btn btn-default" id="showPassword1" onclick="mostrar1();"><i class="fa fa-eye"></i></button>
+										</span>
+                  </div>
+
+                  <div id="alerta6"></div>
+                </div>
+
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group" align="left">
+                  <label>CONFIRME A NOVA SENHA: (<i>mínimo de 8 caracteres</i></label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" name="nova_senha1" id="nova_senha1" minlength="8" onkeyup="compararSenhas2();" onkeypress="compararSenhas2();" onblur="compararSenhas2();" required>
+                    <span class="input-group-btn">
+											<button type="button" class="form-control btn btn-default" id="showPassword2" onclick="mostrar2();"><i class="fa fa-eye"></i></button>
+										</span>
+
+                  </div>
+                  <div id="alerta8"></div>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label>Tipo de Plano</label>
+                <select class="form-control" type="text" name="plano" id="plano" required>
+                  <option value=""></option>
+                  <!-- BEGIN PLANOS -->
+                  <option value="{NNUMEPLAN}">{CNOMEPLAN}</option>
+                  <!-- END PLANOS -->
+                </select>
+              </div>
+            </div>
+
+            <input type="submit" class="btn btn-success" name="salvar" value="Salvar">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

@@ -1,0 +1,83 @@
+<script type="application/javascript">
+  function recaptchaCallback() {
+    //alert("Botão Enviar Liberado, Você não é um Robô!");
+    $('#log').html('<input type="submit" class="btn btn-success" name="alterar" value="Alterar">');
+  }
+</script>
+
+<main id="main">
+  <!-- ======= Breadcrumbs ======= -->
+  <section class="breadcrumbs">
+    <div class="container">
+      <div class="row align-items-end">
+        <div class="col-4">
+          <ol>
+            <li><a href="index.php?idSessao={ID_SESSAO}">Home</a></li>
+            <li>Redifinição de Senha</li>
+          </ol>
+          <h2>Redifinição de Senha</h2>
+        </div>
+      </div>
+    </div>
+  </section><!-- End Breadcrumbs -->
+
+
+  <section>
+    <div class="container" data-aos="fade-up">
+      <form method="post">
+
+
+        <div class="row">
+
+          <!-- BEGIN ERRO1 -->
+          <div class="alert alert-danger" role="alert">
+            {MSG}
+          </div>
+          <!-- END ERRO1 -->
+
+          <!-- BEGIN SUCESSO -->
+          <div class="alert alert-success" role="alert">
+            {MSG}
+          </div>
+          <!-- END SUCESSO -->
+
+          <!-- BEGIN NO_TEMPO -->
+
+
+          <div class="col-lg-6 entries mb-6">
+
+            <p class="alert alert-warning">Lembre de colocar letras maiúsculas, minúsculas, números e caracteres
+                                           especiais.</p>
+
+            <label>Nova Senha:</label>
+            <input class="form-control mb-4" type="password" name="senha1" minlength="8" placeholder="Nova senha"
+                   alt="SENHA" {DISA} required>
+
+            <label>Repertir a Senha:</label>
+            <input class="form-control mb-4" type="password" name="senha2" minlength="8" placeholder="Confirme a senha"
+                   alt="SENHA" {DISA} required>
+
+            <div class="g-recaptcha mb-4" data-sitekey="{KEY_GOOGLE}" data-callback="recaptchaCallback"></div>
+
+            <div id="log"></div>
+
+          </div>
+          <!-- END NO_TEMPO -->
+
+          <!-- BEGIN SEM_TEMPO -->
+          <div class="alert alert-danger" role="alert">
+            O TEMPO DE RECUPERAÇÃO DA SENHA ACABOU, POR FAVOR FAZER A SOLICITAÇÃO NOVAMENTE.
+          </div>
+          <!-- END SEM_TEMPO -->
+
+          <!-- BEGIN JA_ALTERADO -->
+          <div class="alert alert-success" role="alert">
+            A SENHA JÁ FOI ALTERADA. FAZER O LOGIN NOVAMENTE.
+          </div>
+          <!-- END JA_ALTERADO -->
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>

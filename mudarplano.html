@@ -1,0 +1,784 @@
+<style>
+  .contain {
+    object-fit: contain;
+    max-width: 100%;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+  }
+
+  .inputsemnada:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+
+  .desabilitar {
+    pointer-events: none;
+  }
+
+  .habilitar {
+    pointer-events: auto;
+  }
+
+</style>
+<script type="text/javascript" src="js/1.5.2.js"></script>
+<script type="text/javascript" src="js/jquery.maskedinput-1.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+  function abrirtransf() {
+    $("#pagatransf").modal();
+  }
+
+
+  jQuery(function ($) {
+    $("#cep_usua").mask("99999-999");
+    $("#cpf_usua").mask("999.999.999-99");
+    $("#celu_usua").mask("(99) 99999-9999");
+  });
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('ende_usua').value = ("");
+    document.getElementById('bairro_usua').value = ("");
+    document.getElementById('cidade_usua').value = ("");
+    document.getElementById('estado_usua').value = ("");
+  }
+
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('ende_usua').value = (conteudo.logradouro);
+      document.getElementById('bairro_usua').value = (conteudo.bairro);
+      document.getElementById('cidade_usua').value = (conteudo.localidade);
+      document.getElementById('estado_usua').value = (conteudo.uf);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep_usua').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('ende_usua').value = (conteudo.logradouro);
+    document.getElementById('bairro_usua').value = (conteudo.bairro);
+    document.getElementById('cidade_usua').value = (conteudo.localidade);
+    document.getElementById('estado_usua').value = (conteudo.uf);
+
+  }
+
+
+  function modal(id) {
+    var idcart = $('#idcart').val();
+    var idloja = $('#idloja').val();
+    $.post('listacarrinho.php', {idcart: idcart, idloja: idloja}, function (data) {
+      $('#compra').html('<h2><font color="black"><b>VALOR DA COMPRA: </b></font><font color="red">R$ ' + data.valor + '</font></h2>');
+      $("#cashbackmodal").modal();
+    }, "json");
+  }
+
+
+  function pagar() {
+    $('#exampleModalCenter1').modal('show');
+
+    var idusua = $('#idusua').val();
+    var idplano = $('#idplano').val();
+    var idloja = 'a';
+    var oppag = 'pagseguro';
+    var tipopags = '1';
+
+    $.post('verificaStatusPlano.php', {idusua: idusua}, function (data) {
+      var situpag = data.situpag;
+      var situplan = data.situplan;
+
+      if ((situpag == 1) && (situplan == null)) {
+        alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e MEU PLANO');
+        window.location.href = window.location.href;
+      } else if ((situpag == 1) && (situplan == 'p')) {
+        alert('Existe um pedido em andamento! Aguarde.');
+        window.location.href = window.location.href;
+      } else if ((situpag == 3) && (situplan != null)) {
+        alert('Você ja está assinando um plano!');
+        window.location.href = window.location.href;
+      } else {
+
+        $.post('pesqplano.php', {idplano: idplano}, function (data) {
+          var nome = data.nome;
+          var valor = data.valo;
+          var valorF = data.valor_format;
+          var tempo = data.tempo;
+          var mensa = data.mensa;
+          var adesao = data.adesao;
+
+          $.post('pagaplano.php', {
+            idusu: idusua,
+            idplano: idplano,
+            tempo: tempo,
+            valor: valor,
+            adesao: adesao,
+            mensa: mensa,
+            oppag: oppag,
+            tipopags: tipopags
+          }, function (data) {
+            var idPedido = data.xxx;
+            //var mes 		= data.mes;
+            var tipo = '1';
+            var email = data.email;
+            var token = data.token;
+
+            $.post('api_pagseguro.php', {
+              email: email,
+              token: token,
+              idloja: idloja,
+              tipo: tipo,
+              idPedido: idPedido,
+              valor: valor,
+              nome: nome
+            }, function (data) {
+              //alert(data);
+              $('#code').val(data);
+              $('#comprar').submit();
+              $('#exampleModalCenter1').modal('hide');
+            });
+          }, "json");
+        }, "json");
+      }
+    }, "json");
+  }
+
+  function transferencia() {
+    $('#exampleModalCenter').modal();
+
+    var idusua = $('#idusua').val();
+    var idplano = $('#idplano').val();
+    var idloja = 'a';
+    var oppag = 'transferencia';
+    var tipopags = '7';
+
+    $.post('verificaStatusPlano.php', {idusua: idusua}, function (data) {
+      var situpag = data.situpag;
+      var situplan = data.situplan;
+
+      if ((situpag == 1) && (situplan == null)) {
+        alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e MEU PLANO');
+        window.location.href = window.location.href;
+      } else if ((situpag == 1) && (situplan == 'p')) {
+        alert('Existe um pedido em andamento! Aguarde.');
+        window.location.href = window.location.href;
+      } /*else if ((situpag == 3) && (situplan != null)) {
+        alert('Você ja está assinando um plano!');
+        window.location.href = window.location.href;
+      }*/ else {
+
+        $.post('pesqplano.php', {idplano: idplano}, function (data) {
+          var nome = data.nome;
+          var valor = data.valo;
+          var valorF = data.valor_format;
+          var tempo = data.tempo;
+          var mensa = data.mensa;
+          var adesao = data.adesao;
+
+          $.post('pagaplano.php', {
+            idusu: idusua,
+            idplano: idplano,
+            tempo: tempo,
+            valor: valor,
+            adesao: adesao,
+            mensa: mensa,
+            oppag: oppag,
+            tipopags: tipopags
+          }, function (data) {
+            let idpagplan = data.xxx;
+            $('#exampleModalCenter').modal('show');
+            window.location.href = "resumo_pagamentoplano.php?idSessao={ID_SESSAO}&pagplano=" + idpagplan;
+            $('#exampleModalCenter').modal('hide');
+          }, "json");
+        }, "json");
+      }
+    }, "json");
+  }
+
+
+  function pagardotbank_boleto() {
+    $('#exampleModalCenter').modal('show');
+
+    var idusua = $('#idusua').val();
+    var idplano = $('#idplano').val();
+    var idloja = 'a';
+    var oppag = 'dotbank';
+    var tipopags = '2';
+
+    var nomess = $('#nome_usua').val();
+    var cpfsss = $('#cpf_usua').val();
+    var emails = $('#email_usua').val();
+    var celuls = $('#celu_usua').val();
+    var endess = $('#ende_usua').val();
+    var bairrs = $('#bairro_usua').val();
+    var cidads = $('#cidade_usua').val();
+    var estads = $('#estado_usua').val();
+    var cepsss = $('#cep_usua').val();
+
+
+    if (nomess == null) {
+      alert('Preencher o nome');
+    } else if (cpfsss == "") {
+      alert('Preencher o CPF');
+    } else if (emails == "") {
+      alert('Preencher o email');
+    } else if (celuls == "") {
+      alert('Preencher o celular');
+    } else if (endess == "") {
+      alert('Preencher o endereço');
+    } else if (bairrs == "") {
+      alert('Preencher o bairro');
+    } else if (cidads == "") {
+      alert('Preencher a cidade');
+    } else if (estads == "") {
+      alert('Preencher o estado');
+    } else if (cepsss == "") {
+      alert('Preencher o CEP');
+    } else {
+
+      $.post('verificaStatusPlano.php', {idusua: idusua}, function (data) {
+        var situpag = data.situpag;
+        var situplan = data.situplan;
+
+        if ((situpag == 1) && (situplan == null)) {
+          alert('Existe um pedido em andamento! Vá em configurações do USUÁRIOS e MEU PLANO');
+        } else if ((situpag == 1) && (situplan == 'p')) {
+          alert('Existe um pedido em andamento! Aguarde.');
+        } /*else if ((situpag == 3) && (situplan != null)) {
+          alert('Você ja está assinando um plano!');
+        }*/ else {
+
+          $.post('pesqplano.php', {idplano: idplano}, function (data) {
+            var nome = data.nome;
+            var valor = data.valo;
+            var valorF = data.valor_format;
+            var tempo = data.tempo;
+            var mensa = data.mensa;
+            var adesao = data.adesao;
+
+            var nomeusua = $('#nome_usua').val();
+            var cpf = $('#cpf_usua').val();
+            var emails = $('#email_usua').val();
+
+            var celular = $('#celu_usua').val();
+
+            var cell = celular.replace(/[^\d]+/g, '');
+
+            var endereco = $('#ende_usua').val();
+            var numero = $('#nume_usua').val();
+
+            var bairro = $('#bairro_usua').val();
+            var cidade = $('#cidade_usua').val();
+            var estado = $('#estado_usua').val();
+
+            var cep = $('#cep_usua').val();
+            var ceps = cep.replace(/[^\d]+/g, '');
+
+            var cell1 = celular.replace(/[^\d]+/g, '');
+            var emailadmin = 'doutroultra@doutorultra.com.br';
+            var datavenc = $('#data_venc').val();
+            var totalvalor = adesao;
+
+            $.post('pagaplano.php', {
+              idusu: idusua,
+              idplano: idplano,
+              tempo: tempo,
+              valor: valor,
+              adesao: adesao,
+              mensa: mensa,
+              oppag: oppag,
+              tipopags: tipopags,
+              nomeusua: nomeusua,
+              cpf: cpf,
+              emails: emails,
+              cell: cell,
+              endereco: endereco,
+              numero: numero,
+              bairro: bairro,
+              cidade: cidade,
+              estado: estado,
+              ceps: ceps,
+              cell1: cell1,
+              emailadmin: emailadmin,
+              datavenc: datavenc,
+              totalvalor: totalvalor
+
+            }, function (data) {
+              var idPedido = data.xxx;
+              var token_dotbank = data.token_dotbank;
+
+              var idpplano = data.id;
+
+              /*                alert(idPedido);
+                              alert(customer_name);
+                              alert(customer_document);
+                              alert(customer_mail);
+                              alert(customer_phone);
+                              alert(address_line1);
+                              alert(neighborhood);
+                              alert(city);
+                              alert(state);
+                              alert(zip_code);
+                              alert(external_number);
+                              alert(phone_to_send);
+                              alert(mail_to_send);
+                              alert(due_date);
+                              alert(total_value);*/
+
+              //$.post('api_dotbank.php', {token: token_dotbank, idPedido: idPedido}, function (data) {
+              $.post('api_dotbank_teste.php', {token: token_dotbank, idPedido: idPedido}, function (data) {
+
+                const json = data;
+                const obj = JSON.parse(json);
+
+                //var array = url.split('/');
+                const id_dotbank = obj.data['id'];
+
+                const siteboleto = obj.data['url'];
+
+                /* console.log(id_dotbank);
+                  console.log(obj.data);
+                  console.log(obj.data['url']);
+*/
+                const status = obj['type'];
+
+                if (status == "success") {
+                  alert('Boleto Gerado com Sucesso.');
+                  window.open(siteboleto);
+                  $('#exampleModal').modal('hide');
+                  setTimeout(function () {
+                    window.location.href = window.location.href;
+                  }, 3000);
+
+                } else {
+                  alert('Ocorreu algum problema, entre em contato com administrador do sistema.');
+                }
+
+                /*        alert(idplano);
+                        alert(id_dotbank);*/
+
+                $.post('dotbank_bol.php', {dots: id_dotbank, planos: idPedido, boleto: siteboleto}, function () {
+                });
+
+
+              }, "json");
+            }, "json");
+          }, "json");
+        }
+      }, "json");
+    }
+  }
+
+
+  function abrirmodal() {
+    $('#exampleModal').modal();
+  }
+
+  /*$.post('gravacompra.php',{idtrans:idtrans,idplano:idplano,idusu:idusu},function(grava){
+                  alert(grava);
+              });*/
+
+  function somenteNumeros(e) {
+    if (document.all) {
+      var evt = event.keyCode;
+    } // caso seja IE
+    else {
+      var evt = e.charCode;
+    }	// do contrário deve ser Mozilla
+
+    var valid_chars = '0123456789';	// criando a lista de teclas permitidas
+    var chr = String.fromCharCode(evt);	// pegando a tecla digitada
+
+    if (valid_chars.indexOf(chr) > -1) {
+      return true;
+    }
+    return false;	// do contrário nega
+  }
+
+  jQuery('cpf').attr('autocomplete', 'off');
+
+
+</script>
+
+<form method="post" action="" enctype="multipart/form-data" name="form2" id="form2">
+  <input type="hidden" id="idsessao" name="idsessao" value="{ID_SESSAO}"/>
+  <input type="hidden" id="idcart" name="idcart" value="{IDCART}"/>
+  <input type="hidden" id="idloja" name="idloja" value="{ID_CRED}">
+  <input type="hidden" id="idusua" name="idusua" value="{IDUSUA}"/>
+  <input type="hidden" id="tempo" name="tempo" value="{TEMPO}">
+  <input type="hidden" id="idusu" name="idusu" value="{IDUSUA}">
+  <input type="hidden" id="idplano" name="idplano" value="{IDPLANO}">
+  <input type="hidden" id="valor" name="valor" value="{VALOR}">
+</form>
+
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col-4">
+        <ol>
+          <li><a href="index.php?idSessao={ID_SESSAO}">Home</a></li>
+          <li>Mudar de Plano</li>
+        </ol>
+        <h2>Mudar de Plano</h2>
+      </div>
+    </div>
+  </div>
+</section><!-- End Breadcrumbs -->
+
+
+<!-- BEGIN NMUDAR -->
+<section class="about-us-section-rede">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+
+        <div class="section-title text-center">
+          <h2>Você não pode alterar seu plano.</h2>
+        </div>
+
+        <div class="section-title text-center">
+          <h3>Você não tem nenhum plano. Volte na tela inicial e adquira um plano.</h3>
+          <h3> <a href="index.php?idSessao={ID_SESSAO}#mudarplano">Ver Planos</a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END NMUDAR -->
+
+<!-- BEGIN NMUDAR_SACAR -->
+<section class="about-us-section-rede">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+
+        <div class="section-title text-center">
+          <h2>Você não pode alterar seu plano.</h2>
+        </div>
+
+        <div class="section-title text-center">
+          <h2>Você tem que sacar todos seu bônus (unilevel).</h2>
+          <h3>Seu Saldo é de : <font color="red">R$ {MEUBONUS}</font></h3>
+          <h3> <a href="sacarbonus_usua.php?idSessao={ID_SESSAO}">Solicitar Saque</a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END NMUDAR_SACAR -->
+
+
+<!-- BEGIN NMUDAR1 -->
+<section class="about-us-section-rede">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12">
+
+        <div class="section-title text-center">
+          <h2>Você não pode alterar seu plano.</h2>
+        </div>
+        <div class="section-title text-center">
+          <h3>Você só podera alterar seu plano no dia {DIAALTERA}.</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END NMUDAR1 -->
+
+
+<!-- BEGIN MUDAR -->
+
+<form method="post" action="" enctype="multipart/form-data">
+
+  <!-- Start About Us Section -->
+  <section class="about-us-section-rede">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+
+          <div class="section-title text-center">
+            <p><b>Seu plano Atual:</b> {MEUPLANO1}</p>
+          </div>
+
+          <!-- BEGIN NASS -->
+          <div class="section-title text-center">
+            <h3>ALTERAÇÃO DE PLANO</h3>
+            <p>RESUMO DA COMPRA</p>
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table">
+                  <tbody>
+                  <thead>
+                  <!--  BEGIN PLANOS -->
+                  <tr>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Valor R$</td>
+                    <td>Mensalidade R$</td>
+                    <td>Status</td>
+                    <!--  BEGIN SEGBOL -->
+                    <td></td>
+                    <!--  END SEGBOL -->
+                  </tr>
+                  <tr>
+                    <td>{NOMEPLANO}</td>
+                    <td>{DESC}</td>
+                    <td>{VALOR}</td>
+                    <td>{MENSA}</td>
+                    <td>--</td>
+                    <!--  BEGIN SEGBOL1 -->
+                    <td>2º Via do Boleto</td>
+                    <!--  END SEGBOL1 -->
+                  </tr>
+                  <!--  END PLANOS -->
+                  </thead>
+                  </tbody>
+                </table>
+              </div>
+            </div><!-- /.row -->
+
+            <hr>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
+                <div class="list-group">
+                  <h4>ESCOLHA O MÉTODO DE PAGAMENTO ABAIXO:</h4>
+                <!--  BEGIN PLANOS_VAZIO1 -->
+
+                <!--  END PLANOS_VAZIO1 -->
+
+                <!--  BEGIN PLANOS2 -->
+                <!--  END PLANOS2 -->
+
+                <!-- BEGIN PAGS -->
+                <a href="javascript:void(0);" onclick="pagar('{IDUSUA}');" class="list-group-item list-group-item-action {DISA}">
+                  PAGSEGURO <img src="comum/img/pagseguro.gif" width="50px"
+                </a>
+                <!-- END PAGS -->
+
+                <!-- BEGIN DOTS -->
+                <a href="javascript:void(0);" onclick="abrirmodal();" class="list-group-item list-group-item-action">
+                  DOTBANK BOLETO <img src="comum/img/dotbank.jpeg" width="50px">
+                </a>
+                <!-- END DOTS -->
+
+                <!-- BEGIN TRANSF -->
+                <a class="list-group-item list-group-item-action" onclick="abrirtransf('{IDCART}');" href="javascript:void(0);">
+                  TRANSFERÊNCIA BANCÁRIA <i class="fa fa-exchange" aria-hidden="true"></i>
+                </a>
+
+                <!-- END TRANSF -->
+              </div>
+              </div>
+            </div>
+
+          </div><!-- div anes dos conteudos-->
+
+          <!-- END NASS -->
+
+
+
+        </div><!-- col-md-12 col-sm-12-->
+      </div><!-- class="row" -->
+    </div><!-- /.container -->
+  </section>
+
+  <!-- Modal pagamento-->
+  <div class="modal fade" id="pagatransf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title" id="Modal-label-2">
+            Deseja mesmo pagar através da transferência bancária??
+          </h3>
+        </div>
+        <div class="modal-body">
+          <p>Você pode fazer uma transferência simples (TED e DOC), não esqueça após fazer a transferência anexar o comprovante.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary text-center" onclick="transferencia();">
+            PAGAR
+          </button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal pagamento-->
+</form>
+
+
+<!-- END MUDAR -->
+
+<!--<form id="comprar" action="https://sandbox.pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+  -->
+
+<form id="comprar" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+
+  <input type="hidden" name="code" id="code" value=""/>
+
+</form>
+
+
+<script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+
+<!--<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pagamento com DOTBANK</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-header">
+        <a class="btn btn-primary text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Pagamento em Boleto
+        </a>
+      </div>
+
+      <div class="modal-body">
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="nome_usua">Nome:</label>
+                  <input type="text" class="form-control" id="nome_usua" name="nome_usua" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="cpf_usua">CPF:(sem pontos e traços)</label>
+                  <input type="text" class="form-control" id="cpf_usua" name="cpf_usua" maxlength="11" onkeypress="return somenteNumeros(event);" value="{CPF_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="email_usua">EMAIL:</label>
+                  <input type="text" class="form-control" id="email_usua" name="email_usua" value="{EMAIL_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="celu_usua">CELULAR:</label>
+                  <input type="text" class="form-control" id="celu_usua" name="celu_usua" value="{CELU_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="cep_usua">CEP:</label>
+                  <input type="text" class="form-control" id="cep_usua" name="cep_usua" maxlength="9" onblur="verificaCep();" value="{CEP_USUA}" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-10">
+                <label for="ende_usua">ENDEREÇO:</label>
+                <input type="text" class="form-control" id="ende_usua" name="ende_usua" value="{ENDE_USUA}" required>
+              </div>
+              <div class="col-md-2">
+                <label for="nume_usua">nº:</label>
+                <input type="text" class="form-control" id="nume_usua" name="nume_usua" value="{ENDE_USUA}" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-5">
+                <label for="bairro_usua">BAIRRO:</label>
+                <input type="text" class="form-control" id="bairro_usua" name="bairro_usua" value="{BAIRRO_USUA}" required>
+              </div>
+              <div class="col-md-5">
+                <label for="cidade_usua">CIDADE:</label>
+                <input type="text" class="form-control" readonly id="cidade_usua" name="cidade_usua" value="{CIDADE_USUA}" required>
+              </div>
+              <div class="col-md-2">
+                <label for="estado_usua">UF:</label>
+                <input type="text" class="form-control" readonly id="estado_usua" name="estado_usua" value="{ENDE_USUA}" required>
+                <hr class="mb-5">
+              </div>
+              <input type="hidden" id="data_venc" name="data_venc" value="{DATA_VENC}">
+            </div>
+
+            <div class="form-row ">
+              <div class="col-md-10 mb-5">
+                <a class="btn btn-primary" onclick="pagardotbank_boleto();">
+                  Gerar Boleto
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalCenterTitle mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="text-center">
+              <div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+              </div>
+              <p>
+              <h3>Carregando...<br>Aguarde Gerando o boleto...</h3></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="comum/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="comum/js/main.js"></script>
+
+

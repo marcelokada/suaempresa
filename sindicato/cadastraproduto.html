@@ -1,0 +1,212 @@
+<script type="text/javascript" >
+    
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+            document.getElementById('ibge').value=("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('uf').value=(conteudo.uf);
+            document.getElementById('ibge').value=(conteudo.ibge);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+   
+	
+function verificaCep(){
+    var cep = $('#cep').val();
+
+	var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+     script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+				
+	//Insere script no documento e carrega o conteúdo.
+	document.body.appendChild(script);
+	
+	document.getElementById('rua').value=(conteudo.logradouro);
+    document.getElementById('bairro').value=(conteudo.bairro);
+    document.getElementById('cidade').value=(conteudo.localidade);
+    document.getElementById('uf').value=(conteudo.uf);
+    document.getElementById('ibge').value=(conteudo.ibge);
+	
+}	
+	
+jQuery(function($){
+   $('.valor').mask('#.##0,00', {reverse: true});
+   // $("#cash").mask("999");
+
+});
+
+
+$().ready(function() {
+  $("#categoria").change(function() {
+	var id = $('#categoria').val();
+	    $.post('listasubcategoria.php',{id: id},function(data){
+			$("#subcategoria").html(data);
+	   });
+   });
+});
+
+$(document).ready(function() {
+
+    $("#cnpj").bind('paste', function(e) {
+        e.preventDefault();
+    });
+
+});
+
+function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+        return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+        return !1;
+    for (u = a.value.length,
+    h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+        ;
+    for (l = ""; h < u; h++)
+        -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+        for (ajd2 = "",
+        j = 0,
+        h = u - 3; h >= 0; h--)
+            3 == j && (ajd2 += e,
+            j = 0),
+            ajd2 += l.charAt(h),
+            j++;
+        for (a.value = "",
+        tamanho2 = ajd2.length,
+        h = tamanho2 - 1; h >= 0; h--)
+            a.value += ajd2.charAt(h);
+        a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+}
+</script>
+
+
+<div class="content-wrapper">
+    <h3 class="page-heading mb-4">Cadastro dos Produtos da Rede Credenciada</h3>
+    <div class="row mb-2">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+					<h5 class="card-title mb-4">Informações dos Produtos</h5>
+									
+					<!-- BEGIN ERRO -->   
+						<div class="alert alert-danger" role="alert">
+							<p align="justify">{MSG}</p> 
+						</div>
+					<!-- END ERRO -->
+					
+					<!-- BEGIN SUCESSO -->   
+						<div class="alert alert-success" role="alert">
+							<p align="justify">{MSG}</p> 
+						</div>
+					<!-- END SUCESSO -->
+				  
+					<div class="form-row">
+						<form class="forms-sample" method="post"  enctype="multipart/form-data">
+						
+						<div class="form-group">
+							<label>NOME:</label>
+							<input type="text" class="form-control p-input" id="nome" name="nome" value="{NOME}" {DISA} required />
+						</div>
+						
+						<div class="form-group">
+							<label >DESCRIÇÃO:</label>
+							<input type="text" class="form-control p-input" id="desc" name="desc" value="{DESC}" {DISA} required />
+						</div>
+						
+						<div class="form-group">
+							<label >VALOR R$:</label>
+							<input type="text" class="form-control p-input " onKeyPress="return(moeda(this,'.',',',event))" {DISA} id="valor" name="valor" value="{VALOR}" required />
+						</div>
+						
+						<div class="form-group">
+<!--							<label >CASHBACK %:</label>-->
+							<input type="hidden" class="form-control p-input" name="cash" id="cash" value="{CASH}" {DISA} required />
+						</div>
+						
+						<div class="form-group">
+							<label >SITUAÇÃO:</label>
+							<select type="text" class="form-control p-input" name="situ" id="situ" {DISA} required />
+								<option value="{VAL_SITU}">{NOM_SITU}</option>
+								<option value="a">Ativo</option>
+								<option value="i">Inativo</option>
+							</select>
+						</div>
+						
+						<div class="form-group">
+						<label></label>
+						</div>						
+						
+						<!-- BEGIN IMG -->
+						<div class="form-group">
+							<img src="{IMAGEM}" class="img-responsive contain" style="width: 200px; height: 150px;" alt="...">
+						</div>
+						<!-- END IMG -->
+						
+						<!-- BEGIN IMG1 -->
+						<div class="form-group bg-secondary">
+						<label>Inserir Imagem</label>
+							<div class="fileupload fileupload-new" data-provides="fileupload">
+								<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+									<img src=".../../comum/img/Sem-imagem.jpg" alt="" />
+								</div>
+								<div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+								<div>
+									<span class="btn btn-default btn-file">
+									<span class="fileupload-new alert alert-warning" role="alert"><i class="fa fa-folder-o"></i> Selecionar Imagem</span>
+									<span class="fileupload-exists"><i class="fa fa-undo"></i> Mudar</span>
+									<input type="file" name="imagem" class="default" required />
+									</span>
+									<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
+								</div>
+							</div>
+						</div>
+						
+						<!-- END IMG1 -->
+						<div class="form-group">
+						<label></label>
+						</div>	
+						
+						<div class="form-group">
+							<input type="submit" class="btn btn-primary" name="salvar" value="Salvar" {DISA} />
+						</div>
+						
+						</form>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+		
+
+	
+	

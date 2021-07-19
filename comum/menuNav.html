@@ -1,0 +1,68 @@
+<nav id="navbar" class="navbar order-last order-lg-0">
+  <ul>
+    <!-- BEGIN CAT_SMENU -->
+    <li><a class="nav-link scrollto {ACTIVE1}" href="redescredenciadas.php?idSessao={ID_SESSAO}&cat=1">{CAT1}</a></li>
+    <li><a class="nav-link scrollto {ACTIVE2}" href="redescredenciadas.php?idSessao={ID_SESSAO}&cat=2">{CAT2}</a></li>
+    <li><a class="nav-link scrollto {ACTIVE3}" href="redescredenciadas.php?idSessao={ID_SESSAO}&cat=3">{CAT3}</a></li>
+    <li><a class="nav-link scrollto {ACTIVE4}" href="redescredenciadas.php?idSessao={ID_SESSAO}&cat=4">{CAT4}</a></li>
+    <li><a class="nav-link scrollto {ACTIVE5}" href="redescredenciadas.php?idSessao={ID_SESSAO}&cat=5">{CAT5}</a></li>
+    <!-- END CAT_SMENU -->
+
+    <!-- BEGIN CAT_NMENU -->
+    <li><a class="nav-link scrollto {ACTIVE1}" href="redescredenciadas.php?cat=1">{CAT1}</a></li>
+    <li><a class="nav-link scrollto {ACTIVE2}" href="redescredenciadas.php?cat=2">{CAT2}</a></li>
+    <li><a class="nav-link scrollto {ACTIVE3}" href="redescredenciadas.php?cat=3">{CAT3}</a></li>
+    <li><a class="nav-link scrollto {ACTIVE4}" href="redescredenciadas.php?cat=4">{CAT4}</a></li>
+    <li><a class="nav-link scrollto {ACTIVE5}" href="redescredenciadas.php?cat=5">{CAT5}</a></li>
+    <!-- END CAT_NMENU -->
+
+    <!-- BEGIN LOG_MENU -->
+
+    <li class="dropdown"><a href="javascript:void(0);"><span>{NOME}</span> <i class="bi bi-chevron-down"></i></a>
+      <ul>
+        <li><a href="config_usuario.php?idSessao={ID_SESSAO}">Configurações</a></li>
+
+        <!-- BEGIN MENU_ADD_MEMBROS -->
+        <li><a href="add_membros.php?idSessao={ID_SESSAO}">Adicionar Membros Família</a></li>
+        <!-- END MENU_ADD_MEMBROS -->
+
+        <!-- BEGIN MEUS_AGENDA -->
+        <li><a href="meus_agendamentos.php?idSessao={ID_SESSAO}">Meus Agendamentos</a></li>
+        <!-- END MEUS_AGENDA -->
+
+        <li><a href="meuspedidos.php?idSessao={ID_SESSAO}">Meus Pedidos</a></li>
+        <li><a href="meuplano.php?idSessao={ID_SESSAO}">Meu Plano</a></li>
+        <li><a href="ativacaomensal.php?idSessao={ID_SESSAO}">Ativação Mensal</a></li>
+        <li><a href="rel_usua_niveis.php?idSessao={ID_SESSAO}">Rede de afiliados</a></li>
+        <li><a href="meufaturamento.php?idSessao={ID_SESSAO}">Meu Extrato de Bonificação</a></li>
+        <li><a href="extrato_cashback.php?idSessao={ID_SESSAO}">Meu Extrato de CashBack</a></li>
+        <li><a href="sacarcash_usua.php?idSessao={ID_SESSAO}">Sacar CashBack</a></li>
+        <li><a href="sacarbonus_usua.php?idSessao={ID_SESSAO}">Sacar Bônus Unilevel</a></li>
+
+        <!-- BEGIN MENU_DOTBANK -->
+        <li><a href="cadastro_dotbank.php?idSessao={ID_SESSAO}">Cadastro DotBank</a></li>
+        <!-- END MENU_DOTBANK -->
+
+        <!-- BEGIN MENU_SINDICATO -->
+        <li><a href="autorizar_sindicato.php?idSessao={ID_SESSAO}">Convite Sindicato</a></li>
+        <!-- END MENU_SINDICATO -->
+
+        <li><a href="comum/logout.php" title="Sair">Sair</a></li>
+      </ul>
+    </li>
+
+
+    <li><a href="#menu" class="navbar" title="Ver Bônus"> <i class="fa fa-th" aria-hidden="true"></i></a></li>
+
+    <!-- END LOG_MENU -->
+
+    <!-- BEGIN LOG_LOGIN -->
+    <!--<a href="javascript:void(0);" class="nav-link scrollto" onclick="login();">LOGIN</a>-->
+    <a href="login.php" class="nav-link scrollto">LOGIN</a>
+    <a href="novocadastro.php" class="nav-link scrollto">CADASTRO</a>
+    <!-- END LOG_LOGIN -->
+
+  </ul>
+  <i class="bi bi-list mobile-nav-toggle"></i>
+</nav><!-- .navbar -->
+

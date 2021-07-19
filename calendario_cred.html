@@ -1,0 +1,326 @@
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+    $().ready(function () {
+        $("#regiao").change(function () {
+            var idregiao = $('#regiao').val();
+            $.post('listaestado.php', {idregiao: idregiao}, function (data) {
+                $("#estado").html(data);
+            });
+        });
+    });
+
+    $().ready(function () {
+        $("#estado").change(function () {
+            var idestado = $('#estado').val();
+            $.post('listacidade.php', {idestado: idestado}, function (data) {
+                $("#cidade").html(data);
+            });
+        });
+    });
+
+    function modal(id) {
+        var id = $('#idcred' + id).val();
+
+        $.post('modal.php', {id: id}, function (data) {
+
+            $('#idlojas').html('<input type="text" id="' + data.id + '" name="' + data.id + '" value="' + data.id + '" >');
+            $('#nomes').html('<font color="black"><b>NOME:</b> ' + data.nome + '</font>');
+            $('#endereco').html('<font color="black"><b>ENDEREÇO:</b> ' + data.endereco + '- <b>CIDADE:</b> ' + data.cidade + '</font>');
+            //$('#cupom').html('<font color="black" size="5px">CÓDIGO DO DESCONTO:</font> <font size="5px"> <strong class="page-scroll btn-primary animated1">'+ data.cupom +'</strong></font>');
+            $('#imagem').html('<img src=' + data.imagem + ' class="img-responsive modal_img" />');
+            $('#class1').html(data.class);
+            /* $('#class2').html('<label for="cm_star-2"><i class="fa"></i></label><input type="radio" disabled id="cm_star-2" ' + data.class2 + '>');
+			      $('#class3').html('<label for="cm_star-3"><i class="fa"></i></label><input type="radio" disabled id="cm_star-3" ' + data.class3 + '>');
+			      $('#class4').html('<label for="cm_star-4"><i class="fa"></i></label><input type="radio" disabled id="cm_star-4" ' + data.class4 + '>');
+			      $('#class5').html('<label for="cm_star-5"><i class="fa"></i></label><input type="radio" disabled id="cm_star-5" ' + data.class5 + '>');*/
+            $('#urls').html('<a href="lojarede.php?idSessao={ID_SESSAO}&idLoja=' + data.links + '&idcart=' + data.idcart + '" {DISAB} class=" btn btn-primary" >Ver Ofertas</a>');
+            $('#telefone').text(data.tele);
+            $('#celular').text(data.celular);
+            $("#modalloja").modal('show');
+        }, "json");
+    }
+
+    function modal1(id) {
+        var id = $('#idcred1' + id).val();
+
+
+        $.post('modal.php', {id: id}, function (data) {
+
+            $('#idlojas').html('<input type="hidden" id="id_loja" name="id_loja" value="' + data.id + '" >');
+            //$('#nomes').html('<font color="black"><b>NOME:</b> ' + data.nome + '</font>');
+            $('#nomes').html('<font color="black"><b>NOME:</b> ' + data.nome + '</font>');
+            $('#endereco').html('<font color="black"><b>ENDEREÇO:</b> ' + data.endereco + '- <b>CIDADE:</b> ' + data.cidade + '</font>');
+            //$('#cupom').html('<font color="black" size="5px">CÓDIGO DO DESCONTO:</font> <font size="5px"> <strong class="page-scroll btn-primary animated1">'+ data.cupom +'</strong></font>');
+            $('#imagem').html('<img src=' + data.imagem + ' class="img-responsive modal_img" />');
+            $('#class1').html(data.class);
+            /* $('#class2').html('<label for="cm_star-2"><i class="fa"></i></label><input type="radio" disabled id="cm_star-2" ' + data.class2 + '>');
+			      $('#class3').html('<label for="cm_star-3"><i class="fa"></i></label><input type="radio" disabled id="cm_star-3" ' + data.class3 + '>');
+			      $('#class4').html('<label for="cm_star-4"><i class="fa"></i></label><input type="radio" disabled id="cm_star-4" ' + data.class4 + '>');
+			      $('#class5').html('<label for="cm_star-5"><i class="fa"></i></label><input type="radio" disabled id="cm_star-5" ' + data.class5 + '>');*/
+            $('#urls').html('<a href="lojarede.php?idSessao={ID_SESSAO}&idLoja=' + data.links + '&idcart=' + data.idcart + '" {DISAB} class=" btn btn-primary" >Ver Ofertas</a>');
+            $('#telefone').text(data.tele);
+            $('#celular').text(data.celular);
+            $("#modalloja").modal('show');
+        }, "json");
+    }
+
+
+    function login() {
+        $("#login").modal('show');
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        let idlojas = $("#idloja").val();
+
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            locale: 'pt-br',
+            headerToolbar: {
+                left: 'today',
+                center: 'title',
+                right: 'prev,next dayGridMonth'
+            },
+            navLinks: false, // can click day/week names to navigate views
+            businessHours: true, // display business hours
+            editable: true,
+            selectable: true,
+            events: 'listar_eventos.php?idloja={IDCRED}',
+
+            eventClick: function (info) {
+                info.jsEvent.preventDefault();
+                $("#titulo").text(info.event.title);
+                $("#id").text(info.event.id);
+                $("#idcal").html('<input type="hidden" id="id_cale" name="id_cale" value="'+info.event.id+'">');
+                $("#dataini").text(info.event.start.toLocaleString());
+
+                let idevento = info.event.id;
+
+                $.post('listar_eventos2.php', {idevento: idevento, idloja: idlojas}, function (data) {
+                    //console.log(data);
+
+                    let situa = data[0]['status'];
+
+                    if(situa == 1){
+                        $("#situa").text("Liberado");
+                    }
+
+                    $("#obs").text(data[0]['obs']);
+                    $("#valor").text(data[0]['valor']);
+                    $("#nome_rede").text(data[1]['nome_rede']);
+                    $("#dado_rede").html(data[1]['dado_rede']);
+                    $("#cont_rede").html(data[1]['cont_rede']);
+                    $("#ende_rede").html(data[1]['ende_rede']);
+                    $("#prof_rede").html(data[1]['prof_rede']);
+
+                }, "json");
+
+                $("#staticBackdrop").modal('show');
+            }
+        });
+        calendar.render();
+    });
+
+
+    function agendar(){
+        let idusua = $("#idusua").val();
+        let idevento = $("#id_cale").val();
+
+        window.location.href = "agendamento.php?idSessao={ID_SESSAO}/schedule/"+idusua+"/"+idevento;
+    }
+
+
+</script>
+
+<main id="main">
+
+	<!-- ======= Breadcrumbs ======= -->
+	<section class="breadcrumbs">
+		<div class="container">
+			<div class="row align-items-end">
+				<div class="col-4">
+					<ol>
+						<li><a href="index.php?idSessao={ID_SESSAO}">Home</a></li>
+						<li>{REDE_CRED}</li>
+					</ol>
+					<h2>{REDE_CRED}</h2>
+				</div>
+			</div>
+		</div>
+	</section><!-- End Breadcrumbs -->
+
+	<input type="hidden" id="idloja" value="{IDCRED}">
+	<input type="hidden" id="idlojas" value="{IDCRED}">
+
+	<section>
+		<div class="container mb-4" data-aos="fade-up">
+			<!-- BEGIN NAO_LOGADO -->
+			<a href="redescredenciadas.php?cat={CATE}" class="btn btn-primary mb-4">Voltar</a>
+			<!-- END NAO_LOGADO -->
+
+			<!-- BEGIN LOGADO -->
+			<a href="redescredenciadas.php?idSessao={ID_SESSAO}&cat={CATE}" class="btn btn-primary mb-4">Voltar</a>
+			<!-- END LOGADO -->
+
+			<div class="row">
+				<center>
+					<div class="col-lg-12 entries mb-6">
+						<div class="col">
+							<div class="card">
+								<h2 class="card-title">{NOMEREDE} - {IDCRED}</h2>
+								<br>
+								<img src="{IMAGEM}" class="img-novos" title="{NOMEREDE}"/>
+								<div class="card-body">
+									<h4 class="card-text">{CATE_REDE}</h4>
+									<p class="card-text">{SUBCATS}</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</center>
+			</div>
+		</div>
+
+		<div class="container" data-aos="fade-up">
+			<h2>Agenda</h2>
+			<div class="row">
+				<div class="col-lg-12 entries mb-6">
+
+					<div id="calendar"></div>
+
+				</div><!-- End blog entries list -->
+			</div>
+		</div>
+	</section><!-- End Blog Section -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">
+						<div id="titulo"></div>
+					</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<!-- BEGIN MSGNLOGADO -->
+					<h4>Para agendar, tem que estar logado ou fazer um cadastro.</h4>
+					<!-- END MSGNLOGADO -->
+
+					<div id="idcal"></div>
+					<input type="hidden" id="idusua" name="idusua" value="{IDUSUA}">
+
+					<dl class="row">
+						<dt class="col-sm-1 col-md-3">ID Evento:</dt>
+						<dd class="col-sm-3 col-md-9" id="id"></dd>
+
+						<dt class="col-sm-1 col-md-3">Situação:</dt>
+						<dd class="col-sm-3 col-md-9" id="situa"></dd>
+
+						<dt class="col-sm-1 col-md-3">Valor:</dt>
+						<dd class="col-sm-3 col-md-9" id="valor"></dd>
+
+						<dt class="col-sm-1 col-md-3">Data:</dt>
+						<dd class="col-sm-3 col-md-9" id="dataini"></dd>
+
+						<dt class="col-sm-1 col-md-3">Obs:</dt>
+						<dd class="col-sm-3 col-md-9" id="obs"></dd>
+
+						<hr>
+						<dt class="col-sm-1 col-md-3">{REDE_CRED}:</dt>
+						<dd class="col-sm-3 col-md-9" id="nome_rede"></dd>
+
+						<dt class="col-sm-1 col-md-3">Dados:</dt>
+						<dd class="col-sm-3 col-md-9" id="dado_rede"></dd>
+
+						<dt class="col-sm-1 col-md-3">Contato:</dt>
+						<dd class="col-sm-3 col-md-9" id="cont_rede"></dd>
+
+						<dt class="col-sm-1 col-md-3">Endereço:</dt>
+						<dd class="col-sm-3 col-md-9" id="ende_rede"></dd>
+
+						<dt class="col-sm-1 col-md-3">Dados Profissionais:</dt>
+						<dd class="col-sm-3 col-md-9" id="prof_rede"></dd>
+					</dl>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+					<!-- BEGIN BTNLOGADO -->
+					<a href="javascript:void(0);" onclick="agendar()" class="btn btn-primary">Agendar</a>
+					<!-- END BTNLOGADO -->
+
+					<!-- BEGIN BTNNAO_LOGADO -->
+					<a href="javascript:void(0);" onclick="login()" class="btn btn-primary">Fazer Login</a>
+					<!-- END BTNNAO_LOGADO -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<form method="post">
+		<div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+			<div class="modal-dialog  modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Acesso</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<!-- BEGIN SUAEMPRESA -->
+						<p><b>Login Admin:</b> admin@suaempresa.com.br</p>
+						<p><b>Login Usuário:</b> usua@suaempresa.com.br</p>
+						<p><b>Login Rede:</b> cred1@teste.com.br</p>
+						<p><b>Senha(p/ todos):</b> mudarsenha123</p>
+						<!-- END SUAEMPRESA -->
+
+						<!-- BEGIN ERRO -->
+						<div class="" role="alert">
+							<p align="justify">{MSG} </p>
+							{MSG1}
+						</div>
+						<!-- END ERRO -->
+
+						<!-- BEGIN SUCESSO -->
+						<div role="alert">
+							<p class="alert alert-danger" align="center">{MSG}</p>
+							{MSG1}
+						</div>
+						<!-- END SUCESSO -->
+
+						<div class="form-floating mb-3">
+							<input type="email" class="form-control" id="floatingInput" id="resultado" name="login" value="{LOGIN}" placeholder="name@exemplo.com">
+							<label for="floatingInput">Email (Login)</label>
+						</div>
+						<div class="form-floating mb-4">
+							<input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="senha" placeholder="Senha" alt="SENHA" autocomplete="off">
+							<label for="floatingPassword">Senha (min. 8 caracteres)</label>
+						</div>
+
+						<div class="row">
+							<div class="col-6">
+								<a href="#" class="text-left">Esqueci a Senha</a>
+							</div>
+
+							<div class="col-6">
+								<a href="novocadastro.php" class="text-right">Novo Cadastro</a>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+						<button type="submit" class="btn btn-primary" name="acessar">Acessar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+</main>
+

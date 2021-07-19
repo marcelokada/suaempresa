@@ -1,0 +1,110 @@
+<script type="text/javascript">
+
+  $(function () {
+
+    let table = $('#example12').DataTable({
+
+      "autoWidth": false,
+      "responsive": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+    document.getElementById('export-buttons').appendChild(table.buttons().container()[0]);
+
+  });
+
+</script>
+
+<input type="hidden" name="idusua" value="{USUA}">
+
+<div class="content-wrapper">
+  <h3 class="page-heading mb-4">Relatório de Agregados</h3>
+  <div id="export-buttons"></div>
+
+  <form method="post">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <label>Pesquisar por:</label>
+            <select class="form-control" name="tipo">
+              <option value="1">Nome</option>
+              <option value="2">Nome Contendo...</option>
+              <option value="3">CPF</option>
+              <option value="4">Cidade</option>
+            </select>
+          </div>
+          <div class="col-3">
+            <label>Escreva:</label>
+            <input type="text" class="form-control" name="pesquisar">
+          </div>
+
+          <div class="col-3">
+            <label> &nbsp;</label>
+            <input type="submit" class="btn btn-success form-control" name="listar">
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row mb-2">
+
+    <div class="col-lg-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+
+
+              <table id="example12" class="table table-hover table-responsive-md">
+                <thead>
+                <tr bgcolor="#e6e6fa">
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Data de Nasc.</th>
+                  <th>Endereço</th>
+                  <th>Telefone/Celular</th>
+                  <th>Agregados (Nome - CPF - Dt. Nasc.)</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <!-- BEGIN NIVEIS1 -->
+                <tr>
+                  <td>{NOME}</td>
+                  <td>{CPF}</td>
+                  <td>{NASC}</td>
+                  <td>{ENDE}</td>
+                  <td>{CEL}</td>
+                  <td>
+                    <!-- BEGIN NIVEIS2 -->
+                    {AGRE}
+                    <!-- END NIVEIS2 -->
+                  </td>
+                </tr>
+                <!-- END NIVEIS1 -->
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

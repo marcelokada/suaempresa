@@ -1,0 +1,98 @@
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+  function mascaraData(campo, e) {
+    var kC = (document.all) ? event.keyCode : e.keyCode;
+    var data = campo.value;
+
+    if (kC != 8 && kC != 46) {
+      if (data.length == 2) {
+        campo.value = data += '/';
+      } else if (data.length == 5) {
+        campo.value = data += '/';
+      } else
+        campo.value = data;
+    }
+  }
+
+  $(function () {
+    $('#example1').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": false,
+      "info": false,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+
+</script>
+
+<input type="hidden" name="idusua" value="{IDUSUA}">
+
+<div class="content-wrapper">
+  <h3 class="page-heading mb-4">Usuário - {NOME}</h3>
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Plano: {NOMEPLANO}</h3>
+      <h5>{MEUPLANO}</h5>
+    </div>
+    <div class="col-md-3">
+      <h3>CashBack Total:</h3>
+      <h3>R$ {MEUCASH}</h3>
+    </div>
+    <div class="col-md-3">
+      <h3>Bônus Unilevel Total:</h3>
+      <h3>R$ {MEUBONUS}</h3>
+    </div>
+    <div class="col-md-3">
+      <h3>Bônus Voucher Total:</h3>
+      <h3>R$ {MEUVOUCHER}</h3>
+    </div>
+  </div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-body-">
+        <table id="example1" class="table">
+          <thead>
+          <tr>
+            <th style="text-align:center;" scope="col">ID</th>
+            <th style="text-align:center;" scope="col">Descrição Bonus</th>
+            <th style="text-align:center;" scope="col">Data Transação</th>
+            <th style="text-align:center;" scope="col">Tipo Transação</th>
+            <th style="text-align:center;" scope="col">Valor</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <!-- BEGIN LISTAR1 -->
+          <tr>
+            <td style="text-align:center;" scope="col">{IDUSUAT}</td>
+            <td style="text-align:center;" scope="col">{DESC_BONUS}</td>
+            <td style="text-align:center;" scope="col">{DATAT}</td>
+            <td style="text-align:center;" scope="col">{TIPOT}</td>
+            <td style="text-align:center;" scope="col">{VALORT}</td>
+          </tr>
+          <!-- END LISTAR1 -->
+          </tbody>
+          <tfooter>
+
+            <tr>
+              <th style="text-align:center;" scope="col"></th>
+              <th style="text-align:center;" scope="col"></th>
+              <th style="text-align:center;" scope="col"></th>
+              <th style="text-align:center;" scope="col">Total:</th>
+              <th style="text-align:center;" scope="col">{TOTAL_TOTAL}</th>
+            </tr>
+          </tfooter>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,88 @@
+<script text="javascript">
+  function Ativar(id){
+    var tp = 1;
+    $.post('altmenus.php',{id:id,tp:tp},function(){
+      window.location.href=window.location.href;
+    });
+  }
+
+  function Desativar(id){
+    var tp = 0;
+    $.post('altmenus.php',{id:id,tp:tp},function(){
+      window.location.href=window.location.href;
+    });
+  }
+
+</script>
+
+<div class="content-wrapper">
+  <!-- Main content -->
+  <input type="hidden" id="idadmin" name="idadmin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Admin Master</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active"></li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Acesso ao BackOffice Usuários</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-hover ">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nome</th>
+                  <th>Desc</th>
+                  <th>Situação</th>
+                  <th>Opção</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- BEGIN MENUS -->
+                <tr>
+                  <td>{ID} </td>
+                  <td>{NOME}</td>
+                  <td>{DESC}</td>
+                  <td>{SITUACAO}</td>
+                  <td>
+                    <a href="javascript:void(0);"  onclick="{TITU}('{ID}');" title="{TITU}">
+                      <img src="images/icons/{TIPOS}.png" title="{TITULO_B}" ></a>
+                  </td>
+                </tr>
+                <!-- END MENUS -->
+                </tbody>
+
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+

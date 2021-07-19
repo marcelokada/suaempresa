@@ -1,0 +1,201 @@
+<script type="text/javascript">
+
+
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+
+  $(function () {
+
+    let table = $('#example12').DataTable({
+
+      "autoWidth": false,
+      "responsive": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+    document.getElementById('export-buttons').appendChild(table.buttons().container()[0]);
+
+  });
+
+</script>
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Solicitação de Pontuação</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">Solicitação de Pontuação</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Pacotes de pontuação</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            <!-- BEGIN ERRO -->
+            <div class="alert alert-danger" role="alert">
+              <p align="justify">{MSG}</p>
+            </div>
+            <!-- END ERRO -->
+
+            <!-- BEGIN SUCESSO -->
+            <div class="alert alert-success" role="alert">
+              <p align="justify">{MSG}</p>
+            </div>
+            <!-- END SUCESSO -->
+
+            <div class="card-body">
+              <form method="post">
+                <input type="hidden" name="idrede" value="{ID_REDE}">
+                <table class="table table-hover table-responsive-md">
+                  <thead>
+                  <tr bgcolor="#e6e6fa">
+                    <th>Id Pacote</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Pontuação</th>
+                    <th>Valor</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <!-- BEGIN PACOTES -->
+                  <tr>
+                    <td>{ID}</td>
+                    <td>{NOME}</td>
+                    <td>{DESC}</td>
+                    <td>{PONTOS}</td>
+                    <td>{VALOR}</td>
+                    <td><a class="btn btn-info" href="comprapacotes.php?idSessao={ID_SESSAO}&idUsuario={ID_REDE}&idpacote={ID}" target="_blank">Comprar</a>
+                    </td>
+                    <!--                  <td><button type="submit" class="btn btn-info" name="solicitar" value="{ID}">Solicitar</button></td>-->
+                  </tr>
+                  <!-- END PACOTES -->
+
+                  </tbody>
+                </table>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Sua Solicitações</h3>
+          </div>
+          <div class="card-body">
+            <table id="example12" class="table table-hover table-responsive-md">
+              <thead>
+              <tr bgcolor="#e6e6fa">
+                <th>Id pedido</th>
+                <th>Plano</th>
+                <th>Data</th>
+                <th>Status Pagamento</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Pontos</th>
+                <th>Situação do Pacote</th>
+                <th></th>
+              </tr>
+              </thead>
+
+              <tbody>
+
+              <!-- BEGIN SOLIS -->
+              <tr>
+                <td>{ID1}</td>
+                <td>{PLANO1}</td>
+                <td>{DATA1}</td>
+                <td>{STATUS1}</td>
+                <td>{TIPO1}</td>
+                <td>{VALOR1}</td>
+                <td>{PONTOS1}</td>
+
+                <td>{SITUA}</td>
+                <!-- BEGIN BOL -->
+                <td>{LINK}</td>
+                <!-- END BOL -->
+
+                <!-- BEGIN BOL1 -->
+                <td><a href="{LINK1}" target="_blank">2ª via boleto</a></td>
+                <!-- END BOL1 -->
+              </tr>
+              <!-- END SOLIS -->
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

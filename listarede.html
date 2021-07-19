@@ -1,0 +1,45 @@
+<script type="text/javascript">
+function itensFatura(idnoti,ba) {
+  $("#ba").val(ba);
+  $("#idnoti").val(idnoti);
+  $("#form2").attr("target",'');
+  $("#form2").attr("action",'noticiasgeral.php');
+  $("#form2").submit();  
+  return false   
+}
+</script>
+
+<form id="form2" name="form2" method="post" action="">
+  <input type="hidden" name="idnoti" id="idnoti" value="{ID_NOTI}">
+  <input type="hidden" name="ba" id="ba" value="{ID_NOTI2}">
+  <input type="hidden" name="a" id="a" value="A">
+</form>  
+
+<!-- BEGIN RESULTADO_NOTICIA -->
+<a onclick="itensFatura('{ID_NOTI}','{ID_NOTI2}','A');" href="javascript:void(0);">
+<div id="noticias_geral" name="noticias_geral"> 
+
+	<div id="titulo_foto" name="titulo_foto" alt="">
+	{TITULO_FOTO}
+	</div>
+	
+	<div id="titulo_noticia" name="titulo_noticia">
+	{TITULO_NOTICIA}
+	</div>
+	
+	<div id="noticias_manchete" name="noticias_manchete">
+	{TITULO_MANCHETE}
+	</div>
+	
+	<div id="noticias_data" name="noticias_data">
+	POSTADO EM: <b>{TITULO_DATA}</b> ÀS <b>{HORAS}</b>
+	</div>
+	
+	<div id="noticias_fonte" name="noticias_fonte">
+	FONTE: <b>{TITULO_FONTE}</b>
+	</div>
+	</br>
+</div>
+</a>
+<!-- END RESULTADO_NOTICIA -->
+

@@ -1,0 +1,103 @@
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Autorizações Usuários dos Sindicatos</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Autorizações Usuários dos Sindicatos</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Usuários Pendentes</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="export-buttons1"></div>
+              <form method="post">
+                <table id="exemple1" class="table table-hover">
+                  <thead>
+                  <tr class="">
+                    <th>Id</th>
+                    <th>Nome Usuário</th>
+                    <th>Sindicato</th>
+                    <th>Cidade (Sindicato)</th>
+                    <th>Data Solicitação</th>
+                    <th>Status</th>
+                    <th {DISABLE}>Autorizar a Retirar o Usuário</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- BEGIN AUT -->
+                  <tr>
+                    <input type="hidden" id="usua" name="usua" value="{NNUMEUSUA}"/>
+                    <input type="hidden" id="sind" name="sind" value="{NNUMESIND}"/>
+                    <input type="hidden" id="usua" name="usua" value="{NNUMEUSUA}"/>
+                    <input type="hidden" id="usua" name="usua" value="{NNUMEUSUA}"/>
+                    <td>{ID}</td>
+                    <td>{NOMEUSUA}</td>
+                    <td>{NOMESIND}</td>
+                    <td>{CIDASIND}</td>
+                    <td>{DATA}</td>
+                    <td>{STATUS}</td>
+                    <td {DISABLE}>
+                      <button type="submit" class="btn btn-danger btn-sm" name="auto" {DISA1} value="{ID}">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <!-- END AUT -->
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script type="text/javascript">
+
+  $(function () {
+    let table = $('#exemple1').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    document.getElementById('export-buttons1').appendChild(table.buttons().container()[0]);
+  });
+
+</script>

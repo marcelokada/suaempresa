@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="comum/css/util.css">
+    <link rel="stylesheet" type="text/css" href="comum/css/main.css">
+    <link rel="stylesheet" type="text/css" href="comum/css/bootstrap_log.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/1.5.2.js"></script>
+
+</head>
+
+<script type="text/javascript">
+
+    function pagar(id) {
+        var idusua = $('#idusua').val();
+        var idplano = id;
+        var idloja = 'a';
+
+        $.post('verificaStatusPlano.php', {idusua:idusua}, function (data) {
+
+            var situpag = data.situpag;
+            var situplan = data.situplan;
+
+            if((situpag == 1) && (situplan == null)){
+
+                alert('Existe um pedido em andamento! Faça o login e aguarde enquanto iremos analisar seu pagamento.');
+                window.location.href = "index.php";
+            }else if((situpag == 3) && (situplan != null)){
+                alert('Você ja está assinando um plano!');
+            }else {
+
+                $.post('pesqplano.php', {idplano: idplano}, function (data) {
+                    var nome = data.nome;
+                    var valor = data.valo;
+                    var valorF = data.valor_format;
+                    var tempo = data.tempo;
+                    var mensa = data.mensa;
+                    var adesao = data.adesao;
+
+                    $.post('pagaplano.php', {
+                        idusu: idusua,
+                        idplano: idplano,
+                        tempo: tempo,
+                        valor: valor,
+                        mensa: mensa,
+                        adesao: adesao
+                    }, function (data) {
+                        var idPedido = data.xxx;
+                        //var mes 		= data.mes;
+                        var tipo = '1';
+                        var email = data.email;
+                        var token = data.token;
+
+                        $.post('api_pagseguro.php', {
+                            email: email,
+                            token: token,
+                            idloja: idloja,
+                            tipo: tipo,
+                            idPedido: idPedido,
+                            valor: valor,
+                            nome: nome
+
+                        }, function (data) {
+                            $('#code').val(data);
+                            $('#comprar').submit();
+                        });
+                    }, "json");
+                    setTimeout(function () {
+                        $('#msg').html('<p class="alert alert-success">Compra realizada com sucesso, faça o login novamente e acompanhe sua solicitação, <a href="index.php">Clique Aqui</a></p>');
+                    }, 10000);
+
+                }, "json");
+            }
+        }, "json");
+    }
+
+
+</script>
+
+<body>
+<div class="limiter">
+    <div class="container-login1000">
+        <div class="wrap-login1000 p-l-50 p-r-50 p-t-57 p-b-30">
+            <form class="login100-form validate-form" method="post">
+					<span class="login100-form-title p-b-55">
+						<img src="comum/img/sualogo.jpeg" width="250px">
+					</span>
+
+                <input type="hidden" name="idusua" id="idusua" value="{IDUSUA}">
+                <div class="container">
+                    <div id="msg"></div>
+                    <!-- BEGIN SUCESSO -->
+                    <div class="alert alert-danger" role="alert">
+                        <p align="justify">{MSG} </p>
+                        {MSG1}
+                    </div>
+                    <!-- END SUCESSO -->
+
+
+                    <!-- BEGIN ERRO -->
+                    <div class="alert alert-danger" role="alert">
+                        <p align="justify">{MSG} </p>
+                        {MSG1}
+                    </div>
+                    <!-- END ERRO -->
+                </div>
+
+                <span class="login100-form-title p-b-55">
+                <h3>Planos da Sua Empresa</h3>
+	            </span>
+                <!-- BEGIN PLANO -->
+                <div class="card" style="width: 18rem; height: 300px;">
+                    <img src="comum/img/sualogo.jpeg" class="card-img-top" alt="..." style="width: 150px;">
+                    <div class="card-body">
+                        <input type="hidden" name="idplan" id="idplan" value="{IDPLANO}">
+                        <input type="hidden" name="tempo" id="tempo" value="{TEMPO}">
+                        <input type="hidden" name="valor" id="valor" value="{VALOR}">
+
+                        <h4 class="card-title">{NOMEPLANO}</h4>
+                        <p class="card-text">{DESC}</p>
+                        <p class="card-text">R$ {PRECO} + R$ {VALMES} (mês)</p>
+                        <button type="button" class="btn btn-success" onclick="pagar('{IDPLANO}');">PAGAR</button>
+                    </div>
+                </div>
+                <!-- END PLANO -->
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<form id="comprar" action="https://sandbox.pagseguro.uol.com.br/checkout/v2/payment.html" method="post"
+      onsubmit="PagSeguroLightbox(this); return false;">
+
+    <!-- <form id="comprar" action="https://pagseguro.uol.com.br/checkout/v2/payment.html" method="post" onsubmit="PagSeguroLightbox(this); return false;">
+     -->
+    <input type="hidden" name="code" id="code" value=""/>
+
+</form>
+
+<!-- <script type="text/javascript" src="https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>  -->
+
+<script type="text/javascript"
+        src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+
+<script src="comum/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="comum/js/main.js"></script>
+
+
+</body>
+</html>

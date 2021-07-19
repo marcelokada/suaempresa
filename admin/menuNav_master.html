@@ -1,0 +1,405 @@
+<!-- partial:partials/_navbar.html -->
+<nav class="navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+  <div class="bg-white text-center navbar-brand-wrapper">
+    <a class="navbar-brand brand-logo" href="index.php?idSessao={ID_SESSAO}"><img src="comum/img/sualogo.jpeg"/></a>
+    <a class="navbar-brand brand-logo-mini" href="index.php?idSessao={ID_SESSAO}"><img src="images/logo_star_mini.jpg" alt=""></a>
+  </div>
+  <div class="navbar-menu-wrapper d-flex align-items-center">
+    <button class="navbar-toggler navbar-toggler d-none d-lg-block navbar-dark align-self-center mr-3" type="button" data-toggle="minimize">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav ml-lg-auto d-flex align-items-center flex-row">
+      <li class="nav-item">
+        <a class="nav-link profile-pic" href="#"><i class="fa fa-comment" aria-hidden="true"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa fa-th"></i></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="comum/logout.php" title="Sair"><i class="fa fa-power-off"></i></a>
+      </li>
+    </ul>
+    <button class="navbar-toggler navbar-dark navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+<!-- partial -->
+<div class="container-fluid">
+  <div class="row row-offcanvas row-offcanvas-right">
+    <!-- partial:partials/_sidebar.html -->
+
+    <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.php?idSessao={ID_SESSAO}">
+            <img src="images/icons/1.png" alt="">
+            <span class="menu-title">Início</span>
+          </a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#autotizacao" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/020-locked.png" alt="">
+            <span class="menu-title">Autorizações <i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="autotizacao">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="aut_planos.php?idSessao={ID_SESSAO}">
+                  Planos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="aut_saques.php?idSessao={ID_SESSAO}">
+                  Saques CashBack
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="aut_saques_uni.php?idSessao={ID_SESSAO}&idrede={ID_REDE}">
+                  Saques Bônus Unilevel
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="aut_pacotes.php?idSessao={ID_SESSAO}&idrede={ID_REDE}">
+                  Pacotes Rede
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="aut_usua_sind.php?idSessao={ID_SESSAO}&idrede={ID_REDE}">
+                  Usuários Sindicatos
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#cadastro" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/Add.png" alt="">
+            <span class="menu-title">Cadastros<i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="cadastro">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="cadastrarede.php?idSessao={ID_SESSAO}">
+                  Rede Credenciada
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="cadastrasindicato.php?idSessao={ID_SESSAO}">
+                  Sindicato
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="cadastrasubcategoria.php?idSessao={ID_SESSAO}">
+                  Sub-Categorias
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#planos" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/Notes.png" alt="">
+            <span class="menu-title">Planos <i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="planos">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="planos.php?idSessao={ID_SESSAO}">
+                  Cadastro e Alterações
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#pacotes" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/016-diamond-1.png" alt="">
+            <span class="menu-title">Pacotes<i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="pacotes">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="cadastrapacote.php?idSessao={ID_SESSAO}">
+                  Cadastros e Alterações</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#redes" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/rede.png" alt="">
+            <span class="menu-title">Rede e Sindicatos<i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="redes">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="redecredenciada.php?idSessao={ID_SESSAO}">
+                  Credenciados
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="sindicatos.php?idSessao={ID_SESSAO}">
+                  Sindicatos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pontuacaorede.php?idSessao={ID_SESSAO}">
+                  Pontuação Rede
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#asssinantes" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/List.png" alt="">
+            <span class="menu-title">Assinatura<i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="asssinantes">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="assinantes.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Assinantes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="naoassinantes.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Não Assinantes
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#cashback" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/016-diamond-1.png" alt="">
+            <span class="menu-title">CashBack<i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="cashback">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="cashbackusuarios.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> CashBack Usuários
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="classrede.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> CashBack da Rede
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#rel" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/006-form.png" alt="">
+            <span class="menu-title">Relatórios<i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="rel">
+            <ul class="nav flex-column sub-menu">
+
+              <li class="nav-item">
+                <a class="nav-link" href="rel_contas.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Relatório de<br> Contas
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="relatorios.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Relatórios Planos<br> por Usuário
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="rel_agregados.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Relatórios de<br>Agregados<br>por Usuário
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="rel_dependentes.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Relatórios de<br>Dependentes<br>por Usuário
+                </a>
+              </li>
+
+              <!--              <li class="nav-item">
+                              <a class="nav-link" href="rel_usua_niveis.php?idSessao={ID_SESSAO}">
+                                <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Relatórios <br>de Afiliados
+                              </a>
+                            </li>-->
+
+              <li class="nav-item">
+                <a class="nav-link" href="rel_usua_bonus.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Relatórios <br>de Bonificação
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="rel_usua_membros.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Relatórios <br>de Dependentes
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="rel_usua_dependentes.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Relatórios <br>de Usuários
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="rel_sind.php?idSessao={ID_SESSAO}">
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Relatórios <br>dos Sindicatos
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#usuarios" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/Boss.png" alt="">
+            <span class="menu-title">Usuários <i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="usuarios">
+            <ul class="nav flex-column sub-menu">
+
+              <li class="nav-item">
+                <a class="nav-link" href="cadastrausuario.php?idSessao={ID_SESSAO}">
+                  Cadastro de Usuários
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="listausuario.php?idSessao={ID_SESSAO}">
+                  Lista Usuários Admins
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#backoffice" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/Boss.png" alt="">
+            <span class="menu-title">BackOffice <i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="backoffice">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="backoffice_usua.php?idSessao={ID_SESSAO}">
+                  Usuários
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#config" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/10.png" alt="">
+            <span class="menu-title">Configurações <i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="config">
+            <ul class="nav flex-column sub-menu">
+
+              <li {DISABLE} class="nav-item">
+                <a class="nav-link" href="config_basicas.php?idSessao={ID_SESSAO}">
+                  Configurações Básicas
+                </a>
+              </li>
+
+              <li {DISABLE} class="nav-item">
+                <a class="nav-link" href="config_dados_bancarios.php?idSessao={ID_SESSAO}">
+                  Configurações Dados<br> Bancários
+                </a>
+              </li>
+
+              <li {DISABLE} class="nav-item">
+                <a class="nav-link" href="imagensbanner.php?idSessao={ID_SESSAO}">
+                  Imagens banner
+                </a>
+              </li>
+              <li {DISABLE} class="nav-item">
+                <a class="nav-link" href="porcentagemniveis.php?idSessao={ID_SESSAO}">
+                  Configuração<br>
+                  dos Níveis de <br>Indicação
+                </a>
+              </li>
+              <li {DISABLE} class="nav-item">
+                <a class="nav-link" href="porcentagemniveis_ativo.php?idSessao={ID_SESSAO}">
+                  Configuração<br>
+                  dos Níveis de <br> Ativos
+                </a>
+              </li>
+
+              <li {DISABLE1} {DISABLE} class="nav-item">
+                <a class="nav-link" href="pagseguro.php?idSessao={ID_SESSAO}">
+                  PagSeguro <br> (Admin)
+                </a>
+              </li>
+              <li {DISABLE1} {DISABLE} class="nav-item">
+                <a class="nav-link" href="dotbank_token.php?idSessao={ID_SESSAO}">
+                  DotBank <br> (Admin)
+                </a>
+              </li>
+
+              <li {DISABLE1} {DISABLE} class="nav-item">
+                <a class="nav-link" href="juros_boleto.php?idSessao={ID_SESSAO}">
+                  Alterar o Juros (Boleto)
+                </a>
+              </li>
+
+              <li {DISABLE1} {DISABLE} class="nav-item">
+                <a class="nav-link" href="contrato.php?idSessao={ID_SESSAO}">
+                  Contrato
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="altera_senha.php?idSessao={ID_SESSAO}">
+                  Alterar de Senha
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="email_welcome.php?idSessao={ID_SESSAO}">
+                  Email de Boas-Vindas
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="false" aria-controls="sample-pages">
+            <img src="images/icons/10.png" alt="">
+            <span class="menu-title">Configurações <br>do Sistema<br> (Admin)<i class="fa fa-sort-down"></i></span>
+          </a>
+          <div class="collapse" id="admin">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="block_menus.php?idSessao={ID_SESSAO}">
+                  Bloqueio de Menus
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+<script text="javascript">
+
+  function edit(id) {
+    var idp = id;
+    //console.log(id);
+    $.post('viewPorcAtivos.php', {idp: idp}, function (data) {
+      //console.log(data);
+      $('#idp').val(data.id);
+      $('#nivel').val(data.nivel);
+      $('#porc').val(data.porc);
+      $('#editarporc').modal('show');
+    }, 'json');
+
+  }
+
+  function remover(id) {
+    var id = id;
+
+    alert("não dispponivel!");
+
+    // $.post('delplano.php', { id: id }, function (data) {
+    //     window.location.href = window.location.href
+    // });
+  }
+</script>
+
+
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Porcentagem de Níveis de Ativos</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Porcentagem de Níveis de Ativos</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Níveis de Ativos</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-hover table-responsive-md">
+                <thead>
+                <tr class="">
+
+                  <th>Nível</th>
+                  <th>%</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- BEGIN PLANOS -->
+                <tr>
+                  <input type="hidden" id="id" name="id" value="{SEQ}">
+
+                  <td>{NIVEL}</td>
+                  <td>{PORCENTAGEM}</td>
+                  <td><a href="javascript:void(0);" onclick="edit('{SEQ}');">
+                    <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                  </a>
+                    <a href="javascript:void(0);" onclick="remover('{SEQ}');">
+                      <button type="button" class="btn btn-danger btn-sm">Apagar</button>
+                    </a></td>
+                </tr>
+                <!-- END PLANOS -->
+                </tbody>
+
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editarporc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alterar a Porcentagem</h5>
+
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nível:</label>
+            <input type="hidden" id="idp" name="idp" value=""/>
+            <input type="text" class="form-control p-input" readonly id="nivel" name="nivel" value="" required/>
+          </div>
+
+          <div class="form-group">
+            <label>Porcentagem:</label>
+            <input type="text" class="form-control p-input" id="porc" name="porc" value="" required/>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="btn btn-outline-success mr-2" name="alterar" value="Alterar">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

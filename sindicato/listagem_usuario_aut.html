@@ -1,0 +1,124 @@
+<script type="text/javascript">
+
+  $(function () {
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+  function aplicar(id) {
+
+    var idsind = $('#idsind').val();
+    var idusua = id;
+
+    $.post('addusuario.php', {
+      idsind: idsind,
+      idusua: idusua
+    }, function (data) {
+      alert('Solicitação Enviada com Sucecsso!');
+      window.location.href = window.location.href
+    });
+  }
+
+</script>
+
+<input type="hidden" name="idsessao" id="idsessao" value="{ID_SESSAO}">
+<input type="hidden" name="idrede" value="{ID_REDE}">
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Usuários Ativos e Pendentes</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">Usuários</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /.container-fluid -->
+
+<!-- BEGIN ERRO -->
+<div class="alert alert-danger" role="alert">
+  <p align="justify">{MSG}</p>
+</div>
+<!-- END ERRO -->
+
+<!-- BEGIN SUCESSO -->
+<div class="alert alert-success" role="alert">
+  <p align="justify">{MSG}</p>
+  <script>
+    setTimeout(function () {
+
+    }, 4000);
+  </script>
+</div>
+<!-- END SUCESSO -->
+
+<form method="post">
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"></h3>
+            </div>
+            <!-- /.card-header -->
+
+            <div class="card-body">
+              <h5 class="card-title mb-4">Usuários</h5>
+              <input type="hidden" id="idsind" name="idsind" value="{ID_SIND}">
+              <table id="example2" class="table">
+                <thead>
+                <tr bgcolor="#e6e6fa">
+                  <th>ID</th>
+                  <th>Id Usuário</th>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <!-- BEGIN USUARIOS -->
+                <tr bgcolor="#f7f7f7">
+                  <td>{ID}</td>
+                  <td>{REDE_SEQUSUA}</td>
+                  <td>{REDE_NOMEUSU}</td>
+                  <td>{REDE_EMAILUS}</td>
+                  <td>{STATUS}</td>
+                  <!-- BEGIN BTNEXC -->
+                  <td>
+                    <button type="submit" class="btn btn-danger" name="excluir" value="{ID}">Excluir</button>
+                  </td>
+                  <!-- END BTNEXC -->
+
+                  <!-- BEGIN BTNEXC1 -->
+                  <td></td>
+                  <!-- END BTNEXC1 -->
+                </tr>
+                <!-- END USUARIOS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>

@@ -1,0 +1,78 @@
+<script type="text/javascript">
+
+</script>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>Editar Tipo de Evento</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item">Home</li>
+					<li class="breadcrumb-item active">Editar Tipo de Evento</li>
+				</ol>
+			</div>
+		</div>
+	</div><!-- /.container-fluid -->
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Alterar Tipo de Evento</h3>
+					</div>
+					<form method="post">
+						<!-- /.card-header -->
+						<div class="card-body">
+
+							<!-- BEGIN ERRO -->
+							<div class="alert alert-danger" role="alert">
+								<p align="justify">{MSG}</p>
+							</div>
+							<!-- END ERRO -->
+
+							<!-- BEGIN SUCESSO -->
+							<div class="alert alert-success" role="alert">
+								<p align="justify">{MSG}</p>
+							</div>
+							<!-- END SUCESSO -->
+
+							<div class="form-group">
+								<label>NOME:</label>
+								<input type="text" class="form-control p-input" id="nome" name="nome" value="{NOME}" required/>
+								<input type="hidden" id="idevento" name="idevento" value="{ID}">
+								<input type="hidden" id="idrede" name="idrede" value="{ID_REDE}">
+							</div>
+
+              <div class="form-group">
+                <label>TEMPO:</label>
+                <input type="time" class="form-control p-input" id="tempo" name="tempo" value="{TEMPO}" required/>
+              </div>
+
+							<div class="form-group">
+								<label>STATUS:</label>
+								<input type="text" class="form-control p-input" readonly value="{STATUS}"/>
+								<input type="hidden" id="status" name="status" value="{STAT}">
+							</div>
+
+							<div class="form-group">
+								<input type="submit" class="btn btn-primary" name="alterar" value="Salvar"/>
+							</div>
+						</div>
+					</form>
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</section>

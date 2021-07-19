@@ -1,0 +1,255 @@
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Autorizações dos Pacotes</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Autorizações dos Pacotes</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Solicitações de Pendentes de Pacotes.</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="export-buttons1"></div>
+              <form method="post">
+                <table id="exemple1" class="table table-hover">
+                  <thead>
+                  <tr class="">
+                    <th>Id pedido</th>
+                    <th>Nome</th>
+                    <th>Plano</th>
+                    <th>Status do Pagamento</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <th>Tipo</th>
+                    <th>Status do Plano/Mensalidade</th>
+                    <th>Local Pagamento</th>
+                    <th {DISABLE}>Autorizar</th>
+                    <th {DISABLE}>Cancelar</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- BEGIN AUT -->
+                  <tr>
+                    <input type="hidden" id="pacotes" name="pacotes" value="{ID}"/>
+                    <td>{ID}</td>
+                    <td>{NOME}</td>
+                    <td>{PLANO}</td>
+                    <td>{STATUS_PAG}</td>
+                    <td>{DATA}</td>
+                    <td>{VALORPLANO}</td>
+                    <td>{IDPEDIDO}</td>
+                    <td><font color="{COR}">{STATUSUSUA}</font></td>
+                    <td>{TPPG}</td>
+
+                    <td {DISABLE}>
+                      <!--<button type="submit" class="btn btn-{COR1}" name="alterar" {DISA} value="{ID}" title="Alterar">Alterar</button>-->
+
+                      <!--<button type="submit" class="btn btn-success" name="del" {DISA1} value="{ID}">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      </button>-->
+
+                      <button type="submit" class="btn btn-outline-success btn-sm" name="auto" {DISA1} value="{ID}">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                    <td {DISABLE}>
+                      <!-- BEGIN CANCELAR -->
+                      <button type="submit" class="btn btn-danger btn-sm " name="canc" {DISA2} value="{ID}" title="Cancelar"><font size="1px">Cancelar</font>
+                      </button>
+                      <!-- END CANCELAR -->
+                    </td>
+
+                  </tr>
+                  <!-- END AUT -->
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pacotes Autorizados.</h3>
+            </div>
+            <div class="card-body">
+              <div id="export-buttons2"></div>
+              <form method="post">
+                <table id="exemple2" class="table table-hover">
+                  <thead>
+                  <tr class="">
+                    <th>Id pedido</th>
+                    <th>Nome</th>
+                    <th>Plano</th>
+                    <th>Status do Pagamento</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <th>Tipo</th>
+                    <th>Status do Plano/Mensalidade</th>
+                    <th>Local Pagamento</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- BEGIN AUT1 -->
+                  <tr>
+                    <td>{ID}</td>
+                    <td>{NOME}</td>
+                    <td>{PLANO}</td>
+                    <td>{STATUS_PAG}</td>
+                    <td>{DATA}</td>
+                    <td>{VALORPLANO}</td>
+                    <td>{IDPEDIDO}</td>
+                    <td><font color="{COR}">{STATUSUSUA}</font></td>
+                    <td>{TPPG}</td>
+                  </tr>
+                  <!-- END AUT1 -->
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-lg-12 mb-4">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pacotes Cancelados.</h3>
+            </div>
+            <div class="card-body">
+              <div id="export-buttons3"></div>
+              <form method="post">
+                <table id="exemple3" class="table table-hover">
+                  <thead>
+                  <tr class="">
+                    <th>Id pedido</th>
+                    <th>Nome</th>
+                    <th>Plano</th>
+                    <th>Status do Pagamento</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <th>Tipo</th>
+                    <th>Status do Plano/Mensalidade</th>
+                    <th>Local Pagamento</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- BEGIN AUT2 -->
+                  <tr>
+                    <td>{ID}</td>
+                    <td>{NOME}</td>
+                    <td>{PLANO}</td>
+                    <td>{STATUS_PAG}</td>
+                    <td>{DATA}</td>
+                    <td>{VALORPLANO}</td>
+                    <td>{IDPEDIDO}</td>
+                    <td><font color="{COR}">{STATUSUSUA}</font></td>
+                    <td>{TPPG}</td>
+                  </tr>
+                  <!-- END AUT2 -->
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script type="text/javascript">
+
+  $(function () {
+    let table = $('#exemple1').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table2 = $('#exemple2').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table3 = $('#exemple3').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+
+    document.getElementById('export-buttons1').appendChild(table.buttons().container()[0]);
+    document.getElementById('export-buttons2').appendChild(table2.buttons().container()[0]);
+    document.getElementById('export-buttons3').appendChild(table3.buttons().container()[0]);
+  });
+
+</script>

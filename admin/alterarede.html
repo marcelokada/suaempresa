@@ -1,0 +1,306 @@
+<script type="text/javascript">
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('rua').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
+    document.getElementById('ibge').value = ("");
+  }
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('rua').value = (conteudo.logradouro);
+      document.getElementById('bairro').value = (conteudo.bairro);
+      document.getElementById('cidade').value = (conteudo.localidade);
+      document.getElementById('uf').value = (conteudo.uf);
+      document.getElementById('ibge').value = (conteudo.ibge);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('rua').value = (conteudo.logradouro);
+    document.getElementById('bairro').value = (conteudo.bairro);
+    document.getElementById('cidade').value = (conteudo.localidade);
+    document.getElementById('uf').value = (conteudo.uf);
+    document.getElementById('ibge').value = (conteudo.ibge);
+
+  }
+
+  jQuery(function ($) {
+    $("#cep").mask("99999-999");
+    $("#cnpj").mask("99.999.999/9999-99");
+    $("#cel").mask("(99) 99999-9999");
+    $("#tel1").mask("(99) 9999-9999");
+    $("#uf").mask("aa");
+
+  });
+
+
+  $().ready(function () {
+    $("#categoria").change(function () {
+      var id = $('#categoria').val();
+      $.post('listasubcategoria.php', {id: id}, function (data) {
+        $("#subcategoria").html(data);
+      });
+    });
+  });
+
+  $().ready(function () {
+    var id = $('#cats').val();
+    $.post('listasubcategoria.php', {id: id}, function (data) {
+      $("#subcategoria").html(data);
+    });
+  });
+
+
+  $().ready(function () {
+    var cat = $('#cats').val();
+    document.getElementById("categoria").selectedIndex = cat;
+  });
+
+
+  $(document).ready(function () {
+
+    $("#cnpj").bind('paste', function (e) {
+      e.preventDefault();
+    });
+  });
+
+  $(document).ready(function () {
+
+    $("#cep").val('{CEP}');
+  });
+
+
+
+</script>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Altera Rede Credenciada</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Altera Rede Credenciada</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+
+          <a href="redecredenciada.php?idSessao={ID_SESSAO}" class="btn btn-warning mb-4">Voltar</a>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Informações das rede</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+              <!-- BEGIN ERRO -->
+              <div class="alert alert-danger" role="alert">
+                <p align="justify">{MSG}</p>
+              </div>
+              <!-- END ERRO -->
+
+              <!-- BEGIN SUCESSO -->
+              <div class="alert alert-success" role="alert">
+                <p align="justify">{MSG}</p>
+              </div>
+              <!-- END SUCESSO -->
+
+              <!-- BEGIN REDE -->
+              <div class="form-row">
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+
+                  <div class="form-group">
+                    <label>Id Credenciado:</label>
+                    <input type="text" class="form-control p-input" id="seq" name="seq" value="{SEQ}" readonly>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" class="form-control p-input" id="nome" name="nome" value="{NOME}">
+                  </div>
+
+                  <div class="form-group">
+                    <label>CNPJ</label>
+                    <input type="text" class="form-control p-input" id="cnpj" name="cnpj" value="{CNPJ}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>CEP</label>
+                    <input type="text" class="form-control p-input" id="cep" name="cep" value="" maxlength="9" onblur="verificaCep();" value="{CEP}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>ENDEREÇO</label>
+                    <input type="text" class="form-control p-input" name="rua" id="rua" value="{RUA}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>NÚMERO | <i>Sem nº deixar em branco</i></label>
+                    <input type="text" class="form-control p-input" name="numero" id="numero" value="{NUMERO}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>COMPLEMENTO</label>
+                    <input type="text" size="3px" class="form-control p-input" name="comple" id="comple" value="{COMPLE}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>BAIRRO</label></label>
+                    <input type="text" class="form-control p-input" name="bairro" id="bairro" value="{BAIRRO}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>CIDADE</label></label>
+                    <input type="text" class="form-control p-input" id="cidade" name="cidade" value="{CIDA}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>ESTADO</label></label>
+                    <input type="text" class="form-control p-input" id="uf" name="uf" value="{UF}"/>
+                    <input type="hidden" class="form-control p-input" id="ibge" name="ibge" value="{IBGE}"/>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label>TELEFONE</label></label>
+                    <input type="text" class="form-control p-input" id="tel1" name="tel1" value="{TEL1}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>CELULAR</label></label>
+                    <input type="text" class="form-control p-input" id="cel" name="cel" value="{CEL}"/>
+                  </div>
+
+                  <!--
+                                <div class="form-group">
+                                  <label>CÓDIGO DO CUPOM</label></label>
+                                  <input type="text" class="form-control p-input" id="cupom" name="cupom" value="{CUPOM}"/>
+                                </div>
+                  -->
+
+                  <!--              <div class="form-group">
+                                  <label>LINK {CAT_NUM1}</label></label>
+                                  <input type="text" class="form-control p-input" id="links" name="links" value="{LINKS}"/>
+                                </div>-->
+
+                  <div class="form-group">
+                    <label>EMAIL</label></label>
+                    <input type="text" class="form-control p-input" id="email" name="email" value="{EMAIL}"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>DATA DO CADASTRO:</label></label>
+                    <input type="text" class="form-control p-input" id="data" name="date" value="{DATA}" readonly/>
+                  </div>
+
+                  <div class="form-group">
+                    <label>CATEGORIA</label></label>
+                    <input type="hidden" id="cats" name="cats" value="{CAT_NUM}"/>
+
+                    <select class="form-control" name="categoria" id="categoria" required>
+                      <option value="{CAT_NUM}">{CAT_NOME}</option>
+                      <!-- BEGIN CATE -->
+                      <option value="{CAT_NUM}">{CAT_NOME}</option>
+                      <!-- END CATE -->
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>SUBCATEGORIA</label></label>
+                    <input type="hidden" id="subcats" name="subcats" value="{SCAT_NOME}"/>
+                    <input type="hidden" id="subncats" name="subncats" value="{SCAT_NUM}"/>
+                    <select class="form-control" name="subcategoria" id="subcategoria" required>
+                      <option value="{SUBCAT_NUM}">{SUBCAT_NOME}</option>
+
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>CLASSIFICAÇÃO:</label>
+                    <label>{STAR}:</label>
+                    <h4 class="text-success">
+                      <i class="fa {O1} highlight-icon" aria-hidden="true"></i>
+                      <i class="fa {O2} highlight-icon" aria-hidden="true"></i>
+                      <i class="fa {O3} highlight-icon" aria-hidden="true"></i>
+                      <i class="fa {O4} highlight-icon" aria-hidden="true"></i>
+                      <i class="fa {O5} highlight-icon" aria-hidden="true"></i>
+                    </h4>
+
+                    <p>Alterar Classsificação:</p>
+                    <select class="form-control" name="class">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+
+
+                  <div class="form-group bg-secondary">
+                    <label>Alterar Imagem</label>
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                      <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                        <img src="{IMG}" alt="">
+                      </div>
+                      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                      <span class="btn btn-default btn-file">
+								        <span class="fileupload-new alert alert-warning" role="alert"><i class="fa fa-folder-o"></i> Selecionar Imagem</span>
+								        <span class="fileupload-exists"><i class="fa fa-undo"></i> Mudar</span>
+								        <input type="file" name="imagem" class="default"/>
+								      </span>
+
+                      <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="submit" class="btn btn-primary" name="salvar" value="Alterar"/>
+                  </div>
+
+                </form>
+              </div>
+              <!-- END REDE -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,154 @@
+<script type="text/javascript">
+</script>
+
+
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+	<div class="container">
+		<div class="row align-items-end">
+			<div class="col-6">
+				<ol>
+					<li>Home</li>
+					<li>Agendamentos</li>
+				</ol>
+				<h2>Agendamentos</h2>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<form method="post">
+	<input type="hidden" id="idusua" name="idusua" value="{IDUSUA}">
+	<input type="hidden" id="idrede" name="idrede" value="{IDREDE}">
+	<section id="blog" class="blog">
+		<div class="msg container">
+			<!-- BEGIN ERRO -->
+			<div class="alert alert-danger" role="alert">
+				<p align="justify">{MSG}</p>
+			</div>
+			<!-- END ERRO -->
+
+			<!-- BEGIN SUCESSO -->
+			<section class="about-us-section-rede">
+			</section>
+			<div class="alert alert-success" role="alert">
+				<p align="justify">{MSG}</p>
+			</div>
+			<!-- END SUCESSO -->
+		</div>
+
+		<div class="container" data-aos="fade-up">
+			<h3 class="text-center">Meus Agendamentos</h3>
+			<hr>
+			<div class="row">
+				<div class="col-lg-12 entries">
+					<div class="row">
+						<table class="table table-striped table-hover">
+							<thead>
+							<tr>
+								<th>ID</th>
+								<th>Evento</th>
+								<th>Dia do Evento</th>
+								<!--<th>Dia do Agendamento</th>-->
+								<th>Status</th>
+								<th>Pagar no Local?</th>
+								<th>Tipo Pagamento</th>
+								<th>Dia Pagamento</th>
+								<th>{REDE_CRED}</th>
+								<th>Categoria/Sub.Cat</th>
+								<th>Especialidade</th>
+								<th>Opções</th>
+							</tr>
+							</thead>
+							<tbody>
+							<!-- BEGIN AGENDAS -->
+							<tr>
+								<td>{ID}</td>
+								<td>{TIPO}</td>
+								<td><font color="red">{DEVENTO}</font></td>
+								<!--<td>{DANGEDA}</td>-->
+								<td>{STATUS}</td>
+								<td>{LOCAL}</td>
+								<td>{TPAGMTO}</td>
+								<td>{DPAGMTO}</td>
+								<td>{NOMEREDE}</td>
+								<td>{CATEREDE}/<br>{SUBCATE}</td>
+								<td>{ESPECIALIDADE}</td>
+								<!-- BEGIN DESM1 -->
+								<td>
+									<button class="btn btn-sm btn-danger" type="submit" name="desmarcar" value="{ID}">Desmarcar</button>
+								</td>
+								<!-- END DESM1 -->
+
+								<!-- BEGIN DESM2 -->
+								<td>
+									<button type="button" class="btn btn-sm btn-danger" name="desmarcar" disabled >Desmarcar</button>
+								</td>
+								<!-- END DESM2 -->
+							</tr>
+							<!-- END AGENDAS -->
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- End Blog Section -->
+</form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="delusua" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Deletar Usuário</h5>
+			</div>
+			<div class="modal-header">
+				<input type="hidden" id="idusu" name="idusu">
+				Deseja apagar o membro?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+				<button type="button" class="btn btn-primary" onclick="apagar('{ID}');">Sim</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="editmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Editar Usuário</h5>
+			</div>
+
+			<div class="modal-body">
+				<label>Nome:</label>
+				<input type="hidden" id="idusua1" name="idusua1">
+				<input type="text" class="form-control mb-4" id="nome1" name="nome1">
+				<br>
+				<div class="form-group mb-4">
+					<label>Grau de Parentesco:</label>
+					<div id="para"></div>
+
+				</div>
+				<div class="form-group mb-4">
+					<label>Grupo:</label>
+					<div id="grau"></div>
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+				<a href="javascript:void(0);" class="btn btn-primary" onclick="alterar();">Alterar</a>
+			</div>
+
+		</div>
+	</div>
+</div>

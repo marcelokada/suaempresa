@@ -1,0 +1,557 @@
+[26-Jan-2020 16:04:28 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:04:28 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:04:28 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:04:28 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:04:28.643+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:04:28 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:04:54 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:04:54 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:04:54 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:04:54 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:04:54.833+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:04:54 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:03 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:03 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:03 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:03 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:05:03.662+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:03 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:15 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:15 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:15 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:15 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:05:15.406+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:15 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:30 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR) in /home2/hginf979/public_html/comum/checkPag.php on line 17
+[26-Jan-2020 16:05:39 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:39 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:40 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:40 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:05:40.120+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:40 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 13
+[26-Jan-2020 16:05:40 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:17
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 17
+[26-Jan-2020 16:05:51 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:51 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:51 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'comum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:51 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 3
+[26-Jan-2020 16:05:51 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 3
+[26-Jan-2020 16:05:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:05:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:05:51.915+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:05:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:05:51 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 18
+[26-Jan-2020 16:05:53 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:53 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:53 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'comum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:05:53 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 3
+[26-Jan-2020 16:05:53 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 3
+[26-Jan-2020 16:05:53 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:05:53 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:05:53.684+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:05:53 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:05:53 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 18
+[26-Jan-2020 16:06:18 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:06:18 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:06:18 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'comum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:06:18 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 3
+[26-Jan-2020 16:06:18 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 3
+[26-Jan-2020 16:06:19 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:06:19 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:06:18.957+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:06:19 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:06:19 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 18
+[26-Jan-2020 16:06:50 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:06:50 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:06:50 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'comum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:06:50 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 3
+[26-Jan-2020 16:06:50 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 3
+[26-Jan-2020 16:06:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:06:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:06:50.973+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:06:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 14
+[26-Jan-2020 16:06:51 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:18
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 18
+[26-Jan-2020 16:07:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:07:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:07:05.065+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:07:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:07:05 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:07:13 America/Sao_Paulo] PHP Warning:  include(../configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:07:13 America/Sao_Paulo] PHP Warning:  include(../configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:07:13 America/Sao_Paulo] PHP Warning:  include(): Failed opening '../configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:07:13 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[26-Jan-2020 16:07:13 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[26-Jan-2020 16:07:13 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:07:13 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:07:13.456+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:07:13 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:07:13 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:07:21 America/Sao_Paulo] PHP Warning:  include(../../configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:07:21 America/Sao_Paulo] PHP Warning:  include(../../configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:07:21 America/Sao_Paulo] PHP Warning:  include(): Failed opening '../../configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[26-Jan-2020 16:07:21 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[26-Jan-2020 16:07:21 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[26-Jan-2020 16:07:21 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:07:21 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:07:21.675+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:07:21 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:07:21 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:12:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:12:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:12:39.271+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:12:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:12:39 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:13:38 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:13:38 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:13:38.787+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:13:38 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:13:38 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:13:48 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:13:48 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:13:48.309+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:13:48 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:13:48 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:15:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:15:04.962+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:05 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:15:57.322+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:15:57.322+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:15:57.819+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:57 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:15:58 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:58 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:15:58.466+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:58 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:15:58 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:39:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:39:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:39:51.263+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:39:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:39:51 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 16:40:23 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:40:23 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T19:40:23.623+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:40:23 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 16:40:23 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[26-Jan-2020 17:27:37 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 17:27:37 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-26T20:27:37.152+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 17:27:37 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[26-Jan-2020 17:27:37 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[27-Jan-2020 17:45:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[27-Jan-2020 17:45:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-27T20:45:39.887+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[27-Jan-2020 17:45:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[27-Jan-2020 17:45:39 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function show() on null in /home2/hginf979/public_html/comum/checkPag.php:19
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 19
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:16:17.430+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/checkPag.php:20
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 20
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:16:17.482+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:16:17 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/checkPag.php:20
+Stack trace:
+#0 {main}
+  thrown in /home2/hginf979/public_html/comum/checkPag.php on line 20
+[29-Jan-2020 18:22:55 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:22:55 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:22:55 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:22:55.492+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:22:55 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:23:14 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:23:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:23:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:23:14.533+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:23:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:23:23 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:23:24 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:23:24 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:23:24.227+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:23:24 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:24:05 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:24:06 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:24:06 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:24:06.146+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:24:06 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:24:07 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:24:07 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:24:07 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:24:07.731+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:24:07 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:25:00 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:25:01 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:25:01 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:25:00.960+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:25:01 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:38:51 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:38:52 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:38:52 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:38:52.147+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:38:52 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:39:09 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:39:09 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:39:09 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:39:09.384+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:39:09 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:42:47 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:42:47 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:42:47 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:42:47.666+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:42:47 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:43:23 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:43:23 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:43:23 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:43:23.714+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:43:23 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:44:14 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:44:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:44:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:44:14.531+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:44:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:44:44 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:44:44 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:44:44 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:44:44.605+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:44:44 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:45:08 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:45:08 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:45:08 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:45:08.831+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:45:08 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:45:49 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:45:50 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:45:50 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:45:50.072+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:45:50 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:46:01 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:46:02 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:46:02 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:46:01.980+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:46:02 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:46:06 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:46:06 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:46:06 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:46:06.586+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:46:06 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:58:40 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:58:40 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:58:40 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:58:40.518+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:58:40 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:58:49 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 18:58:50 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:58:50 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T21:58:50.232+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 18:58:50 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:00:04 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:00:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:00:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:00:05.202+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:00:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:00:26 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:00:27 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:00:27 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:00:27.055+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:00:27 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:02:48 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:02:49 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:02:49 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:02:49.011+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:02:49 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:14 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:03:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:03:14.403+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:37 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:03:38 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:38 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:03:38.076+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:38 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:47 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:03:47 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:47 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:03:47.296+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:47 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:51 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:03:52 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:52 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:03:51.976+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:03:52 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:06:05 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:06:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:06:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:06:05.570+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:06:05 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:06:14 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:06:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:06:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:06:14.456+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:06:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:06:19 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:06:19 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:06:19 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:06:19.413+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:06:19 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:07:07 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 19:07:08 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:07:08 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T22:07:08.015+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 19:07:08 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:00 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:20:01 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:01 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:20:01.154+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:01 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:10 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:20:10 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:10 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:20:10.601+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:10 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:35 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:20:36 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:36 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:20:35.950+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:36 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:54 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:20:54 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:54 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:20:54.289+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:20:54 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:24:30 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:24:31 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:24:31 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:24:31.036+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:24:31 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:24:48 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:24:48 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:24:48 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:24:48.405+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:24:48 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:25:37 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:25:37 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:25:37 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:25:37.463+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:25:37 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:27:23 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:27:24 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:27:24 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:27:24.034+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:27:24 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:27:30 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:27:30 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:27:30 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:27:30.399+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:27:30 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:29:17 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:29:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:29:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:29:17.639+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:29:17 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:46:27 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:46:27 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:46:27 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:46:27.785+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:46:27 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:03 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:49:04 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:04 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:49:04.216+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:04 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:26 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:49:27 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:27 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:49:27.076+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:27 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:37 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:49:38 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:38 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:49:38.188+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:38 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:39 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:49:40 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:40 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:49:40.123+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:40 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:51 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:49:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:49:51.491+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:49:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:50:03 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:50:03 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:50:03 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:50:03.447+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:50:03 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:50:52 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:50:52 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:50:52 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:50:52.870+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:50:52 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:51:45 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:51:46 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:51:46 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:51:46.204+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:51:46 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:51:50 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:51:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:51:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:51:51.021+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:51:51 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:52:11 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:52:11 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:52:11 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:52:11.695+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:52:11 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:52:14 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:52:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:52:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:52:14.801+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:52:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:52:48 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 20:52:49 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:52:49 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-29T23:52:49.066+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 20:52:49 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:12:24 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 21:12:25 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:12:25 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-30T00:12:25.218+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:12:25 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:12:50 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 21:12:50 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:12:50 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-30T00:12:50.394+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:12:50 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:12:53 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 21:12:53 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:12:53 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-30T00:12:53.485+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:12:53 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:14:21 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 11
+[29-Jan-2020 21:14:22 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:14:22 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-30T00:14:22.081+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:14:22 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 21:58:56 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 2
+[29-Jan-2020 21:58:56 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/configuracao.php:15
+Stack trace:
+#0 /home2/hginf979/public_html/comum/checkPag.php(2): include()
+#1 {main}
+  thrown in /home2/hginf979/public_html/comum/configuracao.php on line 15
+[29-Jan-2020 21:59:00 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 2
+[29-Jan-2020 21:59:00 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/configuracao.php:15
+Stack trace:
+#0 /home2/hginf979/public_html/comum/checkPag.php(2): include()
+#1 {main}
+  thrown in /home2/hginf979/public_html/comum/configuracao.php on line 15
+[29-Jan-2020 21:59:02 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 2
+[29-Jan-2020 21:59:02 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/configuracao.php:15
+Stack trace:
+#0 /home2/hginf979/public_html/comum/checkPag.php(2): include()
+#1 {main}
+  thrown in /home2/hginf979/public_html/comum/configuracao.php on line 15
+[29-Jan-2020 21:59:25 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 2
+[29-Jan-2020 21:59:25 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/configuracao.php:15
+Stack trace:
+#0 /home2/hginf979/public_html/comum/checkPag.php(2): include()
+#1 {main}
+  thrown in /home2/hginf979/public_html/comum/configuracao.php on line 15
+[29-Jan-2020 21:59:26 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 2
+[29-Jan-2020 21:59:26 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/configuracao.php:15
+Stack trace:
+#0 /home2/hginf979/public_html/comum/checkPag.php(2): include()
+#1 {main}
+  thrown in /home2/hginf979/public_html/comum/configuracao.php on line 15
+[29-Jan-2020 21:59:27 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 2
+[29-Jan-2020 21:59:27 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/configuracao.php:15
+Stack trace:
+#0 /home2/hginf979/public_html/comum/checkPag.php(2): include()
+#1 {main}
+  thrown in /home2/hginf979/public_html/comum/configuracao.php on line 15
+[29-Jan-2020 21:59:30 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 2
+[29-Jan-2020 21:59:30 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/configuracao.php:15
+Stack trace:
+#0 /home2/hginf979/public_html/comum/checkPag.php(2): include()
+#1 {main}
+  thrown in /home2/hginf979/public_html/comum/configuracao.php on line 15
+[29-Jan-2020 22:21:05 America/Sao_Paulo] PHP Warning:  Creating default object from empty value in /home2/hginf979/public_html/comum/configuracao.php on line 2
+[29-Jan-2020 22:21:05 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to undefined method stdClass::show() in /home2/hginf979/public_html/comum/configuracao.php:15
+Stack trace:
+#0 /home2/hginf979/public_html/comum/checkPag.php(2): include()
+#1 {main}
+  thrown in /home2/hginf979/public_html/comum/configuracao.php on line 15
+[29-Jan-2020 22:22:00 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home2/hginf979/public_html/comum/configuracao.php on line 2
+[29-Jan-2020 22:22:13 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:22:13 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:22:13 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'comum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:22:13 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[29-Jan-2020 22:22:13 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_SANDBOX - assumed 'TOKEN_SANDBOX' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[29-Jan-2020 22:22:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:22:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-30T01:22:13.957+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:22:14 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:22:45 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:22:45 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:22:45 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'comum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:22:45 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[29-Jan-2020 22:22:45 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_SANDBOX - assumed 'TOKEN_SANDBOX' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[29-Jan-2020 22:22:45 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:22:45 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-30T01:22:45.462+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:22:45 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:23:39 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:23:39 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:23:39 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'comum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:23:39 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[29-Jan-2020 22:23:39 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_SANDBOX - assumed 'TOKEN_SANDBOX' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[29-Jan-2020 22:23:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:23:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-30T01:23:39.717+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:23:39 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:25:00 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:25:00 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:25:00 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'comum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[29-Jan-2020 22:25:00 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[29-Jan-2020 22:25:00 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_SANDBOX - assumed 'TOKEN_SANDBOX' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[29-Jan-2020 22:25:00 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:25:00 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-30T01:25:00.777+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[29-Jan-2020 22:25:00 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[30-Jan-2020 17:40:40 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[30-Jan-2020 17:40:40 America/Sao_Paulo] PHP Warning:  include(comum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[30-Jan-2020 17:40:40 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'comum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/checkPag.php on line 2
+[30-Jan-2020 17:40:40 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[30-Jan-2020 17:40:40 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_SANDBOX - assumed 'TOKEN_SANDBOX' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/checkPag.php on line 4
+[30-Jan-2020 17:40:41 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): Entity: line 1: parser error : Start tag expected, '&lt;' not found in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[30-Jan-2020 17:40:41 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): {&quot;timestamp&quot;:&quot;2020-01-30T20:40:41.123+0000&quot;,&quot;status&quot;:415,&quot;error&quot;:&quot;Unsupported Me in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[30-Jan-2020 17:40:41 America/Sao_Paulo] PHP Warning:  simplexml_load_string(): ^ in /home2/hginf979/public_html/comum/checkPag.php on line 15
+[30-Jan-2020 17:54:21 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home2/hginf979/public_html/comum/pagseguro.php on line 9
+[30-Jan-2020 17:54:42 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home2/hginf979/public_html/comum/pagseguro.php on line 9
+[30-Jan-2020 17:55:39 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$data' (T_VARIABLE) in /home2/hginf979/public_html/comum/api_pagseguro.php on line 9
+[30-Jan-2020 19:12:27 America/Sao_Paulo] PHP Warning:  include(commum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/pagamento.php on line 4
+[30-Jan-2020 19:12:27 America/Sao_Paulo] PHP Warning:  include(commum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/pagamento.php on line 4
+[30-Jan-2020 19:12:27 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'commum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/pagamento.php on line 4
+[30-Jan-2020 19:12:27 America/Sao_Paulo] PHP Warning:  Use of undefined constant URL_PAGSEGURO - assumed 'URL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/pagamento.php on line 7
+[30-Jan-2020 19:12:27 America/Sao_Paulo] PHP Warning:  Use of undefined constant EMAIL_PAGSEGURO - assumed 'EMAIL_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/pagamento.php on line 7
+[30-Jan-2020 19:12:27 America/Sao_Paulo] PHP Warning:  Use of undefined constant TOKEN_PAGSEGURO - assumed 'TOKEN_PAGSEGURO' (this will throw an Error in a future version of PHP) in /home2/hginf979/public_html/comum/pagamento.php on line 7
+[30-Jan-2020 19:13:39 America/Sao_Paulo] PHP Warning:  include(commum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/pagamento.php on line 4
+[30-Jan-2020 19:13:39 America/Sao_Paulo] PHP Warning:  include(commum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/pagamento.php on line 4
+[30-Jan-2020 19:13:39 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'commum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/pagamento.php on line 4
+[30-Jan-2020 19:15:25 America/Sao_Paulo] PHP Warning:  include(commum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/pagamento.php on line 4
+[30-Jan-2020 19:15:25 America/Sao_Paulo] PHP Warning:  include(commum/configuracao.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/pagamento.php on line 4
+[30-Jan-2020 19:15:25 America/Sao_Paulo] PHP Warning:  include(): Failed opening 'commum/configuracao.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/pagamento.php on line 4
+[04-Feb-2020 20:15:46 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$bd' (T_VARIABLE) in /home2/hginf979/public_html/comum/logout.php on line 13
+[04-Feb-2020 20:16:01 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'header' (T_STRING) in /home2/hginf979/public_html/comum/logout.php on line 11
+[04-Feb-2020 20:16:17 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'header' (T_STRING) in /home2/hginf979/public_html/comum/logout.php on line 9
+[04-Feb-2020 20:18:15 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected 'header' (T_STRING) in /home2/hginf979/public_html/comum/logout.php on line 9
+[04-Feb-2020 20:18:52 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$bd' (T_VARIABLE) in /home2/hginf979/public_html/comum/logout.php on line 12
+[04-Feb-2020 20:19:03 America/Sao_Paulo] PHP Parse error:  syntax error, unexpected '$bd' (T_VARIABLE) in /home2/hginf979/public_html/comum/logout.php on line 12
+[04-Feb-2020 20:19:14 America/Sao_Paulo] PHP Warning:  require_once(comum/autoload.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:14 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'comum/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:18 America/Sao_Paulo] PHP Warning:  require_once(comum/autoload.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:18 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'comum/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:30 America/Sao_Paulo] PHP Warning:  require_once(comum/autoload.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:30 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'comum/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:36 America/Sao_Paulo] PHP Warning:  require_once(comum/autoload.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:36 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'comum/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:46 America/Sao_Paulo] PHP Warning:  require_once(comum/autoload.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:46 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'comum/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:48 America/Sao_Paulo] PHP Warning:  require_once(comum/autoload.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:48 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'comum/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:51 America/Sao_Paulo] PHP Warning:  require_once(comum/autoload.php): failed to open stream: No such file or directory in /home2/hginf979/public_html/comum/logout.php on line 2
+[04-Feb-2020 20:19:51 America/Sao_Paulo] PHP Fatal error:  require_once(): Failed opening required 'comum/autoload.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/hginf979/public_html/comum/logout.php on line 2

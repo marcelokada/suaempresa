@@ -1,0 +1,225 @@
+<script type="text/javascript">
+
+  function inserirpontos(id) {
+
+    $.post('viewCred.php', {id: id}, function (data) {
+      $("#idcredh").val(data.idcred);
+      $("#valor").val(data.valor);
+      $("#nomerede").text(data.nomecred);
+      $("#staticBackdrop").modal('show');
+      // window.location.href = window.location.href
+    }, 'json');
+
+  }
+
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+</script>
+
+<style>
+  .estrelas input[type=radio] {
+    display: none;
+
+  }
+
+  .estrelas label i.fa:before {
+    content: '\f005';
+    color: #FC0;
+  }
+
+  .estrelas input[type=radio]:checked ~ label i.fa:before {
+    color: #CCC;
+  }
+</style>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Pontuação Rede</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Pontuação Rede</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+
+      <!-- BEGIN ERRO -->
+      <div class="alert alert-danger" role="alert">
+        <p align="justify">{MSG}</p>
+      </div>
+      <!-- END ERRO -->
+
+      <!-- BEGIN SUCESSO -->
+      <div class="alert alert-success" role="alert">
+        <p align="justify">{MSG}</p>
+      </div>
+      <!-- END SUCESSO -->
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Últimos Inseridos</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-hover table-responsive-md">
+                <thead>
+                <tr class="">
+                  <th>#</th>
+                  <th>Nome Rede</th>
+                  <th>Data da Inserção</th>
+                  <th>Valor</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <!-- BEGIN VAL -->
+                <tr>
+                  <td>{ID}</td>
+                  <td>{NOMEREDE}</td>
+                  <td>{DATATRANS}</td>
+                  <td>{VALORTRANS}</td>
+                </tr>
+                <!-- END VAL -->
+
+                </tbody>
+              </table>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- BEGIN REDE1 -->
+      <div class="row">
+        <!-- BEGIN CADAREDE -->
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-1 mb-4 ">
+          <div class="card ">
+            <div class="card-body {COR}">
+
+              <img src="{IMAGEM}" class="img-thumbnail mb-2">
+
+              <p class="card-text">
+              <h5 class="card-title">{NOMECRE}</h5>
+              </p>
+
+              <p class="card-text">
+              <h5 class="mb-2">{CATEGORIA}&nbsp;</h5>
+              </p>
+
+              <p class="card-text">
+              <h6 class="mb-2">{SUBCATEGORIA}&nbsp;</h6>
+              </p>
+
+              <input type="hidden" id="ativo{SEQ}" name="ativo" value="{SEQ}">
+
+              <div class="row" {DISABLE}>
+                <div class="col-md-5" {DISABLE}>
+
+                  <input class="form-check btn alert-success" role="alert" type="button"
+                         onclick="inserirpontos('{SEQ}')" value="Inserir Pontuação"
+                  >
+                </div>
+                <div class="col-md-5" {DISABLE}>
+                  <input class="form-check btn alert-warning" role="alert" type="button"
+                         onclick="inserirpontos('{SEQ}')" value="Histórico de Pontuação"
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <span><b>Pontuação atual:</b></span> R$ {PONTOS}
+            </div>
+          </div>
+        </div>
+        <!-- END CADAREDE -->
+      </div>
+      <!-- END REDE1 -->
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Inserir Pontuação</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="idcredh" name="idcredh">
+          <input type="hidden" id="valor" name="valor">
+
+          <label>Nome da Rede:</label>
+          <h4>
+            <div id="nomerede"></div>
+          </h4>
+
+          <br>
+          <label>Valor da Pontuação:</label>
+          <input type="text" class="form-control p-input" name="pontos"
+                 onKeyPress="return(moeda(this,'.',',',event))" required
+          >
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <input type="submit" class="btn btn-primary" name="inserir" value="Inserir">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

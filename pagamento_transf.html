@@ -1,0 +1,297 @@
+<style>
+.contain {
+	object-fit: contain;
+	max-width: 100%;
+	width: 200px;
+	height: 100px;
+	padding: 5px;
+}
+
+.inputsemnada:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+} 
+
+
+
+</style>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+document.querySelector("#qtde").addEventListener("input", el => {
+	
+  /* Verifica se o valor alterado é maior que o valor do atributo max */
+	if (el.target.value > parseInt(el.target.getAttribute("max"))) {
+  
+  	/* Caso seja, define o valor do atributo max */
+  	el.target.value = el.target.getAttribute("max");
+  }
+  
+  /* Verifica se o valor alterado é menor que 0 */
+	if (el.target.value <= parseInt(el.target.getAttribute("min"))) {
+  
+  	/* Caso seja, define o valor 0 */
+  	el.target.value = 1;
+  }
+});
+
+
+function addProdu(id){
+	
+	$.post('listcart.php',{id: id},function(data){
+		var idprod = $('#idcred'+id).val();
+		var idcart = $('#idcart').val();
+		var idloja = $('#idloja').val();
+				
+		var nome = data.nome;
+		var valor = data.valor;
+		var cashs = data.cash;
+		
+		$.post('addcart.php?idprod='+idprod+'&idloja='+idloja,{nome:nome,valor:valor,idcart:idcart,cashs:cashs},function(data){
+			//alert(data);
+			
+			window.location.href=window.location.href
+		});	
+	},"json");	
+	
+}
+
+function deleteData(id){
+	
+	$.post('listcart.php',{id: id},function(data){
+		var idprod = $('#idcred'+id).val();
+		var idcart = $('#idcart').val();
+		var idloja = $('#idloja').val();
+		
+		$.post('delcartitem.php',{idprod:idprod,idcart:idcart,idloja:idloja},function(data){
+			alert(data);
+			window.location.href=window.location.href
+		});
+	});	
+}
+
+
+function delcar(id){
+	
+	$.post('listcart.php',{id: id},function(data){
+		var idprod = $('#idcred'+id).val();
+		var idcart = $('#idcart').val();
+		var idloja = $('#idloja').val();
+		var nome = data.nome;
+		var valor = data.valor;
+		
+		$.post('delcart.php?idprod='+idprod+'&idcart='+idcart+'&idloja='+idloja,{nome:nome,valor:valor},function(data){
+			alert(data);
+			window.location.href=window.location.href
+		});	
+	},"json");	
+}
+
+function adicionar(id){
+			
+	$.post('listcart.php',{id: id},function(data){
+		var tipo = "1";
+		var idprod = $('#idcred'+id).val();
+		var idcart = $('#idcart').val();
+		var idloja = $('#idloja').val();
+		
+		var cash = $('#cash').val();
+		
+		var nome = data.nome;
+		var valor = data.valor;
+					
+		$.post('alteracart.php',{tipo:tipo,idprod:idprod,idcart:idcart,idloja:idloja,valor:valor,cash:cash},function(data){
+			//alert(data);
+			window.location.href=window.location.href
+			
+		});	
+	},"json");
+	
+}
+
+function subtrair(id){
+			
+	$.post('listcart.php',{id: id},function(data){
+		
+		var tipo = "2";
+		var idprod = $('#idcred'+id).val();
+		var idcart = $('#idcart').val();
+		var idloja = $('#idloja').val();
+		
+		var cash = $('#cash').val();
+		
+		var nome = data.nome;
+		var valor = data.valor;
+					
+		$.post('alteracart.php',{tipo:tipo,idprod:idprod,idcart:idcart,idloja:idloja,valor:valor,cash:cash},function(data){
+			window.location.href=window.location.href	
+		});	
+	},"json");
+	
+}
+
+
+function modal(id){
+		var idcart = $('#idcart').val();
+		var idloja = $('#idloja').val();
+	$.post('listacarrinho.php',{idcart:idcart,idloja:idloja},function(data){
+		$('#compra').html('<h2><font color="black"><b>VALOR DA COMPRA: </b></font><font color="red">R$ ' + data.valor + '</font></h2>');			
+		$("#cashbackmodal").modal();
+	},"json");
+}
+
+function pagarcash(id){
+		var idcart 	= $('#idcart').val();
+		var idloja 	= $('#idloja').val();
+		var senha 	= $('#senha').val();
+		var valor 	= $('#valortotalcompra').val();
+		var idusua 	= $('#idusua').val();
+
+		
+		if (senha == ''){
+			alert('Por favor preencher a senha!');
+		}else{
+			$.post('verificausuario.php',{idusua:idusua,senha:senha},function(data){
+			var res = data;
+			if(res == 2){
+				alert('A senha está incorreta, tente novamente.');
+				$("#cashbackmodal").modal();
+			}else{
+				var tipo = "0";
+				$.post('alteracart.php',{tipo:tipo,idcart:idcart,idloja:idloja},function(data){
+					$.post('pagacashback.php',{idusua:idusua,valor:valor,idcart:idcart,idloja:idloja},function(data){
+						$.post('alterasitucar.php',{idusua:idusua,idcart:idcart,idloja:idloja},function(data){
+							alert('Compra Realizada com Sucesso!');	
+							window.location.href=window.location.href						
+						});					
+					});
+				});
+				}			
+			});
+		
+		}
+
+
+
+}
+</script>
+<form method="post">
+	<div class="colors-switcher">
+        <a id="show-panel" class="hide-panel"><i class="fa fa-money fa-blink" aria-hidden="true"></i><font color="red"> {QTDECAR}</font></i></a>        
+		<div class="form-group">
+		<p class="text-center"><h4><i>Meu Cashback: <font color="green">R$ {MEUCASH}</font></i></h4></p>
+	</div>
+    </div> 
+</form>	
+
+<!-- Start Home Page Slider -->
+	<section class="pricing-section">
+    </section>
+<!-- End Home Page Slider -->
+
+
+<form method="post" action="" enctype="multipart/form-data" name="form2" id="form2">	
+	<input type="hidden" id="idsessao" 			name="idsessao" 		value="{ID_SESSAO}"/>
+	<input type="hidden" id="idcart" 			name="idcart" 			value="{IDCART}"/>
+	<input type="hidden" id="idloja" 			name="idloja"			value="{ID_CRED}">
+	<input type="hidden" id="idusua" 			name="idusua" 			value="{IDUSUA}"/>
+	<input type="hidden" id="valortotalcompra" 	name="valortotalcompra" value="{VALOR_TOTAL}"/>
+	<input type="hidden" id="idcred{ID}" 		name="id"  				value="{ID}">
+	<input type="hidden" id="idloja"  			name="idloja"			value="{ID_CRED}">
+</form>
+
+<form method="post" action="" enctype="multipart/form-data">
+	
+	<!-- Start About Us Section -->
+    <section class="about-us-section-rede">
+    <div class="container">
+		<div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section-title text-center">
+                    <h3>{NOMELOJA}</h3>
+					<p>Categoria: {CATEGORIALOJA}</p>
+					<p>RESUMO DA COMPRA -  <font color="green">{PAGAMENTO}</font></p>
+          <h2><font color="purple">ID PEDIDO - #{IDPEDIDO}</font></h2>
+
+					<div class="row">
+						<div class="col-md-12">
+							<!-- BEGIN CERTO -->
+              <table class="table">
+								<tbody>
+									<thead>
+										<tr>
+											<td>ID</td>
+											<td>Imagem</td>
+											<td>Descrição</td>
+											<td>Qtde</td>
+											<td>Valor Unit. R$</td>
+											<td>Valor Total. R$</td>
+											<td>Status</td>
+										</tr>
+										<!-- BEGIN CARRINHO -->
+										<tr>
+											<td>{ID}</td>
+											<td><img src="{IMAGEM}" class="contain img-responsive" title="{NOMEPRODU}" /></td>
+											<td style="vertical-align:middle;"><h4>{DESC}</h4></td>
+											<td style="vertical-align:middle;"><h3>{QTDE}</h3></td>
+											<td style="vertical-align:middle;"><h3>{VALOR}</h3></td>
+											<td style="vertical-align:middle;"><h3>{VALOR_TOTAL_PRODU}</h3></td>
+											<td style="vertical-align:middle;"><h3>{STATUS}</h3></td>
+											<input type="hidden" id="valor" name="valor" value="{VALOR}">
+										</tr>
+										<!-- END CARRINHO -->
+											<tr>						
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td><h3>Total:</h3></td>
+												<td><h3><font color="red">R$ {TOTAL}</font></h3></td>
+												<td></td>
+											</tr>
+											<tr>						
+												
+												<td></td>
+												<td colspan="6">{INFO_COMPRA}</td>
+										
+											</tr>
+									</thead>
+								</tbody>
+							</table>
+              <!-- END CERTO -->
+              <!-- BEGIN ERRADO -->
+              <h1>Algo deu errado! refaça sua compra!</h1>
+              <!-- END ERRADO -->
+						</div>
+					</div><!-- /.row -->
+                <!-- BEGIN CERTO1 -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+
+						<a href="redescredenciadas.php?idSessao={ID_SESSAO}&cat=0" class="btn btn-warning"> FAZER MAIS COMPRAS</a>
+												
+						<a href="meuspedidos.php?idSessao={ID_SESSAO}">
+							<div class="btn btn-primary text-center">RESUMO DA COMPRAS
+							</div>					
+						</a>
+							
+						<a href="javascript:void(0);" >
+							<div class="btn btn-success text-center"> AVALIAR COMPRA
+							</div>					
+						</a>
+            <!-- END CERTO1 -->
+					
+					</div>				
+				</div>				
+								
+				</div><!-- div anes dos conteudos-->
+			</div><!-- col-md-12 col-sm-12-->
+		</div><!-- class="row" -->
+	</div><!-- /.container -->
+    </section>
+</form>
+

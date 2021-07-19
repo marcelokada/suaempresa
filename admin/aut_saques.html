@@ -1,0 +1,228 @@
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Autorizações de Saques CashBack</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Autorizações de Saques</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <form method="post">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+
+          <div class="col-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
+                <h5 class="card-title mb-4">Pedidos pendentes dos usuários</h5>
+                <div id="export-buttons1"></div>
+                <table id="exemple1" class="table table-hover">
+                  <thead>
+                  <tr class="">
+                    <th>Id pedido</th>
+                    <th>Nome</th>
+                    <th>Valor do Saque Solicitado</th>
+                    <th>Data da Solicitação</th>
+                    <th>Data da Autorização</th>
+                    <th>Status do Pagamento</th>
+                    <th {DISABLE}>Autorizar</th>
+                    <th {DISABLE}>Cancelar</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- BEGIN AUT -->
+                  <tr>
+                    <input type="hidden" id="subcat1" name="subcat1" value="{ID}"/>
+                    <input type="hidden" id="usua" name="usua" value="{ID_USUARIO}"/>
+                    <td>{ID}</td>
+                    <td>{NOME}</td>
+                    <td>{VALORSAQUE_F}</td>
+                    <input type="hidden" name="valorsoli" value="{VALORSAQUE_N}">
+                    <td>{DATASAQUE}</td>
+                    <td>{DATAPAGO}</td>
+                    <td><font color="{COR}">{SITUSAQUE}</font></td>
+                    <td {DISABLE}>
+                      <button type="submit" class="btn btn-outline-success btn-sm" name="auto" {DISA} value="{ID}">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                    <td {DISABLE}>
+                      <!-- BEGIN CANCELAR -->
+                      <button type="submit" class="btn btn-danger btn-sm " name="canc" {DISA} value="{ID}" title="Cancelar">
+                        <font size="1px">Cancelar</font></button>
+                      <!-- END CANCELAR -->
+                    </td>
+                  </tr>
+                  <!-- END AUT -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title mb-4">Pedidos Já Autorizados</h5>
+                <div id="export-buttons2"></div>
+                <table id="exemple2" class="table table-hover">
+                  <thead>
+                  <tr class="">
+                    <th>Id pedido</th>
+                    <th>Nome</th>
+                    <th>Valor do Saque Solicitado</th>
+                    <th>Data da Solicitação</th>
+                    <th>Data da Autorização</th>
+                    <th>Status do Pagamento</th>
+                    <th {DISABLE}>Voltar Status</th>
+                    <th {DISABLE}>Cancelar</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- BEGIN AUT1 -->
+                  <tr>
+                    <input type="hidden" id="subcat1" name="subcat1" value="{ID1}"/>
+                    <td>{ID1}</td>
+                    <td>{NOME1}</td>
+                    <td>{VALORSAQUE_F1}</td>
+                    <input type="hidden" name="valorsoli" value="{VALORSAQUE_N1}">
+                    <td>{DATASAQUE1}</td>
+                    <td>{DATAPAGO1}</td>
+                    <td><font color="{COR1}">{SITUSAQUE1}</font></td>
+                    <td {DISABLE}>
+                      <button type="submit" class="btn btn-warning btn-sm " name="volta" {DISA1} value="{ID1}" title="Voltar">
+                        <font size="1px">Voltar Status</font></button>
+                    </td>
+                    <td {DISABLE}>
+                      <button type="submit" class="btn btn-danger btn-sm " name="canc1" {DISA1} value="{ID1}" title="Cancelar">
+                        <font size="1px">Cancelar</font></button>
+                    </td>
+                  </tr>
+                  <!-- END AUT1 -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title mb-4">Pedidos Cancelados</h5>
+                <div id="export-buttons3"></div>
+                <table id="exemple3" class="table table-hover">
+                  <thead>
+                  <tr class="">
+                    <th>Id pedido</th>
+                    <th>Nome</th>
+                    <th>Valor do Saque Solicitado</th>
+                    <th>Data da Solicitação</th>
+                    <th>Data da Cancelamento</th>
+                    <th>Status do Pagamento</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- BEGIN AUT2 -->
+                  <tr>
+                    <input type="hidden" id="subcat1" name="subcat1" value="{ID2}"/>
+                    <td>{ID2}</td>
+                    <td>{NOME2}</td>
+                    <td>{VALORSAQUE_F2}</td>
+                    <input type="hidden" name="valorsoli" value="{VALORSAQUE_N2}">
+                    <td>{DATASAQUE2}</td>
+                    <td>{DATACANCEL2}</td>
+                    <td><font color="{COR2}">{SITUSAQUE2}</font></td>
+                  </tr>
+                  <!-- END AUT2 -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </form>
+</div>
+<script type="text/javascript">
+
+  $(function () {
+    let table = $('#exemple1').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table2 = $('#exemple2').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table3 = $('#exemple3').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    document.getElementById('export-buttons1').appendChild(table.buttons().container()[0]);
+    document.getElementById('export-buttons2').appendChild(table2.buttons().container()[0]);
+    document.getElementById('export-buttons3').appendChild(table3.buttons().container()[0]);
+  });
+
+</script>

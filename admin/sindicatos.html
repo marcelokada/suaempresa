@@ -1,0 +1,216 @@
+<script type="text/javascript">
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('rua').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
+    document.getElementById('ibge').value = ("");
+  }
+
+  function meu_callback(conteudo) {
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('rua').value = (conteudo.logradouro);
+      document.getElementById('bairro').value = (conteudo.bairro);
+      document.getElementById('cidade').value = (conteudo.localidade);
+      document.getElementById('uf').value = (conteudo.uf);
+      document.getElementById('ibge').value = (conteudo.ibge);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('rua').value = (conteudo.logradouro);
+    document.getElementById('bairro').value = (conteudo.bairro);
+    document.getElementById('cidade').value = (conteudo.localidade);
+    document.getElementById('uf').value = (conteudo.uf);
+    document.getElementById('ibge').value = (conteudo.ibge);
+
+  }
+
+  jQuery(function ($) {
+    $("#cep").mask("99999-999");
+    $("#cnpj").mask("99.999.999/9999-99");
+    $("#cel").mask("(99) 99999-9999");
+    $("#tel1").mask("(99) 9999-9999");
+    $("#uf").mask("aa");
+
+  });
+
+
+  $().ready(function () {
+    $("#categoria").change(function () {
+      var id = $('#categoria').val();
+      $.post('listasubcategoria.php', {id: id}, function (data) {
+        $("#subcategoria").html(data);
+      });
+    });
+  });
+
+
+  $(document).ready(function () {
+
+    $("#cnpj").bind('paste', function (e) {
+      e.preventDefault();
+    });
+
+  });
+
+
+  function ativar(id) {
+
+    var id = $('#ativo' + id).val();
+
+    $.post('altstasind.php?status=a', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+
+  }
+
+  function desativar(id) {
+
+    var id = $('#ativo' + id).val();
+
+    $.post('altstasind.php?status=c', {id: id}, function (data) {
+      alert(data);
+      window.location.href = window.location.href
+    });
+  }
+
+
+</script>
+
+<style>
+  .estrelas input[type=radio] {
+    display: none;
+
+  }
+
+  .estrelas label i.fa:before {
+    content: '\f005';
+    color: #FC0;
+  }
+
+  .estrelas input[type=radio]:checked ~ label i.fa:before {
+    color: #CCC;
+  }
+</style>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Sindicatos</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Sindicatos</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Informações das rede</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+              <!-- BEGIN ERRO -->
+              <div class="alert alert-danger" role="alert">
+                <p align="justify">{MSG}</p>
+              </div>
+              <!-- END ERRO -->
+
+              <!-- BEGIN SUCESSO -->
+              <div class="alert alert-success" role="alert">
+                <p align="justify">{MSG}</p>
+              </div>
+              <!-- END SUCESSO -->
+
+
+
+              <!-- BEGIN SIND1 -->
+              <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4 ">
+                  <div class="card ">
+                    <h4>Não há nenhum sindicato cadastrado.</h4>
+                  </div>
+                </div>
+              </div>
+              <!-- END SIND1 -->
+
+
+              <!-- BEGIN SIND -->
+
+              <input type="hidden" id="ativo{SEQ}" name="ativo" value="{SEQ}">
+              <input type="hidden" id="cepss" name="cepss" value="{CEP}">
+              <input type="hidden" id="categ" name="categ" value="{CAT_NUM}">
+
+             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-1 mb-4 ">
+                <div class="card ">
+                  <div class="card-body {COR}">
+
+                    <img src="{IMAGEM}" class="img-thumbnail mb-2">
+
+                    <p class="card-text">
+                    <h5 class="card-title">{NOMECRE}</h5>
+                    </p>
+
+                    <p class="card-text">
+                    <h5 class="mb-2">{CATEGORIA}&nbsp;</h5>
+                    </p>
+
+                    <p class="card-text">
+                      <input type="checkbox" onclick="{ATIV}('{SEQ}');" {CHK} id="checkbox" id="checkbox" value="{SEQ}">
+                      Ativo?
+                    </p>
+
+                    <div class="row" {DISABLE}>
+                      <div class="col-md-5" {DISABLE}>
+                        <form method="post" action="alterasindicato.php?idSessao={ID_SESSAO}&admin={ID_ADMIN}&seq={SEQ}" enctype="multipart/form-data">
+                          <input class="form-check btn alert-warning" role="alert" type="submit" name="alterar" value="Alterar"/>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- END SIND -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

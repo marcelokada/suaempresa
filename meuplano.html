@@ -1,0 +1,226 @@
+<style>
+  .contain {
+    object-fit: contain;
+    max-width: 100%;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+  }
+
+  .inputsemnada:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+
+  .desabilitar {
+    pointer-events: none;
+  }
+
+  .habilitar {
+    pointer-events: auto;
+  }
+
+
+</style>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+
+
+  function modal(id) {
+    var idcart = $('#idcart').val();
+    var idloja = $('#idloja').val();
+    $.post('listacarrinho.php', {idcart: idcart, idloja: idloja}, function (data) {
+      $('#compra').html('<h2><font color="black"><b>VALOR DA COMPRA: </b></font><font color="red">R$ ' + data.valor + '</font></h2>');
+      $("#cashbackmodal").modal();
+    }, "json");
+  }
+
+  function apagar_comp(id) {
+
+    var r = confirm("Deseja mesmo Excluir o Comprovante?");
+
+
+    if (r == true) {
+      $.post('apagacomprovante.php', {id: id}, function () {
+        alert('Apagado com Sucesso.');
+        window.location.href = window.location.href;
+      });
+    }
+  }
+
+  let copiarTexto = () => {
+    //O texto que será copiado
+    var id = $('#link').val();
+    alert('O link foi copiado em seu teclado.');
+    const texto = id;
+    //Cria um elemento input (pode ser um textarea)
+    let inputTest = document.createElement("input");
+    inputTest.value = texto;
+    //Anexa o elemento ao body
+    document.body.appendChild(inputTest);
+    //seleciona todo o texto do elemento
+    inputTest.select();
+    //executa o comando copy
+    //aqui é feito o ato de copiar para a area de trabalho com base na seleção
+    document.execCommand('copy');
+    //remove o elemento
+    document.body.removeChild(inputTest);
+  };
+
+
+  function termos(id) {
+    const https = location.protocol;
+    var DIRPAGE = https + "//" + document.location.hostname;
+
+    window.open(DIRPAGE + '/drultraconvenio.com.br/comprovantes.php?idpag=' + id);
+    //window.open(DIRPAGE + '/MultiSYS_Club_DoutorUltra/comprovantes.php?idpag='+id);
+  }
+
+
+</script>
+
+<form method="post" action="" enctype="multipart/form-data" name="form2" id="form2">
+  <input type="hidden" id="idsessao" name="idsessao" value="{ID_SESSAO}"/>
+  <input type="hidden" id="idcart" name="idcart" value="{IDCART}"/>
+  <input type="hidden" id="idloja" name="idloja" value="{ID_CRED}">
+  <input type="hidden" id="idusua" name="idusua" value="{IDUSUA}"/>
+  <input type="hidden" id="tempo" name="tempo" value="{TEMPO}">
+  <input type="hidden" id="idusu" name="idusu" value="{IDUSUA}">
+  <input type="hidden" id="idplano" name="idplano" value="{IDPLANO}">
+  <input type="hidden" id="valor" name="valor" value="{VALOR}">
+</form>
+
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col-4">
+        <ol>
+          <li><a href="index.php?idSessao={ID_SESSAO}">Home</a></li>
+          <li>Meus Planos</li>
+        </ol>
+        <h2>Meus Planos</h2>
+      </div>
+    </div>
+  </div>
+</section><!-- End Breadcrumbs -->
+
+<form method="post" action="" enctype="multipart/form-data">
+<section class="blog">
+  <div class="container" data-aos="fade-up">
+
+    <div class="container">
+      <!-- BEGIN SUCESSO -->
+      <p align="justify"><font color="green">{MSG}</font></p>
+      <!-- END SUCESSO -->
+
+      <!-- BEGIN ERRO -->
+      <p align="justify"><font color="red">{MSG}</font></p>
+      <!-- END ERRO -->
+    </div><!-- /.container -->
+
+    <div class="row">
+      <div class="col-lg12 entries">
+        <table class="table">
+          <tbody>
+          <thead>
+          <tr>
+            <td></td>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Descrição</td>
+            <td>Valor R$</td>
+            <td>Tipo Pagmto.</td>
+            <td>Validade</td>
+            <td>Status do Pagamento</td>
+
+            <!--  BEGIN SEGBOL -->
+            <td>2º Via Boleto</td>
+            <!--  END SEGBOL -->
+
+            <!--  BEGIN DADOSTRANSF1 -->
+            <td>Ver Dados Novamente</td>
+            <td>Anexar Comprovante</td>
+            <td></td>
+            <!--  END DADOSTRANSF1 -->
+
+            <!--  BEGIN DADOSTRANSF1CC -->
+            <td>Ver Dados Novamente</td>
+            <td>Visualizar Comprovante</td>
+            <td></td>
+            <!--  END DADOSTRANSF1CC -->
+          </tr>
+          <!--  BEGIN PLANOS -->
+          <tr bgcolor="{COR}">
+            <td style="vertical-align:middle;"><input type="radio" name="idpagplan[]" value="{ID}"></td>
+            <td style="vertical-align:middle;">{ID}</td>
+            <td style="vertical-align:middle;">{NOMEPLANO}</td>
+            <td style="vertical-align:middle;">{DESC}</td>
+            <td style="vertical-align:middle;">{VALOR}</td>
+            <td style="vertical-align:middle;">{TIPOP}</td>
+
+            <td style="vertical-align:middle;">{VALIDADE}</td>
+            <td style="vertical-align:middle;">{SITUA}</td>
+
+
+            <!--  BEGIN SEGBOL1 -->
+            <td>
+              <a href="{LINKBOLETO}" target="_blank">2º Via do Boleto</a>
+            </td>
+            <!--  END SEGBOL1 -->
+
+            <!--  BEGIN DADOSTRANSFCC -->
+            <td>
+              <a href="resumo_pagamentoplano.php?idSessao={ID_SESSAO}&pagplano={IDPAGA}" target="_blank">Dados Para Transferência</a>
+            </td>
+            <td>
+              <a href="javascript:void(0);" onclick="termos('{IDPAGA}');" title="VISULIZAR COMPROVANTE">Vizualizar</a> <br>
+              <a href="javascript:void(0);" onclick="apagar_comp('{IDPAGA}');" title="APAGAR COMPROVANTE"><i class="fa fa-trash-o"></i></a>
+            </td>
+            <!--  END DADOSTRANSFCC -->
+
+            <!--  BEGIN DADOSTRANSF -->
+            <td>
+              <a href="resumo_pagamentoplano.php?idSessao={ID_SESSAO}&pagplano={IDPAGA}" target="_blank">Dados Para Transferência</a>
+            </td>
+            <td>
+              <input type="hidden" name="idpagplano" value="{IDPAGA}">
+              <input type="hidden" name="enviou" value="1">
+              <input type="file" class="btn btn-primary" name="arquivo"><br>
+              <input type="submit" class="btn btn-success" value="Anexar">
+            </td>
+            <!--  END DADOSTRANSF -->
+
+            <td style="vertical-align:middle;">
+              <!-- BEGIN BTN -->
+              <button type="submit" class="btn btn-danger" name="deletar"><i class="fa fa-trash"></i></button>
+              <!-- END BTN -->
+            </td>
+
+
+          </tr>
+          <!--  END PLANOS -->
+          </thead>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row text-center">
+        <div class="col-md-12 col-sm-12">
+          <a href="index.php?idSessao={ID_SESSAO}#plano">
+            <div class="btn btn-primary text-center">MUDAR DE PLANO
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</form>

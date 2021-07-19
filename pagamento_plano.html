@@ -1,0 +1,438 @@
+<style>
+    .contain {
+        object-fit: contain;
+        max-width: 100%;
+        width: 200px;
+        height: 100px;
+        padding: 5px;
+    }
+
+    .inputsemnada:focus, input:focus, select:focus {
+        box-shadow: 0 0 0 0;
+        border: 0 none;
+        outline: 0;
+    }
+
+    .desabilitar {
+        pointer-events: none;
+    }
+
+    .habilitar {
+        pointer-events: auto;
+    }
+
+
+</style>
+
+<script src="js/jquery.maskedinput-1.3.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/1.5.2.js"></script>
+<script type="text/javascript" src="js/jquery.maskedinput-1.3.min.js"></script>
+
+<script type="text/javascript">
+
+
+    jQuery(function($){
+        // $("#creditCardHolderCPF").mask("999.999.999-99");
+        $("#numCartao").mask("9999 9999 9999 9999");
+        $("#cvvCartao").mask("999");
+        $("#mesValidade").mask("99");
+        $("#anoValidade").mask("9999");
+        $("#billingAddressPostalCode").mask("99999-999");
+        $("#creditCardHolderBirthDate").mask("99/99/9999");
+        // $("#senderCPF").mask("999.999.999-99");
+        $("#senderAreaCode").mask("99");
+        //$("#senderPhone").mask("99999-9999");
+        $("#shippingAddressPostalCode").mask("99999-999");
+        // $("#shippingAddressState").mask("AA");
+    });
+
+    function modal(id) {
+        var idcart = $('#idcart').val();
+        var idloja = $('#idloja').val();
+        $.post('listacarrinho.php', {idcart: idcart, idloja: idloja}, function (data) {
+            $('#compra').html('<h2><font color="black"><b>VALOR DA COMPRA: </b></font><font color="red">R$ ' + data.valor + '</font></h2>');
+            $("#cashbackmodal").modal();
+        }, "json");
+    }
+
+    function limpa_formulário_cep() {
+        //Limpa valores do formulário de cep.
+        document.getElementById('billingAddressStreet').value = ("");
+        document.getElementById('billingAddressDistrict').value = ("");
+        document.getElementById('billingAddressCity').value = ("");
+        document.getElementById('billingAddressState').value = ("");
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('billingAddressStreet').value = (conteudo.logradouro);
+            document.getElementById('billingAddressDistrict').value = (conteudo.bairro);
+            document.getElementById('billingAddressCity').value = (conteudo.localidade);
+            document.getElementById('billingAddressState').value = (conteudo.uf);
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+
+
+    function verificaCep() {
+        var cep = $('#billingAddressPostalCode').val();
+
+        var script = document.createElement('script');
+
+        //Sincroniza com o callback.
+        script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+        //Insere script no documento e carrega o conteúdo.
+        document.body.appendChild(script);
+
+        document.getElementById('billingAddressStreet').value = (conteudo.logradouro);
+        document.getElementById('billingAddressDistrict').value = (conteudo.bairro);
+        document.getElementById('billingAddressCity').value = (conteudo.localidade);
+        document.getElementById('billingAddressState').value = (conteudo.uf);
+
+    }
+
+</script>
+<form method="post">
+    <div class="colors-switcher">
+        <a id="show-panel" class="hide-panel"><i class="fa fa-money fa-blink" aria-hidden="true"></i><font color="red">
+            {QTDECAR}</font></i></a>
+        <div class="form-group">
+            <!-- BEGIN MEUPLANO -->
+            <p class="text-center"><h4>{MEUPLANO}</h4></p><br>
+            <!-- END MEUPLANO -->
+            <p class="text-center"><h4><i>Meu Cashback: <font color="green">R$ {MEUCASH}</font></i></h4></p>
+        </div>
+    </div>
+</form>
+
+<!-- Start Home Page Slider -->
+<section class="pricing-section">
+</section>
+<!-- End Home Page Slider -->
+
+<!-- Start About Us Section -->
+<section class="about-us-section-rede">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section-title text-center">
+                    <h3>ASSINATURA DO PLANO</h3>
+                    <p>RESUMO DA COMPRA</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table">
+                                <tbody>
+                                <thead>
+                                <!--  BEGIN PLANOS_VAZIO -->
+                                <center>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><h3>Você já tem um plano, assinado. Caso queira mudar de plano clique no
+                                            botão abaixo!</h3></td>
+                                        <td></td>
+                                    </tr>
+                                </center>
+                                <!--  END PLANOS_VAZIO -->
+
+                                <!--  BEGIN PLANOS -->
+                                <tr>
+                                    <td>Nome</td>
+                                    <td>Descrição</td>
+                                    <td>Valor R$</td>
+                                    <td>Status</td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align:middle;"><h3>{NOMEPLANO}</h3></td>
+                                    <td style="vertical-align:middle;"><h5>{DESC}</h5></td>
+                                    <td style="vertical-align:middle;"><h3>{VALOR}</h3></td>
+                                    <td style="vertical-align:middle;"><h3>Em andamento</h3></td>
+                                </tr>
+                                <!--  END PLANOS -->
+                                </thead>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div><!-- /.row -->
+
+
+                </div>
+
+            </div><!-- div anes dos conteudos-->
+        </div><!-- col-md-12 col-sm-12-->
+        <hr>
+        <div class="row">
+            <span class="endereco" data-endereco="{URL}"></span>
+            <div class="col-md-12 order-md-1">
+                <form name="formPagamento" action="" id="formPagamento">
+
+                    <!--<input type="hidden" name="paymentMethod" id="paymentMethod" value="creditCard">-->
+
+                    <input type="hidden" name="receiverEmail" id="receiverEmail" value="{EMAIL_LOJA}">
+
+                    <input type="hidden" name="currency" id="currency" value="{MOEDA_PAGAMENTO}">
+
+                    <!--<input type="hidden" name="extraAmount" id="extraAmount" value="">-->
+
+                    <input type="hidden" name="itemId1" id="itemId1" value="0001">
+
+                    <input type="hidden" name="itemDescription1" id="itemDescription1" value="{NOMEPLANO}">
+
+                    <input type="hidden" name="itemAmount1" id="itemAmount1" value="{VALORPAG}">
+
+                    <input type="hidden" name="itemQuantity1" id="itemQuantity1" value="1">
+
+                    <input type="hidden" name="notificationURL" id="notificationURL" value="{URL_NOTIFICACAO}">
+
+                    <input type="hidden" name="reference" id="reference" value="1001">
+
+                    <input type="hidden" name="amount" id="amount" value="{VALORPAG}">
+
+                    <input type="hidden" name="noIntInstalQuantity" id="noIntInstalQuantity" value="10">
+
+
+                    <h4 class="mb-5 bg-success">Tipo do pagamento:</h4>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="paymentMethod" name="paymentMethod" type="radio" class="custom-control-input" checked
+                                   required value="creditCard">
+                            <label class="custom-control-label" for="paymentMethod">Cartao de Crédito</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="paymentMethod2" name="paymentMethod" type="radio" class="custom-control-input" required value="online_debit">
+                            <label class="custom-control-label" for="paymentMethod">Cartão de Débito</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="paymentMethod1" name="paymentMethod" type="radio" class="custom-control-input" required value="boleto">
+                            <label class="custom-control-label" for="paymentMethod">Boleto</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <h4 class="mb-5 bg-success">Dados do Cartão e Pagamento:</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="creditCardHolderName">Nome do cartão</label>
+                            <input type="text" class="form-control" name="creditCardHolderName" id="creditCardHolderName" placeholder="Nome igual ao escrito no cartão" value="Jose Comprador" required>
+
+                            <small class="text-muted">Nome igual do cartão</small>
+                            <div class="invalid-feedback text-danger">
+
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="numCartao">Número do cartão:</label>
+                            <input type="text" class="form-control" name="numCartao" id="numCartao" maxlength="16" required>
+                            <div class="invalid-feedback text-danger">
+                                <span id="msg"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <label for="numCartao">Bandeira:</label>
+                            <span class="bandeira-cartao"></span>
+                        </div>
+                        <input type="hidden" name="bandeiraCartao" id="bandeiraCartao">
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-2 mb-2">
+                            <label for="mesValidade">Mês validade:</label>
+                            <input type="text" class="form-control" name="mesValidade" id="mesValidade" maxlength="2" value="12" required>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="anoValidade">Ano validade:</label>
+                            <input type="text" class="form-control"  name="anoValidade" id="anoValidade" maxlength="4" value="2030" required>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="cvvCartao">CVV</label>
+                            <input type="text" class="form-control"  name="cvvCartao" id="cvvCartao" maxlength="3" value="123" required>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <label for="qntParcelas">Quantidades de Parcelas</label>
+                            <select class="form-control" name="qntParcelas" id="qntParcelas" class="select-qnt-parcelas">
+                                <option value="">Selecione</option>
+                            </select>
+
+                            <input type="hidden" name="valorParcelas" id="valorParcelas">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="creditCardHolderCPF">CPF do Titular do Cartão:</label>
+                            <input type="text" class="form-control" name="creditCardHolderCPF" id="creditCardHolderCPF" placeholder="CPF sem traço" value="22111944785" required>
+                        </div>
+
+                        <input type="hidden" name="tokenCartao" id="tokenCartao">
+
+                        <input type="hidden" name="hashCartao" id="hashCartao">
+                    </div>
+
+                    <hr class="mb-5">
+
+                    <h4 class="mb-5 bg-success">Endereço do Titular do Cartão</h4>
+                    <div class="row">
+
+                        <div class="col-md-2 mb-2">
+                            <label for="billingAddressPostalCode">CEP</label>
+                            <input type="text" class="form-control" name="billingAddressPostalCode" id="billingAddressPostalCode" maxlength="9" onkeyup="verificaCep();" placeholder="CEP sem traço" required>
+                        </div>
+
+                        <div class="col-md-5 mb-5">
+                        <label for="billingAddressStreet">Logradouro</label>
+                            <input type="text" class="form-control" name="billingAddressStreet" id="billingAddressStreet" placeholder="Av. Rua" required>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="billingAddressNumber">nº</label>
+                            <input type="number" class="form-control" name="billingAddressNumber" id="billingAddressNumber" placeholder="Número"  required>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="billingAddressComplement">Complemento</label>
+                            <input type="text" class="form-control" name="billingAddressComplement" id="billingAddressComplement" placeholder="Complemento" >
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-5 mb-5">
+                            <label for="billingAddressDistrict">Bairro</label>
+                            <input type="text"class="form-control"  name="billingAddressDistrict" id="billingAddressDistrict" placeholder="Bairro" >
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label for="billingAddressCity">Cidade</label>
+                            <input type="text" class="form-control" name="billingAddressCity" id="billingAddressCity" placeholder="Cidade"  required>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <label for="billingAddressCity">UF</label>
+                            <input type="text" class="form-control" name="billingAddressState" id="billingAddressState" placeholder="Sigla do Estado"  required>
+                        </div>
+                    </div>
+                    <input type="hidden" name="billingAddressCountry" id="billingAddressCountry" value="BRL">
+
+                    <hr class="mb-5">
+
+                    <h4 class="mb-3 bg-success">Dados do Comprador</h4>
+                    <div class="row">
+                        <div class="col-md-4 ">
+                            <label for="senderName">Nome</label>
+                            <input type="text" class="form-control" name="senderName" id="senderName" placeholder="Nome completo" value="Jose Comprador" required>
+                        </div>
+
+                        <div class="col-md-2 ">
+                            <label for="creditCardHolderBirthDate">Dt de Nasc.</label>
+                            <input type="text" class="form-control" name="creditCardHolderBirthDate" id="creditCardHolderBirthDate" placeholder="Data de Nascimento. Ex: 12/12/1912"  required>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="senderCPF">CPF</label>
+                            <input type="text" class="form-control" name="senderCPF" id="senderCPF" placeholder="CPF sem traço" value="22111944785" required>
+                        </div>
+
+                        <div class="col-md-1">
+                            <label for="senderAreaCode">DDD</label>
+                            <input type="text" class="form-control" name="senderAreaCode" id="senderAreaCode" placeholder="DDD"  maxlength="2" required>
+
+                        </div>
+                        <div class="col-md-3">
+                            <label for="senderPhone">Telefone</label>
+                            <input type="text" class="form-control" name="senderPhone" id="senderPhone" placeholder="Somente número" value="56273440" required>
+                        </div>
+
+                    </div>
+                    <hr class="mb-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="senderEmail">Email</label>
+                            <input type="email" class="form-control" name="senderEmail" id="senderEmail" placeholder="E-mail do comprador" value="c03504634987835417250@sandbox.pagseguro.com.br" required><br><br>
+
+                        </div>
+                    </div>
+                    <br>
+                    <h4 class="mb-3 bg-success">Endereço de Entrega</h4>
+
+                    <input type="hidden" name="shippingAddressRequired" id="shippingAddressRequired" value="true">
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="shippingAddressPostalCode">Logradouro</label>
+                            <input type="text" class="form-control" name="shippingAddressPostalCode" id="shippingAddressPostalCode" placeholder="CEP sem traço" value="01452002">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="shippingAddressStreet">Logradouro</label>
+                            <input type="text" class="form-control" name="shippingAddressStreet" id="shippingAddressStreet" placeholder="Av. Rua" value="Av. Brig. Faria Lima">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="shippingAddressNumber">Número</label>
+                            <input type="text" class="form-control" name="shippingAddressNumber" id="shippingAddressNumber" placeholder="Número" value="1384">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="shippingAddressComplement">Complemento</label>
+                            <input type="text" class="form-control" name="shippingAddressComplement" id="shippingAddressComplement" placeholder="Complemento" value="5o andar">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label for="shippingAddressDistrict">Email</label>
+                            <input type="text" class="form-control" name="shippingAddressDistrict" id="shippingAddressDistrict" placeholder="Bairro" value="Jardim Paulistano">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="shippingAddressCity">Cidade</label>
+                            <input type="text" class="form-control" name="shippingAddressCity" id="shippingAddressCity" placeholder="Cidade" value="Sao Paulo">
+                        </div>
+
+                        <div class="col-md-1">
+                            <label for="shippingAddressState">UF</label>
+                            <input type="text" class="form-control" name="shippingAddressState" id="shippingAddressState" placeholder="Sigla do Estado" value="SP">
+                        </div>
+
+
+                        <input type="hidden" name="shippingAddressCountry" id="shippingAddressCountry" value="BRL">
+
+
+                        <div class="col-md-3">
+                            <label>Frete</label><br>
+                            <input type="radio" name="shippingType" value="1"> PAC
+                            <input type="radio" name="shippingType" value="2"> SEDEX
+                            <input type="radio" name="shippingType" value="3" checked> Sem frete<br><br>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="shippingCost">Valor Frete</label>
+                            <input type="text" class="form-control" name="shippingCost" id="shippingCost" placeholder="Preço do frete. Ex: 2.10" value="0.00">
+                        </div>
+                    </div>
+                    <hr class="mb-5">
+                    <input class="btn btn-primary btn-lg btn-block" type="submit" name="btnComprar" id="btnComprar" value="Pagar">
+                </form>
+            </div>
+        </div>
+        </div><!-- class="row" -->
+    </div><!-- /.container -->
+
+</section>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="{SCRIPT_PAGSEGURO}"></script>
+<script src="comum/js/personalizado.js"></script>

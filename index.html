@@ -1,0 +1,306 @@
+<script type="text/javascript">
+
+  function modal(id) {
+    var id = $('#idcred' + id).val();
+
+    $.post('modal.php', {id: id}, function (data) {
+      //$('#nomes').html('<font color="black"><b>NOME:</b> ' + data.nome + '</font>');
+      $('#nomes').html('<font color="black"><b>NOME:</b> ' + data.nome + '</font>');
+      $('#endereco').html('<font color="black"><b>ENDEREÇO:</b> ' + data.endereco + '- <b>CIDADE:</b> ' + data.cidade + '</font>');
+      //$('#cupom').html('<font color="black" size="5px">CÓDIGO DO DESCONTO:</font> <font size="5px"> <strong class="page-scroll btn-primary animated1">'+ data.cupom +'</strong></font>');
+      $('#imagem').html('<img src=' + data.imagem + ' class="img-thumbnail" style="width: 300px;"/>');
+      $('#class1').html(data.class);
+      $('#telefone').text(data.tele);
+      $('#celular').text(data.celular);
+      //$('#urls').html('<a href="lojarede.php?idSessao={ID_SESSAO}&idLoja='+data.links+'&idcart='+data.idcart+'" class=" btn btn-primary" >Ver Ofertas</a>');
+
+      const tipo = data.ctipo;
+
+      if(tipo == 1){
+        $('#urls1').html('<a href="calendario_cred.php?idSessao={ID_SESSAO}&id=' + id + '" class=" btn btn-primary" >Agendamentos</a>');
+      }else if(tipo == 2){
+        $('#urls1').html('<a href="lojarede.php?idSessao={ID_SESSAO}&idLoja=' + data.links + '&idcart=' + data.idcart + '" class=" btn btn-primary" >Ver Ofertas</a>');
+      }else{
+        $('#urls1').html('<a href="lojarede.php?idSessao={ID_SESSAO}&idLoja=' + data.links + '&idcart=' + data.idcart + '" class=" btn btn-primary" >Ver Ofertas</a> <a href="calendario_cred.php?idSessao={ID_SESSAO}&id=' + id + '" class=" btn btn-primary" >Agendamentos</a>');
+      }
+
+      $("#modalloja").modal('show');
+
+    }, 'json');
+  }
+
+  function login() {
+    $("#login").modal('show');
+  }
+
+  function acessar() {
+    $.post('modal.php', {id: id}, function (data) {
+
+    }, 'json');
+  }
+
+
+</script>
+
+<input type="hidden" name="idusua" id="idusua" value="{ID_USUA}">
+
+<section id="hero" class="d-flex align-items-center">
+  <div class="container" data-aos="zoom-out" data-aos-delay="100">
+    <div class="row">
+      <div class="col-xl-6">
+        <h1>{TEXTO_BANNER}</h1>
+        <a href="#plano" class="btn-get-started scrollto">Adquira um Plano</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= Clients Section ======= -->
+<section id="clients" class="clients">
+  <div class="section-title">
+    <h2>{P1}</h2>
+    <p></p>
+  </div>
+
+  <div class="container">
+    <div class="clients-slider swiper-container" style="height: 150px;">
+      <div class="swiper-wrapper align-items-center">
+        <!-- BEGIN DESTAQUE -->
+        <input type="hidden" name="idcred" id="idcred{IDCRED}" value="{IDCRED}"/>
+        <div class="swiper-slide img-thumbnail ">
+          <a onclick="modal('{IDCRED}');" href="javascript:void(0);">
+            <img src="{IMG_DESTAQUE}" class="img-thumbnail img-destaque " alt="{VNOMECREDCRE}">
+          </a>
+        </div>
+        <!-- END DESTAQUE -->
+      </div>
+    </div>
+  </div>
+</section><!-- End Clients Section -->
+
+
+<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>{P2}</h2>
+      <p></p>
+    </div>
+
+    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+      <!-- BEGIN NOVOS -->
+      <input type="hidden" name="idcred" id="idcred{IDCRED2}" value="{IDCRED2}"/>
+
+      <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+        <div class="portfolio-wrap">
+          <div class="fora-img">
+            <img src="{LINIMAGEMIMG}" class="img-novos" alt="">
+          </div>
+          <div class="portfolio-info">
+            <h4>{VNOMECREDCRE2}</h4>
+            <div class="portfolio-links">
+              <a href="javascript:void(0);" onclick="modal('{IDCRED2}');" title="Ver Empresa">
+                <i class="bx bx-plus"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- END NOVOS -->
+
+    </div>
+  </div>
+</section><!-- End Portfolio Section -->
+
+
+
+<!-- ======= Pricing Section ======= -->
+<section id="plano" class="pricing section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Planos</h2>
+      <p></p>
+    </div>
+
+    <div class="row">
+
+      <!--  BEGIN PLANO -->
+      <div class="col-lg-4 col-md-6 ">
+        <div class="box " data-aos="fade-up" data-aos-delay="100">
+          <h3>{NOMEPLANO}</h3>
+          <h4><sup>R$</sup>{PRECO1}<span>Adesão</span></h4>
+
+          <ul>
+            <li><h5>R$ {MENSA}<span> / mês</span></h5></li>
+            <li>{DESC}</li>
+          </ul>
+          <div class="btn-wrap">
+
+            <!-- BEGIN PLANO_A -->
+            <a href="pagamentoplano.php?idSessao={ID_SESSAO}&idUsuario={ID_USUA_CR}&idPlano={IDPLANO}" class="btn-buy">{BOTAOASSINAR}</a>
+            <!-- END PLANO_A -->
+
+            <!-- BEGIN MUDAR -->
+            <a href="mudarplano.php?idSessao={ID_SESSAO}&idUsuario={ID_USUA_CR}&idPlano={IDPLANO}" class="btn-buy">{BOTAOASSINAR}</a>
+            <!-- END MUDAR -->
+
+            <!-- BEGIN CAD_PLAN -->
+            <a href="novocadastro.php" class="btn-buy">{BOTAOASSINAR}</a>
+            <!-- END CAD_PLAN -->
+
+          </div>
+        </div>
+        <br>
+      </div>
+      <!--  END PLANO -->
+    </div>
+
+  </div>
+</section><!-- End Pricing Section -->
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title">
+      <h2>Contato</h2>
+      <p>Caso há duvidas, entre em contato conosco.</p>
+    </div>
+
+    <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="col-lg-6">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="info-box">
+              <i class="bx bxl-whatsapp"></i>
+              <h3>Celular/WhatsApp</h3>
+              <p>{CEL1}</p>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="info-box">
+              <i class="bx bx-envelope"></i>
+              <h4>Email:</h4>
+              <p>{EMAIL1}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-6">
+        <form method="post">
+          <div class="row">
+            <div class="col form-group">
+              <input type="text" name="nome_cont" class="form-control mb-4" id="name_cont" placeholder="Seu Nome" required>
+            </div>
+            <div class="col form-group">
+              <input type="email" class="form-control mb-4" name="email_cont" id="email" placeholder="Seu E-mail" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control mb-4" name="subject" id="subject" placeholder="Assunto" required>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control mb-5" name="message" rows="5" placeholder="Mensagem" required></textarea>
+          </div>
+          <div class="text-center">
+            <input type="submit" class="btn btn-danger"  name="contato" value="ENVIAR">
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Contact Section -->
+
+
+
+<div class="modal fade" id="modalloja" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <div id="nomes" name="nomes"></div>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-header">
+        <div id="endereco" name="endereco"></div>
+        <i class="fa fa-maps"></i>
+      </div>
+      <div class="modal-body">
+        <center>
+          <div id="imagem" name="imagem"></div>
+        </center>
+        <div class="modal-works">
+          <div id="urls" name="urls"></div>
+        </div>
+        <div class="modal-header">
+          <div id="cupom" name="cupom"></div>
+        </div>
+
+        <div class="modal-header">
+          <label>CLASSIFICAÇÃO</label>
+
+          <div class="estrelas">
+            <input type="radio" disabled id="cm_star-empty" name="fb" value=""/>
+            <div class="estrelas_linha">
+              <div id="class1"></div>
+              <div id="class2"></div>
+              <div id="class3"></div>
+              <div id="class4"></div>
+              <div id="class5"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-header">
+          <label>TELEFONE:</label>
+          <div id="telefone"></div>
+        </div>
+
+        <div class="modal-header">
+          <label>CELULAR:</label>
+          <div id="celular"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <!-- BEGIN ACESSO -->
+        <div id="urls1" name="urls1"></div>
+        <!-- END ACESSO -->
+
+        <!-- BEGIN NACESSO -->
+        <button class=" btn btn-primary" disabled title="Fazer o Login"> Ver Ofertas</button>
+        <!-- END NACESSO -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade " id="erro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content bg-danger">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

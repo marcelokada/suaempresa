@@ -1,0 +1,60 @@
+{
+  "customer_name": "Marcelo OKada",
+  "customer_document": "36883489827",
+  "customer_mail": "marcelookada@outlook.com11",
+  "customer_phone": "18987987987",
+  "address_line1": "Rua Pioneiro Jos\u00e9 Lorencetti, 123",
+  "address_line2": "",
+  "neighborhood": "Jardim Bongiovani",
+  "city": "Presidente Prudente",
+  "state": "SP",
+  "zip_code": "19050350",
+  "external_number": "303a60e573b6a8e3de8d921f70f243d8",
+  "phone_to_send": "18987987987",
+  "mail_to_send": "doutroultra@doutorultra.com.br",
+  "due_date": "2021-05-27",
+  "total_value": "90",
+  "fine_date": "2021-05-28",
+  "fine_value": 12,
+  "interest_value": 0,
+  "installments_number": 12,
+  "carnet_cod": "147-6-a265bed3a4afff5ca0ff71218002c630",
+  "boletos": {
+    "1": {
+      "external_number": "p6p2088"
+    },
+    "2": {
+      "external_number": "p6p2089"
+    },
+    "3": {
+      "external_number": "p6p2090"
+    },
+    "4": {
+      "external_number": "p6p2091"
+    },
+    "5": {
+      "external_number": "p6p2092"
+    },
+    "6": {
+      "external_number": "p6p2093"
+    },
+    "7": {
+      "external_number": "p6p2094"
+    },
+    "8": {
+      "external_number": "p6p2095"
+    },
+    "9": {
+      "external_number": "p6p2096"
+    },
+    "10": {
+      "external_number": "p6p2097"
+    },
+    "11": {
+      "external_number": "p6p2098"
+    },
+    "12": {
+      "external_number": "p6p2099"
+    }
+  }
+}

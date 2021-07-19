@@ -1,0 +1,81 @@
+<script type="text/javascript">
+
+
+</script>
+
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Alteração da Imagem do Banner</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Alteração da Imagem do Banner</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <form method="post" enctype="multipart/form-data">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">{NOMEBANNER}</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <input type="hidden" name="idimg" value="{IDIMG}">
+                <img src="{IMAGEM}" style="height:250px">
+              </div>
+              <div class="card-body">
+                <div class="form-group bg-secondary">
+                  <label>Inserir Imagem - <i>
+                    <font color="red">Resolução ideal é (1200x800 px) caso contrário o sistema automaticamente ajustará a imagem.</font>
+                  </i></label>
+                  <div class="fileupload fileupload-new" data-provides="fileupload">
+                    <div class="fileupload-new thumbnail" style="width: 480px; height: 250px;">
+                      <img src="{IMAGEM}" alt=""/>
+                    </div>
+                    <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                    <div>
+                      <span class="btn btn-default btn-file">
+                        <span class="fileupload-new alert alert-warning" role="alert"><i class="fa fa-folder-o"></i>Selecionar Imagem</span>
+                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Mudar</span>
+                        <input type="file" name="imagem" class="default"/>
+                      </span>
+                      <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remover</a>
+                    </div>
+                  </div>
+                </div>
+                <label>Titulo</label>
+
+                <input type="text" class="form-control p-input" name="titulo" id="titulo" value="{TITULO}" required>
+
+                <br>
+
+                <label>Manchete</label>
+                <input type="text" class="form-control p-input" name="manchete" id="manchete" value="{MANCHETE}" required>
+                <br>
+                <input type="submit" class="btn btn-primary p-input" name="alterar" value="ALTERAR">
+                <a href="imagensbanner.php?idSessao={ID_SESSAO}&idimg={ID}" class="btn btn-primary">Voltar</a>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

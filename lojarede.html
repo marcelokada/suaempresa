@@ -1,0 +1,517 @@
+<style>
+  .contain {
+    object-fit: contain;
+    max-width: 100%;
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+  }
+
+  .inputsemnada:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+
+  .conteudo {
+    width: 180px;
+    height: 150px;
+    float: left;
+    background-color: #ff1;
+    display: initial;
+    margin: auto;
+    z-index: 6;
+    overflow: hidden;
+  }
+
+  .img-loja {
+    object-fit: contain;
+  }
+
+  .add {
+    height: 40px;
+  }
+
+   .desabilitar {
+     pointer-events: none;
+   }
+
+  .habilitar {
+    pointer-events: auto;
+  }
+
+</style>
+
+<script type="text/javascript">
+
+  function addProdu(id) {
+
+    var idusua = $("#idusua").val();
+
+    $.post('verificaPlanoUsuario.php', {idusua: idusua}, function (data) {
+
+      var situplan = data.situplan;
+      var situpagp = data.situpagp;
+
+      if ((situplan == '1') && (situpagp == null)) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu pagamento esta em analise.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '1') && (situpagp == 'c')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu pagamento esta em analise.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '1') && (situpagp == 'p')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu pagamento esta em analise.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '2') && (situpagp == 'c')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu pagamento esta em analise.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '2') && (situpagp == null)) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu pagamento esta em analise.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '3') && (situpagp == 'p')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu pagamento foi efetivado, aguardando a aprovação do Administrador.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '3') && (situpagp == 'c')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu plano está cancelado.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '3') && (situpagp == 'c')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu plano está cancelado.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '7') && (situpagp == 'c')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu plano está cancelado.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '7') && (situpagp == 'a')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu plano está cancelado</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '9') && (situpagp == 'c')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu plano expirou, faça uma ativação.</p>");
+        $("#planomodal").modal('show');
+      } else if ((situplan == '9') && (situpagp == 'a')) {
+        $("#titulo").text("Aguarde.");
+        $("#mensagem").html("<p>Seu plano expirou, faça uma ativação.</p>");
+        $("#planomodal").modal('show');
+
+      } else {
+
+        $.post('listcart.php', {id: id}, function (data) {
+          var idprod = $('#idcred' + id).val();
+          var idcart = $('#idcart').val();
+          var idloja = $('#idloja').val();
+          var idusua = $('#idusua').val();
+
+          var nome = data.nome;
+          var valor = data.valor;
+          var cashs = data.cash;
+
+          $.post('addcart.php?idprod=' + idprod + '&idloja=' + idloja, {
+            idusua: idusua,
+            nome: nome,
+            valor: valor,
+            idcart: idcart,
+            cashs: cashs
+          }, function (data) {
+            window.location.href = window.location.href
+          });
+        }, "json");
+      }
+    }, "json");
+
+  }
+
+  function deleteData(id) {
+
+    $.post('listcart.php', {id: id}, function (data) {
+      var idprod = $('#idcred' + id).val();
+      var idcart = $('#idcart').val();
+      var idloja = $('#idloja').val();
+
+      $.post('delcartitem.php', {idprod: idprod, idcart: idcart, idloja: idloja}, function (data) {
+        //alert(data);
+        window.location.href = window.location.href
+      });
+    });
+  }
+
+
+  function delcar(id) {
+
+    $.post('listcart.php', {id: id}, function (data) {
+      var idprod = $('#idcred' + id).val();
+      var idcart = $('#idcart').val();
+      var idloja = $('#idloja').val();
+      var nome = data.nome;
+      var valor = data.valor;
+
+      $.post('delcart.php?idprod=' + idprod + '&idcart=' + idcart + '&idloja=' + idloja, {
+        nome: nome,
+        valor: valor
+      }, function (data) {
+        alert(data);
+        window.location.href = window.location.href
+      });
+    }, "json");
+  }
+
+
+  function adicionar(id, id2) {
+
+    let val_normal = $('#qtde' + id2).val();
+    let val_add = 1;
+    let link = 1;
+
+    //alert(val_normal);
+
+    let total = parseInt(val_normal) + parseInt(val_add);
+
+    $('#qtde' + id2).val(total);
+
+    $.post('listcart.php', {id: id}, function (data) {
+      var tipo = "1";
+      var idprod = $('#idcred' + id).val();
+      var idcart = $('#idcart').val();
+      var idloja = $('#idloja').val();
+
+      var cash = $('#cash' + id2).val();
+      var nome = data.nome;
+      var valor = data.valor;
+
+      $.post('alteracart.php?idprod=' + idprod + '&idloja=' + idloja, {
+        tipo: tipo,
+        idprod: idprod,
+        idcart: idcart,
+        idloja: idloja,
+        link: link
+
+      }, function (data) {
+        console.log(data);
+        $('#valor' + id2).val(data.valor_total);
+        $('#cash' + id2).val(data.valor_cash);
+        $('#total-car').val(data.valor_total_car);
+        $('#total-cash').val(data.valor_total_cash);
+        //window.location.href = window.location.href
+      }, "json");
+    }, "json");
+
+  }
+
+  function subtrair(id, id2) {
+
+    let val_normal = $("#qtde" + id2).val();
+    let val_add = 1;
+    let total = parseInt(val_normal) - parseInt(val_add);
+    let link = 1;
+
+    if (val_normal < 2) {
+      alert("A quantidade não pode ser menor que 1(um)!");
+    } else {
+
+      $('#qtde' + id2).val(total);
+      $('#qtde2' + id2).val(total);
+
+      $.post('listcart.php', {id: id}, function (data) {
+
+        var tipo = "2";
+        var idprod = $('#idcred' + id).val();
+        var idcart = $('#idcart').val();
+        var idloja = $('#idloja').val();
+        var cash = $('#cash' + id2).val();
+        var nome = data.nome;
+        var valor = data.valor;
+
+        $.post('alteracart.php?idprod=' + idprod + '&idloja=' + idloja, {
+          tipo: tipo,
+          idprod: idprod,
+          idcart: idcart,
+          idloja: idloja,
+          valor: valor,
+          cash: cash,
+          qtde: total,
+          link: link
+
+        }, function (data) {
+          //window.location.href = window.location.href
+          $('#valor' + id2).val(data.valor_total);
+          $('#cash' + id2).val(data.valor_cash);
+          $('#total-car').val(data.valor_total_car);
+          $('#total-cash').val(data.valor_total_cash);
+        }, "json");
+      }, "json");
+    }
+  }
+
+  function add() {
+    let val_normal = $('#qtde').val();
+
+    let val_add = 1;
+
+    let total = parseInt(val_normal) + parseInt(val_add);
+
+    alert(total)
+
+    $('#qtde').val(total);
+
+  }
+
+</script>
+
+<style>
+
+  .desabilitar {
+    pointer-events: none;
+  }
+
+  .habilitar {
+    pointer-events: auto;
+  }
+
+</style>
+
+<!-- ======= Breadcrumbs ======= -->
+<section class="breadcrumbs">
+  <div class="container">
+    <div class="row align-items-end">
+      <div class="col">
+        <ol>
+          <li>Home</li>
+          <li>Lojas</li>
+          <li>Produtos</li>
+        </ol>
+        <h2>Adicionar Produtos</h2>
+      </div>
+    </div>
+  </div>
+</section><!-- End Breadcrumbs -->
+
+
+<form method="post" action="" enctype="multipart/form-data">
+
+  <input type="hidden" id="idsessao" name="idsessao" value="{ID_SESSAO}"/>
+  <input type="hidden" id="idcart" name="idcart" value="{IDCART}"/>
+  <input type="hidden" id="idusua" name="idusua" value="{IDUSUA}"/>
+
+  <div class="blog" data-aos="fade-up">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-8">
+          <div class="form-group">
+            <p class="help-block text-danger">Pesquisar:</p>
+            <input type="text" class="form-control" placeholder="Pesquisar" id="pesquisar" name="pesquisar">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <p class="help-block text-danger">&nbsp;</p>
+          <div class="form-group">
+            <input type="submit" class="form-control btn btn-primary" name="listar" id="listar" value="Pesquisar">
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <p class="help-block text-danger">&nbsp;</p>
+          <div class="form-group">
+            <button type="button" class="form-control btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#carrinho">
+              <span class="text-danger">{QTDECAR} </span><i class="fa fa-shopping-cart"></i> Carrrinho
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="section-title text-center">
+            <h3>{NOMELOJA}</h3>
+            <p>Categoria: {CATEGORIALOJA}</p>
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <!-- BEGIN PRODUTOS -->
+              <input type="hidden" name="id" id="idcred{ID}" value="{ID}">
+              <input type="hidden" name="idloja" id="idloja" value="{ID_CRED}">
+              <input type="hidden" name="no" id="nomes{NOMEPRODU}" value="{NOMEPRODU}"/>
+              <input type="hidden" name="cash" id="cash" value="{CASHBACK_VALOR}"/>
+              <input type="hidden" name="cashs" id="cashs" value="{CASHVALOR}"/>
+
+              <div class="col">
+                <div class="card h-100">
+                  <div class="img-responsive">
+                    <img src="{IMAGEM}" class="img-loja cropped" alt="..." >
+                  </div>
+                  <div class="card-body">
+
+                  </div>
+                  <div class="card-footer">
+                    <h5 class="card-title">{NOMEPRODU}</h5>
+                    <p class="card-text">R$ {VALORPRODU}</p>
+                    <p class="card-text">{CASHBACK}<br> {VALORCASH}</p>
+                    <a class="btn btn-primary" onclick="addProdu('{ID}');" href="javascript:void(0);">
+                      <i class="bx bx-plus" aria-hidden="true"></i> Adicionar
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- END PRODUTOS -->
+
+            </div><!-- /.row -->
+          </div><!-- div anes dos conteudos-->
+        </div><!-- col-md-12 col-sm-12-->
+      </div><!-- class="row" -->
+    </div><!-- /.container -->
+  </section>
+
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="planomodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div id="titulo"></div>
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div id="mensagem"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <!--        <button type="button" class="btn btn-primary">Ver planos</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="carrinho" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1"><i class="fa fa-shopping-cart"></i> Carrinho</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form method="post">
+          <div class="colors-switcher1">
+            <div class="form-group">
+              <div class="container-fluid">
+
+                <!-- BEGIN VAZIO -->
+                {VAZIO}
+                <input type="hidden" name="valorpg" value="0">
+                <!-- END VAZIO -->
+
+                <!-- BEGIN SHOP -->
+                <input type="hidden" id="valorpg" name="valorpg" value="1">
+
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <td>Descrição</td>
+                      <td>Qtde</td>
+                      <td>Valor Unit. R$</td>
+                      <td>CashBack R$</td>
+                      <td></td>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <!-- BEGIN CARRINHO -->
+                    <tr>
+                      <td>{DESC}</td>
+                      <td>
+                        <div class="form-group">
+                          <div class="input-group mb-3">
+                            <a href="javascript:void(0);" onclick="subtrair('{ID}','{ID2}');">
+                              <span class="input-group-text add"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </a>
+
+                            <input type="text" class="form-control" id="qtde{ID2}" name="qtde" value="{QTDE}">
+                            <a href="javascript:void(0);" onclick="adicionar('{ID}','{ID2}');">
+                              <span class="input-group-text add"> <i class="fa fa-plus" aria-hidden="true"></i></span>
+                            </a>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td><input type="text" class="form-control" readonly id="valor{ID2}" name="valor" value="{VALOR}"></td>
+
+                      <td><input type="text" class="form-control" readonly id="cash{ID2}" name="cash" value="{CASHVALOR_DB}"></td>
+
+                      <td>
+                        <a href="javascript:void(0);" onclick="deleteData('{ID}');">
+                          <div class="btn btn-danger">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                          </div>
+                        </a>
+                      </td>
+                    </tr>
+                    <!-- END CARRINHO -->
+                    </tbody>
+                  </table>
+                </div>
+
+                <table class="table table-responsive">
+                  <tr>
+                    <td><h3>Total: R$</h3></td>
+                    <td>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" readonly id="total-car" name="total-car" value="{TOTAL}">
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td><h4>CashBack Gerado:</h4></td>
+                    <td>
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" readonly id="total-cash" name="cash-car" value="{TOTALCASH}">
+                      </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+
+                <!-- END SHOP -->
+              </div>
+
+              <font color="red">{PONTOSREDE}</font>
+            </div>
+            <span id="btnAdd"></span>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+
+        <!-- BEGIN BTN_FINALIZAR -->
+        <a href="finalizarcompra.php?idSessao={ID_SESSAO}/purchases/{ID_CRED}/{IDCART}/1" class="btn btn-primary {HREF}" >
+          Finalizar Pedido
+        </a>
+        <!-- END BTN_FINALIZAR -->
+
+      </div>
+    </div>
+  </div>
+</div>

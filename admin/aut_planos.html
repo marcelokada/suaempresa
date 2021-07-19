@@ -1,0 +1,320 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Autorização de Planos</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Autorização de Planos</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pedidos pendentes dos usuários</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="export-buttons"></div>
+              <form method="post">
+                <table id="exemple1" class="table table-hover">
+                  <thead>
+                  <tr class="">
+                    <th>Id pedido</th>
+                    <th>Nome</th>
+                    <th>Plano</th>
+                    <th>Status do Pagamento</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                    <th>Tipo</th>
+                    <th>Status do Plano/Mensalidade</th>
+                    <th>Local Pagamento</th>
+                    <th>Comprovante</th>
+                    <th {DISABLE}>Autorizar</th>
+                    <th {DISABLE}>Cancelar</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- BEGIN AUT -->
+                  <tr>
+                    <input type="hidden" id="subcat1" name="subcat1" value="{ID}" />
+                    <td>{ID}</td>
+                    <td>{NOME}</td>
+                    <td>{PLANO}</td>
+                    <td>{STATUS_PAG}</td>
+                    <td>{DATA}</td>
+                    <td>{VALORPLANO}</td>
+                    <td>{TIPO}</td>
+                    <td ><font color="{COR}">{STATUSUSUA}</font></td>
+                    <td >{TPPG}</td>
+
+
+                    <!-- BEGIN VISU -->
+                    <td > <a href="javascript:void(0);" onclick="termos('{IDPAGA}');" title="VISULIZAR COMPROVANTE">Visualizar</a></td>
+                    <!-- END VISU -->
+
+                    <!-- BEGIN VISU1 -->
+                    <td >Não Enviado</td>
+                    <!-- END VISU1 -->
+
+                    <td {DISABLE}>
+                      <!--<button type="submit" class="btn btn-{COR1}" name="alterar" {DISA} value="{ID}" title="Alterar">Alterar</button>-->
+
+                      <!--<button type="submit" class="btn btn-success" name="del" {DISA1} value="{ID}">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      </button>-->
+
+                      <button type="submit" class="btn btn-outline-success btn-sm" name="auto" {DISA1} value="{ID}">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                    <td {DISABLE}>
+                      <!-- BEGIN CANCELAR -->
+                      <button type="submit" class="btn btn-danger btn-sm " name="canc" {DISA2} value="{ID}" title="Cancelar"><font size="1px">Cancelar</font></button>
+                      <!-- END CANCELAR -->
+                    </td>
+
+                  </tr>
+                  <!-- END AUT -->
+                  </tbody>
+                </table>
+              </form>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pedidos Autorizados</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="export-buttons2"></div>
+              <table id="exemple2" class="table table-hover">
+                <thead>
+                <tr class="">
+                  <th>Id pedido</th>
+                  <th>Nome</th>
+                  <th>Plano</th>
+                  <th>Status do Pagamento</th>
+                  <th>Data</th>
+                  <th>Valor</th>
+                  <th>Tipo</th>
+                  <th>Status do Plano/Mensalidade</th>
+                  <th>Local Pagamento</th>
+                  <th>Comprovante</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- BEGIN AUT1 -->
+                <tr>
+                  <input type="hidden" id="subcat1" name="subcat1" value="{ID}" />
+                  <td>{ID1}</td>
+                  <td>{NOME1}</td>
+                  <td>{PLANO1}</td>
+                  <td>{STATUS_PAG1}</td>
+                  <td>{DATA1}</td>
+                  <td>{VALORPLANO1}</td>
+                  <td>{TIPO1}</td>
+                  <td ><font color="{COR}">{STATUSUSUA1}</font></td>
+                  <td >{TPPG1}</td>
+
+                  <!-- BEGIN VISU2 -->
+                  <td > <a href="javascript:void(0);" onclick="termos('{IDPAGA1}');" title="VISULIZAR COMPROVANTE">Visualizar</a></td>
+                  <!-- END VISU2 -->
+
+                  <!-- BEGIN VISU11 -->
+                  <td >Não Enviado</td>
+                  <!-- END VISU11 -->
+
+                </tr>
+                <!-- END AUT1 -->
+                </tbody>
+              </table>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Pedidos Cancelado</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div id="export-buttons3"></div>
+              <table id="exemple3" class="table table-hover">
+                <thead>
+                <tr class="">
+                  <th>Id pedido</th>
+                  <th>Nome</th>
+                  <th>Plano</th>
+                  <th>Status do Pagamento</th>
+                  <th>Data</th>
+                  <th>Valor</th>
+                  <th>Tipo</th>
+                  <th>Status do Plano/Mensalidade</th>
+                  <th>Local Pagamento</th>
+                  <th>Comprovante</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- BEGIN AUT2 -->
+                <tr>
+                  <input type="hidden" id="subcat1" name="subcat1" value="{ID}" />
+                  <td>{ID2}</td>
+                  <td>{NOME2}</td>
+                  <td>{PLANO2}</td>
+                  <td>{STATUS_PAG2}</td>
+                  <td>{DATA2}</td>
+                  <td>{VALORPLANO2}</td>
+                  <td>{TIPO2}</td>
+                  <td ><font color="{COR}">{STATUSUSUA2}</font></td>
+                  <td >{TPPG2}</td>
+
+                  <!-- BEGIN VISU3 -->
+                  <td > <a href="javascript:void(0);" onclick="termos('{IDPAGA2}');" title="VISULIZAR COMPROVANTE">Visualizar</a></td>
+                  <!-- END VISU3 -->
+
+                  <!-- BEGIN VISU111 -->
+                  <td >Não Enviado</td>
+                  <!-- END VISU111 -->
+
+                </tr>
+                <!-- END AUT2 -->
+                </tbody>
+              </table>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+
+      </div>
+      <!-- /.row -->
+    </div>
+
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+
+<script type="text/javascript">
+
+  $(function () {
+    let table = $('#exemple1').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table2 = $('#exemple2').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    let table3 = $('#exemple3').DataTable({
+      "autoWidth": false,
+      "responsive": true,
+      "lengthChange": true,
+      colReorder: true,
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            'copy',
+            'excel',
+            'csv',
+            'pdf',
+            'print'
+          ]
+        }
+      ]
+    });
+
+    document.getElementById('export-buttons').appendChild(table.buttons().container()[0]);
+    document.getElementById('export-buttons2').appendChild(table2.buttons().container()[0]);
+    document.getElementById('export-buttons3').appendChild(table3.buttons().container()[0]);
+  });
+
+  function termos(id) {
+    const https = location.protocol;
+    var DIRPAGE = https + "//" + document.location.hostname;
+
+    window.open(DIRPAGE + '/{EMPRESA}/comprovantes.php?idpag='+id);
+    //window.open(DIRPAGE + '/MultiSYS_Club_DoutorUltra/comprovantes.php?idpag='+id);
+  }
+
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example22').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+

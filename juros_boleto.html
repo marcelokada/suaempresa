@@ -1,0 +1,95 @@
+<script>
+  function verificaSenha1() {
+
+    var senha1 = $('#senha1').val();
+
+    var se1 = senha1.length;
+
+    if (se1 <= 7) {
+      $('#alerta6').html('<p align="justify"><font color="red">Caracteres insuficientes - mínimos 8 (oito)!</font></p>');
+      $('#verifica_senha1').val('1');
+      document.getElementById('senha1').focus();
+    } else {
+      $('#alerta6').html('');
+    }
+
+  }
+
+  function verificaSenha2() {
+
+    var senha2 = $('#senha2').val();
+    var se2 = senha2.length;
+
+    if (se2 <= 7) {
+      $('#alerta7').html('<p align="justify"><font color="red">Caracteres insuficientes - mínimos 8 (oito)!</font></p>');
+      document.getElementById('senha2').focus();
+    } else {
+      $('#alerta7').html('');
+    }
+  }
+
+  function compararSenhas() {
+
+    var senha1 = $('#senha1').val();
+    var senha2 = $('#senha2').val();
+
+    if (senha1 != senha2) {
+      $('#alerta8').html('<p align="justify"><font color="red">As senhas estão diferentes.</font></p>');
+      document.getElementById("alterar").disabled = true;
+    } else {
+      $('#alerta8').html('');
+      document.getElementById("alterar").disabled = false;
+    }
+  }
+
+</script>
+
+
+<form class="forms-sample" method="post" enctype="multipart/form-data">
+
+<div class="content-wrapper">
+  <h3 class="page-heading mb-4">Alteração da Senha</h3>
+  <div class="row mb-2">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Alteração</h5>
+
+          <!-- BEGIN ERRO -->
+          <div class="alert alert-danger" role="alert">
+            <p align="justify">{MSG}</p>
+          </div>
+          <!-- END ERRO -->
+
+          <!-- BEGIN SUCESSO -->
+          <div class="alert alert-success" role="alert">
+            <p align="justify">{MSG}</p>
+          </div>
+          <!-- END SUCESSO -->
+
+
+          <div id="alerta8"></div>
+            <div class="form-row">
+
+              <div class="form-group">
+                <label>Juros por Vencimento:</label>
+                <input type="number" class="form-control p-input" id="juros_venc" name="juros_venc" value="{JUROSV}" required/>
+                <div id="alerta6"></div>
+              </div>
+
+              <div class="form-group">
+                <label>Juros por Dia:</label>
+                <input type="number" class="form-control p-input" id="juros_dias" name="juros_dias" value="{JUROSD}" required/>
+                <div id="alerta7"></div>
+              </div>
+
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary"  id="alterar" name="alterar" value="Alterar">
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

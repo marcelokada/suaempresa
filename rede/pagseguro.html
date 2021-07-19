@@ -1,0 +1,115 @@
+<script type="text/javascript">
+
+  function verificar() {
+    $("#modalgif").modal();
+    var token = $('#token').val();
+    var email = $('#email').val();
+
+    $.post('api_pagseguro.php', {token: token, email: email}, function (data) {
+      $('#modalgif').modal('hide');
+      alert(data);
+      window.location.href = window.location.href;
+    });
+  }
+</script>
+
+
+<input type="hidden" name="id_rede" value="{ID_REDE}">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>PagSeguro</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">PagSeguro</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Configurar</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            <p><i><b>OBS:</b> o token é pareceido com esse:<br>
+              <b>Exemplo:</b> fd3998Sc-db43-425f-a964-65482315fe342d2bf86c48cea5735907760e8bc26ae16f4d-0b80-4c89-ad64-d0580c49efc4</i></p>
+            <!-- BEGIN ERRO -->
+            <div class="alert alert-danger" role="alert">
+              <p align="justify">{MSG}</p>
+            </div>
+            <!-- END ERRO -->
+
+            <!-- BEGIN SUCESSO -->
+            <div class="alert alert-success" role="alert">
+              <p align="justify">{MSG}</p>
+            </div>
+            <!-- END SUCESSO -->
+
+              <div class="form-group">
+                <label><h4>Email do PagSeguro:</h4></label>
+                <h4><i>{EMAIL1}</i></h4>
+              </div>
+              <br>
+              <div class="form-group">
+                <label><h4>Token do PagSeguro:</h4></label>
+                <h4><i>{TOKEN1}</i></h4>
+              </div>
+
+            <form method="post" enctype="multipart/form-data">
+              <input type="hidden" name="seqcred" value="{ID_CRED}">
+
+              <label>Email do PagSeguro:</label>
+              <div class="form-group">
+                <input type="text" class="form-control" id="email" name="email" value="{EMAIL}" required/>
+              </div>
+
+              <label>Token do PagSeguro:</label>
+              <div class="form-group">
+                <input type="text" class="form-control" id="token" name="token" value="{TOKEN}" required/>
+              </div>
+
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary" name="salvar" value="Salvar"/>
+              </div>
+
+              <div class="form-group">
+                <input type="button" class="btn btn-warning" name="salvar" value="VALIDAR O TOKEN" {DISA} onclick="verificar();"/>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Modal pagamento-->
+<div class="modal fade" id="modalgif" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Aguarde, validando...</h4>
+        <img src="../comum/img/logout.gif" width="50px;">
+      </div>
+    </div>
+  </div>
+  <!-- Modal pagamento-->
+	
+	

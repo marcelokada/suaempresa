@@ -1,0 +1,64 @@
+BANCO DE DADOS
+
+==>MULTISYS_REDE - BANCO DE DADOS<==
+
+==>trede_usuadmin = tabela de usuarios
+->rede_sequsua = auto incremente -sequencia do banco
+->rede_nomeusu = nome do usuario
+->rede_cpfusua = é utilizado par afazer o login
+->rede_adminus = se ele é um admin, com a tag "s" ou "n"
+->rede_senhaus = senha em md5
+->rede_tipousu = nivel de herarquia do 1 ao 5
+->rede_usubloc = se o usuario atingir a qtde de logins errados,é bloqueado 
+->rede_emailus = email para envio de redefinição de senha             
+->rede_serecus = sessao para redefinição de senha         
+->rede_drecusu = data e hora da redefinição        
+->rede_hrecusu = hora em segundos para verificação, contagem regressiva
+
+
+==>trede_segtenta = tabela de tentativas de acesso ao banco
+->vnumeroipseg = ip da maquina que esta logando
+->vnumercpfseg = cpf do usuario que esta logando
+->ddatatentseg = data da tentativa
+->nnumetentseg = quantidade de tentativas
+->vhoratentseg = hora da tentativa 
+
+
+==>trede_credenciados = tabela das redes credenciadas
+sequenciacre = sequencia da srede
+vnomecredcre = nome da rede
+vnomeendecre = endereço
+nnumeendecre =  nuemro do endereço
+vnomebaircre =  nome do bairro
+vnomecidamun =  cidade
+cestadoufmun   =  estado do municipio
+numetpendcre   =  tipo da rua
+cestadoufest   = sigla do estadoestado
+nnumecatecre   =  categoria do servico(alimentos e bebidas, lazer, bem-estar e saude, educação e produtos e serviços)
+nnumeservcre   =  tipo do servico
+nnumeibgemun   =  numero ibge da cidade
+csituacaocre   = situação so credenciado se está ativo ou não
+ddatacredcre  = data do credenciamento
+nnumeregireg = numero da regiao
+
+
+==>trede_regiao = tabela das regioes  do brasil
+nnumeregireg = numero da regiao
+vnomeregireg = nome da região
+
+
+==>trede_estado = tabela dos estados
+sequenciaest  =  sequencia das tabela
+nnumeroufest  = numero do estado ibge
+vnomeestaest  = nome do estado       
+cestadoufest  =  sigla do estado
+nnumeregireg  = numero da regiao pertencente
+
+
+==>trede_municipios = tabela dos municipios
+sequenciamun  = sequencia da cidade tabela
+nnumeibgemun  = numero ibge da cidade
+vnomecidamun = nome da cidade
+cestadoufest   = sigla do estado
+
+

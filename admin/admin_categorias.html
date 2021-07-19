@@ -1,0 +1,130 @@
+<script>
+  function verificaSenha1() {
+
+    var senha1 = $('#senha1').val();
+
+    var se1 = senha1.length;
+
+    if (se1 <= 7) {
+      $('#alerta6').html('<p align="justify"><font color="red">Caracteres insuficientes - mínimos 8 (oito)!</font></p>');
+      $('#verifica_senha1').val('1');
+      document.getElementById('senha1').focus();
+    } else {
+      $('#alerta6').html('');
+    }
+
+  }
+
+  function verificaSenha2() {
+
+    var senha2 = $('#senha2').val();
+    var se2 = senha2.length;
+
+    if (se2 <= 7) {
+      $('#alerta7').html('<p align="justify"><font color="red">Caracteres insuficientes - mínimos 8 (oito)!</font></p>');
+      document.getElementById('senha2').focus();
+    } else {
+      $('#alerta7').html('');
+    }
+  }
+
+  function compararSenhas() {
+
+    var senha1 = $('#senha1').val();
+    var senha2 = $('#senha2').val();
+
+    if (senha1 != senha2) {
+      $('#alerta8').html('<p align="justify"><font color="red">As senhas estão diferentes.</font></p>');
+      document.getElementById("alterar").disabled = true;
+    } else {
+      $('#alerta8').html('');
+      document.getElementById("alterar").disabled = false;
+    }
+  }
+
+</script>
+
+<form class="forms-sample" method="post" enctype="multipart/form-data">
+
+  <div class="content-wrapper">
+    <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Configurações das Categorias</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item">Home</li>
+              <li class="breadcrumb-item active">Configurações das Categorias</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Nome das Categorias (Backoffice Usuário)</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+
+                <!-- BEGIN ERRO -->
+                <div class="alert alert-danger" role="alert">
+                  <p align="justify">{MSG}</p>
+                </div>
+                <!-- END ERRO -->
+
+                <!-- BEGIN SUCESSO -->
+                <div class="alert alert-success" role="alert">
+                  <p align="justify">{MSG}</p>
+                </div>
+                <!-- END SUCESSO -->
+
+
+                <div id="alerta8"></div>
+                <div class="col-md-4 mb-4">
+
+                  <label class="form-label">Categoria 1</label>
+                  <input type="text" class="form-control mb-4" id="cat1" name="cat1"  value="{CAT1}" required >
+                  <input type="hidden" name="ncat1" value="{NCAT1}">
+
+                  <label class="form-label">Categoria 2</label>
+                  <input type="text" class="form-control mb-4" id="cat2" name="cat2"  value="{CAT2}" required >
+                  <input type="hidden" name="ncat2" value="{NCAT2}">
+
+                  <label class="form-label">Categoria 3</label>
+                  <input type="text" class="form-control mb-4" id="cat3" name="cat3"  value="{CAT3}" required >
+                  <input type="hidden" name="ncat3" value="{NCAT3}">
+
+                  <label class="form-label">Categoria 4</label>
+                  <input type="text" class="form-control mb-4" id="cat4" name="cat4"  value="{CAT4}" required >
+                  <input type="hidden" name="ncat4" value="{NCAT4}">
+
+                  <label class="form-label">Categoria 5</label>
+                  <input type="text" class="form-control mb-4" id="cat5" name="cat5"  value="{CAT5}" required >
+                  <input type="hidden" name="ncat5" value="{NCAT5}">
+
+                </div>
+
+                <div class="col-md-4">
+                  <input type="submit" class=" btn btn-primary" id="alterar" name="alterar" value="Alterar">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</form>

@@ -1,0 +1,123 @@
+<script type="text/javascript">
+
+  function verificaEmail() {
+    var email = $('#email').val();
+
+    if (email == '') {
+      document.getElementById('email').focus();
+      $('#alerta9').html('<p align="justify"><font color="red">Por Favor preencher o Email.</font></p>');
+    } else {
+
+      $.post('verificaEmail.php', {email: email}, function (data) {
+
+        if (data.log == '0') {
+          $('#alerta9').html('<p align="justify"><font color="green">Email liberado para utilização.</font></p>');
+          $('#verifica_email').val('0');
+          document.getElementById("salvar").disabled = false;
+        } else {
+          document.getElementById('email').focus();
+          $('#alerta9').html('<p align="justify"><font color="red">Email já utlizado.</font></p>');
+          document.getElementById("salvar").disabled = true;
+
+        }
+      }, "json");
+    }
+  }
+
+
+</script>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Cadastro de Usuários Administradores</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Cadastro de Usuários Administradores</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- BEGIN ERRO -->
+        <div class="alert alert-danger" role="alert">
+          <p align="justify">{MSG}</p>
+        </div>
+        <!-- END ERRO -->
+
+        <!-- BEGIN SUCESSO -->
+        <div class="alert alert-success" role="alert">
+          <p align="justify">{MSG}</p>
+        </div>
+        <!-- END SUCESSO -->
+
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Informações dos usuários</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+
+              <div class="form-row">
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+
+                  <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" class="form-control p-input" id="nome" name="nome" value="{NOME}" required/>
+                    <div>&nbsp;</div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Email:</label>
+                    <input type="text" class="form-control p-input" id="email" name="email" value="{EMAIL}" onkeyup="verificaEmail();">
+                    <div id="alerta9"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Nivel:</label>
+                    <select type="text" class="form-control p-input" id="nivel" name="nivel">
+                      <option value="1">Apenas Consultar</option>
+                      <option value="2">Consultar e BackOffice (Usuário)</option>
+                      <option value="3">Consultar, Cadastrar, Alterações (configurações) e BackOffice (Usuário)</option>
+                      <option value="4">Consultar, Cadastrar,Alterações (configurações), BackOffice (Usuário) e Autorizar (Pagamentos)</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Senha:</label>
+                    <input type="password" class="form-control p-input" id="senha" name="senha" value="{PASSWORD}" autocomplete="off" required/>
+                  </div>
+
+                  <div class="form-group">
+                  </div>
+                  <div class="form-group">
+                  </div>
+
+                  <br>
+                  <div class="form-group">
+                    <input type="submit" class="btn btn-primary" id="salvar" name="salvar" value="Salvar"/>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

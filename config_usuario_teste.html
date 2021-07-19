@@ -1,0 +1,268 @@
+
+<script type="text/javascript">
+jQuery(function($){
+   $("#dtnasc").mask("99/99/9999");
+   $("#cpf").mask("999.999.999-99");
+   $("#phone").mask("(99) 99999-9999");
+
+});
+
+$(document).ready(function(){
+  $('#showPassword').on('click', function(){
+    
+    var passwordField = $('#senha_atual');
+    var passwordFieldType = passwordField.attr('type');
+    if(passwordFieldType == 'senha_atual')
+    {
+        passwordField.attr('type', 'password');
+        $(this).val('Hide');
+    } else {
+        passwordField.attr('type', 'senha_atual');
+        $(this).val('Show');
+    }
+  });
+});
+
+$(document).ready(function(){
+  $('#showPassword1').on('click', function(){
+    
+    var passwordField = $('#nova_senha');
+    var passwordFieldType = passwordField.attr('type');
+    if(passwordFieldType == 'nova_senha')
+    {
+        passwordField.attr('type', 'password');
+        $(this).val('Hide');
+    } else {
+        passwordField.attr('type', 'nova_senha');
+        $(this).val('Show');
+    }
+  });
+});
+
+$(document).ready(function(){
+  $('#showPassword2').on('click', function(){
+    
+    var passwordField = $('#nova_senha1');
+    var passwordFieldType = passwordField.attr('type');
+    if(passwordFieldType == 'nova_senha1')
+    {
+        passwordField.attr('type', 'password');
+        $(this).val('Hide');
+    } else {
+        passwordField.attr('type', 'nova_senha1');
+        $(this).val('Show');
+    }
+  });
+});
+
+
+function myFocusFunction() {
+	var id = $('#nova_senha').val();
+	var id2 = $('#nova_senha1').val();
+	
+	var idl1 = id.length;
+	var idl2 = id2.length;
+  
+  
+	if (id != id2){
+		$("#resultado").html('Senhas estão diferentes.');
+		$("#exampleModal").modal();
+	}else if(idl1 < 8){
+		$("#resultado").html('Quantidade caracteres insuficientes - mínimo 8(oito).');
+		$("#exampleModal").modal();
+	}else if(idl2 < 8){
+		$("#resultado").html('Quantidade caracteres insuficientes - mínimo 8(oito).');
+		$("#exampleModal").modal();
+	}
+}
+
+function senha1() {
+	var id = $('#nova_senha').val();
+
+	var idl1 = id.length;
+   
+	if(idl1 < 8){
+		$("#resultado").html('Quantidade caracteres insuficientes - mínimo 8(oito)');
+		$("#exampleModal").modal();
+	}else if(idl1 == null){
+		
+	}
+}
+
+function habilitar(){
+	if(document.getElementById('senhas').checked){
+		document.getElementById('nova_senha').disabled = false;
+		document.getElementById('nova_senha1').disabled = false;
+		$('#se').val('on');
+	} else {
+		document.getElementById('nova_senha').disabled = true;
+		document.getElementById('nova_senha1').disabled = true;
+		$('#nova_senha,#nova_senha1').val('');
+		$('#se').val('off');
+	}
+}
+
+function senha2() {
+  
+	alert(senha);
+	/*$.post('verificarsenha.php?idSessao={ID_SESSAO}',{seq: seq,senha: senha},function(data){
+		
+	});*/
+}
+</script>
+
+<!-- Start Home Page Slider -->
+	<section class="pricing-section">
+	
+	
+    </section>
+<!-- End Home Page Slider -->
+	
+<div class="msg container">
+  <!-- BEGIN ERRO -->
+<section  class="about-us-section-rede">
+</section>  
+  <div class="alert alert-danger" role="alert">
+    <p align="justify">{MSG}</p> 
+  </div>
+  <!-- END ERRO -->
+  
+  <!-- BEGIN SUCESSO -->
+<section  class="about-us-section-rede">
+</section>    
+  <div class="alert alert-success" role="alert">
+    <p align="justify">{MSG}</p> 
+  </div>
+  <!-- END SUCESSO -->
+</div>
+
+<form method="post">
+
+	<!-- Start About Us Section -->
+    <section class="about-us-section-rede">
+    <div class="container">
+		<div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section-title text-center">
+                    <h3>CONFIGURAÇÕES DO USUÁRIO - <i>DEMONSTRATIVO</i></h3>
+					<p></p>
+						
+							<div class="row">
+								<div class="col-md-6">
+								<h4>Informações do usuários </h4>
+									
+									<div class="form-group" align="left">
+										<label>ID USUÁRIO:</label>
+										<input type="text" class="form-control" name="seq" id="seq" value="{SEQ}" readonly>
+									</div>
+									
+									<div class="form-group" align="left">
+										<label>NOME:</label>
+										<input type="hidden" name="seq" id="seq" value="{SEQ}">
+										<input type="text" class="form-control" name="nome" id="nome" value="{NOME}" readonly>
+									</div>
+									
+									<div class="form-group" align="left">
+										<label>E-MAIL:</label>
+										<input type="email" class="form-control" name="mail" id="mail" value="{EMAI}" readonly>
+									</div>
+									
+									<div class="form-group" align="left">
+										<label>CPF:</label>
+										<input type="text" class="cpf form-control" maxlength="11" name="cpf" id="cpf" value="{CCPF}" readonly>
+									</div>
+									
+									<div class="form-group" align="left">
+										<label>CELULAR:</label>
+										<input type="text" class="form-control" name="phone" id="phone" value="{CELU}" readonly required data-validation-required-message="Preencher o numero do celular">
+									</div>
+									
+									<div class="form-group" align="left">
+										<label>DATA DE NASCIMENTO:</label>
+										<input type="text" class="form-control" name="dtnasc" id="dtnasc" value="{NASC}" readonly>
+									</div>
+								</div>
+								
+								<div class="col-md-6">
+								
+								<h4><input type="checkbox" name="senhas" id="senhas" onclick="habilitar()" value="" disabled> Alteração da senha</h4>
+								
+									<div class="form-group" align="left">
+										<label>NOVA SENHA: (<i>mínimo de 8 caracteres</i>)</label>
+										<div class="input-group">
+											<input type="password" class="adulto form-control" name="nova_senha" id="nova_senha" {SENHA} onblur="senha1();" disabled>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" id="showPassword1"><i class="fa fa-eye"></i></button>
+										</span>
+										</div>
+									</div>
+																	
+									<div class="form-group" align="left">
+										<label>CONFIRME A NOVA SENHA: (<i>mínimo de 8 caracteres</i></label>
+										<div class="input-group">
+											<input type="password" class="form-control" name="nova_senha1" id="nova_senha1"  {SENHA} onblur="myFocusFunction();" disabled>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" id="showPassword2" ><i class="fa fa-eye"></i></button>
+										</span>
+										</div>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+								<div class="col-lg-12 text-center">
+									<div id="success"></div>
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" disabled>
+										ALTERAR
+									</button>
+								</div>
+						</div>
+				</div><!-- divo anes dos conteudos-->
+			</div><!-- col-md-12 col-sm-12-->
+		</div><!-- class="row" -->
+	</div><!-- /.container -->
+    </section>
+									
+
+<input type="hidden" name="se" id="se" value="">
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Confirme a sua senha!</h5>
+	  </div>
+      <div class="modal-header">
+        <div class="form-group" align="left">
+			<label>Senha Atual:</label>
+			<div class="input-group">
+				<input type="password" class="form-control" name="senha_atual" id="senha_atual" onblur="verificarSenha1();" required data-validation-required-message="Preencher o numero do celular">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-default" id="showPassword"><i class="fa fa-eye"></i></button>
+			</span>
+			</div>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">FECHAR</button>
+        <input type="submit" class="btn btn-primary" name="alterar" value="ALTERAR">
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+	  
+        <h5 class="modal-title" id="exampleModalLabel">Atenção</h5>
+      </div>
+      <div class="modal-header">
+        <div id="resultado"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+    </div>
+  </div>
+</div>

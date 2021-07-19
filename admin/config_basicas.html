@@ -1,0 +1,402 @@
+<script text="javascript">
+  function moeda(a, e, r, t) {
+    let n = ""
+      , h = j = 0
+      , u = tamanho2 = 0
+      , l = ajd2 = ""
+      , o = window.Event ? t.which : t.keyCode;
+    if (13 == o || 8 == o)
+      return !0;
+    if (n = String.fromCharCode(o),
+    -1 == "0123456789".indexOf(n))
+      return !1;
+    for (u = a.value.length,
+           h = 0; h < u && ("0" == a.value.charAt(h) || a.value.charAt(h) == r); h++)
+      ;
+    for (l = ""; h < u; h++)
+      -1 != "0123456789".indexOf(a.value.charAt(h)) && (l += a.value.charAt(h));
+    if (l += n,
+    0 == (u = l.length) && (a.value = ""),
+    1 == u && (a.value = "0" + r + "0" + l),
+    2 == u && (a.value = "0" + r + l),
+    u > 2) {
+      for (ajd2 = "",
+             j = 0,
+             h = u - 3; h >= 0; h--)
+        3 == j && (ajd2 += e,
+          j = 0),
+          ajd2 += l.charAt(h),
+          j++;
+      for (a.value = "",
+             tamanho2 = ajd2.length,
+             h = tamanho2 - 1; h >= 0; h--)
+        a.value += ajd2.charAt(h);
+      a.value += r + l.substr(u - 2, u)
+    }
+    return !1
+  }
+
+  function limpa_formulário_cep() {
+    //Limpa valores do formulário de cep.
+    document.getElementById('rua').value = ("");
+    document.getElementById('bairro').value = ("");
+    document.getElementById('cidade').value = ("");
+    document.getElementById('uf').value = ("");
+    document.getElementById('ibge').value = ("");
+  }
+
+  function meu_callback(conteudo) {
+
+    if (!("erro" in conteudo)) {
+      //Atualiza os campos com os valores.
+      document.getElementById('rua').value = (conteudo.logradouro);
+      document.getElementById('bairro').value = (conteudo.bairro);
+      document.getElementById('cidade').value = (conteudo.localidade);
+      document.getElementById('uf').value = (conteudo.uf);
+      document.getElementById('ibge').value = (conteudo.ibge);
+    } //end if.
+    else {
+      //CEP não Encontrado.
+      limpa_formulário_cep();
+      alert("CEP não encontrado.");
+    }
+  }
+
+
+  function verificaCep() {
+    var cep = $('#cep').val();
+
+    $.get('https://viacep.com.br/ws/' + cep + '/json', {}, function (conteudo) {
+
+      console.log(conteudo)
+
+      if (conteudo.erro != true) {
+
+        $('#rua').val(conteudo.logradouro);
+        $('#bairro').val(conteudo.bairro);
+        $('#cidade').val(conteudo.localidade);
+        $('#uf').val(conteudo.uf);
+        $('#ibge').val(conteudo.ibge);
+      } else {
+        //CEP não Encontrado.
+        limpa_formulário_cep();
+        alert("CEP não encontrado.");
+      }
+
+    }, 'Json');
+
+  }
+
+
+  function verificaCep1() {
+    var cep = $('#cep').val();
+
+    var script = document.createElement('script');
+
+    //Sincroniza com o callback.
+    script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+    //Insere script no documento e carrega o conteúdo.
+    document.body.appendChild(script);
+
+    document.getElementById('rua').value = (conteudo.logradouro);
+    document.getElementById('bairro').value = (conteudo.bairro);
+    document.getElementById('cidade').value = (conteudo.localidade);
+    document.getElementById('uf').value = (conteudo.uf);
+    document.getElementById('ibge').value = (conteudo.ibge);
+
+  }
+</script>
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Configurações Básicas</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Configurações Básicas</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <form method="post">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Valor Mínimo de saque (CASHBACK)</h3>
+              </div>
+              <div class="card-body">
+
+                <label class="form-label">Valor</label>
+                <input type="hidden" id="idplan" name="idplan" value="{SEQ}">
+                <input type="text" class="form-control mb-4" name="valor1" onKeyPress="return(moeda(this,'.',',',event))" value="{VALORF}">
+                <input type="submit" class="btn btn-outline-success" name="alterar_valormin" value="Alterar - A">
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Valor Mínimo de saque (BÔNUS UNILEVEL)</h3>
+              </div>
+              <div class="card-body">
+                <label class="form-label">Valor</label>
+                <input type="hidden" id="bonus" name="bonus" value="{SEQB}">
+                <input type="text" class="form-control mb-4" name="valor2" onKeyPress="return(moeda(this,'.',',',event))" value="{VALORB}">
+
+                <input type="submit" class="btn btn-outline-success" name="alterar_valormin_b" value="Alterar - B">
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Pagamento por PagSeguro</h3>
+              </div>
+              <div class="card-body">
+
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="simounao">
+                  <option value="{ID}">{SN}</option>
+                  <option disabled value=""></option>
+                  <option value="s">SIM</option>
+                  <option value="n">NÃO</option>
+                </select>
+
+                <input type="submit" class="btn btn-outline-success " name="alterar_dotbank" value="Alterar">
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+
+          <!-- BEGIN MENU_DOTBANK1 -->
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Pagamento por DotBank</h3>
+              </div>
+              <div class="card-body">
+
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="simounao_d">
+                  <option value="{ID1}">{SN1}</option>
+                  <option disabled value=""></option>
+                  <option value="s">SIM</option>
+                  <option value="n">NÃO</option>
+                </select>
+
+                <input type="submit" class="btn btn-outline-success" name="alterar_dotbank" value="Alterar">
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <!-- END MENU_DOTBANK1 -->
+
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Texto Banner</h3>
+              </div>
+              <div class="card-body">
+
+
+                <input type="text" class="form-control mb-4" name="texto_banner" value="{TEXTO_BANNER}">
+
+                <input type="submit" class="btn btn-outline-success mr-2" name="alterar_texto_banner" value="Alterar">
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Endereço e Whatsapp</h3>
+              </div>
+              <div class="card-body">
+                <div class="row">
+
+                  <div class="col-1">
+                    <label class="form-label">CEP</label>
+                    <input type="text" class="form-control " id="cep" name="cep" value="" maxlength="9" onblur="verificaCep();" value="{CEP}" />
+                  </div>
+
+                  <div class="col-3">
+                    <label class="form-label">Endereço</label>
+                    <input type="text" class="form-control " name="rua" id="rua" value="{RUA}" />
+                  </div>
+
+                  <div class="col-1">
+                    <label class="form-label">Numero</label>
+                    <input type="text" class="form-control mb-4" name="numero" value="{NUMERO}">
+                  </div>
+
+                  <div class="col-1">
+                    <label class="form-label">Complemento</label>
+                    <input type="text" size="3px" class="form-control " name="comple" id="comple" value="{COMPLE}" />
+                  </div>
+
+                  <div class="col-3">
+                    <label class="form-label">Bairro</label>
+                    <input type="text" class="form-control " name="bairro" id="bairro" value="{BAIRRO}" />
+                  </div>
+
+                  <div class="col-3">
+                    <label class="form-label">Cidade</label>
+                    <input type="text" class="form-control " id="cidade" name="cidade" value="{CIDA}" />
+                  </div>
+
+                  <div class="col-1">
+                    <label class="form-label">Estado</label>
+                    <input type="text" class="form-control " id="uf" name="uf" value="{UF}"/>
+                    <input type="hidden" class="form-control " id="ibge" name="ibge" value="{IBGE}"/>
+                  </div>
+
+                <div class="col-2">
+                  <label class="form-label">Celular/WhatsApp</label>
+                  <input type="text" class="form-control mb-4" id="whats" name="whats" value="{WHATS}">
+                </div>
+
+                  <div class="col-3">
+                    <label class="form-label">Email/Login</label>
+                    <input type="email" class="form-control mb-4" name="email" value="{EMAIL}">
+                  </div>
+                </div>
+
+                <input type="submit" class="btn btn-outline-success mr-2" name="alterar_dados" value="Alterar">
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Redes Sociais</h3>
+              </div>
+              <div class="card-body">
+
+                <div class="col-6">
+                  <label class="form-label">Facebook</label>
+                  <input type="email" class="form-control mb-4" name="facebook" value="{FACEBOOK}">
+                </div>
+
+                <div class="col-6">
+                  <label class="form-label">Instagram</label>
+                  <input type="email" class="form-control mb-4" name="intagram" value="{INSTAGRAM}">
+                </div>
+
+                <div class="col-6">
+                  <label class="form-label">Twiter</label>
+                  <input type="email" class="form-control mb-4" name="twiter" value="{TWITER}">
+                </div>
+
+                <div class="col-6">
+                  <label class="form-label">Skype</label>
+                  <input type="email" class="form-control mb-4" name="skype" value="{SKYPE}">
+                </div>
+
+                <div class="col-6">
+                  <label class="form-label">Linkedin</label>
+                  <input type="email" class="form-control mb-4" name="linkedin" value="{LINKEDIN}">
+                </div>
+
+                <input type="submit" class="btn btn-outline-success mr-2" name="alterar_redeso" value="Alterar">
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Titulo das Categorias</h3>
+              </div>
+              <div class="card-body">
+
+                <div class="col-6">
+                  <label class="form-label">Breadcrumbs e Titulo</label>
+                  <input type="text" class="form-control mb-4" name="bread" value="{REDE_CRED}">
+                </div>
+
+                <input type="submit" class="btn btn-outline-success mr-2" name="alterar_breadcrumbs" value="Alterar">
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Texto Inicial da Rede</h3>
+              </div>
+              <div class="card-body">
+                <div class="col-6">
+                  <label class="form-label">1ª parte</label>
+                  <input type="text" class="form-control mb-4" name="parte1" value="{P1}">
+                </div>
+
+                <div class="col-6">
+                  <label class="form-label">2ª parte</label>
+                  <input type="text" class="form-control mb-4" name="parte2" value="{P2}">
+                </div>
+
+                <input type="submit" class="btn btn-outline-success mr-2" name="alterar_texto2" value="Alterar">
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+  </form>
+  <!-- /.content -->
+</div>
+
+<script type="text/javascript">
+  jQuery(function ($) {
+    $("#cep").mask("99999-999");
+    $("#whats").mask("(99) 99999-9999");
+  });
+</script>
+

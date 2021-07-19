@@ -1,0 +1,236 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<script>
+    jQuery(function ($) {
+        $("#numerocartao").mask("9999 9999 9999 9999");
+        $("#mes_ano").mask("99/9999");
+        $("#codigo").mask("999");
+        $("#cpf").mask("999.999.999-99");
+    });
+
+</script>
+
+<main id="main">
+
+	<!-- ======= Breadcrumbs ======= -->
+	<section class="breadcrumbs">
+		<div class="container">
+			<div class="row align-items-end">
+				<div class="col-4">
+					<ol>
+						<li><a href="index.php?idSessao={ID_SESSAO}">Home</a></li>
+						<li>Agendamento</li>
+					</ol>
+					<h2>Agendamento</h2>
+				</div>
+			</div>
+		</div>
+	</section><!-- End Breadcrumbs -->
+	<section>
+		<div class="container mb-4" data-aos="fade-up">
+			<!-- BEGIN NAO_LOGADO -->
+			<a href="redescredenciadas.php?cat={CATE}" class="btn btn-primary mb-4">Voltar</a>
+			<!-- END NAO_LOGADO -->
+
+			<!-- BEGIN LOGADO -->
+			<a href="redescredenciadas.php?idSessao={ID_SESSAO}&cat={CATE}" class="btn btn-primary mb-4">Voltar</a>
+			<!-- END LOGADO -->
+
+
+			<div class="row">
+				<div class="col-lg-12 mb-6">
+					<div class="col">
+						<div class="card mb-4">
+							<br>
+							<center>
+								<!-- BEGIN MSG_AGENDAR1 -->
+								<h2 class="card-title">Agendamento</h2>
+								<!-- END MSG_AGENDAR1 -->
+
+								<!-- BEGIN MSG_AGENDAR2 -->
+								<h2 class="card-title">Agendamento Realizada com Sucesso</h2>
+								<p>Anote os dados sobre seu agendamento</p>
+								<!-- END MSG_AGENDAR2 -->
+								<br>
+
+
+								<div class="card-body">
+									<h3 class="card-text">{NOMEREDE}</h3>
+									<p class="card-text">{CATEREDE} <i class="fa fa-arrow-circle-right"></i> {SUBCATE}</p>
+									<h4 class="card-text">{NOME_AG}</h4>
+									<h4 class="card-text">Profissão: {TIPO}</h4>
+									<h3 class="card-text">Data: <font class="alert-danger">{DATA}</font></h3>
+									<h2 class="card-text">Valor: R$ {VALOR}</h2>
+								</div>
+							</center>
+
+							<!-- BEGIN BTN_AGENDAR1 -->
+							<div class="card-body mb-4">
+								<h4 class="mb-4">Formas de Pagamento</h4>
+								<nav>
+									<div class="nav nav-tabs" id="nav-tab" role="tablist">
+										<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+											Cartão Crédito e Débito
+										</button>
+										<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+											Pagamento Local
+										</button>
+										<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+											Transferência/Pix
+										</button>
+									</div>
+								</nav>
+								<div class="tab-content" id="nav-tabContent">
+									<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+										<form method="post">
+										<div class="card-body">
+											<input type="hidden" name="local" value="n">
+											<input type="hidden" name="tipopg" value="c">
+											<input type="hidden" name="idusua" value="{IDUSUA}">
+											<input type="hidden" name="idcale" value="{IDCALE}">
+											<input type="hidden" name="idloja" value="{IDCRED}">
+
+											<div class="col-md-4">
+												<div class="form-floating mb-3">
+													<input type="text" class="form-control" id="numerocartao" name="numerocartao" placeholder="9999 9999 9999 9999">
+													<label for="numerocartao">Numero do Cartão</label>
+												</div>
+
+												<div class="row mb-3">
+													<div class="col-md-6">
+														<div class="form-floating">
+															<input type="text" class="form-control" id="mes_ano" name="mes_ano" placeholder="99/9999">
+															<label for="mes_ano">Validade Mês/Ano </label>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-floating">
+															<input type="text" class="form-control" id="codigo" name="codigo" placeholder="Cod.Seg">
+															<label for="codigo">Cod. Segurança</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-floating mb-3">
+													<input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF">
+													<label for="cpf">C.P.F</label>
+												</div>
+
+												<div class="form-floating mb-3">
+													<input type="text" class="form-control" id="nomecartao" name="nomecartao" placeholder="Nome">
+													<label for="nomecartao">Nome (Igual do Cartão)</label>
+												</div>
+
+												<div class="form-floating mb-3">
+													<input type="hidden" name="valor" value="{VALOR}">
+													<input type="text" class="form-control" id="valor"  readonly value="{VALOR}">
+													<label for="valor">Valor</label>
+												</div>
+
+											</div>
+											<input type="submit" class="btn btn-success" name="pagar_cartao" value="Pagar">
+										</div>
+										</form>
+									</div>
+									<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+										<form method="post">
+											<div class="card-body">
+												<h4 class="mb-4">Pagamento no Local</h4>
+												<input type="hidden" name="local" value="s">
+												<input type="hidden" name="idusua" value="{IDUSUA}">
+												<input type="hidden" name="idcale" value="{IDCALE}">
+												<input type="hidden" name="idloja" value="{IDCRED}">
+
+
+												<label class="mb-2">Escolha o tipo de pagamento:</label>
+												<select class="form-control mb-4" name="tipopg">
+													<option value="d">Dinheiro</option>
+													<option value="c">Cartão</option>
+													<option value="p">Pix</option>
+												</select>
+												<input type="submit" class="btn btn-success" name="agendar2" value="Confirmar">
+											</div>
+										</form>
+									</div>
+									<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+										<form method="post">
+											<div class="card-body">
+												<h4 class="mb-4">Transferência ou PIX</h4>
+												<input type="hidden" name="local" value="n">
+												<input type="hidden" name="tipopg" value="x">
+												<input type="hidden" name="idusua" value="{IDUSUA}">
+												<input type="hidden" name="idcale" value="{IDCALE}">
+												<input type="hidden" name="idloja" value="{IDCRED}">
+
+
+												<div class="row mb-4">
+													<div class="col-md-3">
+														<div class="card" style="width: 18rem;">
+															<div class="card-body">
+																<h5 class="card-title">Transferência</h5>
+																<p class="card-subtitle mb-2 text-muted">Nome do Favorecido:</p>
+																<p class="card-subtitle mb-4 text-muted">{NOMECRED}</p>
+
+																<p class="card-text mb-2">CPF/CNPJ:</p>
+																<p class="card-text mb-4">{CPFCNPJ}</p>
+
+																<p class="card-text mb-2">Agência:</p>
+																<p class="card-text mb-4">{AGENCIA}</p>
+
+																<p class="card-text mb-2">Conta:</p>
+																<p class="card-text mb-4">{CONTA}</p>
+
+																<p class="card-text mb-2">Tipo Conta:</p>
+																<p class="card-text mb-4">{TPCONTA}</p>
+															</div>
+														</div>
+													</div>
+
+													<div class="col-md-3">
+														<div class="card" style="width: 18rem;">
+															<div class="card-body">
+																<h5 class="card-title">PIX</h5>
+																<p class="card-subtitle mb-2 text-muted">Nome do Favorecido:</p>
+																<p class="card-subtitle mb-4 text-muted">{PIX_NOMECRED}</p>
+
+																<p class="card-text mb-2">CPF/CNPJ:</p>
+																<p class="card-text mb-4">{PIX_CPFCNPJ}</p>
+
+																<p class="card-text mb-2">CELULAR:</p>
+																<p class="card-text mb-4">{PIX_CELULAR}</p>
+
+																<p class="card-text mb-2">EMAIL:</p>
+																<p class="card-text mb-4">{PIX_EMAIL}</p>
+
+																<p class="card-text mb-2">CHAVE ALEATÓRIA:</p>
+																<p class="card-text mb-4">{PIX_CHAVE}</p>
+
+															</div>
+														</div>
+													</div>
+												</div>
+												<input type="submit" class="btn btn-success" name="agendar3" value="Confirmar">
+											</div>
+										</form>
+									</div>
+								</div>
+
+							</div>
+							<!-- END BTN_AGENDAR1 -->
+
+							<!-- BEGIN BTN_AGENDAR2 -->
+							<div class="card-body mb-4">
+								<a href="calendario_cred.php?idSessao={ID_SESSAO}&id={IDCRED}" class="btn btn-success">Voltar</a>
+								<a href="meus_agendamentos.php?idSessao={ID_SESSAO}" class="btn btn-warning">Meus Agendamentos</a>
+							</div>
+							<!-- END BTN_AGENDAR2 -->
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	</section><!-- End Blog Section -->
+
+</main>
+

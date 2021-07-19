@@ -1,0 +1,80 @@
+<script text="javascript">
+
+  function add(id) {
+    var id = $('#idplan').val();
+
+    $.post('viewplano.php', {id: id}, function (data) {
+      $('#id').val(data.id);
+      $('#divnome').val(data.nome);
+      $('#divdesc').html('<textarea type="text" class="form-control p-input" id="desc" name="desc" >' + data.desc + '</textarea>');
+      $('#divtempo').html('<input type="text" class="form-control p-input" id="tempo" name="tempo" value=' + data.tempo + ' >');
+      $('#divadesao').html('<input type="text" class="form-control p-input" id="adesao" name="adesao" value=' + data.valort + ' >');
+      $('#divmensal').html('<input type="text" class="form-control p-input" id="mensa" name="mensa" value=' + data.valorm + ' >');
+      $("#editarplano").modal();
+    }, 'json');
+
+  }
+
+  function remover(id) {
+    var id = id;
+
+    $.post('delplano.php', {id: id}, function (data) {
+      window.location.href = window.location.href
+    });
+  }
+</script>
+
+<div class="content-wrapper">
+  <input type="hidden" name="id_admin" id="id_admin" value="{ID_ADMIN}">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Configuração do DotBank</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Configuração do DotBank</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">DotBank Admin</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form method="post">
+                <table class="table table-hover">
+                  <thead>
+                  <tr class="">
+                    <th>Token</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td><input type="text" class="form-control" name="token" value="{TOKEN}"></td>
+                  </tr>
+                  </tbody>
+
+                </table>
+                <input type="submit" class="btn btn-outline-success mr-2" name="alterar" value="Alterar">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

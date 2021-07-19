@@ -1,0 +1,179 @@
+<script type="text/javascript">
+
+  $(function () {
+    $('#example1').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+
+  $(function () {
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+</script>
+
+
+<style>
+  .infocart:hover {
+    cursor: pointer;
+    color: red;
+    background-color: #CEF6E3;
+  }
+
+  .subcompra {
+    width: 100%;
+  }
+
+
+</style>
+<input type="hidden" name="idcred" value="{ID_CRED}">
+<input type="hidden" name="id_rede" value="{ID_REDE}">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Vendas Usuários</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active">Vendas Usuários</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Informações dos carrinhos de compra</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+
+            <!-- BEGIN ERRO -->
+            <div class="alert alert-danger" role="alert">
+              <p align="justify">{MSG}</p>
+            </div>
+            <!-- END ERRO -->
+
+            <!-- BEGIN SUCESSO -->
+            <div class="alert alert-success" role="alert">
+              <p align="justify">{MSG}</p>
+            </div>
+            <!-- END SUCESSO -->
+
+            <div class="form-row">
+
+              <!-- BEGIN COMPRAS -->
+              <table id="example1" class="table table-hover table-responsive">
+
+                <tr bgcolor="#F6CECE" class="titutable">
+                  <th>Carrinho de nº</th>
+                  <th>Nome do Usuário</th>
+                  <th>Valor do carrinho</th>
+                  <th>Data da Compra</th>
+                  <th>Status da compra</th>
+                  <th></th>
+                </tr>
+
+                <tr class="infocart" data-bs-toggle="collapse" data-bs-target="#collapse{ID},#collapse1{ID},#collapse2{ID}" aria-expanded="true" aria-controls="collapse{ID}">
+                  <input type="hidden" name="idcart" id="idcart" value="{ID}">
+                  <td>{ID}</td>
+                  <td>{NOMEUSUA}</td>
+                  <td>{VALOR_TOTAL}</td>
+                  <td>{DATACART}</td>
+                  <td>{SITUA}</td>
+                  <td><i class="fa fa-plus"></i></td>
+                </tr>
+
+                <tr id="collapse{ID}" bgcolor="#D8D8D8" class="collapse subcompra" data-parent="#accordionExample">
+                  <input type="hidden" name="idcart" id="idcart" value="{ID}">
+                  <th>Status do carrinho</th>
+                  <th>Tipo da transação</th>
+                  <th>Referência</th>
+                  <th>Data da transação</th>
+                  <th>Modo do Pagamento</th>
+                  <th></th>
+                </tr>
+
+                <tr id="collapse{ID}" bgcolor="{COR}" class="collapse subcompra" data-parent="#accordionExample">
+                  <input type="hidden" name="idcart" id="idcart" value="{ID}">
+                  <td>{STATUSCAR}</td>
+                  <td>{TIPOPAG}</td>
+                  <td>{REF}</td>
+                  <td>{DATATRANS}</td>
+                  <td>{TIPAGCASH}</td>
+                  <td></td>
+                </tr>
+
+              </table>
+
+              <table class="table table-hover table-responsive">
+
+                <tr id="collapse{ID}" bgcolor="#D8D8D8" class="collapse subcompra" data-parent="#accordionExample">
+                  <th >Nome do produto</th>
+                  <th>Valor Unit.</th>
+                  <th>Quantidade</th>
+                  <th>Valor Total</th>
+                  <th>% do Cashback</th>
+                  <th>CashBack Gerado</th>
+                  <th></th>
+                </tr>
+                <!-- BEGIN PRODUTOS -->
+                <tr id="collapse1{ID}" bgcolor="{COR}" class="collapse" data-parent="#accordionExample">
+                  <td>{NOMEPROD}</td>
+                  <td>{VALUNITA}</td>
+                  <td>{QUANTIDA}</td>
+                  <td>{VALTPROD}</td>
+                  <td>{CASHPORC}</td>
+                  <td>{CASHBACK}</td>
+                  <td></td>
+
+                </tr>
+
+                <!-- END PRODUTOS -->
+                <tr bgcolor="#D8D8D8" id="collapse2{ID}" class="collapse">
+                  <td></td>
+                  <td></td>
+                  <td><b>TOTAL</b></td>
+                  <td><b>{VALOR_TOTAL}</b></td>
+                  <td><b></b>
+                  <td><b>{TOTALCASH}</b></td>
+                  <td></td>
+                </tr>
+              </table>
+              <hr>
+              <!-- END COMPRAS -->
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+	
+	
